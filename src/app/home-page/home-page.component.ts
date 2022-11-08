@@ -21,4 +21,13 @@ export class HomePageComponent implements OnInit {
   goToProfileViewPage() {
     this.router.navigate(['/profile-view']);
   }
+
+  goToViewStudentPage() {
+    this.router.navigate(['/view-student-profile']);
+  }
+
+  goToViewFacultyPage() {
+    this.router.navigate(['/view-faculy-profile']);
+  }
+
 }

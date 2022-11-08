@@ -1,0 +1,49 @@
+.mat-toolbar {
+    height: 112px;
+    width: 100%;
+    background-color: #001e44;
+    background-image: linear-gradient(to right,#009CDE 0%,#1E407C 33%,#1E407C 67%,#001E44 100%);
+    color:white;
+}
+
+.PSUlogo {
+    height: 44px;
+    margin-left: 100px;
+}
+
+.container{
+    padding-left: 450px;
+}
+
+.title-container{
+    position: relative;
+    padding-left: 100px;
+}
+
+.toolbar-title {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 30px;
+}
+
+.gradient-button-container {
+    position: relative;
+    padding-top: 15px;
+}
+
+.gradient-button {
+    background: linear-gradient(to bottom,#009cde,#1e407c);
+    border: none;
+    color: white;
+    width: 150px;
+    height: 35px;
+    margin-right: 30px;
+}
+
+.profile-btn-container {
+    margin-left: auto; 
+    margin-right: 100px;
+}
+.profile-logo {
+    height: 60px;
+    border-radius: 50%;
+}

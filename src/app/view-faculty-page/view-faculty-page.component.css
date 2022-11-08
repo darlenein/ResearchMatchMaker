@@ -1,0 +1,43 @@
+.top-container {
+    display: flex;
+    padding-top: 100px;
+    padding-left: 200px;
+}
+
+.top-left-container {
+    flex: 1;
+}
+
+.top-right-container {
+    padding-top: 100px;
+    flex: 4.5;
+}
+
+.name {
+    font-size: 40px;
+    font-style: bold;
+}
+
+.job-title {
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.dept {
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.contact {
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.office {
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.profile-logo {
+    height: 250px;
+}
