@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-
+import {MatTabsModule} from '@angular/material/tabs';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProfileViewComponent } from './profile-view/profile-view.component';
@@ -12,6 +12,7 @@ import { OpportunityBoardPageComponent } from './opportunity-board-page/opportun
 import { MatchPageComponent } from './match-page/match-page.component';
 import { ViewFacultyPageComponent } from './view-faculty-page/view-faculty-page.component';
 import { ViewStudentPageComponent } from './view-student-page/view-student-page.component'; 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,9 @@ import { ViewStudentPageComponent } from './view-student-page/view-student-page.
     AppRoutingModule,
     HttpClientModule,
     AppRoutingModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatTabsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

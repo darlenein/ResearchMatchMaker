@@ -15,7 +15,7 @@
 
 .name {
     font-size: 40px;
-    font-style: bold;
+    font-weight: bold;
 }
 
 .job-title {
@@ -40,4 +40,15 @@
 
 .profile-logo {
     height: 250px;
+}
+
+.bot-container{
+    padding-top: 50px;
+    padding-left: 200px;
+    padding-right: 200px;
+}
+
+.mat-tab-label {
+    color: black;
+    font-weight: bold;
 }
