@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CreateFacultyPageComponent } from './create-faculty-page/create-faculty-page.component';
+import { CreateStudentPageComponent } from './create-student-page/create-student-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { LoginPageComponent } from './login-page/login-page.component';
 import { MatchPageComponent } from './match-page/match-page.component';
 import { OpportunityBoardPageComponent } from './opportunity-board-page/opportunity-board-page.component';
 import { ProfileViewComponent } from './profile-view/profile-view.component';
@@ -14,7 +17,10 @@ const routes: Routes = [
   { path: 'view-matches', component: MatchPageComponent},
   { path: 'opp-board', component: OpportunityBoardPageComponent},
   { path: 'view-faculy-profile', component: ViewFacultyPageComponent},
-  { path: 'view-student-profile', component: ViewStudentPageComponent}
+  { path: 'view-student-profile', component: ViewStudentPageComponent},
+  { path: 'create-faculty-page', component: CreateFacultyPageComponent},
+  { path: 'create-student-page', component: CreateStudentPageComponent},
+  { path: 'login', component: LoginPageComponent}
   
 ];
 
