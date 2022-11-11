@@ -1,12 +1,50 @@
 <app-top-menu-bar></app-top-menu-bar>
-<p>match-page works!</p>
 
 <div class="container">
     <div class="left-container">
-
+        <br><span class="filter-title">Filter Match Results</span>
+        <mat-nav-list>
+            <mat-list-item (click)="toggle[1] = !toggle[1]">
+                <a matLine *ngIf="!toggle[1]"><mat-icon>keyboard_arrow_right</mat-icon></a>
+                <a matLine *ngIf="toggle[1]"><mat-icon>keyboard_arrow_down</mat-icon></a>
+                <a style="padding-bottom: 2.5px; margin-right: 80px;">Engineering</a>
+                <span>
+              <mat-icon *ngIf="!toggle[1]"></mat-icon>
+              <mat-icon *ngIf="toggle[1]"></mat-icon>
+             </span>
+            </mat-list-item>
+        
+            <div [hidden]="!toggle[1]">
+                <mat-selection-list>
+                    <mat-list-option *ngFor="let item of engineeringItems" checkboxPosition="before">
+                        {{ item }}
+                    </mat-list-option>
+                </mat-selection-list>
+            </div>
+        
+            <mat-list-item (click)="toggle[2] = !toggle[2]">
+                <a matLine *ngIf="!toggle[2]"><mat-icon>keyboard_arrow_right</mat-icon></a>
+                <a matLine *ngIf="toggle[2]"><mat-icon>keyboard_arrow_down</mat-icon></a>
+                <a style="padding-bottom: 2.5px; margin-right: 85px;">Visual Arts</a>
+                <span>
+              <mat-icon *ngIf="!toggle[2]"></mat-icon>
+              <mat-icon *ngIf="toggle[2]"></mat-icon>
+             </span>
+            </mat-list-item>
+        
+            <div [hidden]="!toggle[2]">
+                <mat-selection-list>
+                    <mat-list-option *ngFor="let item of visualArtsItems" checkboxPosition="before">
+                        {{ item }}
+                    </mat-list-option>
+                </mat-selection-list>
+            </div>
+        
+        </mat-nav-list>
     </div>
 
     <div class="right-container">
-        
+        <br><span class="result-title">Match Results</span>
     </div>
 </div>
+

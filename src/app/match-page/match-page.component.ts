@@ -12,4 +12,7 @@ export class MatchPageComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  engineeringItems: string[] = [ "Civil", "Chemical", "Electrical", "Mechanical"];
+  visualArtsItems: string[] = [ "Graph Design", "3D Modeling"];
+  toggle = [false];
 }
