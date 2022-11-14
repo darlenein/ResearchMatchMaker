@@ -2,23 +2,24 @@
 
 <div class="top-container">
     <div class="top-left-container">
-        <span class="name">Jane Doe</span><br>
-        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" class="profile-logo">
+        <span class="name">{{faculty.firstName}} {{faculty.lastName}}</span><br>
+        <img src="{{faculty.profileUrl}}" class="profile-logo">
     </div>
     <div class="top-right-container">
-        <span class="job-title">Associate Professor</span><br>
-        <span class="dept">Computer Science and Software Engineer</span><br>
-        <span class="contact">dxi5017@psu.edu</span><br>
-        <span class="office">123 Burke</span><br>
+        <span class="profile-text-title"><div *ngFor="let item of splitTitle">{{item}}</div></span><br>
+        <span class="profile-text">Email: {{faculty.email}}</span><br>
+        <span class="profile-text">Phone: {{faculty.phone}}</span><br>
+        <span class="profile-text">Office: {{faculty.office}}</span><br>
 
     </div>
 </div>
 
 <div class="bot-container">
     <mat-tab-group mat-align-tabs="center" animationDuration="0ms">
-        <mat-tab label="About Me"> Content 1 </mat-tab>
-        <mat-tab label="Research Projects"> Content 12313123 </mat-tab>
-        <mat-tab label="Research Interests"> Content 2 </mat-tab>
-        <mat-tab label="Publications"> Content 3 </mat-tab>
+        <mat-tab label="About Me"> <span class="tab-text"><br><div *ngFor="let item of splitAboutMe">{{item}}</div></span> </mat-tab>
+        <mat-tab label="Research Projects"> <span class="tab-text"><br>N/A</span></mat-tab>
+        <mat-tab label="Research Interests"> <span class="tab-text"><br><div *ngFor="let item of splitResearchInterest">{{item}}</div></span></mat-tab>
+        <mat-tab label="Afflicated Links"> <span class="tab-text"><br><a href="{{faculty.link1}}">{{faculty.link1}}</a></span> </mat-tab>
       </mat-tab-group>
 </div>
+

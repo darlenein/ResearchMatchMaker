@@ -16,6 +16,17 @@ export class ServiceDispatcher{
     const url = 'https://localhost:44390/api/Student';
     return this.http.get<any>(url);
   }
+
+  public getFaculty(faculty_id : string): Observable<any> {
+    const url = 'https://localhost:44390/api/Faculty/' + faculty_id;
+    return this.http.get<any>(url);
+  }
+
+  public getStudent(student_id : string): Observable<any> {
+    // find url on swagger UI
+    const url = 'https://localhost:44390/api/Student/' + student_id;
+    return this.http.get<any>(url);
+  }
 }
 
 

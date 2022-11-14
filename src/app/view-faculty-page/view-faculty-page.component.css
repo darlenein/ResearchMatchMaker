@@ -10,7 +10,7 @@
 
 .top-right-container {
     padding-top: 100px;
-    flex: 4.5;
+    flex: 4;
 }
 
 .name {
@@ -18,28 +18,19 @@
     font-weight: bold;
 }
 
-.job-title {
+.profile-text {
     font-size: 20px;
     line-height: 30px;
 }
 
-.dept {
+.profile-text-title {
     font-size: 20px;
     line-height: 30px;
-}
-
-.contact {
-    font-size: 20px;
-    line-height: 30px;
-}
-
-.office {
-    font-size: 20px;
-    line-height: 30px;
+    font-weight: bold;
 }
 
 .profile-logo {
-    height: 250px;
+    height: 350px;
 }
 
 .bot-container{
@@ -51,4 +42,9 @@
 .mat-tab-label {
     color: black;
     font-weight: bold;
+}
+
+.tab-text {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    line-height: 1.6;
 }

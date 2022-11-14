@@ -1,2 +1,24 @@
 <app-top-menu-bar></app-top-menu-bar>
-<p>view-student-page works!</p>
+
+<div class="top-container">
+    <div class="top-left-container">
+        <span class="name">{{student.firstName}} {{student.lastName}}</span><br>
+        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" class="profile-logo">
+    </div>
+    <div class="top-right-container">
+        <span class="profile-text">Major: {{student.major}}</span><br>
+        <span class="profile-text">Graduation Date: {{student.graduationMonth}} {{student.graduationYear}}</span><br>
+        <span class="profile-text">Contact: {{student.email}}</span><br>
+        <span class="profile-text">GPA: {{student.gpa}}</span><br>
+
+    </div>
+</div>
+
+<div class="bot-container">
+    <mat-tab-group mat-align-tabs="center" animationDuration="0ms">
+        <mat-tab label="Research Interests"> <br><span class="tab-text"><div *ngFor="let item of splitResearchInterest">{{item}}</div></span> </mat-tab>
+        <mat-tab label="Research Projects"> <br><span class="tab-text">{{student.researchProject}}</span> </mat-tab>
+        <mat-tab label="Skills"> <br><span class="tab-text"><div *ngFor="let item of splitSkills">{{item}}</div></span> </mat-tab>
+        <mat-tab label="Afflicated Links"> <br><span class="tab-text"><a href="{{student.link1}}">{{student.link1}}</a></span> </mat-tab>
+      </mat-tab-group>
+</div>
