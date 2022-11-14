@@ -4,7 +4,20 @@ h1 {
 }
 
 .projImage {
+    display: flex;
     padding-top: 50px;
-    height: 500px;
-    width: 700px;
+    height: 400px;
+    width: 600px;
+}
+
+.projImage2 {
+    display: flex;
+    padding-top: 50px;
+    height: 400px;
+    width: 600px;
+
+}
+
+p {
+    text-align: left;
 }

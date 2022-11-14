@@ -11,8 +11,10 @@
 }
 
 .right-container {
+    border: 1px solid gray;
     padding-left: 10px;
     flex: 5;
+
 }
 
 .filter-title {
