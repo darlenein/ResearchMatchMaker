@@ -1,2 +1,72 @@
 <app-banner-no-buttons></app-banner-no-buttons>
-<p>create-student-page works!</p>
+<p></p>
+<div class="form">
+
+    <h1>
+        Student Profile Creation
+     </h1>
+     <form>
+        <label type="name" for = "name">Name</label>
+        <input type="text" id="name" placeholder="Enter Name" size="50">
+        <br> <br>
+
+        <label for = "email">Email</label>
+        <input type="text" id="email" placeholder="Enter PSU Email" size="50">
+        <br> <br>
+        
+
+
+
+        <label for = "phone">Phone Number</label>
+        <input type="text" id="phone" placeholder="Enter Phone Number" size="50">
+        <br><br>
+
+        <label for = "gpa">GPA</label>
+        <input type="text" id="gpa" placeholder="Enter GPA" size="50">
+        <pre></pre>
+
+        <label type="date" for = "grad date">Estimated Graduation Date</label>
+        <input type="date" id="grad date" name="grad date" >
+        <br><br>
+
+
+        <label for = "department">Departments of Interest(can choose multiple)</label>
+        <select id="department">
+            <option value="SWENG">Software Engineering</option>
+            <option value="option 2">Option 2</option>
+            <option value="option 3">Option 3</option>
+        </select>
+        <br><br>
+
+        <label for = "campus">Specify On/Off Campus (Optional and can select both) </label>
+        <input type="checkbox" name="campus" id="on campus" value="on campus">
+        <label type="options" for="on campus">On Campus</label>
+        <input type="checkbox" name="campus" id="off campus" value="off campus">
+        <label type="options" for="off campus">Off Campus</label>
+        <br><br>
+        <label for = "money">Specify Paid/Non-Paid (Optional and can select both) </label>
+        <input type="checkbox" name="money" id="paid" value="paid">
+        <label type="options" for="paid">Paid</label>
+        <input type="checkbox" name="money" id="nonpaid" value="nonpaid">
+        <label type="options" for="nonpaid">Non-paid</label>
+        <br><br>
+
+
+        <label type="skills" for = "acquired skills">List any skills you have (Seperate by semicolon)</label>
+        <textarea  rows="7" cols="30" name="acquired skills" id="acquired skills" placeholder="Skill 1;Skill 2;Skill 3"></textarea>
+        
+
+        <label type="keywords" for = "keywords">Select any keywords from chosen departments</label>
+        <textarea  rows="7" cols="30" name="keywords" id="keywords" placeholder="All keywords will be listed here. Students will be able to choose from a list of keywords based on their selected departments"></textarea>
+        <br><br>
+
+        <input type="button" value="Add Resume" id="btn2">
+        <br><br>
+
+
+        <input type="submit" value="Submit" id="submitBtn">
+        <br><br>
+
+     </form>
+</div>
+
