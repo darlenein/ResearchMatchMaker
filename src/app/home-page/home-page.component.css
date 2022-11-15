@@ -4,20 +4,28 @@ h1 {
 }
 
 .projImage {
-    display: flex;
-    padding-top: 50px;
+    padding-left: 110px;
+    padding-top: 30px;
     height: 400px;
     width: 600px;
+    float: left;
+    margin-left: 100px;
 }
 
-.projImage2 {
-    display: flex;
-    padding-top: 50px;
-    height: 400px;
-    width: 600px;
-
+.text1 {
+    position: absolute;
+    padding-left: 110px;
+    padding-top: 460px;
+    margin-left: 100px;
+    vertical-align:  bottom;
+    font-weight: bold;
 }
 
-p {
-    text-align: left;
+.text2 {
+    position: absolute;
+    padding-left: 825px;
+    padding-top: 460px;
+    margin-left: 200px;
+    vertical-align:  bottom;
+    font-weight: bold;
 }
