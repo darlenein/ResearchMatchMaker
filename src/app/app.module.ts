@@ -19,7 +19,9 @@ import { CreateFacultyPageComponent } from './create-faculty-page/create-faculty
 import { BannerNoButtonsComponent } from './banner-no-buttons/banner-no-buttons.component';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon'; 
-
+import { MatInputModule } from '@angular/material/input'; 
+import { MatFormFieldModule } from '@angular/material/form-field'; 
+import { FormsModule } from '@angular/forms'; 
 
 @NgModule({
   declarations: [
@@ -45,7 +47,10 @@ import { MatIconModule } from '@angular/material/icon';
     MatTabsModule,
     BrowserAnimationsModule,
     MatListModule,
-    MatIconModule
+    MatIconModule,
+    MatInputModule,
+    MatFormFieldModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
