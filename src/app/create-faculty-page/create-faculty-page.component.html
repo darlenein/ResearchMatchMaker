@@ -1,2 +1,96 @@
 <app-banner-no-buttons></app-banner-no-buttons>
-<p>create-faculty-page works!</p>
+<p></p>
+
+
+<div class="form">
+
+    <h1>
+        Faculty Profile Creation
+     </h1>
+     <form>
+        <label type="name" for = "name">Name</label>
+        <input type="text" id="name" placeholder="Enter Name" size="50">
+        <br> <br>
+
+        <label for = "email">Email</label>
+        <input type="text" id="email" placeholder="Enter PSU Email" size="50">
+        <br> <br>
+
+        <label for = "department">Department</label>
+        <select id="department">
+            <option value="engineering">Engineering</option>
+            <option value="humanities and social sciences">Humanities and Social Sciences</option>
+            <option value="business">Business</option>
+            <option value="science">Science</option>
+            <option value="nursing">Nursing</option>
+        </select>
+        <pre></pre>
+
+        <label for = "office">Office</label>
+        <input type="text" id="office" placeholder="Enter Office Address" size="50">
+        <pre></pre>
+        
+        <label for = "phone">Phone Number</label>
+        <input type="text" id="phone" placeholder="Enter Phone Number" size="50">
+        <br><br>
+
+        <label for = "links">Add Affiliated Links</label>
+        <textarea rows="5" cols="75" name="links" id="links" placeholder="Enter any links to help students find out more about you and/or your research opportunity"></textarea>
+        <br><br>
+
+        <input type="button" value="Add Research Opportunity" id="btn">
+        <br><br>
+
+        <label for = "research name">Research Name</label>
+        <input type="text" id="research name" placeholder="Enter Research Name" size="50">
+        <br><br>
+
+        <label for = "researchlocation">Research Location</label>
+        <select id="researchlocation">
+            <option value="behrend">Behrend</option>
+            <option value="option 2">Option 2</option>
+            <option value="option 3">Option 3</option>
+        </select>
+        <br><br>
+
+        <label for = "campus">Select one: </label>
+        <input type="radio" name="campus" id="on campus" value="on campus">
+        <label type="options" for="on campus">On Campus</label>
+        <input type="radio" name="campus" id="off campus" value="off campus">
+        <label type="options" for="off campus">Off Campus</label>
+        <br><br>
+        <label for = "money">Select one: </label>
+        <input type="radio" name="money" id="paid" value="paid">
+        <label type="options" for="paid">Paid</label>
+        <input type="radio" name="money" id="nonpaid" value="nonpaid">
+        <label type="options" for="nonpaid">Non-paid</label>
+        <br><br>
+
+        <label type="date" for = "start date">Start Date for Research</label>
+        <input type="date" id="start date" name="research start" >
+        
+        <label type="date" for = "end date">End Date for Research</label>
+        <input type="date" id="end date" name="research end" >
+
+        <br><br>
+        <label for = "research description">Research Description</label>
+        <textarea rows="15" cols="75" name="research description" id="research description" placeholder="Please describe the research in detail here"></textarea>
+        <br><br>
+
+        <label type="skills" for = "required skills">Required Skills(Seperate by Semicolon)</label>
+        <textarea type="rskills" rows="7" cols="30" name="required skills" id="required skills" placeholder="Skill 1;Skill 2;Skill 3"></textarea>
+        
+
+        <label type="skills" for = "encouraged skills">Encouraged Skills(Seperate by Semicolon)</label>
+        <textarea type="eskills" rows="7" cols="30" name="encouraged skills" id="encouraged skills" placeholder="Skill 1;Skill 2;Skill 3"></textarea>
+        <br><br>
+
+        <input type="button" value="Add Another Research Opportunity" id="btn2">
+        <br><br>
+        
+        <input type="submit" value="Submit" id="submitBtn">
+        <br><br>
+
+     </form>
+</div>
+
