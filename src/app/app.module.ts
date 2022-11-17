@@ -22,6 +22,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input'; 
 import { MatFormFieldModule } from '@angular/material/form-field'; 
 import { FormsModule } from '@angular/forms'; 
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,10 @@ import { FormsModule } from '@angular/forms';
     MatIconModule,
     MatInputModule,
     MatFormFieldModule,
-    FormsModule
+    FormsModule,
+    NgMultiSelectDropDownModule.forRoot(),
+    ReactiveFormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
