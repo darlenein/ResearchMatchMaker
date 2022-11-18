@@ -16,7 +16,6 @@ export class ViewStudentPageComponent implements OnInit {
   constructor(public serviceDispatcher: ServiceDispatcher) { }
 
   ngOnInit(): void {
-    debugger;
     this.serviceDispatcher.getStudent('dxi5017').subscribe(response => {
       this.student = response
       this.splitSkills = this.separateByComma(this.student.skills);
