@@ -16,19 +16,19 @@ export class FacultyTopMenuBarComponent implements OnInit {
   }
 
   goToProfileViewPage() {
-    this.router.navigate(['/profile-view']);
+    this.router.navigate(['/view-faculy-profile']);
   }
 
   goToHomePage() {
-    this.router.navigate(['/home-page']);
+    this.router.navigate(['/faculty-home']);
   }
 
-  goToMatchPage() {
-    this.router.navigate(['/view-matches']);
+  goToResearchPage() {
+    this.router.navigate(['/faculty-research']);
   }
 
   goToOppBoardPage() {
     this.router.navigate(['/opp-board']);
-  }
+  } 
 
 }

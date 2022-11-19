@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-match-info-page',
-  templateUrl: './match-info-page.component.html',
-  styleUrls: ['./match-info-page.component.css']
+  selector: 'app-match-progress-page',
+  templateUrl: './match-progress-page.component.html',
+  styleUrls: ['./match-progress-page.component.css']
 })
 export class MatchInfoPageComponent implements OnInit {
 

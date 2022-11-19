@@ -24,7 +24,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms'; 
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatchInfoPageComponent } from './match-info-page/match-info-page.component';
+import { MatchInfoPageComponent } from './match-progress-page/match-progress-page.component';
 import { EditFacultyProfilePageComponent } from './edit-faculty-profile-page/edit-faculty-profile-page.component';
 import { EditStudentProfilePageComponent } from './edit-student-profile-page/edit-student-profile-page.component';
 import { AddResearchPageComponent } from './add-research-page/add-research-page.component';
@@ -34,6 +34,9 @@ import { EditResearchPageComponent } from './edit-research-page/edit-research-pa
 import { StudentHomePageComponent } from './student-home-page/student-home-page.component';
 import { FacultyHomePageComponent } from './faculty-home-page/faculty-home-page.component';
 import { FacultyTopMenuBarComponent } from './faculty-top-menu-bar/faculty-top-menu-bar.component';
+import { ResearchListPageComponent } from './research-list-page/research-list-page.component';
+import { FacultyViewStudentPageComponent } from './faculty-view-student-page/faculty-view-student-page.component';
+import { StudentViewFacultyPageComponent } from './student-view-faculty-page/student-view-faculty-page.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +61,10 @@ import { FacultyTopMenuBarComponent } from './faculty-top-menu-bar/faculty-top-m
     EditResearchPageComponent,
     StudentHomePageComponent,
     FacultyHomePageComponent,
-    FacultyTopMenuBarComponent
+    FacultyTopMenuBarComponent,
+    ResearchListPageComponent,
+    FacultyViewStudentPageComponent,
+    StudentViewFacultyPageComponent
   ],
   imports: [
     BrowserModule,
