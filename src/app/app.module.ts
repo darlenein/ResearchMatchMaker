@@ -24,6 +24,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms'; 
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatchInfoPageComponent } from './match-info-page/match-info-page.component';
+import { EditFacultyProfilePageComponent } from './edit-faculty-profile-page/edit-faculty-profile-page.component';
+import { EditStudentProfilePageComponent } from './edit-student-profile-page/edit-student-profile-page.component';
+import { AddResearchPageComponent } from './add-research-page/add-research-page.component';
+import { ManageResearchPageComponent } from './manage-research-page/manage-research-page.component';
+import { ViewResearchPageComponent } from './view-research-page/view-research-page.component';
+import { EditResearchPageComponent } from './edit-research-page/edit-research-page.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +45,14 @@ import { ReactiveFormsModule } from '@angular/forms';
     LoginPageComponent,
     CreateStudentPageComponent,
     CreateFacultyPageComponent,
-    BannerNoButtonsComponent
+    BannerNoButtonsComponent,
+    MatchInfoPageComponent,
+    EditFacultyProfilePageComponent,
+    EditStudentProfilePageComponent,
+    AddResearchPageComponent,
+    ManageResearchPageComponent,
+    ViewResearchPageComponent,
+    EditResearchPageComponent
   ],
   imports: [
     BrowserModule,
