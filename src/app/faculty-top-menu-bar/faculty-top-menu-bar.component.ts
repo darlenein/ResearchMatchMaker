@@ -1,14 +1,13 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {MatToolbarModule} from '@angular/material/toolbar'; 
-import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-top-menu-bar',
-  templateUrl: './top-menu-bar.component.html',
-  styleUrls: ['./top-menu-bar.component.css']
+  selector: 'app-faculty-top-menu-bar',
+  templateUrl: './faculty-top-menu-bar.component.html',
+  styleUrls: ['./faculty-top-menu-bar.component.css']
 })
-export class TopMenuBarComponent implements OnInit {
+export class FacultyTopMenuBarComponent implements OnInit {
 
   constructor(private router: Router, private http: HttpClient) { 
   }

@@ -15,12 +15,12 @@ export class LoginPageComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  goToCreateFacultyPage() {
-    this.router.navigate(['/create-faculty-page']);
+  goToFacultyHomePage() {
+    this.router.navigate(['/faculty-home']);
   }
 
-  goToCreateStudentPage() {
-    this.router.navigate(['/create-student-page']);
+  goToStudentHomePage() {
+    this.router.navigate(['/student-home']);
   }
 
 }

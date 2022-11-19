@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProfileViewComponent } from './profile-view/profile-view.component';
 import { HomePageComponent } from './home-page/home-page.component';
-import { TopMenuBarComponent } from './top-menu-bar/top-menu-bar.component';
+import { TopMenuBarComponent } from './student-top-menu-bar/student-top-menu-bar.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { OpportunityBoardPageComponent } from './opportunity-board-page/opportunity-board-page.component';
 import { MatchPageComponent } from './match-page/match-page.component';
@@ -31,6 +31,9 @@ import { AddResearchPageComponent } from './add-research-page/add-research-page.
 import { ManageResearchPageComponent } from './manage-research-page/manage-research-page.component';
 import { ViewResearchPageComponent } from './view-research-page/view-research-page.component';
 import { EditResearchPageComponent } from './edit-research-page/edit-research-page.component';
+import { StudentHomePageComponent } from './student-home-page/student-home-page.component';
+import { FacultyHomePageComponent } from './faculty-home-page/faculty-home-page.component';
+import { FacultyTopMenuBarComponent } from './faculty-top-menu-bar/faculty-top-menu-bar.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +55,10 @@ import { EditResearchPageComponent } from './edit-research-page/edit-research-pa
     AddResearchPageComponent,
     ManageResearchPageComponent,
     ViewResearchPageComponent,
-    EditResearchPageComponent
+    EditResearchPageComponent,
+    StudentHomePageComponent,
+    FacultyHomePageComponent,
+    FacultyTopMenuBarComponent
   ],
   imports: [
     BrowserModule,
