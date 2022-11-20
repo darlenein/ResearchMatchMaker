@@ -1,1 +1,33 @@
 <app-faculty-top-menu-bar></app-faculty-top-menu-bar>
+<!-- ../faculty-research -->
+
+<div class="container-1">
+    <button type="button" (click)="addResearchPage();">Add Research</button>
+</div>
+
+    <li *ngFor="let r of research">
+        <div class="container">
+            
+            <div class="left-container">
+                <b>{{r.name}}</b> <br>
+                {{r.faculty_FirstName}} {{r.faculty_LastName}}<br>
+                {{r.address}} <br><br>
+                <b>Description:</b> {{r.description}}<br><br>
+                <b>Required Skills:</b> {{r.required_skills}}<br>
+                <b>Encouraged Skills:</b> {{r.encouraged_Skills}}<br><br>
+                <button type="button" (click)="editResearchPage();">Edit Research Info</button>
+            </div>
+
+            <div class="right-container">
+                <div *ngIf="r.active==false"> Complete </div>
+                <div *ngIf="r.active==true"> Ongoing </div>
+
+                {{r.start_Date}} - {{r.end_Date}}<br>
+                {{r.incentive_type}}<br>
+                {{r.location}}
+            </div>
+
+            
+            <div style="clear:both;"></div>
+        </div>
+    </li>

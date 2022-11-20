@@ -27,8 +27,8 @@ export class FacultyTopMenuBarComponent implements OnInit {
     this.router.navigate(['/faculty-research']);
   }
 
-  goToOppBoardPage() {
-    this.router.navigate(['/opp-board']);
+  goToResearchListPage() {
+    this.router.navigate(['/research-list']);
   } 
 
 }

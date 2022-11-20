@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AddResearchPageComponent } from './add-research-page/add-research-page.component';
 import { CreateFacultyPageComponent } from './create-faculty-page/create-faculty-page.component';
 import { CreateStudentPageComponent } from './create-student-page/create-student-page.component';
+import { EditResearchPageComponent } from './edit-research-page/edit-research-page.component';
 import { FacultyHomePageComponent } from './faculty-home-page/faculty-home-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
@@ -9,12 +11,13 @@ import { ManageResearchPageComponent } from './manage-research-page/manage-resea
 import { MatchPageComponent } from './match-page/match-page.component';
 import { OpportunityBoardPageComponent } from './opportunity-board-page/opportunity-board-page.component';
 import { ProfileViewComponent } from './profile-view/profile-view.component';
+import { ResearchListPageComponent } from './research-list-page/research-list-page.component';
 import { StudentHomePageComponent } from './student-home-page/student-home-page.component';
 import { ViewFacultyPageComponent } from './view-faculty-page/view-faculty-page.component';
 import { ViewStudentPageComponent } from './view-student-page/view-student-page.component';
 
 const routes: Routes = [
-  { path: '', component: HomePageComponent},
+  { path: '', component: LoginPageComponent},
   { path: 'home-page', component: HomePageComponent},
   { path: 'profile-view', component: ProfileViewComponent},
   { path: 'view-matches', component: MatchPageComponent},
@@ -26,7 +29,10 @@ const routes: Routes = [
   { path: 'login', component: LoginPageComponent},
   { path: 'faculty-home', component: FacultyHomePageComponent},
   { path: 'student-home', component: StudentHomePageComponent},
-  { path: 'faculty-research', component: ManageResearchPageComponent}
+  { path: 'faculty-research', component: ManageResearchPageComponent},
+  { path: 'edit-research', component: EditResearchPageComponent},
+  { path: 'add-research', component: AddResearchPageComponent},
+  { path: 'research-list', component: ResearchListPageComponent}
   
 ];
 
