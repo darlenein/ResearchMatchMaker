@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ServiceDispatcher } from '../ServiceDispatcher';
+import { ServiceDispatcher } from '../../ServiceDispatcher';
 
 @Component({
   selector: 'app-opportunity-board-page',

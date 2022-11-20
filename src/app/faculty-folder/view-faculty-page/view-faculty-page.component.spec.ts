@@ -7,18 +7,18 @@ import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { StudentModel } from '../models/student.model';
-import { TopMenuBarComponent } from '../student-top-menu-bar/student-top-menu-bar.component';
+import { FacultyModel } from '../../models/faculty.model';
+import { TopMenuBarComponent } from '../../student-folder/student-top-menu-bar/student-top-menu-bar.component';
 
-import { ViewStudentPageComponent } from './view-student-page.component';
+import { ViewFacultyPageComponent } from './view-faculty-page.component';
 
-describe('ViewStudentPageComponent', () => {
-  let component: ViewStudentPageComponent;
-  let fixture: ComponentFixture<ViewStudentPageComponent>;
+describe('ViewFacultyPageComponent', () => {
+  let component: ViewFacultyPageComponent;
+  let fixture: ComponentFixture<ViewFacultyPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ViewStudentPageComponent, TopMenuBarComponent ],
+      declarations: [ ViewFacultyPageComponent, TopMenuBarComponent],
       imports: [
         HttpClientModule,
         MatToolbarModule,
@@ -32,11 +32,11 @@ describe('ViewStudentPageComponent', () => {
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ViewStudentPageComponent);
+    fixture = TestBed.createComponent(ViewFacultyPageComponent);
     component = fixture.componentInstance;
 
-    let s = new StudentModel();
-    component.student = s;
+    let f = new FacultyModel();
+    component.faculty = f;
 
     fixture.detectChanges();
   });
@@ -44,17 +44,4 @@ describe('ViewStudentPageComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  it('should spilt string by semicolon', () => {
-    //arrange
-    let text = "hello;hi;bye";
-    //act
-    let result = component.separateByComma(text);
-    //assert
-    expect(result.length).toBe(3);
-    expect(result.at(0)).toBe("hello");
-    expect(result.at(1)).toBe("hi");
-    expect(result.at(2)).toBe("bye");
-  });
-
 });

@@ -4,18 +4,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatTabsModule } from '@angular/material/tabs';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ProfileViewComponent } from './profile-view/profile-view.component';
-import { HomePageComponent } from './home-page/home-page.component';
-import { TopMenuBarComponent } from './student-top-menu-bar/student-top-menu-bar.component';
+import { TopMenuBarComponent } from './student-folder/student-top-menu-bar/student-top-menu-bar.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { OpportunityBoardPageComponent } from './opportunity-board-page/opportunity-board-page.component';
-import { MatchPageComponent } from './match-page/match-page.component';
-import { ViewFacultyPageComponent } from './view-faculty-page/view-faculty-page.component';
-import { ViewStudentPageComponent } from './view-student-page/view-student-page.component'; 
+import { OpportunityBoardPageComponent } from './student-folder/opportunity-board-page/opportunity-board-page.component';
+import { MatchPageComponent } from './student-folder/match-page/match-page.component';
+import { ViewFacultyPageComponent } from './faculty-folder/view-faculty-page/view-faculty-page.component';
+import { ViewStudentPageComponent } from './student-folder/view-student-page/view-student-page.component'; 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginPageComponent } from './login-page/login-page.component';
-import { CreateStudentPageComponent } from './create-student-page/create-student-page.component';
-import { CreateFacultyPageComponent } from './create-faculty-page/create-faculty-page.component';
+import { CreateStudentPageComponent } from './student-folder/create-student-page/create-student-page.component';
+import { CreateFacultyPageComponent } from './faculty-folder/create-faculty-page/create-faculty-page.component';
 import { BannerNoButtonsComponent } from './banner-no-buttons/banner-no-buttons.component';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon'; 
@@ -25,25 +23,23 @@ import { FormsModule } from '@angular/forms';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatchInfoPageComponent } from './match-progress-page/match-progress-page.component';
-import { EditFacultyProfilePageComponent } from './edit-faculty-profile-page/edit-faculty-profile-page.component';
-import { EditStudentProfilePageComponent } from './edit-student-profile-page/edit-student-profile-page.component';
-import { AddResearchPageComponent } from './add-research-page/add-research-page.component';
-import { ManageResearchPageComponent } from './manage-research-page/manage-research-page.component';
-import { ViewResearchPageComponent } from './view-research-page/view-research-page.component';
-import { EditResearchPageComponent } from './edit-research-page/edit-research-page.component';
-import { StudentHomePageComponent } from './student-home-page/student-home-page.component';
-import { FacultyHomePageComponent } from './faculty-home-page/faculty-home-page.component';
-import { FacultyTopMenuBarComponent } from './faculty-top-menu-bar/faculty-top-menu-bar.component';
-import { ResearchListPageComponent } from './research-list-page/research-list-page.component';
-import { FacultyViewStudentPageComponent } from './faculty-view-student-page/faculty-view-student-page.component';
-import { StudentViewFacultyPageComponent } from './student-view-faculty-page/student-view-faculty-page.component';
+import { MatchInfoPageComponent } from './student-folder/match-progress-page/match-progress-page.component';
+import { EditFacultyProfilePageComponent } from './faculty-folder/edit-faculty-profile-page/edit-faculty-profile-page.component';
+import { EditStudentProfilePageComponent } from './student-folder/edit-student-profile-page/edit-student-profile-page.component';
+import { AddResearchPageComponent } from './faculty-folder/add-research-page/add-research-page.component';
+import { ManageResearchPageComponent } from './faculty-folder/manage-research-page/manage-research-page.component';
+import { ViewResearchPageComponent } from './faculty-folder/view-research-page/view-research-page.component';
+import { EditResearchPageComponent } from './faculty-folder/edit-research-page/edit-research-page.component';
+import { StudentHomePageComponent } from './student-folder/student-home-page/student-home-page.component';
+import { FacultyHomePageComponent } from './faculty-folder/faculty-home-page/faculty-home-page.component';
+import { FacultyTopMenuBarComponent } from './faculty-folder/faculty-top-menu-bar/faculty-top-menu-bar.component';
+import { ResearchListPageComponent } from './faculty-folder/research-list-page/research-list-page.component';
+import { FacultyViewStudentPageComponent } from './faculty-folder/faculty-view-student-page/faculty-view-student-page.component';
+import { StudentViewFacultyPageComponent } from './student-folder/student-view-faculty-page/student-view-faculty-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProfileViewComponent,
-    HomePageComponent,
     TopMenuBarComponent,
     OpportunityBoardPageComponent,
     MatchPageComponent,
