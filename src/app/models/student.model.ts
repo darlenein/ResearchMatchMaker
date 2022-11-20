@@ -4,7 +4,7 @@ export class StudentModel {
     researchID: number;
     firstName: String;
     lastName: String;
-    GPA: number;
+    gpa: number;
     graduationMonth: String;
     graduationYear: String;
     major: String;

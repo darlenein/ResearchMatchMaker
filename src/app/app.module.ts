@@ -36,6 +36,7 @@ import { FacultyTopMenuBarComponent } from './faculty-folder/faculty-top-menu-ba
 import { ResearchListPageComponent } from './faculty-folder/research-list-page/research-list-page.component';
 import { FacultyViewStudentPageComponent } from './faculty-folder/faculty-view-student-page/faculty-view-student-page.component';
 import { StudentViewFacultyPageComponent } from './student-folder/student-view-faculty-page/student-view-faculty-page.component';
+import { ViewApplicantsComponent } from './faculty-folder/view-applicants/view-applicants.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { StudentViewFacultyPageComponent } from './student-folder/student-view-f
     FacultyTopMenuBarComponent,
     ResearchListPageComponent,
     FacultyViewStudentPageComponent,
-    StudentViewFacultyPageComponent
+    StudentViewFacultyPageComponent,
+    ViewApplicantsComponent
   ],
   imports: [
     BrowserModule,

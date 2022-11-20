@@ -16,6 +16,7 @@ import { ResearchListPageComponent } from './faculty-folder/research-list-page/r
 import { StudentHomePageComponent } from './student-folder/student-home-page/student-home-page.component';
 import { ViewFacultyPageComponent } from './faculty-folder/view-faculty-page/view-faculty-page.component';
 import { ViewStudentPageComponent } from './student-folder/view-student-page/view-student-page.component';
+import { ViewApplicantsComponent } from './faculty-folder/view-applicants/view-applicants.component';
 
 const routes: Routes = [
   { path: '', component: LoginPageComponent},
@@ -34,7 +35,8 @@ const routes: Routes = [
   { path: 'research-list', component: ResearchListPageComponent},
   { path: 'edit-faculty-profile', component: EditFacultyProfilePageComponent},
   { path: 'edit-student-profile', component: EditStudentProfilePageComponent},
-  { path: 'student-list', component: FacultyViewStudentPageComponent}
+  { path: 'student-list', component: FacultyViewStudentPageComponent},
+  { path: 'view-applicants', component: ViewApplicantsComponent}
   
 ];
 

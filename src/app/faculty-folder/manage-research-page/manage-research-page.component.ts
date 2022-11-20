@@ -32,4 +32,8 @@ export class ManageResearchPageComponent implements OnInit {
     this.router.navigate(['/add-research']);
   }
 
+  viewApplicantsPage() {
+    this.router.navigate(['/view-applicants']);
+  }
+
 }
