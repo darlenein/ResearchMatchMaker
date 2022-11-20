@@ -7,6 +7,7 @@ import { EditFacultyProfilePageComponent } from './edit-faculty-profile-page/edi
 import { EditResearchPageComponent } from './edit-research-page/edit-research-page.component';
 import { EditStudentProfilePageComponent } from './edit-student-profile-page/edit-student-profile-page.component';
 import { FacultyHomePageComponent } from './faculty-home-page/faculty-home-page.component';
+import { FacultyViewStudentPageComponent } from './faculty-view-student-page/faculty-view-student-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { ManageResearchPageComponent } from './manage-research-page/manage-research-page.component';
@@ -36,7 +37,8 @@ const routes: Routes = [
   { path: 'add-research', component: AddResearchPageComponent},
   { path: 'research-list', component: ResearchListPageComponent},
   { path: 'edit-faculty-profile', component: EditFacultyProfilePageComponent},
-  { path: 'edit-student-profile', component: EditStudentProfilePageComponent}
+  { path: 'edit-student-profile', component: EditStudentProfilePageComponent},
+  { path: 'student-list', component: FacultyViewStudentPageComponent}
   
 ];
 

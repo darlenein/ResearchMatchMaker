@@ -23,6 +23,10 @@ export class FacultyTopMenuBarComponent implements OnInit {
     this.router.navigate(['/edit-faculty-profile']);
   }
 
+  goToStudentListPage(){
+    this.router.navigate(['/student-list']);
+  }
+
   goToHomePage() {
     this.router.navigate(['/faculty-home']);
   }
