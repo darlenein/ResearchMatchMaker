@@ -40,16 +40,16 @@
 }
 
 .profile-btn-container {
-    position: relative;
+    /* position: relative; */
     margin-left: auto; 
-    margin-right: 600px;
+    margin-right: 100px;
     color: white;
 
 }
 .profile-logo {
+    margin-left: auto;
     height: 50px;
     border-radius: 70%;
-    padding: auto;
 }
 
 h1 {
