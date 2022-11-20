@@ -17,7 +17,7 @@ export class TopMenuBarComponent implements OnInit {
   }
 
   goToProfileViewPage() {
-    this.router.navigate(['/profile-view']);
+    this.router.navigate(['/view-student-profile']);
   }
 
   goToHomePage() {
