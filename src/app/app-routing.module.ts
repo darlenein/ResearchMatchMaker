@@ -3,7 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { AddResearchPageComponent } from './add-research-page/add-research-page.component';
 import { CreateFacultyPageComponent } from './create-faculty-page/create-faculty-page.component';
 import { CreateStudentPageComponent } from './create-student-page/create-student-page.component';
+import { EditFacultyProfilePageComponent } from './edit-faculty-profile-page/edit-faculty-profile-page.component';
 import { EditResearchPageComponent } from './edit-research-page/edit-research-page.component';
+import { EditStudentProfilePageComponent } from './edit-student-profile-page/edit-student-profile-page.component';
 import { FacultyHomePageComponent } from './faculty-home-page/faculty-home-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
@@ -32,7 +34,9 @@ const routes: Routes = [
   { path: 'faculty-research', component: ManageResearchPageComponent},
   { path: 'edit-research', component: EditResearchPageComponent},
   { path: 'add-research', component: AddResearchPageComponent},
-  { path: 'research-list', component: ResearchListPageComponent}
+  { path: 'research-list', component: ResearchListPageComponent},
+  { path: 'edit-faculty-profile', component: EditFacultyProfilePageComponent},
+  { path: 'edit-student-profile', component: EditStudentProfilePageComponent}
   
 ];
 

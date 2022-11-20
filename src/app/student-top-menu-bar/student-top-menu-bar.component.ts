@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {MatToolbarModule} from '@angular/material/toolbar'; 
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -20,8 +19,12 @@ export class TopMenuBarComponent implements OnInit {
     this.router.navigate(['/view-student-profile']);
   }
 
+  goToEditProfilePage(){
+    this.router.navigate(['/edit-student-profile']);
+  }
+
   goToHomePage() {
-    this.router.navigate(['/home-page']);
+    this.router.navigate(['/student-home']);
   }
 
   goToMatchPage() {

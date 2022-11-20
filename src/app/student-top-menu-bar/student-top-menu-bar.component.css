@@ -47,9 +47,9 @@
 
 }
 .profile-logo {
+    margin-left: 3px;
     height: 50px;
     border-radius: 70%;
-    padding: auto;
 }
 
 h1 {

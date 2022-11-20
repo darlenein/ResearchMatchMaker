@@ -24,6 +24,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms'; 
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatchInfoPageComponent } from './match-progress-page/match-progress-page.component';
 import { EditFacultyProfilePageComponent } from './edit-faculty-profile-page/edit-faculty-profile-page.component';
 import { EditStudentProfilePageComponent } from './edit-student-profile-page/edit-student-profile-page.component';
@@ -80,8 +81,8 @@ import { StudentViewFacultyPageComponent } from './student-view-faculty-page/stu
     MatFormFieldModule,
     FormsModule,
     NgMultiSelectDropDownModule.forRoot(),
-    ReactiveFormsModule
-
+    ReactiveFormsModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

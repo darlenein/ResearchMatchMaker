@@ -19,6 +19,10 @@ export class FacultyTopMenuBarComponent implements OnInit {
     this.router.navigate(['/view-faculy-profile']);
   }
 
+  goToEditProfilePage(){
+    this.router.navigate(['/edit-faculty-profile']);
+  }
+
   goToHomePage() {
     this.router.navigate(['/faculty-home']);
   }
