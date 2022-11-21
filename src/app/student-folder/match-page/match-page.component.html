@@ -6,58 +6,40 @@
 <ul style="list-style: none;">
     <li *ngFor="let r of research">
         <div class="container">
+          <div class="top-container">
+              <!-- progress bar -->
+              <b>Current Progress:</b><br>
+              <mat-stepper class="stepper">
+                <ng-template matStepperIcon="edit">
+                  <mat-icon>done</mat-icon>
+                </ng-template>
+                <mat-step label="Applied" state="isDone"></mat-step>
+                <mat-step label="Received"></mat-step>
+                <mat-step label="In Review"></mat-step>
+                <mat-step [state]="state" label="Verdict"></mat-step>
+              </mat-stepper>
+          </div>
+
             <div class="left-container">
+              <p><b>{{r.name}}</b> <br>
+              {{r.faculty_FirstName}} {{r.faculty_LastName}}<br>
+              {{r.address}} <br><br>
+              <b>Description:</b> {{r.description}}<br><br>
+              <b>Required Skills:</b> <div *ngFor="let skill of splitRequiredSkills">{{skill}}</div><br>
+              <b>Encouraged Skills:</b> <div *ngFor="let skill of splitEncouragedSkills">{{skill}}</div><br><br>
+          </div>
 
-                <!-- progress bar -->
-                Current Progress:  <br>
-                
-                <mat-stepper class="stepper">
-                    <mat-step label="Applied"><div>
-                        <button mat-button matStepperNext>Next Step: Recieved</button>
-                      </div>
-                    </mat-step>
+          <div class="right-container">
+              <div *ngIf="r.active==false"> Complete </div>
+              <div *ngIf="r.active==true"> Ongoing </div>
+              {{r.start_Date}} - {{r.end_Date}}<br>
+              {{r.incentive_type}}<br>
+              {{r.location}}
+          </div>
+          <div style="clear:both;"></div>
+      </div>
 
-                    <mat-step label="Received">
-                      <div>
-                        <button mat-button matStepperPrevious>Back</button>
-                        <button mat-button matStepperNext>Next Step: Review</button>
-                      </div>
-                    </mat-step>
-
-                    <mat-step label="In Review">
-                        <div>
-                          <button mat-button matStepperPrevious>Back</button>
-                          <button mat-button matStepperNext>Next Step: Vedict</button>
-                        </div>
-                      </mat-step>
-
-                      <!-- <mat-step [completed]="completed" [state]="state" label="Verdict"> -->
-                      <mat-step label="Verdict">
-                        <div>
-                          <button mat-button (click)="stepperDone()">Accept</button>
-                        </div>
-                      </mat-step>
-                
-                  </mat-stepper>
-
-                <p><b>{{r.name}}</b> <br>
-                {{r.faculty_FirstName}} {{r.faculty_LastName}}<br>
-                {{r.address}} <br><br>
-                <b>Description:</b> {{r.description}}<br><br>
-                <b>Required Skills:</b> <div *ngFor="let skill of splitRequiredSkills">{{skill}}</div><br>
-                <b>Encouraged Skills:</b> <div *ngFor="let skill of splitEncouragedSkills">{{skill}}</div><br><br>
-            </div>
-
-            <div class="right-container">
-                <div *ngIf="r.active==false"> Complete </div>
-                <div *ngIf="r.active==true"> Ongoing </div>
-
-                {{r.start_Date}} - {{r.end_Date}}<br>
-                {{r.incentive_type}}<br>
-                {{r.location}}
-            </div>
-            <div style="clear:both;"></div>
-        </div>
+            
     </li>
 </ul>   
 
