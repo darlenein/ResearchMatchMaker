@@ -8,16 +8,24 @@
         Faculty Profile Creation
      </h1>
      <form>
-        <label type="name" for = "name">Name</label>
-        <input type="text" id="name" placeholder="Enter Name" size="50">
+        <label type="first_name" for = "first_name">First Name</label>
+        <input type="text" id="first_name" placeholder="Enter First Name" size="50">
+        <br> <br>
+
+        <label type="last_name" for = "last_name">Last Name</label>
+        <input type="text" id="last_name" placeholder="Enter Last Name" size="50">
         <br> <br>
 
         <label for = "email">Email</label>
         <input type="text" id="email" placeholder="Enter PSU Email" size="50">
         <br> <br>
 
-        <label for = "department">Department</label>
-        <select id="department">
+        <label for = "title">Title</label>
+        <input type="text" id="title" placeholder="Enter your Title" size="50">
+        <br> <br>
+
+        <label for = "school">School</label>
+        <select id="school">
             <option value="engineering">Engineering</option>
             <option value="humanities and social sciences">Humanities and Social Sciences</option>
             <option value="business">Business</option>
@@ -38,9 +46,6 @@
         <textarea rows="5" cols="75" name="links" id="links" placeholder="Ph.D, Computer Science, Pennsylvania State University;MS, Computer Engineering, Pennsylvania State University"></textarea>
         <br><br>
 
-        <label for = "research projects">Include all previous research. Please seperate each by a semicolon.</label>
-        <textarea rows="5" cols="75" name="links" id="links" placeholder="Research 1-description of research 1;Research 2-description of research 2"></textarea>
-        <br><br>
 
         <label for = "research interest">Include all areas of interests involving your research opportunities. Please seperate each by semicolon.</label>
         <textarea rows="5" cols="75" name="links" id="links" placeholder="Software Engineering;Student-oriented Learning;Organic Chemistry"></textarea>
@@ -52,95 +57,6 @@
         <input type="text" id="link3" placeholder="Link 3" size="50">
         <br><br>
 
-        <input type="button" value="Add Research Opportunity" id="btn">
-        <br><br>
-
-        <label for = "research name">Research Name</label>
-        <input type="text" id="research name" placeholder="Enter Research Name" size="50">
-        <br><br>
-
-        <label for = "researchlocation">Address of Research Location</label>
-        <input type="text" id="researchlocation" placeholder="4701 College Drive, Erie, PA, 16563" size="50">
-        <br><br>
-
-        <div class="left-container">
-            <br><span class="filter-title">Select Majors Associated with this Research</span>
-            <mat-nav-list>
-                <mat-list-item (click)="toggle[1] = !toggle[1]">
-                    <a matLine *ngIf="!toggle[1]"><mat-icon>keyboard_arrow_right</mat-icon></a>
-                    <a matLine *ngIf="toggle[1]"><mat-icon>keyboard_arrow_down</mat-icon></a>
-                    <a style="padding-bottom: 2.5px; margin-right: 80px;">Engineering</a>
-                    <span>
-                  <mat-icon *ngIf="!toggle[1]"></mat-icon>
-                  <mat-icon *ngIf="toggle[1]"></mat-icon>
-                 </span>
-                </mat-list-item>
-            
-                <div [hidden]="!toggle[1]">
-                    <mat-selection-list>
-                        <mat-list-option *ngFor="let item of engineeringItems" checkboxPosition="before">
-                            {{ item }}
-                        </mat-list-option>
-                    </mat-selection-list>
-                </div>
-            
-                <mat-list-item (click)="toggle[2] = !toggle[2]">
-                    <a matLine *ngIf="!toggle[2]"><mat-icon>keyboard_arrow_right</mat-icon></a>
-                    <a matLine *ngIf="toggle[2]"><mat-icon>keyboard_arrow_down</mat-icon></a>
-                    <a style="padding-bottom: 2.5px; margin-right: 85px;">Visual Arts</a>
-                    <span>
-                  <mat-icon *ngIf="!toggle[2]"></mat-icon>
-                  <mat-icon *ngIf="toggle[2]"></mat-icon>
-                 </span>
-                </mat-list-item>
-            
-                <div [hidden]="!toggle[2]">
-                    <mat-selection-list>
-                        <mat-list-option *ngFor="let item of visualArtsItems" checkboxPosition="before">
-                            {{ item }}
-                        </mat-list-option>
-                    </mat-selection-list>
-                </div>
-            
-            </mat-nav-list>
-        </div>
-        <br><br>
-
-        <label for = "campus">Select one: </label>
-        <input type="radio" name="campus" id="on campus" value="on campus">
-        <label type="options" for="on campus">On Campus</label>
-        <input type="radio" name="campus" id="off campus" value="off campus">
-        <label type="options" for="off campus">Off Campus</label>
-        <br><br>
-        <label for = "money">Select one: </label>
-        <input type="radio" name="money" id="paid" value="paid">
-        <label type="options" for="paid">Paid</label>
-        <input type="radio" name="money" id="nonpaid" value="nonpaid">
-        <label type="options" for="nonpaid">Non-paid</label>
-        <br><br>
-
-
-        <label type="date" for = "start date">Start Date for Research</label>
-        <input type="date" id="start date" name="research start" >
-        
-        <label type="date" for = "end date">End Date for Research</label>
-        <input type="date" id="end date" name="research end" >
-
-        <br><br>
-        <label for = "research description">Research Description</label>
-        <textarea rows="15" cols="75" name="research description" id="research description" placeholder="Please describe the research in detail here"></textarea>
-        <br><br>
-
-        <label type="skills" for = "required skills">Required Skills(Seperate by Semicolon)</label>
-        <textarea type="rskills" rows="7" cols="30" name="required skills" id="required skills" placeholder="Skill 1;Skill 2;Skill 3"></textarea>
-        
-
-        <label type="skills" for = "encouraged skills">Encouraged Skills(Seperate by Semicolon)</label>
-        <textarea type="eskills" rows="7" cols="30" name="encouraged skills" id="encouraged skills" placeholder="Skill 1;Skill 2;Skill 3"></textarea>
-        <br><br>
-
-        <input type="button" value="Add Another Research Opportunity" id="btn2">
-        <br><br>
         
         <input type="submit" value="Submit" id="submitBtn" (click)="goToFacultyHomePage();">
         <br><br>
