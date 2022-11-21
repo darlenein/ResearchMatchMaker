@@ -18,9 +18,6 @@ export class CreateFacultyPageComponent implements OnInit {
 
 }
 
-engineeringItems: string[] = [ "Electrical and Computer Engineering Technology", "Chemical Engineering", "Electrical", "Mechanical", "Software", "Computer Science", "Industrial", "Interdisciplinary Business with Engineering Studies"];
-visualArtsItems: string[] = [ "Graph Design", "3D Modeling"];
-toggle = [false];
 
 goToFacultyHomePage() {
   this.router.navigate(['/faculty-home']);

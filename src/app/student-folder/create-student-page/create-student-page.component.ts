@@ -12,8 +12,12 @@ export class CreateStudentPageComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  engineeringItems: string[] = [ "Electrical and Computer Engineering Technology", "Chemical Engineering", "Electrical", "Mechanical", "Software", "Computer Science", "Industrial", "Interdisciplinary Business with Engineering Studies"];
-  visualArtsItems: string[] = [ "Graph Design", "3D Modeling"];
+  engineeringItems: string[] = [ "Computer", "Chemical", "Electrical", "Mechanical", "Software"];
+  humanitiesSocialScienceItems: string[] = [ "Communication", "English", "Psychology", "Politcal Science", "History", "Digital Media"];
+  businessItems: string[] = [ "Accounting", "Economics", "Finance", "Marketing"];
+  scienceItems: string[]  = ["Biology", "Chemistry", "Environmental Science", "Physics", "Mathematics"]
+  nursingItems: string[] = ["Nursing"]
+  
   toggle = [false];
 
   goToStudentHomePage() {
