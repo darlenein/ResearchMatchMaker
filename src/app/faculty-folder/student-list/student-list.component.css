@@ -1,3 +1,8 @@
+.container-1 {
+    padding-left: 180px;
+    padding-top: 50px;
+}
+
 .container{
     width: 1500px;
     margin: 1rem auto;
@@ -7,7 +12,7 @@
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-.left-container {
+.left-container{
     float: left;
     width: 80%;
 }
@@ -18,16 +23,7 @@
     width: 20%;
 }
 
-.header {
-    padding-left: 100px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    text-transform: uppercase;
-}
-
-.stepper {
-    background-color: #e4f2fe;
-}
-
-.button{
-    margin-right: 10px;
+.profilename {
+    font-weight: bold;
+    font-size: 20px;
 }

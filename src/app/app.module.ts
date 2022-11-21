@@ -23,6 +23,7 @@ import { FormsModule } from '@angular/forms';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatStepperModule } from '@angular/material/stepper';
 import { MatchInfoPageComponent } from './student-folder/match-progress-page/match-progress-page.component';
 import { EditFacultyProfilePageComponent } from './faculty-folder/edit-faculty-profile-page/edit-faculty-profile-page.component';
 import { EditStudentProfilePageComponent } from './student-folder/edit-student-profile-page/edit-student-profile-page.component';
@@ -37,6 +38,7 @@ import { ResearchListPageComponent } from './faculty-folder/research-list-page/r
 import { FacultyViewStudentPageComponent } from './faculty-folder/faculty-view-student-page/faculty-view-student-page.component';
 import { StudentViewFacultyPageComponent } from './student-folder/student-view-faculty-page/student-view-faculty-page.component';
 import { ViewApplicantsComponent } from './faculty-folder/view-applicants/view-applicants.component';
+import { StudentListComponent } from './student-list/student-list.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +65,8 @@ import { ViewApplicantsComponent } from './faculty-folder/view-applicants/view-a
     ResearchListPageComponent,
     FacultyViewStudentPageComponent,
     StudentViewFacultyPageComponent,
-    ViewApplicantsComponent
+    ViewApplicantsComponent,
+    StudentListComponent
   ],
   imports: [
     BrowserModule,
@@ -80,7 +83,8 @@ import { ViewApplicantsComponent } from './faculty-folder/view-applicants/view-a
     FormsModule,
     NgMultiSelectDropDownModule.forRoot(),
     ReactiveFormsModule,
-    MatMenuModule
+    MatMenuModule,
+    MatStepperModule
   ],
   providers: [],
   bootstrap: [AppComponent]

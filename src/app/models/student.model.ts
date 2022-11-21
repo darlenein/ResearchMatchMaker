@@ -13,6 +13,11 @@ export class StudentModel {
     link2: String;
     link3: String;
     researchInterest: String;
-    researchPorject: String;
+    researchProject: String;
     email: String;
+    progression: number;
+    research_name: String;
+    splitSkills: String[];
+    skillsWithComma: String;
+
 }

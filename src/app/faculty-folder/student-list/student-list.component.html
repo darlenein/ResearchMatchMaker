@@ -1,0 +1,26 @@
+<app-faculty-top-menu-bar></app-faculty-top-menu-bar>
+<!-- ../student-list -->
+
+<ul style="list-style: none;">
+    <li *ngFor="let s of student">
+        <div class="container">
+            
+            <div class="left-container">
+                <div class="profilename">
+                    {{s.firstName}} {{s.lastName}} (profile)
+                </div>
+                <b>Graduation Date:</b> {{s.graduationMonth}} {{s.graduationYear}}<br>
+                <b>Major:</b> {{s.major}}<br>
+                <b>GPA:</b> {{s.gpa}} <br><br>
+                <b>Skills:</b> <div *ngFor="let skill of splitSkills">{{skill}}</div>
+            </div>
+
+            <!-- <div class="right-container">
+                {{r.start_Date}} - {{r.end_Date}}<br>
+                {{r.incentive_type}}<br>
+                {{r.location}}
+            </div> -->
+            <!-- <div style="clear:both;"></div> -->
+        </div>
+    </li>
+</ul>    

@@ -7,12 +7,12 @@ export class ResearchModel {
     location: String;
     required_skills: String;
     encouraged_skills: String;
-    start_date: String;
-    end_date: String;
+    start_Date: String;
+    end_Date: String;
     active: boolean;
     studentID: String;
     incentive_type: String;
     address: String;
-    faculty_firstname: String;
-    faculty_lastname: String;
+    faculty_FirstName: String;
+    faculty_LastName: String;
 }

@@ -1,1 +1,58 @@
-<p>view-applicants works!</p>
+<app-faculty-top-menu-bar></app-faculty-top-menu-bar>
+<!-- /view-matches page -->
+
+<h1 class="header">APPLICANTS FOR: {{student[0].research_name}}</h1>
+
+<ul style="list-style: none;">
+    <li *ngFor="let s of student">
+        <div class="container">
+            <div class="left-container">
+
+                <!-- progress bar -->
+                Current Progress of Applicant: <b>{{s.firstName}} {{s.lastName}}</b> (profile link)<br>
+                
+                <mat-stepper class="stepper">
+                    <mat-step label="Applied"><div>
+                        <button mat-button matStepperNext class="button">Next Step: Recieved</button>
+                      </div>
+                    </mat-step>
+
+                    <mat-step label="Received">
+                      <div>
+                        <button mat-button matStepperPrevious class="button">Back</button>
+                        <button mat-button matStepperNext>Next Step: Review</button>
+                      </div>
+                    </mat-step>
+
+                    <mat-step label="In Review">
+                        <div>
+                          <button mat-button matStepperPrevious class="button">Back</button>
+                          <button mat-button matStepperNext>Next Step: Vedict</button>
+                        </div>
+                      </mat-step>
+
+                      <!-- <mat-step [completed]="completed" [state]="state" label="Verdict"> -->
+                      <mat-step label="Verdict">
+                        <div>
+                          <button mat-button (click)="stepperDone()">Accept</button>
+                        </div>
+                      </mat-step>
+                
+                  </mat-stepper>
+
+                <b>Graduation Date:</b> {{s.graduationMonth}} {{s.graduationYear}}<br>
+                <b>Major:</b> {{s.major}}<br>
+                <b>GPA:</b> {{s.gpa}} <br>
+                <b>Skills: </b> {{s.skillsWithComma}}
+                
+            </div>
+
+            <div class="right-container">
+                <!-- <div *ngIf="r.active==false"> Complete </div>
+                <div *ngIf="r.active==true"> Ongoing </div> -->
+            </div>
+            <div style="clear:both;"></div>
+        </div>
+    </li>
+</ul>   
+

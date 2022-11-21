@@ -24,25 +24,37 @@ export class ServiceDispatcher{
 
   public getStudent(student_id : string): Observable<any> {
     // find url on swagger UI
-    const url = 'https://localhost:44390/api/Student/' + student_id;
+    const url = 'https://localhost:44390/api/Student/getStudentById/' + student_id;
     return this.http.get<any>(url);
   }
 
-    public getAllStudents(): Observable<any> {
+  public getAllStudents(): Observable<any> {
     // find url on swagger UI
     const url = 'https://localhost:44390/api/Student/getAllStudents';
     return this.http.get<any>(url);
   }
 
+  public getAllStudentsByResearch(research_id : number): Observable<any> {
+    // find url on swagger UI
+    const url = 'https://localhost:44390/api/Student/getAllStudentsByResearch/' + research_id;
+    return this.http.get<any>(url);
+  }
+
   public getResearchByFaculty(faculty_id : string): Observable<any> {
     // find url on swagger UI
-    const url = 'https://localhost:44390/api/Research/' + faculty_id;
+    const url = 'https://localhost:44390/api/Research/getResearchByFaculty/' + faculty_id;
     return this.http.get<any>(url);
   }
 
   public getAllResearch(): Observable<any> {
     // find url on swagger UI
     const url = 'https://localhost:44390/api/Research/getAllResearch';
+    return this.http.get<any>(url);
+  }
+
+  public getAllResearchByStudent(student_id : string): Observable<any> {
+    // find url on swagger UI
+    const url = 'https://localhost:44390/api/Research/getAllResearchByStudent/' + student_id;
     return this.http.get<any>(url);
   }
 }

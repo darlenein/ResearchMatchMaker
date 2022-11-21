@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddResearchPageComponent } from './faculty-folder/add-research-page/add-research-page.component';
 import { CreateFacultyPageComponent } from './faculty-folder/create-faculty-page/create-faculty-page.component';
@@ -17,6 +17,7 @@ import { StudentHomePageComponent } from './student-folder/student-home-page/stu
 import { ViewFacultyPageComponent } from './faculty-folder/view-faculty-page/view-faculty-page.component';
 import { ViewStudentPageComponent } from './student-folder/view-student-page/view-student-page.component';
 import { ViewApplicantsComponent } from './faculty-folder/view-applicants/view-applicants.component';
+import { StudentListComponent } from './faculty-folder/student-list/student-list.component';
 
 const routes: Routes = [
   { path: '', component: LoginPageComponent},
@@ -35,8 +36,10 @@ const routes: Routes = [
   { path: 'research-list', component: ResearchListPageComponent},
   { path: 'edit-faculty-profile', component: EditFacultyProfilePageComponent},
   { path: 'edit-student-profile', component: EditStudentProfilePageComponent},
-  { path: 'student-list', component: FacultyViewStudentPageComponent},
-  { path: 'view-applicants', component: ViewApplicantsComponent}
+  { path: 'student-list', component: StudentListComponent},
+  { path: 'view-applicants', component: ViewApplicantsComponent},
+  { path: 'faculty-view-student', component: FacultyViewStudentPageComponent}
+
   
 ];
 

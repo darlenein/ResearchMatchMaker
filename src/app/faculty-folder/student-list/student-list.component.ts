@@ -4,11 +4,11 @@ import { StudentModel } from 'src/app/models/student.model';
 import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
 
 @Component({
-  selector: 'app-faculty-view-student-page',
-  templateUrl: './faculty-view-student-page.component.html',
-  styleUrls: ['./faculty-view-student-page.component.css']
+  selector: 'app-student-list',
+  templateUrl: './student-list.component.html',
+  styleUrls: ['./student-list.component.css']
 })
-export class FacultyViewStudentPageComponent implements OnInit {
+export class StudentListComponent implements OnInit {
 
   student: StudentModel[]; 
   splitSkills: any;

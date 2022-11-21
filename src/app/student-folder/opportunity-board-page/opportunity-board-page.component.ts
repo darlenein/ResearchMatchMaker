@@ -10,9 +10,16 @@ import { ServiceDispatcher } from '../../ServiceDispatcher';
 })
 export class OpportunityBoardPageComponent implements OnInit {
 
-  constructor(private router: Router, private http: HttpClient) { 
-  }
+  constructor() { }
 
   ngOnInit(): void {
   }
+
+  engineeringItems: string[] = [ "Computer", "Chemical", "Electrical", "Mechanical", "Software"];
+  humanitiesSocialScienceItems: string[] = [ "Communication", "English", "Psychology", "Politcal Science", "History", "Digital Media"];
+  businessItems: string[] = [ "Accounting", "Economics", "Finance", "Marketing"];
+  scienceItems: string[]  = ["Biology", "Chemistry", "Environmental Science", "Physics", "Mathematics"]
+  nursingItems: string[] = ["Nursing"]
+
+  toggle = [false];
 }

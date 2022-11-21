@@ -1,0 +1,30 @@
+.container {
+    display: flex;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+.left-container{
+    border: 1px solid gray;
+    border-radius: 5px;
+    flex: 1;
+}
+
+.right-container {
+    /* border: 1px solid gray; */
+    padding-left: 10px;
+    flex: 5;
+}
+
+.filter-title {
+    font-weight: bold;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin-left: 10px;
+}
+
+.result-title {
+    font-weight: bold;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin-left: 10px;
+    font-size: 26px;
+}
