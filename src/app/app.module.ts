@@ -38,7 +38,7 @@ import { ResearchListPageComponent } from './faculty-folder/research-list-page/r
 import { FacultyViewStudentPageComponent } from './faculty-folder/faculty-view-student-page/faculty-view-student-page.component';
 import { StudentViewFacultyPageComponent } from './student-folder/student-view-faculty-page/student-view-faculty-page.component';
 import { ViewApplicantsComponent } from './faculty-folder/view-applicants/view-applicants.component';
-import { StudentListComponent } from './student-list/student-list.component';
+import { StudentListComponent } from './faculty-folder/student-list/student-list.component';
 
 @NgModule({
   declarations: [
