@@ -8,9 +8,14 @@
         <div class="container">
             <div class="left-container">
 
-                <!-- progress bar -->
-                Current Progress of Applicant: <b>{{s.firstName}} {{s.lastName}}</b> (profile link)<br>
                 
+                Current Progress of Applicant: <a href="/faculty-view-student"><b>{{s.firstName}} {{s.lastName}}</b></a><br><br>
+                <b>Graduation Date:</b> {{s.graduationMonth}} {{s.graduationYear}}<br>
+                <b>Major:</b> {{s.major}}<br>
+                <b>GPA:</b> {{s.gpa}} <br>
+                <b>Skills: </b> {{s.skillsWithComma}}
+                
+                <!-- progress bar -->
                 <mat-stepper class="stepper">
                     <mat-step label="Applied"><div>
                         <button mat-button matStepperNext class="button">Next Step: Recieved</button>
@@ -37,14 +42,7 @@
                           <button mat-button (click)="stepperDone()">Accept</button>
                         </div>
                       </mat-step>
-                
-                  </mat-stepper>
-
-                <b>Graduation Date:</b> {{s.graduationMonth}} {{s.graduationYear}}<br>
-                <b>Major:</b> {{s.major}}<br>
-                <b>GPA:</b> {{s.gpa}} <br>
-                <b>Skills: </b> {{s.skillsWithComma}}
-                
+                  </mat-stepper>   
             </div>
 
             <div class="right-container">

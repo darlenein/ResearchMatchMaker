@@ -6,13 +6,13 @@
         <div class="container">
             
             <div class="left-container">
-                <div class="profilename">
-                    {{s.firstName}} {{s.lastName}} (profile)
+                <div class="profilename" (click)="goToStudentProfile();">
+                    {{s.firstName}} {{s.lastName}} (profile link)
                 </div>
                 <b>Graduation Date:</b> {{s.graduationMonth}} {{s.graduationYear}}<br>
                 <b>Major:</b> {{s.major}}<br>
                 <b>GPA:</b> {{s.gpa}} <br><br>
-                <b>Skills:</b> <div *ngFor="let skill of splitSkills">{{skill}}</div>
+                <b>Skills:</b> <div *ngFor="let skill of s.splitSkills">{{skill}}</div>
             </div>
 
             <!-- <div class="right-container">
@@ -20,7 +20,7 @@
                 {{r.incentive_type}}<br>
                 {{r.location}}
             </div> -->
-            <!-- <div style="clear:both;"></div> -->
+            <div style="clear:both;"></div>
         </div>
     </li>
 </ul>    

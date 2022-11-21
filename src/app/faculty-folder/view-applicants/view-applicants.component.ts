@@ -3,6 +3,7 @@ import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
 import { ResearchModel } from 'src/app/models/research.model';
 import { StudentModel } from 'src/app/models/student.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-applicants',
@@ -20,7 +21,7 @@ export class ViewApplicantsComponent implements OnInit {
   student: StudentModel[]; 
   splitSkills: any;
 
-  constructor(public serviceDispatcher: ServiceDispatcher) { }
+  constructor(private router: Router, public serviceDispatcher: ServiceDispatcher) { }
 
   ngOnInit(): void {
     this.serviceDispatcher.getAllStudentsByResearch(1).subscribe(response => {
@@ -43,6 +44,10 @@ export class ViewApplicantsComponent implements OnInit {
   stepperDone() {
     this.completed = true;
     this.state = 'done';
+  }
+
+  goToStudentProfile(){
+    this.router.navigate(['/goToStudentProfile']);
   }
 
 }

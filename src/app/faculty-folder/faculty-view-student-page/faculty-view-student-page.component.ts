@@ -10,32 +10,27 @@ import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
 })
 export class FacultyViewStudentPageComponent implements OnInit {
 
-  student: StudentModel[]; 
+  student: any; 
   splitSkills: any;
   splitResearchInterest: any;
 
   constructor(private router: Router, public serviceDispatcher: ServiceDispatcher) { }
 
   ngOnInit(): void {
-    this.serviceDispatcher.getAllStudents().subscribe(response => {
+    this.serviceDispatcher.getStudent('dxi5017').subscribe(response => {
       this.student = response
-      this.splitStudentsInformationBySemicolon(this.student);
+      this.splitSkills = this.separateByComma(this.student.skills);
+      this.splitResearchInterest = this.separateByComma(this.student.researchInterest);
     });
   }
 
-  separateBySemicolon(rawText: String) {
+  separateByComma(rawText: String) {
     let text = rawText.split(';');
     return text;
   }
 
-  splitStudentsInformationBySemicolon(studentArray: StudentModel[]) {
-    studentArray.forEach(student => {
-      student.splitSkills = this.separateBySemicolon(student.skills);
-    });
-  }
-
-  goToStudentProfile() {
-    this.router.navigate(['/view-student-page'])
+  goToStudentProfile(){
+    this.router.navigate(['/faculty-view-student']);
   }
 
 }

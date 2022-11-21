@@ -13,17 +13,21 @@
 }
 
 .left-container{
-    float: left;
-    width: 80%;
+    /* float: left;
+    width: 80%; */
 }
 
 .right-container {
-    text-align: right;
+    /* text-align: right;
     float: right;
-    width: 20%;
+    width: 20%; */
 }
 
 .profilename {
     font-weight: bold;
     font-size: 20px;
+}
+
+.stepper {
+    align-self: center;
 }
