@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewChildren } from '@angular/core';
+import { Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { ResearchModel } from 'src/app/models/research.model';
 import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
@@ -16,9 +16,10 @@ import { MatStepper } from '@angular/material/stepper';
 })
 export class MatchPageComponent implements OnInit {
 
-  @ViewChild('stepper') private stepper: MatStepper;
+  @ViewChildren('stepper') steppers:QueryList<MatStepper>;
   completed: boolean = false;
   state: string;
+  test: any;
   
   research: ResearchModel[]; 
   splitRequiredSkills: any;
@@ -28,8 +29,6 @@ export class MatchPageComponent implements OnInit {
 
   
   ngOnInit(): void {
- 
-    
     this.serviceDispatcher.getAllResearchByStudent('dxi5017').subscribe(response => {
       this.research = response
       this.replaceInfoBySemicolon(this.research);
@@ -37,19 +36,22 @@ export class MatchPageComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
-
     setTimeout(()=>{
-      this.research.forEach(r => {
-        this.updateProgress(r.progression);
-      });
-      
-    },50);
+      this.updateProgress(this.research);
+    },1000);
   }
 
-  updateProgress(steps : number) {
-    for(let i = 0; i < steps; i++) {
-      this.stepper.next(); 
-    }
+  updateProgress(researches : ResearchModel[]) {
+    let num = 0;
+    this.steppers.forEach(stepper => {
+      for(let i = 0; i < researches[num].progression; i++) {
+        stepper.selectedIndex = researches[i].progression;
+      }
+      
+      num++;
+    });
+
+    this.test = this.steppers;
   }
 
   separateBySemicolon(rawText: String) {

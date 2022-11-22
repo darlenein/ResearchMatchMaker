@@ -19,27 +19,31 @@
                 <mat-stepper class="stepper">
                     <mat-step label="Applied"><div>
                         <button mat-button matStepperNext class="button">Next Step: Recieved</button>
+                        
                       </div>
                     </mat-step>
 
                     <mat-step label="Received">
                       <div>
                         <button mat-button matStepperPrevious class="button">Back</button>
-                        <button mat-button matStepperNext>Next Step: Review</button>
+                        <button mat-button matStepperNext class="button">Next Step: Review</button>
+                        <button mat-button class="button">Save</button>
                       </div>
                     </mat-step>
 
                     <mat-step label="In Review">
                         <div>
                           <button mat-button matStepperPrevious class="button">Back</button>
-                          <button mat-button matStepperNext>Next Step: Vedict</button>
+                          <button mat-button matStepperNext class="button">Next Step: Vedict</button>
+                          <button mat-button class="button">Save</button>
                         </div>
                       </mat-step>
 
                       <!-- <mat-step [completed]="completed" [state]="state" label="Verdict"> -->
                       <mat-step label="Verdict">
                         <div>
-                          <button mat-button (click)="stepperDone()">Accept</button>
+                          <!-- <button mat-button (click)="stepperDone()">Accept</button> -->
+                          <button mat-button class="button">Save</button>
                         </div>
                       </mat-step>
                   </mat-stepper>   
