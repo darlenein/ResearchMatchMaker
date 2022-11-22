@@ -20,9 +20,6 @@
         <label for = "email">Email</label>
         <input type="text" id="email" placeholder="Enter PSU Email" size="50">
         <br> <br>
-        
-
-
 
         <label for = "phone">Phone Number</label>
         <input type="text" id="phone" placeholder="Enter Phone Number" size="50">
@@ -156,17 +153,25 @@
         </div>
         <br><br>
 
-        <label for = "campus">Choose whether you would like your research opportunity matches to include to on campus research, online research, or both. You may choose multiple options  </label>
-        <input type="checkbox" name="campus" id="on campus" value="on campus">
+        <label for = "campus">Choose whether you would like your research opportunity matches to include to on campus research, online research, or both.</label>
+        <mat-radio-group class="radio-btns">
+            <mat-radio-button value="On Campus" class="radio-style">On-Campus</mat-radio-button>
+            <mat-radio-button value="Online" class="radio-style">Online</mat-radio-button>
+            <mat-radio-button value="No Preference on Location" class="radio-style">No Preference</mat-radio-button>
+          </mat-radio-group>
+
+        <!-- <input type="checkbox" name="campus" id="on campus" value="on campus">
         <label type="options" for="on campus">On Campus</label>
         <input type="checkbox" name="campus" id="off campus" value="off campus">
-        <label type="options" for="off campus">Online</label>
+        <label type="options" for="off campus">Online</label> -->
         <br><br>
-        <label for = "money">Choose whether you would like your research opportunity matches to include paid research, non-paid research, or research that offeres credit. You may choose multiple options </label>
+        <label for = "money">Choose whether you would like your research opportunity matches to include paid research, non-paid research, or research that offers credit. </label>
         <input type="checkbox" name="money" id="paid" value="paid">
-        <label type="options" for="paid">Paid</label>
+        <label type="options" for="paid">Paid </label>
         <input type="checkbox" name="money" id="nonpaid" value="nonpaid">
-        <label type="options" for="nonpaid">Non-paid</label>
+        <label type="options" for="nonpaid">Non-paid </label>
+        <input type="checkbox" name="money" id="credit" value="credit">
+        <label type="options" for="nonpaid">Research Credit </label>
         <br><br>
 
 

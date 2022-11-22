@@ -22,6 +22,12 @@ export class ServiceDispatcher{
     return this.http.get<any>(url);
   }
 
+  public createStudentProfile(s : StudentModel): Observable<any> {
+    // find url on swagger UI
+    const url = 'https://localhost:44390/api/Student/createStudent/';
+    return this.http.post<any>(url, s);
+  }
+
   public getStudent(student_id : string): Observable<any> {
     // find url on swagger UI
     const url = 'https://localhost:44390/api/Student/getStudentById/' + student_id;

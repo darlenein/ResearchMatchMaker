@@ -24,6 +24,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatRadioModule } from '@angular/material/radio';
 import { MatchInfoPageComponent } from './student-folder/match-progress-page/match-progress-page.component';
 import { EditFacultyProfilePageComponent } from './faculty-folder/edit-faculty-profile-page/edit-faculty-profile-page.component';
 import { EditStudentProfilePageComponent } from './student-folder/edit-student-profile-page/edit-student-profile-page.component';
@@ -86,7 +87,8 @@ import { FacultyListComponent } from './student-folder/faculty-list/faculty-list
     NgMultiSelectDropDownModule.forRoot(),
     ReactiveFormsModule,
     MatMenuModule,
-    MatStepperModule
+    MatStepperModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]
