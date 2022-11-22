@@ -6,7 +6,7 @@
 <ul style="list-style: none;">
     <li *ngFor="let s of student">
         <div class="container">
-            <div class="left-container">
+            <!-- <div class="left-container"> -->
 
                 
                 Current Progress of Applicant: <a href="/faculty-view-student"><b>{{s.firstName}} {{s.lastName}}</b></a><br><br>
@@ -43,12 +43,12 @@
                         </div>
                       </mat-step>
                   </mat-stepper>   
-            </div>
+            <!-- </div> -->
 
-            <div class="right-container">
-                <!-- <div *ngIf="r.active==false"> Complete </div>
-                <div *ngIf="r.active==true"> Ongoing </div> -->
-            </div>
+            <!-- <div class="right-container">
+                <div *ngIf="r.active==false"> Complete </div>
+                <div *ngIf="r.active==true"> Ongoing </div>
+            </div> -->
             <div style="clear:both;"></div>
         </div>
     </li>

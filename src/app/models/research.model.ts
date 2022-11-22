@@ -6,7 +6,7 @@ export class ResearchModel {
     description: String;
     location: String;
     required_skills: String;
-    encouraged_skills: String;
+    encouraged_Skills: String;
     start_Date: String;
     end_Date: String;
     active: boolean;
@@ -15,4 +15,7 @@ export class ResearchModel {
     address: String;
     faculty_FirstName: String;
     faculty_LastName: String;
+    splitEncouragedSkills: String;
+    splitRequiredSkills: String;
+    progression: number;
 }
