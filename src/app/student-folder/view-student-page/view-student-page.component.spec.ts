@@ -9,6 +9,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StudentModel } from '../../models/student.model';
 import { TopMenuBarComponent } from '../student-top-menu-bar/student-top-menu-bar.component';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { ViewStudentPageComponent } from './view-student-page.component';
 
@@ -27,7 +28,8 @@ describe('ViewStudentPageComponent', () => {
         MatListModule,
         MatIconModule,
         MatInputModule,
-        MatFormFieldModule
+        MatFormFieldModule,
+        MatMenuModule
       ]
     })
     .compileComponents();
@@ -49,12 +51,21 @@ describe('ViewStudentPageComponent', () => {
     //arrange
     let text = "hello;hi;bye";
     //act
-    let result = component.separateByComma(text);
+    let result = component.separateBySemicolon(text);
     //assert
     expect(result.length).toBe(3);
     expect(result.at(0)).toBe("hello");
     expect(result.at(1)).toBe("hi");
     expect(result.at(2)).toBe("bye");
+  });
+
+  it('should not spilt string if no semicolon present', () => {
+    //arrange
+    let text = "hello,hi,bye";
+    //act
+    let result = component.separateBySemicolon(text);
+    //assert
+    expect(result.length).toBe(1);
   });
 
 });

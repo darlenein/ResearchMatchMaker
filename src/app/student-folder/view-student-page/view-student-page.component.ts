@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
 import { ServiceDispatcher } from '../../ServiceDispatcher';
 
 @Component({
@@ -18,12 +18,12 @@ export class ViewStudentPageComponent implements OnInit {
   ngOnInit(): void {
     this.serviceDispatcher.getStudent('dxi5017').subscribe(response => {
       this.student = response
-      this.splitSkills = this.separateByComma(this.student.skills);
-      this.splitResearchInterest = this.separateByComma(this.student.researchInterest);
+      this.splitSkills = this.separateBySemicolon(this.student.skills);
+      this.splitResearchInterest = this.separateBySemicolon(this.student.researchInterest);
     });
   }
 
-  separateByComma(rawText: String) {
+  separateBySemicolon(rawText: String) {
     let text = rawText.split(';');
     return text;
   }
