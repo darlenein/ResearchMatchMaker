@@ -41,7 +41,8 @@ import { StudentViewFacultyPageComponent } from './student-folder/student-view-f
 import { ViewApplicantsComponent } from './faculty-folder/view-applicants/view-applicants.component';
 import { StudentListComponent } from './faculty-folder/student-list/student-list.component';
 import { FacultyListComponent } from './student-folder/faculty-list/faculty-list.component';
-
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 @NgModule({
   declarations: [
     AppComponent,
@@ -88,7 +89,9 @@ import { FacultyListComponent } from './student-folder/faculty-list/faculty-list
     ReactiveFormsModule,
     MatMenuModule,
     MatStepperModule,
-    MatRadioModule
+    MatRadioModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]
