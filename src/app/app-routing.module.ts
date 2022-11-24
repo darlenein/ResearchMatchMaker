@@ -20,7 +20,7 @@ import { ViewApplicantsComponent } from './faculty-folder/view-applicants/view-a
 import { StudentListComponent } from './faculty-folder/student-list/student-list.component';
 import { FacultyListComponent } from './student-folder/faculty-list/faculty-list.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: '', component: LoginPageComponent},
   { path: 'view-matches', component: MatchPageComponent},
   { path: 'opp-board', component: OpportunityBoardPageComponent},

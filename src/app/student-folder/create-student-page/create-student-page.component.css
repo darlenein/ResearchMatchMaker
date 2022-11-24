@@ -92,3 +92,29 @@ label[type = options]{
     margin-left: 10px;
     font-size: 26px;
 }
+
+.radio-btns .mat-radio-container{
+    height: 12px;
+    width: 12px;
+    margin-left: 5px;
+}
+.radio-btns .mat-radio-outer-circle{
+    height: 12px;
+    width: 12px;
+    background-color: white;
+}
+.radio-btns .mat-radio-inner-circle{
+    height: 12px;
+    width: 12px;
+}
+.radio-btns .mat-radio-button .mat-radio-ripple{
+    height: 20px; 
+    width: 20px; 
+    left: calc(50% - 10px); 
+    top: calc(50% - 10px); 
+}
+
+.radio-style {
+    font-family: 'Times New Roman', Times, serif;
+    margin-right: 10px;
+}
