@@ -6,8 +6,7 @@ import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
 @Component({
   selector: 'app-create-student-page',
   templateUrl: './create-student-page.component.html',
-  styleUrls: ['./create-student-page.component.css'],
-  encapsulation : ViewEncapsulation.None,
+  styleUrls: ['./create-student-page.component.css']
 })
 export class CreateStudentPageComponent implements OnInit {
 
@@ -22,7 +21,6 @@ export class CreateStudentPageComponent implements OnInit {
   scienceItems: string[]  = ["Biology", "Chemistry", "Environmental Science", "Physics", "Mathematics"]
   nursingItems: string[] = ["Nursing"]
   
-  toggle = [false];
 
   goToStudentHomePage() {
     this.router.navigate(['/student-home']);

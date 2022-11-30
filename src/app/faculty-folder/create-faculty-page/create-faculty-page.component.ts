@@ -1,7 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MatInputModule } from '@angular/material/input'; 
-import { MatFormFieldModule } from '@angular/material/form-field'; 
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({

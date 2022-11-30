@@ -53,7 +53,7 @@ label[type = options]{
 
 
 
-#submitBtn{
+.submitBtn{
     border:0;
     background:#3d76df;
     padding: .5rem;

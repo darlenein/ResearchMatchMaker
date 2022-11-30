@@ -1,15 +1,14 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-student-home-page',
   templateUrl: './student-home-page.component.html',
-  styleUrls: ['./student-home-page.component.css']
+  styleUrls: ['./student-home-page.component.css'],
+  encapsulation : ViewEncapsulation.None,
 })
 export class StudentHomePageComponent implements OnInit {
-
-  users = new Array<any>();
 
   constructor(private router: Router, private http: HttpClient) { 
   }

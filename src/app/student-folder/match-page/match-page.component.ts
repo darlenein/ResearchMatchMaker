@@ -19,7 +19,6 @@ export class MatchPageComponent implements OnInit {
   @ViewChildren('stepper') steppers:QueryList<MatStepper>;
   completed: boolean = false;
   state: string;
-  test: any;
   
   research: ResearchModel[]; 
   splitRequiredSkills: any;
@@ -50,8 +49,6 @@ export class MatchPageComponent implements OnInit {
       
       num++;
     });
-
-    this.test = this.steppers;
   }
 
   separateBySemicolon(rawText: String) {
