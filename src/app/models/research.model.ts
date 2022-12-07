@@ -1,5 +1,5 @@
 export class ResearchModel {
-    researchID: number;
+    id: number;
     facultyID: String;
     subDeptID: number;
     name: String;

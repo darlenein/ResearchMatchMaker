@@ -11,10 +11,10 @@ import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Location } from "@angular/common";
 import { TopMenuBarComponent } from './student-top-menu-bar.component';
-import { routes } from '../../app-routing.module';
+import { routes } from '../../../app-routing.module';
 import { MatMenuModule } from '@angular/material/menu';
 
-describe('TopMenuBarComponent', () => {
+fdescribe('TopMenuBarComponent', () => {
   let component: TopMenuBarComponent;
   let fixture: ComponentFixture<TopMenuBarComponent>;
   let router : Router;
@@ -54,11 +54,5 @@ describe('TopMenuBarComponent', () => {
     router.navigate(['view-student-profile']); 
     tick();
     expect(location.path()).toBe('/view-student-profile');
-  }));
-
-  it('profile link navigates to wrong page', fakeAsync(() => {
-    router.navigate(['']); 
-    tick();
-    expect(location.path()).toBe('/');
   }));
 });

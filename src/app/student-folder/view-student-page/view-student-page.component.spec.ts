@@ -8,12 +8,12 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StudentModel } from '../../models/student.model';
-import { TopMenuBarComponent } from '../student-top-menu-bar/student-top-menu-bar.component';
+import { TopMenuBarComponent } from '../student-home-page/student-top-menu-bar/student-top-menu-bar.component';
 import { MatMenuModule } from '@angular/material/menu';
 
 import { ViewStudentPageComponent } from './view-student-page.component';
 
-describe('ViewStudentPageComponent', () => {
+fdescribe('ViewStudentPageComponent', () => {
   let component: ViewStudentPageComponent;
   let fixture: ComponentFixture<ViewStudentPageComponent>;
 

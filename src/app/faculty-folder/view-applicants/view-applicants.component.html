@@ -13,12 +13,13 @@
                 <b>Graduation Date:</b> {{s.graduationMonth}} {{s.graduationYear}}<br>
                 <b>Major:</b> {{s.major}}<br>
                 <b>GPA:</b> {{s.gpa}} <br>
-                <b>Skills: </b> {{s.skillsWithComma}}
+                <b>Skills: </b> {{s.skillsWithComma}} <br>
                 
                 <!-- progress bar -->
                 <mat-horizontal-stepper [linear]="false" class="stepper" #stepper>
                     <mat-step label="Applied"><div>
                         <button mat-button matStepperNext class="button">Next Step: Recieved</button>
+                        <button mat-button class="button" (click)="saveAppProgress(0, s.id)">Save</button>
                         
                       </div>
                     </mat-step>
@@ -27,7 +28,7 @@
                       <div>
                         <button (click)="goBack(stepper)" mat-button matStepperPrevious class="button">Back</button>
                         <button mat-button matStepperNext class="button">Next Step: Review</button>
-                        <button mat-button class="button">Save</button>
+                        <button mat-button class="button" (click)="saveAppProgress(1, s.id)">Save</button>
                       </div>
                     </mat-step>
 
@@ -35,7 +36,7 @@
                         <div>
                           <button (click)="goBack(stepper)" mat-button matStepperPrevious class="button">Back</button>
                           <button mat-button matStepperNext class="button">Next Step: Verdict</button>
-                          <button mat-button class="button">Save</button>
+                          <button mat-button class="button" (click)="saveAppProgress(2, s.id);">Save</button>
                         </div>
                       </mat-step>
 
@@ -44,7 +45,7 @@
                         <div>
                           <!-- <button mat-button (click)="stepperDone()">Accept</button> -->
                           <button (click)="goBack(stepper)" mat-button matStepperPrevious class="button">Back</button>
-                          <button mat-button class="button">Save</button>
+                          <button mat-button class="button" (click)="saveAppProgress(3, s.id);">Save</button>
                         </div>
                       </mat-step>
                   </mat-horizontal-stepper>   

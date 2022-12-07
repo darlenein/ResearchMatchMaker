@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { StudentModel } from './models/student.model';
+import { ProgressModel } from './models/progress.model';
 
 @Injectable({
   providedIn: 'root'
@@ -68,6 +69,13 @@ export class ServiceDispatcher{
     const url = 'https://localhost:44390/api/Research/getAllResearchByStudent/' + student_id;
     return this.http.get<any>(url);
   }
+
+  public updateAppProgressBar(p : ProgressModel): Observable<any> {
+    // find url on swagger UI
+    const url = 'https://localhost:44390/api/Research/updateAppProgress/';
+    return this.http.put<any>(url, p);
+  }
+
 }
 
 

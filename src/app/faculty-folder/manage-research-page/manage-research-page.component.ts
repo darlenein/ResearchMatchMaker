@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ServiceDispatcher } from '../../ServiceDispatcher';
 
 @Component({
@@ -11,9 +11,10 @@ export class ManageResearchPageComponent implements OnInit {
 
   research: any; 
 
-  constructor(private router: Router, public serviceDispatcher: ServiceDispatcher) { }
+  constructor(private router: Router, private route: ActivatedRoute,public serviceDispatcher: ServiceDispatcher) { }
 
   ngOnInit(): void {
+    debugger;
     this.serviceDispatcher.getResearchByFaculty('nii1').subscribe(response => {
       this.research = response
     });
@@ -32,8 +33,8 @@ export class ManageResearchPageComponent implements OnInit {
     this.router.navigate(['/add-research']);
   }
 
-  viewApplicantsPage() {
-    this.router.navigate(['/view-applicants']);
+  viewApplicantsPage(research_id: number) {
+    this.router.navigate(['/view-applicants'], {queryParams: {research_id: research_id}});
   }
 
 }
