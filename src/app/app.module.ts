@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatTabsModule } from '@angular/material/tabs';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TopMenuBarComponent } from './student-folder/student-top-menu-bar/student-top-menu-bar.component';
+import { TopMenuBarComponent } from './student-folder/student-home-page/student-top-menu-bar/student-top-menu-bar.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { OpportunityBoardPageComponent } from './student-folder/opportunity-board-page/opportunity-board-page.component';
 import { MatchPageComponent } from './student-folder/match-page/match-page.component';
@@ -24,6 +24,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatRadioModule } from '@angular/material/radio';
 import { MatchInfoPageComponent } from './student-folder/match-progress-page/match-progress-page.component';
 import { EditFacultyProfilePageComponent } from './faculty-folder/edit-faculty-profile-page/edit-faculty-profile-page.component';
 import { EditStudentProfilePageComponent } from './student-folder/edit-student-profile-page/edit-student-profile-page.component';
@@ -39,7 +40,9 @@ import { FacultyViewStudentPageComponent } from './faculty-folder/faculty-view-s
 import { StudentViewFacultyPageComponent } from './student-folder/student-view-faculty-page/student-view-faculty-page.component';
 import { ViewApplicantsComponent } from './faculty-folder/view-applicants/view-applicants.component';
 import { StudentListComponent } from './faculty-folder/student-list/student-list.component';
-
+import { FacultyListComponent } from './student-folder/faculty-list/faculty-list.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,7 +69,8 @@ import { StudentListComponent } from './faculty-folder/student-list/student-list
     FacultyViewStudentPageComponent,
     StudentViewFacultyPageComponent,
     ViewApplicantsComponent,
-    StudentListComponent
+    StudentListComponent,
+    FacultyListComponent
   ],
   imports: [
     BrowserModule,
@@ -84,7 +88,10 @@ import { StudentListComponent } from './faculty-folder/student-list/student-list
     NgMultiSelectDropDownModule.forRoot(),
     ReactiveFormsModule,
     MatMenuModule,
-    MatStepperModule
+    MatStepperModule,
+    MatRadioModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

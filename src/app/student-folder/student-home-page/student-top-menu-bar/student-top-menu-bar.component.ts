@@ -35,4 +35,8 @@ export class TopMenuBarComponent implements OnInit {
     this.router.navigate(['/opp-board']);
   }
 
+  goToFacultyListPage(){
+    this.router.navigate(['/faculty-list']);
+  }
+
 }

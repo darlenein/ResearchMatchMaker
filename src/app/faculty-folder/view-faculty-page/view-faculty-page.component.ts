@@ -20,7 +20,6 @@ export class ViewFacultyPageComponent implements OnInit {
 
   ngOnInit(): void {
 
-    debugger;
     this.serviceDispatcher.getFaculty('nii1').subscribe(response => {
       this.faculty = response
       this.splitResearchInterest = this.separateByComma(this.faculty.researchInterest);

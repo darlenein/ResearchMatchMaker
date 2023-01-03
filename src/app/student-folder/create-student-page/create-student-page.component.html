@@ -9,16 +9,17 @@
         <input type="button" value="Add Resume" id="btn2">
         <br><br>
 
-        <label type="name" for = "name">Name</label>
-        <input type="text" id="name" placeholder="Enter Name" size="50">
+        <label type="first_name" for = "first_name">First Name</label>
+        <input type="text" id="first_name" placeholder="Enter First Name" size="50">
+        <br> <br>
+
+        <label type="last_name" for = "last_name">Last Name</label>
+        <input type="text" id="last_name" placeholder="Enter Last Name" size="50">
         <br> <br>
 
         <label for = "email">Email</label>
         <input type="text" id="email" placeholder="Enter PSU Email" size="50">
         <br> <br>
-        
-
-
 
         <label for = "phone">Phone Number</label>
         <input type="text" id="phone" placeholder="Enter Phone Number" size="50">
@@ -28,87 +29,79 @@
         <input type="text" id="gpa" placeholder="Enter GPA" size="50">
         <pre></pre>
 
+        <label for = "major">Major</label>
+        <select id="major">
+            <option value="accounting">Accounting</option>
+            <option value="biology">Biology</option>
+            <option value="businessecon">Business Economics</option>
+            <option value="chemistry">Chemistry</option>
+            <option value="comm">Communications</option>
+            <option value="compEng">Computer Engineering</option>
+            <option value="compsci">Computer Science</option>
+            <option value="creative writing">Creative Writing</option>
+            <option value="digitalmedia">Digital Media, Arts, and Technology</option>
+            <option value="elec/comp tech">Electrical and Computer Engineering Techonology</option>
+            <option value="electrical">Electrical Engineering</option>
+            <option value="child ed">Elementary and Early Childhood Education</option>
+            <option value="english">English</option>
+            <option value="envScience">Environmental Science</option>
+            <option value="finance">Finance</option>
+        </select>
+        <pre></pre>
+
+        <label for = "minor">Minor</label>
+        <select id="minor">
+            <option value="accounting">Accounting</option>
+            <option value="biology">Biology</option>
+            <option value="businessecon">Business Economics</option>
+            <option value="chemistry">Chemistry</option>
+            <option value="comm">Communications</option>
+            <option value="compEng">Computer Engineering</option>
+            <option value="compsci">Computer Science</option>
+            <option value="creative writing">Creative Writing</option>
+            <option value="digitalmedia">Digital Media, Arts, and Technology</option>
+            <option value="elec/comp tech">Electrical and Computer Engineering Techonology</option>
+            <option value="electrical">Electrical Engineering</option>
+            <option value="child ed">Elementary and Early Childhood Education</option>
+            <option value="english">English</option>
+            <option value="envScience">Environmental Science</option>
+            <option value="finance">Finance</option>
+        </select>
+        <pre></pre>
+
         <label type="date" for = "grad date">Estimated Graduation Month and Year</label>
-        <select id="grad date">
-            <option value="january">January</option>
-            <option value="february">February</option>
-            <option value="march">March</option>
-            <option value="april">April</option>
-            <option value="may">May</option>
-            <option value="june">June</option>
-            <option value="july">July</option>
-            <option value="august">August</option>
-            <option value="september">September</option>
-            <option value="october">October</option>
-            <option value="november">November</option>
-            <option value="december">December</option>
-        </select>
-
-        <select id="grad date">
-            <option value="2023">2023</option>
-            <option value="2024">2024</option>
-            <option value="2024">2025</option>
-            <option value="2024">2026</option>
-            <option value="2024">2027</option>
-            <option value="2024">2028</option>
-
-        </select>
         <br><br>
 
-        <div class="left-container">
-            <br><span class="filter-title">Select all majors of interest for research</span>
-            <mat-nav-list>
-                <mat-list-item (click)="toggle[1] = !toggle[1]">
-                    <a matLine *ngIf="!toggle[1]"><mat-icon>keyboard_arrow_right</mat-icon></a>
-                    <a matLine *ngIf="toggle[1]"><mat-icon>keyboard_arrow_down</mat-icon></a>
-                    <a style="padding-bottom: 2.5px; margin-right: 80px;">Engineering</a>
-                    <span>
-                  <mat-icon *ngIf="!toggle[1]"></mat-icon>
-                  <mat-icon *ngIf="toggle[1]"></mat-icon>
-                 </span>
-                </mat-list-item>
-            
-                <div [hidden]="!toggle[1]">
-                    <mat-selection-list>
-                        <mat-list-option *ngFor="let item of engineeringItems" checkboxPosition="before">
-                            {{ item }}
-                        </mat-list-option>
-                    </mat-selection-list>
-                </div>
-            
-                <mat-list-item (click)="toggle[2] = !toggle[2]">
-                    <a matLine *ngIf="!toggle[2]"><mat-icon>keyboard_arrow_right</mat-icon></a>
-                    <a matLine *ngIf="toggle[2]"><mat-icon>keyboard_arrow_down</mat-icon></a>
-                    <a style="padding-bottom: 2.5px; margin-right: 85px;">Visual Arts</a>
-                    <span>
-                  <mat-icon *ngIf="!toggle[2]"></mat-icon>
-                  <mat-icon *ngIf="toggle[2]"></mat-icon>
-                 </span>
-                </mat-list-item>
-            
-                <div [hidden]="!toggle[2]">
-                    <mat-selection-list>
-                        <mat-list-option *ngFor="let item of visualArtsItems" checkboxPosition="before">
-                            {{ item }}
-                        </mat-list-option>
-                    </mat-selection-list>
-                </div>
-            
-            </mat-nav-list>
-        </div>
+
+
+        <input type="text" id="date" placeholder="Month" size="25">
+        
+
+        <input type="text" id="date" placeholder="Year" size="25">
+        <pre></pre>
         <br><br>
 
-        <label for = "campus">Choose whether you would like your research opportunity matches to include to on campus research, online research, or both. If both, please select both options.  </label>
-        <input type="checkbox" name="campus" id="on campus" value="on campus">
+
+
+        <label for = "campus">Choose whether you would like your research opportunity matches to include to on campus research, online research, or both.</label>
+        <mat-radio-group class="radio-btns">
+            <mat-radio-button value="On Campus" class="radio-style">On-Campus</mat-radio-button>
+            <mat-radio-button value="Online" class="radio-style">Online</mat-radio-button>
+            <mat-radio-button value="No Preference on Location" class="radio-style">No Preference</mat-radio-button>
+          </mat-radio-group>
+
+        <!-- <input type="checkbox" name="campus" id="on campus" value="on campus">
         <label type="options" for="on campus">On Campus</label>
         <input type="checkbox" name="campus" id="off campus" value="off campus">
-        <label type="options" for="off campus">Online</label>
+        <label type="options" for="off campus">Online</label> -->
         <br><br>
-        <label for = "money">Choose whether you would like your research opportunity matches to include paid research, non-paid research, or both. If both, please select both options. </label>
+        <label for = "money">Choose whether you would like your research opportunity matches to include paid research, non-paid research, or research that offers credit. </label>
         <input type="checkbox" name="money" id="paid" value="paid">
-        <label type="options" for="paid">Paid</label>
+        <label type="options" for="paid">Paid </label>
         <input type="checkbox" name="money" id="nonpaid" value="nonpaid">
-        <label type="options" for="nonpaid">Non-paid</label>
+        <label type="options" for="nonpaid">Non-paid </label>
+        <input type="checkbox" name="money" id="credit" value="credit">
+        <label type="options" for="nonpaid">Research Credit </label>
         <br><br>
 
 
@@ -116,12 +109,15 @@
         <textarea  rows="7" cols="30" name="acquired skills" id="acquired skills" placeholder="Skill 1;Skill 2;Skill 3"></textarea>
         
 
-        <label type="keywords" for = "keywords">Select any keywords from chosen departments</label>
-        <textarea  rows="7" cols="30" name="keywords" id="keywords" placeholder="All keywords will be listed here. Students will be able to choose from a list of keywords based on their selected departments"></textarea>
+
+        <label for = "associated links">Include up to 3 links for any further information about yourself.</label>
+        <input type="text" id="link1" placeholder="Link 1" size="50">
+        <input type="text" id="link2" placeholder="Link 2" size="50">
+        <input type="text" id="link3" placeholder="Link 3" size="50">
         <br><br>
 
 
-        <input type="submit" value="Submit" id="submitBtn" (click)="goToStudentHomePage();">
+        <button class="submitBtn" (click)="goToStudentHomePage();">Submit</button>
         <br><br>
 
      </form>

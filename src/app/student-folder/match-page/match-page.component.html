@@ -9,15 +9,19 @@
           <div class="top-container">
               <!-- progress bar -->
               <b>Current Progress:</b><br>
-              <mat-stepper class="stepper">
+              <mat-horizontal-stepper #stepper class="stepper">
+
                 <ng-template matStepperIcon="edit">
                   <mat-icon>done</mat-icon>
                 </ng-template>
+
                 <mat-step label="Applied" state="isDone"></mat-step>
                 <mat-step label="Received"></mat-step>
                 <mat-step label="In Review"></mat-step>
                 <mat-step [state]="state" label="Verdict"></mat-step>
-              </mat-stepper>
+                
+              </mat-horizontal-stepper>
+
           </div>
 
             <div class="left-container">
@@ -25,8 +29,8 @@
               {{r.faculty_FirstName}} {{r.faculty_LastName}}<br>
               {{r.address}} <br><br>
               <b>Description:</b> {{r.description}}<br><br>
-              <b>Required Skills:</b> <div *ngFor="let skill of splitRequiredSkills">{{skill}}</div><br>
-              <b>Encouraged Skills:</b> <div *ngFor="let skill of splitEncouragedSkills">{{skill}}</div><br><br>
+              <b>Required Skills: </b>{{r.splitRequiredSkills}}<br>
+              <b>Encouraged Skills: </b>{{r.splitEncouragedSkills}}<br><br>
           </div>
 
           <div class="right-container">

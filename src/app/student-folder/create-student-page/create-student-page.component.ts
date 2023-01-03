@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
+import { StudentModel } from 'src/app/models/student.model';
+import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
 
 @Component({
   selector: 'app-create-student-page',
@@ -8,15 +10,25 @@ import { Router } from '@angular/router';
 })
 export class CreateStudentPageComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, public serviceDispatcher: ServiceDispatcher) { }
 
   ngOnInit(): void {
   }
-  engineeringItems: string[] = [ "Electrical and Computer Engineering Technology", "Chemical Engineering", "Electrical", "Mechanical", "Software", "Computer Science", "Industrial", "Interdisciplinary Business with Engineering Studies"];
-  visualArtsItems: string[] = [ "Graph Design", "3D Modeling"];
-  toggle = [false];
+
+  engineeringItems: string[] = [ "Computer", "Chemical", "Electrical", "Mechanical", "Software"];
+  humanitiesSocialScienceItems: string[] = [ "Communication", "English", "Psychology", "Politcal Science", "History", "Digital Media"];
+  businessItems: string[] = [ "Accounting", "Economics", "Finance", "Marketing"];
+  scienceItems: string[]  = ["Biology", "Chemistry", "Environmental Science", "Physics", "Mathematics"]
+  nursingItems: string[] = ["Nursing"]
+  
 
   goToStudentHomePage() {
     this.router.navigate(['/student-home']);
   }
+
+  createStudentProfile(student : StudentModel){
+    this.serviceDispatcher.createStudentProfile(student);
+  }
+
+
 }

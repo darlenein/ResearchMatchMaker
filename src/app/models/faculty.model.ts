@@ -14,4 +14,7 @@ export class FacultyModel {
     aboutMe: String;
     researchInterest: String;
     profileUrl: String;
+    splitAbout: String[];
+    splitResearchInterest: String[];
+    skillsWithComma: String;
 }

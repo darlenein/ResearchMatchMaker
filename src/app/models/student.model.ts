@@ -1,5 +1,5 @@
 export class StudentModel {
-    studentID: String;
+    id: string;
     facultyID: String;
     researchID: number;
     firstName: String;

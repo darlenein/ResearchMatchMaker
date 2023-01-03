@@ -11,6 +11,71 @@ h1 {
     width: 600px;
     float: left;
     margin-left: 100px;
+    background-image: url('src\images\business.jpg');
+    animation: homePageImage;
+    animation-delay: 5s;
+    animation-duration: 8s;
+    animation-iteration-count: infinite;
+    transition-delay: 5s;
+    transition-duration: 6s;
+}
+
+@keyframes homePageImage {
+    0% {
+        background-image: url('src\images\business.jpg');
+    }
+    20% {
+        background-image: url('src\images\nursing.jpg');
+    }
+    40% {
+        background-image: url('src\images\engineering.jpg');
+    }
+    60% {
+        background-image: url('src\images\humanities.jpg');
+    }
+    80% {
+        background-image: url('src\images\science.jpg');
+    }
+    100% {
+        background-image: url('src\images\visualArts.jpg');
+    }
+}
+
+.projImage2 {
+    padding-left: 110px;
+    padding-top: 30px;
+    height: 400px;
+    width: 600px;
+    float: left;
+    margin-left: 100px;
+    background-image: url('src\images\visualArts2.jpg');
+    animation: homePageImage2;
+    animation-delay: 5s;
+    animation-duration: 8s;
+    animation-iteration-count: infinite;
+    transition-delay: 5s;
+    transition-duration: 6s;
+}
+
+@keyframes homePageImage2 {
+    0% {
+        background-image: url('src\images\science2.jpg');
+    }
+    20% {
+        background-image: url('src\images\humanities2.jpg');
+    }
+    40% {
+        background-image: url('src\images\engineering2.jpg');
+    }
+    60% {
+        background-image: url('src\images\nursing2.jpg');
+    }
+    80% {
+        background-image: url('src\images\science2.jpg');
+    }
+    100% {
+        background-image: url('src\images\business2.png');
+    }
 }
 
 .text1 {

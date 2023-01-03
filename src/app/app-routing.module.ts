@@ -18,8 +18,9 @@ import { ViewFacultyPageComponent } from './faculty-folder/view-faculty-page/vie
 import { ViewStudentPageComponent } from './student-folder/view-student-page/view-student-page.component';
 import { ViewApplicantsComponent } from './faculty-folder/view-applicants/view-applicants.component';
 import { StudentListComponent } from './faculty-folder/student-list/student-list.component';
+import { FacultyListComponent } from './student-folder/faculty-list/faculty-list.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: '', component: LoginPageComponent},
   { path: 'view-matches', component: MatchPageComponent},
   { path: 'opp-board', component: OpportunityBoardPageComponent},
@@ -38,8 +39,8 @@ const routes: Routes = [
   { path: 'edit-student-profile', component: EditStudentProfilePageComponent},
   { path: 'student-list', component: StudentListComponent},
   { path: 'view-applicants', component: ViewApplicantsComponent},
-  { path: 'faculty-view-student', component: FacultyViewStudentPageComponent}
-
+  { path: 'faculty-view-student', component: FacultyViewStudentPageComponent},
+  { path: 'faculty-list', component: FacultyListComponent}
   
 ];
 

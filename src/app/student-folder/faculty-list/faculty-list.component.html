@@ -1,0 +1,25 @@
+<app-student-top-menu-bar></app-student-top-menu-bar>
+<!-- ../student-list -->
+
+<ul style="list-style: none;">
+    <li *ngFor="let f of faculty">
+        <div class="container">
+            
+            <div class="left-container">
+                <div class="profilename" (click)="goToFacultyProfile();">
+                    {{f.firstName}} {{f.lastName}} (profile link)
+                </div>
+                <b>Title:</b> {{f.title}}<br><br>
+                <b>About Me:</b> <div *ngFor="let about of f.splitAbout">{{about}}</div><br>
+                <b>Research Interests:</b> <div *ngFor="let interest of f.splitResearchInterest">{{interest}}</div>
+            </div>
+
+            <!-- <div class="right-container">
+                {{r.start_Date}} - {{r.end_Date}}<br>
+                {{r.incentive_type}}<br>
+                {{r.location}}
+            </div> -->
+            <div style="clear:both;"></div>
+        </div>
+    </li>
+</ul>    

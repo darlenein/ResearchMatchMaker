@@ -17,7 +17,7 @@
                 <b>Required Skills:</b> {{r.required_skills}}<br>
                 <b>Encouraged Skills:</b> {{r.encouraged_Skills}}<br><br>
                 <button type="button" class="btn" (click)="editResearchPage();">Edit Research Info</button>
-                <button type="button" class="btn" (click)="viewApplicantsPage();">View Applicants</button>
+                <button type="button" class="btn" (click)="viewApplicantsPage(r.id);">View Applicants</button>
             </div>
 
             <div class="right-container">
