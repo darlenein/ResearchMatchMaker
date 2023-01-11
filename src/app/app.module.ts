@@ -85,6 +85,7 @@ import {MatNativeDateModule} from '@angular/material/core';
     MatInputModule,
     MatFormFieldModule,
     FormsModule,
+    ReactiveFormsModule,
     NgMultiSelectDropDownModule.forRoot(),
     ReactiveFormsModule,
     MatMenuModule,

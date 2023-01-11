@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,17 +8,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./create-faculty-page.component.css']
 })
 export class CreateFacultyPageComponent implements OnInit {
+  first_name_val: string;
+  firstName = new FormControl('');
 
-
-  constructor(private router: Router) { }
+  constructor(private router: Router) { 
+  }
 
   ngOnInit(): void {
 
 }
 
-
 goToFacultyHomePage() {
-  this.router.navigate(['/faculty-home']);
+  console.log(this.firstName.value);
+  //this.router.navigate(['/faculty-home']);
 }
 
 }
