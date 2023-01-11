@@ -2,8 +2,8 @@ export class StudentModel {
     id: string;
     facultyID: String;
     researchID: number;
-    firstName: String;
-    lastName: String;
+    firstName: string;
+    lastName: string;
     gpa: number;
     graduationMonth: String;
     graduationYear: String;
