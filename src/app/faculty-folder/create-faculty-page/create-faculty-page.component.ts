@@ -8,8 +8,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./create-faculty-page.component.css']
 })
 export class CreateFacultyPageComponent implements OnInit {
-  first_name_val: string;
   firstName = new FormControl('');
+  lastName = new FormControl('');
+  email = new FormControl('');
+  title = new FormControl('');
+  dept = new FormControl('');
+  office = new FormControl('');
+  phone = new FormControl('');
+  about = new FormControl('');
+  research = new FormControl('');
+  link1 = new FormControl('');
+  link2 = new FormControl('');
+  link3 = new FormControl('');
 
   constructor(private router: Router) { 
   }
@@ -19,7 +29,7 @@ export class CreateFacultyPageComponent implements OnInit {
 }
 
 goToFacultyHomePage() {
-  console.log(this.firstName.value);
+  console.log(this.dept.value);
   //this.router.navigate(['/faculty-home']);
 }
 
