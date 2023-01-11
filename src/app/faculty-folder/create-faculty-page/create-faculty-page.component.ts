@@ -2,7 +2,6 @@ import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FacultyModel } from 'src/app/models/faculty.model';
-import { StudentModel } from 'src/app/models/student.model';
 import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
 
 @Component({
@@ -33,18 +32,18 @@ export class CreateFacultyPageComponent implements OnInit {
 
 goToFacultyHomePage() {
   //console.log(this.dept.value);
-  let sd = new FacultyModel();
-  sd.firstName = this.firstName.value!;
-  sd.lastName = this.lastName.value!;
-  sd.email = this.email.value!;
-  sd.title = this.title.value!;
-  sd.office = this.office.value!;
-  sd.phone = this.phone.value!;
-  sd.aboutMe = this.about.value!;
-  sd.researchInterest  = this.research.value!;
-  sd.link1 = this.link1.value!;
-  sd.link2 = this.link2.value!;
-  sd.link3 = this.link3.value!;
+  let fd = new FacultyModel();
+  fd.firstName = this.firstName.value!;
+  fd.lastName = this.lastName.value!;
+  fd.email = this.email.value!;
+  fd.title = this.title.value!;
+  fd.office = this.office.value!;
+  fd.phone = this.phone.value!;
+  fd.aboutMe = this.about.value!;
+  fd.researchInterest  = this.research.value!;
+  fd.link1 = this.link1.value!;
+  fd.link2 = this.link2.value!;
+  fd.link3 = this.link3.value!;
   // this.serviceDispatcher.createStudentProfile(sd).subscribe(response => { });
   this.router.navigate(['/faculty-home']); // should be success page -> log in -> faculty-home
 }

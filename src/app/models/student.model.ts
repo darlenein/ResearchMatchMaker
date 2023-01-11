@@ -8,6 +8,7 @@ export class StudentModel {
     graduationMonth: String;
     graduationYear: String;
     major: String;
+    minor: String;
     skills: String;
     link1: String;
     link2: String;
@@ -19,5 +20,8 @@ export class StudentModel {
     research_name: String;
     splitSkills: String[];
     skillsWithComma: String;
-
+    locationPref: String;
+    preferCredit: boolean
+    preferPaid: boolean;
+    perferNonpaid: boolean;
 }
