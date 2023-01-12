@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StudentModel } from 'src/app/models/student.model';
 import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
 
@@ -27,8 +27,15 @@ export class CreateStudentPageComponent implements OnInit {
   paid = new FormControl('');
   nonpaid = new FormControl('');
   credit = new FormControl('');
+  interest = new FormControl('');
+  projects = new FormControl('');
+  psuID: string;
   
-  constructor(private router: Router, public serviceDispatcher: ServiceDispatcher) { }
+  constructor(private router: Router, public serviceDispatcher: ServiceDispatcher, private route: ActivatedRoute) {
+    this.route.queryParams.subscribe(params => {
+      this.psuID = params["psuID"];
+    });
+   }
 
   ngOnInit(): void {
   }
@@ -41,8 +48,8 @@ export class CreateStudentPageComponent implements OnInit {
   
 
   goToStudentHomePage() {
-    //console.log(this.location.value);
     let sd = new StudentModel();
+    sd.id = this.psuID;
     sd.firstName = this.firstName.value!;
     sd.lastName = this.lastName.value!;
     sd.email = this.email.value!;
@@ -51,21 +58,32 @@ export class CreateStudentPageComponent implements OnInit {
     sd.minor = this.minor.value!;
     sd.graduationMonth = this.gradMonth.value!;
     sd.graduationYear = this.gradYear.value!;
-    sd.locationPref = this.location.value!;
+    sd.preferLocation = Number(this.location.value!);
     sd.skills = this.skills.value!;
     sd.link1 = this.link1.value!;
     sd.link2 = this.link2.value!;
     sd.link3 = this.link3.value!;
-    sd.preferPaid = JSON.parse(this.paid.value!);
-    sd.perferNonpaid = JSON.parse(this.nonpaid.value!);
-    sd.preferCredit = JSON.parse(this.credit.value!);
-    //this.serviceDispatcher.createStudentProfile(sd);
-    //this.router.navigate(['/student-home']);
+    if (this.paid.value) {
+      sd.preferPaid = true;
+    }
+    else {
+      sd.preferPaid = false;
+    }
+    if (this.nonpaid.value) {
+      sd.preferNonpaid = true;
+    }
+    else {
+      sd.preferNonpaid = false;
+    }
+    if (this.credit.value) {
+      sd.preferCredit = true;
+    }
+    else {
+      sd.preferCredit = false;
+    }
+    sd.researchInterest = this.interest.value!;
+    sd.researchProject = this.projects.value!;
+    this.serviceDispatcher.createStudentProfile(sd).subscribe(response => { });
+    this.router.navigate(['/student-home']);
   }
-
-  createStudentProfile(student : StudentModel){
-    //this.serviceDispatcher.createStudentProfile(student);
-  }
-
-
 }

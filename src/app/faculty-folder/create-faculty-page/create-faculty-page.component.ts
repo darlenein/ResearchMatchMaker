@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FacultyModel } from 'src/app/models/faculty.model';
 import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
 
@@ -22,8 +22,12 @@ export class CreateFacultyPageComponent implements OnInit {
   link1 = new FormControl('');
   link2 = new FormControl('');
   link3 = new FormControl('');
+  psuID: string;
 
-  constructor(public serviceDispatcher: ServiceDispatcher, private router: Router) { 
+  constructor(public serviceDispatcher: ServiceDispatcher, private router: Router, private route: ActivatedRoute) { 
+    this.route.queryParams.subscribe(params => {
+      this.psuID = params["psuID"];
+    });
   }
 
   ngOnInit(): void {
@@ -33,6 +37,7 @@ export class CreateFacultyPageComponent implements OnInit {
 goToFacultyHomePage() {
   //console.log(this.dept.value);
   let fd = new FacultyModel();
+  fd.facultyID = this.psuID;
   fd.firstName = this.firstName.value!;
   fd.lastName = this.lastName.value!;
   fd.email = this.email.value!;

@@ -43,6 +43,7 @@ import { StudentListComponent } from './faculty-folder/student-list/student-list
 import { FacultyListComponent } from './student-folder/faculty-list/faculty-list.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
+import { SSOPageComponent } from './sso-page/sso-page.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,7 +71,8 @@ import {MatNativeDateModule} from '@angular/material/core';
     StudentViewFacultyPageComponent,
     ViewApplicantsComponent,
     StudentListComponent,
-    FacultyListComponent
+    FacultyListComponent,
+    SSOPageComponent
   ],
   imports: [
     BrowserModule,

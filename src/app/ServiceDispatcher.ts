@@ -30,7 +30,8 @@ export class ServiceDispatcher{
 
   public createStudentProfile(s : StudentModel): Observable<any> {
     // find url on swagger UI
-    const url = 'https://localhost:44390/api/Student/createStudent/';
+    
+    const url = 'https://localhost:44390/api/Student/createStudent';
     return this.http.post<any>(url, s);
   }
 

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent implements OnInit {
+  isStudent: boolean;
 
   constructor(private router: Router, private http: HttpClient) { 
   }
@@ -16,11 +17,27 @@ export class LoginPageComponent implements OnInit {
   }
 
   goToCreateFacultyPage() {
-    this.router.navigate(['/create-faculty-page']);
+    this.isStudent = false;
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        "isStudent": this.isStudent
+      }
+    };
+
+    this.router.navigate(['/sso-page'], navigationExtras);
+    //this.router.navigate(['/create-faculty-page']);
   }
 
   goToCreateStudentPage() {
-    this.router.navigate(['/create-student-page']);
+    this.isStudent = true;
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        "isStudent": this.isStudent
+      }
+    };
+    
+    this.router.navigate(['/sso-page'], navigationExtras);
+    //this.router.navigate(['/create-student-page']);
   }
 
 }
