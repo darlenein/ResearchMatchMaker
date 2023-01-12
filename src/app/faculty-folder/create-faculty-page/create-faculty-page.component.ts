@@ -49,7 +49,7 @@ goToFacultyHomePage() {
   fd.link1 = this.link1.value!;
   fd.link2 = this.link2.value!;
   fd.link3 = this.link3.value!;
-  // this.serviceDispatcher.createStudentProfile(sd).subscribe(response => { });
+  // this.serviceDispatcher.createFacultyProfile(fd).subscribe(response => { });
   this.router.navigate(['/faculty-home']); // should be success page -> log in -> faculty-home
 }
 

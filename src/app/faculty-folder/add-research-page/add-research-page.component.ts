@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,6 +8,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./add-research-page.component.css']
 })
 export class AddResearchPageComponent implements OnInit {
+  name = new FormControl('');
+  description = new FormControl('');
+  location = new FormControl('');
+  rskills = new FormControl('');
+  eskills = new FormControl('');
+  address = new FormControl('');
+  startDate = new FormControl('');
+  endDate = new FormControl('');
+  active = new FormControl('');
+  credit = new FormControl('');
+  paid = new FormControl('');
+  nonpaid = new FormControl('');
 
   constructor(private router: Router) { }
 

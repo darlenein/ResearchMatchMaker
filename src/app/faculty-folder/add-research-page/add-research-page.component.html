@@ -15,11 +15,11 @@
         <br><br>
 
         <label for = "research name">Research Name</label>
-        <input type="text" id="research name" placeholder="Enter Research Name" size="50">
+        <input type="text" id="research name" placeholder="Enter Research Name" size="50" [formControl]="name">
         <br><br>
 
         <label for = "researchlocation">Address of Research Location</label>
-        <input type="text" id="researchlocation" placeholder="4701 College Drive, Erie, PA, 16563" size="50">
+        <input type="text" id="researchlocation" placeholder="4701 College Drive, Erie, PA, 16563" size="50" [formControl]="address">
         <br><br>
 
         <div class="left-container">
@@ -134,41 +134,43 @@
                 </div>
             
             </mat-nav-list>
-        </div>
+        </div><br>
 
-        <label for = "campus">Choose whether you would like your research opportunity matches to include to on campus research, online research, or both. You may choose multiple options.  </label>
-        <input type="checkbox" name="campus" id="on campus" value="on campus">
-        <label type="options" for="on campus">On Campus</label>
-        <input type="checkbox" name="campus" id="off campus" value="off campus">
-        <label type="options" for="off campus">Online</label>
+        <label for = "campus">Choose whether you would like your research opportunity matches to include to on campus research, online research, or both.   </label>
+        <mat-radio-group class="radio-btns" [formControl]="location">
+            <mat-radio-button value="0" class="radio-style">On-Campus</mat-radio-button>
+            <mat-radio-button value="1" class="radio-style">Online</mat-radio-button>
+            <mat-radio-button value="2" class="radio-style">Both</mat-radio-button>
+          </mat-radio-group>
+
         <br><br>
-        <label for = "money">Choose whether you would like your research opportunity matches to include paid research, non-paid research, or research that offeres credit. </label>
-        <input type="radio" name="money" id="paid" value="paid">
-        <label type="options" for="paid">Paid</label>
-        <input type="radio" name="money" id="nonpaid" value="nonpaid">
-        <label type="options" for="nonpaid">Non-paid</label>
-        <input type="radio" name="money" id="credit" value="credit">
-        <label type="options" for="credit">Research Credit</label>
+        <label for = "money">Choose whether you would like your research opportunity matches to include paid research, non-paid research, or research that offers credit. You may choose multiple options.</label>
+        <input type="checkbox" name="money" id="paid" value="paid" [formControl]="paid">
+        <label type="options" for="paid">Paid </label>
+        <input type="checkbox" name="money" id="nonpaid" value="nonpaid" [formControl]="nonpaid">
+        <label type="options" for="nonpaid">Non-paid </label>
+        <input type="checkbox" name="money" id="credit" value="credit" [formControl]="credit">
+        <label type="options" for="nonpaid">Research Credit </label>
         <br><br>
 
 
         <label type="date" for = "start date">Start Date for Research</label>
-        <input type="date" id="start date" name="research start" ><br>
+        <input type="date" id="start date" name="research start" [formControl]="startDate"><br>
         
         <label type="date" for = "end date">End Date for Research</label>
-        <input type="date" id="end date" name="research end" >
+        <input type="date" id="end date" name="research end" [formControl]="endDate">
 
         <br><br>
         <label for = "research description">Research Description</label>
-        <textarea rows="15" cols="75" name="research description" id="research description" placeholder="Please describe the research in detail here"></textarea>
+        <textarea rows="15" cols="75" name="research description" id="research description" placeholder="Please describe the research in detail here" [formControl]="description"></textarea>
         <br><br>
 
         <label type="skills" for = "required skills">Required Skills(Seperate by Semicolon)</label>
-        <textarea type="rskills" rows="7" cols="30" name="required skills" id="required skills" placeholder="Skill 1;Skill 2;Skill 3"></textarea>
+        <textarea type="rskills" rows="7" cols="30" name="required skills" id="required skills" placeholder="Skill 1;Skill 2;Skill 3" [formControl]="rskills"></textarea>
         
 
         <label type="skills" for = "encouraged skills">Encouraged Skills(Seperate by Semicolon)</label>
-        <textarea type="eskills" rows="7" cols="30" name="encouraged skills" id="encouraged skills" placeholder="Skill 1;Skill 2;Skill 3"></textarea>
+        <textarea type="eskills" rows="7" cols="30" name="encouraged skills" id="encouraged skills" placeholder="Skill 1;Skill 2;Skill 3" [formControl]="eskills"></textarea>
         <br><br>
 
         <input type="submit" value="Submit" id="submitBtn" (click)="goToFacultyManageResearch();">

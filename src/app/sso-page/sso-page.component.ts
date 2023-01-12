@@ -9,7 +9,7 @@ import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 })
 export class SSOPageComponent implements OnInit {
   PSUID = new FormControl('');
-  isStudent: boolean;
+  isStudent: any
   
   constructor(private router:Router, private route:ActivatedRoute) { 
     this.route.queryParams.subscribe(params => {
@@ -27,8 +27,8 @@ export class SSOPageComponent implements OnInit {
         "psuID": this.PSUID.value
       }
     };
-    
-    if(this.isStudent) {
+
+    if(this.isStudent === "true") {
       this.router.navigate(['/create-student-page'], navigationExtras);
     }
     else {

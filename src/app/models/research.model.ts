@@ -18,4 +18,7 @@ export class ResearchModel {
     splitEncouragedSkills: String;
     splitRequiredSkills: String;
     progression: number;
+    isPaid: boolean;
+    isNonpaid: boolean;
+    isCredit: boolean;
 }
