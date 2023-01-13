@@ -30,8 +30,10 @@ export class CreateStudentPageComponent implements OnInit {
   interest = new FormControl('');
   projects = new FormControl('');
   psuID: string;
+  fileName = '';
+  pfp: any;
   
-  constructor(private router: Router, public serviceDispatcher: ServiceDispatcher, private route: ActivatedRoute) {
+  constructor(private router: Router, public serviceDispatcher: ServiceDispatcher, private route: ActivatedRoute,) {
     this.route.queryParams.subscribe(params => {
       this.psuID = params["psuID"];
     });
@@ -46,6 +48,15 @@ export class CreateStudentPageComponent implements OnInit {
   scienceItems: string[]  = ["Biology", "Chemistry", "Environmental Science", "Physics", "Mathematics"]
   nursingItems: string[] = ["Nursing"]
   
+  openFile() {
+    document.querySelector('input')?.click();
+  }
+
+  handle(e: any){
+    console.log (e.value);
+    // need to upload image to somewhere then
+    // need to save into database
+  }
 
   goToStudentHomePage() {
     let sd = new StudentModel();

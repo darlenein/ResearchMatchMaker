@@ -6,7 +6,10 @@
         Student Profile Creation
      </h1>
      <form>
-        <input type="button" value="Add Resume" id="btn2">
+        <button class="btns" mat-stroked-button>Add Resume</button>
+        <button class="btns" mat-stroked-button (click)="openFile()">Add Profile Picture
+            <input type="file" style="display:none" (change)="handle($event)">
+        </button>
         <br><br>
 
         <label type="first_name" for = "first_name">First Name</label>

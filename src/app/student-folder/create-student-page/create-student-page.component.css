@@ -118,3 +118,9 @@ label[type = options]{
     font-family: 'Times New Roman', Times, serif;
     margin-right: 10px;
 }
+
+.btns {
+    margin-right: 10px;
+    width: 200px;
+    height: 50px;
+}
