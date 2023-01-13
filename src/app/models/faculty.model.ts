@@ -1,5 +1,5 @@
 export class FacultyModel {
-    facultyID: String;
+    id: String;
     firstName: String;
     lastName: String;
     title: String;

@@ -83,7 +83,7 @@ export class CreateStudentPageComponent implements OnInit {
     }
     sd.researchInterest = this.interest.value!;
     sd.researchProject = this.projects.value!;
-    this.serviceDispatcher.createStudentProfile(sd).subscribe(response => { });
+    //this.serviceDispatcher.createStudentProfile(sd).subscribe(response => { });
     this.router.navigate(['/student-home']);
   }
 }

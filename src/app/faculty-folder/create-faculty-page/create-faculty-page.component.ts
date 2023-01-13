@@ -37,7 +37,7 @@ export class CreateFacultyPageComponent implements OnInit {
 goToFacultyHomePage() {
   //console.log(this.dept.value);
   let fd = new FacultyModel();
-  fd.facultyID = this.psuID;
+  fd.id = this.psuID;
   fd.firstName = this.firstName.value!;
   fd.lastName = this.lastName.value!;
   fd.email = this.email.value!;
@@ -49,7 +49,7 @@ goToFacultyHomePage() {
   fd.link1 = this.link1.value!;
   fd.link2 = this.link2.value!;
   fd.link3 = this.link3.value!;
-  // this.serviceDispatcher.createFacultyProfile(fd).subscribe(response => { });
+  //this.serviceDispatcher.createFacultyProfile(fd).subscribe(response => { });
   this.router.navigate(['/faculty-home']); // should be success page -> log in -> faculty-home
 }
 
