@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { FacultyModel } from 'src/app/models/faculty.model';
 import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
 
@@ -35,6 +35,11 @@ export class CreateFacultyPageComponent implements OnInit {
 }
 
 goToFacultyHomePage() {
+  let navigationExtras: NavigationExtras = {
+    queryParams: {
+      "psuID": this.psuID
+    }
+  };
   //console.log(this.dept.value);
   let fd = new FacultyModel();
   fd.id = this.psuID;
@@ -50,7 +55,7 @@ goToFacultyHomePage() {
   fd.link2 = this.link2.value!;
   fd.link3 = this.link3.value!;
   //this.serviceDispatcher.createFacultyProfile(fd).subscribe(response => { });
-  this.router.navigate(['/faculty-home']); // should be success page -> log in -> faculty-home
+  this.router.navigate(['/faculty-home'], navigationExtras); // should be success page -> log in -> faculty-home
 }
 
 }

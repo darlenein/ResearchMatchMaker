@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { ServiceDispatcher } from '../../ServiceDispatcher';
 
 @Component({
@@ -8,10 +8,14 @@ import { ServiceDispatcher } from '../../ServiceDispatcher';
   styleUrls: ['./manage-research-page.component.css']
 })
 export class ManageResearchPageComponent implements OnInit {
-
+  psuID: string;
   research: any; 
 
-  constructor(private router: Router, private route: ActivatedRoute,public serviceDispatcher: ServiceDispatcher) { }
+  constructor(private router: Router, private route: ActivatedRoute,public serviceDispatcher: ServiceDispatcher) { 
+    this.route.queryParams.subscribe(params => {
+      this.psuID = params["psuID"];
+    });
+  }
 
   ngOnInit(): void {
     debugger;
@@ -30,7 +34,12 @@ export class ManageResearchPageComponent implements OnInit {
   }
 
   addResearchPage() {
-    this.router.navigate(['/add-research']);
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        "psuID": this.psuID
+      }
+    };
+    this.router.navigate(['/add-research'], navigationExtras);
   }
 
   viewApplicantsPage(research_id: number) {

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { StudentModel } from './models/student.model';
 import { ProgressModel } from './models/progress.model';
 import { FacultyModel } from './models/faculty.model';
+import { ResearchModel } from './models/research.model';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +38,11 @@ export class ServiceDispatcher{
   public createFacultyProfile(f : FacultyModel): Observable<any> {   
     const url = 'https://localhost:44390/api/Faculty/createFaculty';
     return this.http.post<any>(url, f);
+  }
+
+  public createResearch(r : ResearchModel): Observable<any> {
+    const url = 'https://localhost:44390/api/Research/createResearch';
+    return this.http.post<any>(url, r);
   }
 
   public getStudent(student_id : string): Observable<any> {

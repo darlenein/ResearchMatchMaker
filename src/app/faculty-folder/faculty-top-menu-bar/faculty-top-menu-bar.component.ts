@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 
 @Component({
   selector: 'app-faculty-top-menu-bar',
@@ -8,8 +8,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./faculty-top-menu-bar.component.css']
 })
 export class FacultyTopMenuBarComponent implements OnInit {
+  psuID: string;
 
-  constructor(private router: Router, private http: HttpClient) { 
+  constructor(private router: Router, private http: HttpClient, private route: ActivatedRoute) { 
+    this.route.queryParams.subscribe(params => {
+      this.psuID = params["psuID"];
+    });
   }
 
   ngOnInit(): void {
@@ -32,7 +36,12 @@ export class FacultyTopMenuBarComponent implements OnInit {
   }
 
   goToResearchPage() {
-    this.router.navigate(['/faculty-research']);
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        "psuID": this.psuID
+      }
+    };
+    this.router.navigate(['/faculty-research'], navigationExtras);
   }
 
   goToResearchListPage() {

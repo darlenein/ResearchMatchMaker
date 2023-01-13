@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-faculty-home-page',
@@ -8,8 +8,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./faculty-home-page.component.css']
 })
 export class FacultyHomePageComponent implements OnInit {
-
-  constructor(private router: Router, private http: HttpClient) { }
+  psuID: string;
+  
+  constructor(private router: Router, private http: HttpClient, private route: ActivatedRoute) { 
+    this.route.queryParams.subscribe(params => {
+      this.psuID = params["psuID"];
+    });
+  }
 
   ngOnInit(): void {
   }
