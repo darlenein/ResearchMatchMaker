@@ -80,7 +80,7 @@ goToFacultyManageResearch() {
   rm.faculty_Id = this.psuID;
   rm.name = this.name.value!;
   rm.description = this.description.value!;
-  rm.location = Number(this.location.value!);
+  rm.location = this.location.value!;
   rm.required_skills = this.rskills.value!;
   rm.encouraged_Skills = this.eskills.value!;
   rm.start_Date = this.startDate.value!;

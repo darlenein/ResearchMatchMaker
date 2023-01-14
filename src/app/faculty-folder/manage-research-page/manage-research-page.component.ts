@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { ResearchModel } from 'src/app/models/research.model';
 import { ServiceDispatcher } from '../../ServiceDispatcher';
 
 @Component({
@@ -9,9 +10,7 @@ import { ServiceDispatcher } from '../../ServiceDispatcher';
 })
 export class ManageResearchPageComponent implements OnInit {
   psuID: string;
-  research: any; 
-  location: string;
-  incentive: string[];
+  research: ResearchModel[]; 
 
   constructor(private router: Router, private route: ActivatedRoute,public serviceDispatcher: ServiceDispatcher) { 
     this.route.queryParams.subscribe(params => {
@@ -20,20 +19,9 @@ export class ManageResearchPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    debugger;
     this.serviceDispatcher.getResearchByFaculty('nii1').subscribe(response => {
       this.research = response
     });
-
-    if(this.research.isPaid) {
-      this.incentive.push("Paid");
-    }
-    if(this.research.isNonpaid) {
-      this.incentive.push("Nonpaid");
-    }
-    if(this.research.isCredit) {
-      this.incentive.push("Credit");
-    }
   }
 
   

@@ -23,10 +23,12 @@
             <div class="right-container">
                 <div *ngIf="r.active==false"> Complete </div>
                 <div *ngIf="r.active==true"> Ongoing </div>
-
                 {{r.start_Date}} - {{r.end_Date}}<br>
-                {{r.incentive_type}}<br>
-                {{r.location}}
+                {{ r.location }}<br>
+                <div *ngIf="r.isPaid==1"> Paid</div>
+                <div *ngIf="r.isNonpaid==1"> Nonpaid</div>
+                <div *ngIf="r.isCredit==1"> Credit</div>
+
             </div>
 
             

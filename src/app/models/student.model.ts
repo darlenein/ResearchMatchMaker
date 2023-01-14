@@ -20,7 +20,7 @@ export class StudentModel {
     research_name: String;
     splitSkills: String[];
     skillsWithComma: String;
-    preferLocation: number;
+    preferLocation: String;
     preferCredit: boolean
     preferPaid: boolean;
     preferNonpaid: boolean;

@@ -3,7 +3,7 @@ export class ResearchModel {
     faculty_Id: String;
     name: String;
     description: String;
-    location: number;
+    location: string;
     required_skills: String;
     encouraged_Skills: String;
     start_Date: String;

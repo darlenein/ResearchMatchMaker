@@ -69,7 +69,7 @@ export class CreateStudentPageComponent implements OnInit {
     sd.minor = this.minor.value!;
     sd.graduationMonth = this.gradMonth.value!;
     sd.graduationYear = this.gradYear.value!;
-    sd.preferLocation = Number(this.location.value!);
+    sd.preferLocation = this.location.value!;
     sd.skills = this.skills.value!;
     sd.link1 = this.link1.value!;
     sd.link2 = this.link2.value!;
