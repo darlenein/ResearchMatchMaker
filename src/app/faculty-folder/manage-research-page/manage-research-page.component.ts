@@ -10,6 +10,8 @@ import { ServiceDispatcher } from '../../ServiceDispatcher';
 export class ManageResearchPageComponent implements OnInit {
   psuID: string;
   research: any; 
+  location: string;
+  incentive: string[];
 
   constructor(private router: Router, private route: ActivatedRoute,public serviceDispatcher: ServiceDispatcher) { 
     this.route.queryParams.subscribe(params => {
@@ -22,7 +24,19 @@ export class ManageResearchPageComponent implements OnInit {
     this.serviceDispatcher.getResearchByFaculty('nii1').subscribe(response => {
       this.research = response
     });
+
+    if(this.research.isPaid) {
+      this.incentive.push("Paid");
+    }
+    if(this.research.isNonpaid) {
+      this.incentive.push("Nonpaid");
+    }
+    if(this.research.isCredit) {
+      this.incentive.push("Credit");
+    }
   }
+
+  
 
   separateByComma(rawText: String) {
     let text = rawText.split(';');
