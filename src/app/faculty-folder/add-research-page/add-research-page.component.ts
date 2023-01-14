@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DepartmentModel } from 'src/app/models/department.model';
 import { ResearchModel } from 'src/app/models/research.model';
+import { SubDepartmentModel } from 'src/app/models/subdepartment.model';
 import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
 
 @Component({
@@ -30,7 +32,15 @@ export class AddResearchPageComponent implements OnInit {
   businessValue = new FormControl('');
 
   psuID: string;
-  researchDeptList: string[]
+  researchDeptList: string[];
+  departments: DepartmentModel[];
+  toggle = [false];
+  engineeringItems: any[];
+  politicalScienceItems: any[];
+  humanitiesSocialScienceItems: any[];
+  businessItems: any[];
+  scienceItems: any[];
+  nursingItems: any[];
 
   constructor(public serviceDispatcher: ServiceDispatcher, private router: Router, private route: ActivatedRoute) { 
     this.route.queryParams.subscribe(params => {
@@ -39,16 +49,27 @@ export class AddResearchPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.serviceDispatcher.getAllDepartments().subscribe(response => { 
+      this.departments = response;
+      this.engineeringItems = this.getSubDepts(this.departments[0].id);
+      this.politicalScienceItems = this.getSubDepts(this.departments[1].id);
+      this.humanitiesSocialScienceItems = this.getSubDepts(this.departments[2].id);
+      this.businessItems = this.getSubDepts(this.departments[3].id);
+      this.scienceItems = this.getSubDepts(this.departments[4].id);
+      this.nursingItems = this.getSubDepts(this.departments[5].id);
+    });
   }
-  engineeringItems: string[] = [ "Computer", "Chemical", "Electrical", "Mechanical", "Software"];
-  politicalScienceItems: string[] = [ "Crime and Law", "International Relations", "Politics and Government", "Public Policy"];
-  humanitiesSocialScienceItems: string[] = [ "Communication", "English", "Psychology", "Politcal Science", "History", "Digital Media"];
-  businessItems: string[] = [ "Accounting", "Economics", "Finance", "Marketing"];
-  scienceItems: string[]  = ["Biology", "Chemistry", "Environmental Science", "Physics", "Mathematics"]
-  nursingItems: string[] = ["Nursing"]
-  
-  toggle = [false];
 
+  
+  getSubDepts(id:number): any{
+  let subdepartments: any[] = [];
+    this.serviceDispatcher.getAllSubdeptByDeptId(id).subscribe(items => {
+      items.map((item: any) => {
+        subdepartments.push(item);
+      });
+    });
+    return subdepartments;
+  }
 
 goToFacultyManageResearch() {
   this.researchDeptList = [...this.engineeringValue.value!, ...this.politicalValue.value!, ...this.businessValue.value!, 

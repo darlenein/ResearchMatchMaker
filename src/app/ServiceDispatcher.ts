@@ -87,6 +87,16 @@ export class ServiceDispatcher{
     return this.http.put<any>(url, p);
   }
 
+  public getAllDepartments(): Observable<any> {
+    const url = 'https://localhost:44390/api/Department/getAllDepartments/';
+    return this.http.get<any>(url);
+  }
+
+  public getAllSubdeptByDeptId(department_id : number): Observable<any> {
+    const url = 'https://localhost:44390/api/Department/getAllSubDeptByDeptId/' + department_id;
+    return this.http.get<any>(url);
+  }
+
 }
 
 
