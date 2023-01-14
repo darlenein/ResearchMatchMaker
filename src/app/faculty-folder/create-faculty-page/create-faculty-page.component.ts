@@ -34,6 +34,16 @@ export class CreateFacultyPageComponent implements OnInit {
 
 }
 
+openFile() {
+  document.querySelector('input')?.click();
+}
+
+handle(e: any){
+  console.log (e.value);
+  // need to upload image to somewhere then
+  // need to save into database
+}
+
 goToFacultyHomePage() {
   let navigationExtras: NavigationExtras = {
     queryParams: {

@@ -8,6 +8,10 @@
         Faculty Profile Creation
      </h1>
      <form>
+        <button class="btns" mat-stroked-button (click)="openFile()">Add Profile Picture
+            <input type="file" style="display:none" (change)="handle($event)">
+        </button><br><br>
+
         <label type="first_name" for = "first_name">First Name</label>
         <input type="text" id="first_name" placeholder="Enter First Name" size="50" [formControl]="firstName">
         <br> <br>
