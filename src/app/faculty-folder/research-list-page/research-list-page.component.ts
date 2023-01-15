@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { ServiceDispatcher } from '../../ServiceDispatcher';
 
 @Component({
@@ -10,8 +10,13 @@ import { ServiceDispatcher } from '../../ServiceDispatcher';
 export class ResearchListPageComponent implements OnInit {
 
   research: any; 
+  facultyID: string;
 
-  constructor(private router: Router, public serviceDispatcher: ServiceDispatcher) { }
+  constructor(private router: Router, public serviceDispatcher: ServiceDispatcher, private route: ActivatedRoute) {
+    // this.route.queryParams.subscribe(params => {
+    //   this.facultyID = params["facultyID"];
+    // });
+   }
 
   ngOnInit(): void {
     this.serviceDispatcher.getAllResearch().subscribe(response => {
@@ -22,6 +27,16 @@ export class ResearchListPageComponent implements OnInit {
   separateByComma(rawText: String) {
     let text = rawText.split(';');
     return text;
+  }
+
+  goToProfile(id:string){
+    // let navigationExtras: NavigationExtras = {
+    //   queryParams: {
+    //     "facultyID": id
+    //   }
+    // };
+    // this.router.navigate(['/view-faculty-page'], navigationExtras);
+    this.router.navigate(['']);
   }
 
 }

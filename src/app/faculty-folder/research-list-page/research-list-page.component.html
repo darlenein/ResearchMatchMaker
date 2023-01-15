@@ -5,8 +5,8 @@
         <div class="container">
             
             <div class="left-container">
-                <b>{{r.name}}</b> <br>
-                {{r.faculty_FirstName}} {{r.faculty_LastName}}<br>
+                <b><div style="font-size: 24px;">{{r.name}}</div></b>
+                <div class="link" (click)="goToProfile(r.id);">{{r.faculty_FirstName}} {{r.faculty_LastName}}</div>
                 {{r.address}} <br><br>
                 <b>Description:</b> {{r.description}}<br><br>
                 <b>Required Skills:</b> {{r.required_skills}}<br>
