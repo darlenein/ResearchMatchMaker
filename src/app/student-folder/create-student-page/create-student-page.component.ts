@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { StudentModel } from 'src/app/models/student.model';
 import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
 
@@ -95,6 +95,13 @@ export class CreateStudentPageComponent implements OnInit {
     sd.researchInterest = this.interest.value!;
     sd.researchProject = this.projects.value!;
     //this.serviceDispatcher.createStudentProfile(sd).subscribe(response => { });
-    this.router.navigate(['/student-home']);
+
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        "psuID": this.psuID
+      }
+    };
+    
+    this.router.navigate(['/student-home'], navigationExtras);
   }
 }
