@@ -25,7 +25,7 @@ export class FacultyTopMenuBarComponent implements OnInit {
         "psuID": this.psuID
       }
     };
-    this.router.navigate(['/view-faculy-profile'], navigationExtras);
+    this.router.navigate(['/view-faculty-profile'], navigationExtras);
   }
 
   goToEditProfilePage(){

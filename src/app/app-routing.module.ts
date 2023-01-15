@@ -26,7 +26,7 @@ export const routes: Routes = [
   { path: '', component: LoginPageComponent},
   { path: 'view-matches', component: MatchPageComponent},
   { path: 'opp-board', component: OpportunityBoardPageComponent},
-  { path: 'view-faculy-profile', component: ViewFacultyPageComponent},
+  { path: 'view-faculty-profile', component: ViewFacultyPageComponent},
   { path: 'view-student-profile', component: ViewStudentPageComponent},
   { path: 'create-faculty-page', component: CreateFacultyPageComponent},
   { path: 'create-student-page', component: CreateStudentPageComponent},

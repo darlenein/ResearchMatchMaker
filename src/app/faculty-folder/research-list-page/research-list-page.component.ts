@@ -30,13 +30,13 @@ export class ResearchListPageComponent implements OnInit {
   }
 
   goToProfile(id:string){
-    // let navigationExtras: NavigationExtras = {
-    //   queryParams: {
-    //     "facultyID": id
-    //   }
-    // };
-    // this.router.navigate(['/view-faculty-page'], navigationExtras);
-    this.router.navigate(['']);
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        "psuID": id
+      }
+    };
+    this.router.navigate(['/view-faculty-profile'], navigationExtras);
+    //this.router.navigate(['']);
   }
 
 }

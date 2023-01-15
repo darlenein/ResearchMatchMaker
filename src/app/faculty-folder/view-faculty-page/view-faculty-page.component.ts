@@ -24,20 +24,20 @@ export class ViewFacultyPageComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    // this.serviceDispatcher.getFaculty(this.psuID).subscribe(response => {
-    //   this.faculty = response
-    //   this.splitResearchInterest = this.separateByComma(this.faculty.researchInterest);
-    //   this.splitAboutMe = this.separateByComma(this.faculty.aboutMe);
-    //   this.splitTitle = this.separateByComma(this.faculty.title);
-    // });
-
-    // ---test---
-    this.serviceDispatcher.getFaculty('nii1').subscribe(response => {
+    this.serviceDispatcher.getFaculty(this.psuID).subscribe(response => {
       this.faculty = response
       this.splitResearchInterest = this.separateByComma(this.faculty.researchInterest);
       this.splitAboutMe = this.separateByComma(this.faculty.aboutMe);
       this.splitTitle = this.separateByComma(this.faculty.title);
     });
+
+    // ---test---
+    // this.serviceDispatcher.getFaculty('nii1').subscribe(response => {
+    //   this.faculty = response
+    //   this.splitResearchInterest = this.separateByComma(this.faculty.researchInterest);
+    //   this.splitAboutMe = this.separateByComma(this.faculty.aboutMe);
+    //   this.splitTitle = this.separateByComma(this.faculty.title);
+    // });
   }
 
   separateByComma(rawText: String) {
