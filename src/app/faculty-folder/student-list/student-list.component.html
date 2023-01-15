@@ -6,20 +6,12 @@
         <div class="container">
             
             <div class="left-container">
-                <div class="profilename" (click)="goToStudentProfile();">
-                    {{s.firstName}} {{s.lastName}} (profile link)
-                </div>
+                <button class="link" (click)="goToStudentProfile(s.id);">{{s.firstName}} {{s.lastName}}</button><br>
                 <b>Graduation Date:</b> {{s.graduationMonth}} {{s.graduationYear}}<br>
                 <b>Major:</b> {{s.major}}<br>
                 <b>GPA:</b> {{s.gpa}} <br><br>
                 <b>Skills:</b> <div *ngFor="let skill of s.splitSkills">{{skill}}</div>
             </div>
-
-            <!-- <div class="right-container">
-                {{r.start_Date}} - {{r.end_Date}}<br>
-                {{r.incentive_type}}<br>
-                {{r.location}}
-            </div> -->
             <div style="clear:both;"></div>
         </div>
     </li>

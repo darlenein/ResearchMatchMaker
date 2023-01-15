@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { StudentModel } from 'src/app/models/student.model';
 import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
 
@@ -13,6 +13,7 @@ export class StudentListComponent implements OnInit {
   student: StudentModel[]; 
   splitSkills: any;
   splitResearchInterest: any;
+  studentID: string;
 
   constructor(private router: Router, public serviceDispatcher: ServiceDispatcher) { }
 
@@ -34,8 +35,14 @@ export class StudentListComponent implements OnInit {
     });
   }
 
-  goToStudentProfile() {
-    this.router.navigate(['/view-student-page'])
+  goToStudentProfile(id:String) {
+    debugger;
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        "studentID": id
+      }
+    };
+    this.router.navigate(['/faculty-view-student'], navigationExtras);
   }
 
 }

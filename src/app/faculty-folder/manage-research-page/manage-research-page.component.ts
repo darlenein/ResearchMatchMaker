@@ -19,6 +19,10 @@ export class ManageResearchPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // this.serviceDispatcher.getResearchByFaculty(this.psuID).subscribe(response => {
+    //   this.research = response
+    // });
+
     this.serviceDispatcher.getResearchByFaculty('nii1').subscribe(response => {
       this.research = response
     });

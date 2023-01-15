@@ -1,0 +1,50 @@
+.top-container {
+    display: flex;
+    padding-top: 100px;
+    padding-left: 200px;
+}
+
+.top-left-container {
+    flex: 1;
+}
+
+.top-right-container {
+    padding-top: 100px;
+    flex: 4;
+}
+
+.name {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.profile-text {
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.profile-text-title {
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: bold;
+}
+
+.profile-logo {
+    height: 350px;
+}
+
+.bot-container{
+    padding-top: 50px;
+    padding-left: 200px;
+    padding-right: 200px;
+}
+
+.mat-tab-label {
+    color: black;
+    font-weight: bold;
+}
+
+.tab-text {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    line-height: 1.6;
+}

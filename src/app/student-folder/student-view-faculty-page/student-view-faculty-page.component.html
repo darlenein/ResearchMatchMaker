@@ -1,1 +1,26 @@
-<p>student-view-faculty-page works!</p>
+<app-student-top-menu-bar></app-student-top-menu-bar>
+<!-- Page can only be seen by self!!! -->
+
+<div class="top-container">
+    <div class="top-left-container">
+        <span class="name">{{faculty.firstName}} {{faculty.lastName}}</span><br>
+        <img src="{{faculty.profileUrl}}" class="profile-logo">
+    </div>
+    <div class="top-right-container">
+        <span class="profile-text-title"><div *ngFor="let item of splitTitle">{{item}}</div></span><br>
+        <span class="profile-text">Email: {{faculty.email}}</span><br>
+        <span class="profile-text">Phone: {{faculty.phone}}</span><br>
+        <span class="profile-text">Office: {{faculty.office}}</span><br>
+
+    </div>
+</div>
+
+<div class="bot-container">
+    <mat-tab-group mat-align-tabs="center" animationDuration="0ms">
+        <mat-tab label="About Me"> <span class="tab-text"><br><div *ngFor="let item of splitAboutMe">{{item}}</div></span> </mat-tab>
+        <mat-tab label="Research Projects"> <span class="tab-text"><br>N/A</span></mat-tab>
+        <mat-tab label="Research Interests"> <span class="tab-text"><br><div *ngFor="let item of splitResearchInterest">{{item}}</div></span></mat-tab>
+        <mat-tab label="Afflicated Links"> <span class="tab-text"><br><a href="{{faculty.link1}}">{{faculty.link1}}</a></span> </mat-tab>
+      </mat-tab-group>
+</div>
+

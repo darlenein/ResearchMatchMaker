@@ -20,6 +20,7 @@ import { ViewApplicantsComponent } from './faculty-folder/view-applicants/view-a
 import { StudentListComponent } from './faculty-folder/student-list/student-list.component';
 import { FacultyListComponent } from './student-folder/faculty-list/faculty-list.component';
 import { SSOPageComponent } from './sso-page/sso-page.component';
+import { StudentViewFacultyPageComponent } from './student-folder/student-view-faculty-page/student-view-faculty-page.component';
 
 export const routes: Routes = [
   { path: '', component: LoginPageComponent},
@@ -41,6 +42,7 @@ export const routes: Routes = [
   { path: 'student-list', component: StudentListComponent},
   { path: 'view-applicants', component: ViewApplicantsComponent},
   { path: 'faculty-view-student', component: FacultyViewStudentPageComponent},
+  { path: 'student-view-faculty', component: StudentViewFacultyPageComponent},
   { path: 'faculty-list', component: FacultyListComponent},
   { path: 'sso-page', component: SSOPageComponent}
   

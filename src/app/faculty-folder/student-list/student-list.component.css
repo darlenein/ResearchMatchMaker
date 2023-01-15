@@ -31,3 +31,10 @@
 .stepper {
     align-self: center;
 }
+
+.link { 
+    background:none; 
+    border:none; 
+    font-weight: bold;
+    font-size: 20px;
+}

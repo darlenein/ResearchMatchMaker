@@ -12,11 +12,13 @@
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-.profilename {
-    font-weight: bold;
-    font-size: 20px;
-}
-
 .stepper {
     align-self: center;
+}
+
+.link { 
+    background:none; 
+    border:none; 
+    font-weight: bold;
+    font-size: 20px;
 }

@@ -20,19 +20,40 @@ export class FacultyTopMenuBarComponent implements OnInit {
   }
 
   goToProfileViewPage() {
-    this.router.navigate(['/view-faculy-profile']);
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        "psuID": this.psuID
+      }
+    };
+    this.router.navigate(['/view-faculy-profile'], navigationExtras);
   }
 
   goToEditProfilePage(){
-    this.router.navigate(['/edit-faculty-profile']);
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        "psuID": this.psuID
+      }
+    };
+    this.router.navigate(['/edit-faculty-profile'], navigationExtras);
   }
 
   goToStudentListPage(){
-    this.router.navigate(['/student-list']);
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        "psuID": this.psuID
+      }
+
+    };
+    this.router.navigate(['/student-list'], navigationExtras);
   }
 
   goToHomePage() {
-    this.router.navigate(['/faculty-home']);
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        "psuID": this.psuID
+      }
+    };
+    this.router.navigate(['/faculty-home'], navigationExtras);
   }
 
   goToResearchPage() {
@@ -45,7 +66,12 @@ export class FacultyTopMenuBarComponent implements OnInit {
   }
 
   goToResearchListPage() {
-    this.router.navigate(['/research-list']);
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        "psuID": this.psuID
+      }
+    };
+    this.router.navigate(['/research-list'], navigationExtras);
   } 
 
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { FacultyModel } from 'src/app/models/faculty.model';
 import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
 
@@ -13,8 +13,14 @@ export class FacultyListComponent implements OnInit {
   faculty: FacultyModel[]; 
   splitAbout: any;
   splitResearchInterest: any;
+  psuID: string;
 
-  constructor(private router: Router, public serviceDispatcher: ServiceDispatcher) { }
+  constructor(private router: Router, public serviceDispatcher: ServiceDispatcher, private route:ActivatedRoute) { 
+    this.route.queryParams.subscribe(params => {
+      this.psuID = params["psuID"];
+    });
+
+  }
 
   ngOnInit(): void {
     this.serviceDispatcher.getAllFaculty().subscribe(response => {
@@ -35,8 +41,15 @@ export class FacultyListComponent implements OnInit {
     });
   }
 
-  goToFacultyProfile() {
-    this.router.navigate(['/view-faculty-page'])
+  goToFacultyProfile(id:String) {
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        "facultyID": id
+      }
+    };
+    
+    this.serviceDispatcher.getFaculty('id').subscribe(response => {});
+    this.router.navigate(['/student-view-faculty'], navigationExtras)
   }
 
 }
