@@ -5,7 +5,7 @@
     <li *ngFor="let f of faculty">
         <div class="container">
             <div class="left-container">
-                <button class="link" (click)="goToFacultyProfile(f.id);">{{f.firstName}} {{f.lastName}}</button><br>
+                <div class="link" (click)="goToFacultyProfile(f.id);">{{f.firstName}} {{f.lastName}}</div>
                 <b>Title:</b> {{f.title}}<br><br>
                 <b>About Me:</b> <div *ngFor="let about of f.splitAbout">{{about}}</div><br>
                 <b>Research Interests:</b> <div *ngFor="let interest of f.splitResearchInterest">{{interest}}</div>
