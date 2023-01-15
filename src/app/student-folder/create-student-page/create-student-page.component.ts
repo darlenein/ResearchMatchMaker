@@ -33,7 +33,7 @@ export class CreateStudentPageComponent implements OnInit {
   fileName = '';
   pfp: any;
   
-  constructor(private router: Router, public serviceDispatcher: ServiceDispatcher, private route: ActivatedRoute,) {
+  constructor(private router: Router, public serviceDispatcher: ServiceDispatcher, private route: ActivatedRoute) {
     this.route.queryParams.subscribe(params => {
       this.psuID = params["psuID"];
     });

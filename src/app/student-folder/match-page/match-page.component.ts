@@ -4,6 +4,7 @@ import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 import { FormGroup } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -23,11 +24,21 @@ export class MatchPageComponent implements OnInit {
   research: ResearchModel[]; 
   splitRequiredSkills: any;
   splitEncouragedSkills: any;
+  psuID: string;
 
-  constructor(public serviceDispatcher: ServiceDispatcher) { }
+  constructor(private router: Router, public serviceDispatcher: ServiceDispatcher, private route: ActivatedRoute) {
+    this.route.queryParams.subscribe(params => {
+      this.psuID = params["psuID"];
+    });
+   }
 
   
   ngOnInit(): void {
+    // this.serviceDispatcher.getAllResearchByStudent(this.psuID).subscribe(response => {
+    //   this.research = response
+    //   this.replaceInfoBySemicolon(this.research);
+    // });
+
     this.serviceDispatcher.getAllResearchByStudent('dxi5017').subscribe(response => {
       this.research = response
       this.replaceInfoBySemicolon(this.research);
