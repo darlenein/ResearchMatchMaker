@@ -80,9 +80,9 @@ h1 {
 
 .text1 {
     position: absolute;
-    padding-left: 110px; 
+    padding-left: 90px; 
     padding-top: 460px;
-    margin-left: 100px;
+    margin-left: 90px;
     vertical-align:  bottom;
     font-weight: bold;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -90,9 +90,9 @@ h1 {
 
 .text2 {
     position: absolute;
-    padding-left: 825px;
+    padding-left: 800px;
     padding-top: 460px;
-    margin-left: 200px;
+    margin-left: 190px;
     vertical-align:  bottom;
     font-weight: bold;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
