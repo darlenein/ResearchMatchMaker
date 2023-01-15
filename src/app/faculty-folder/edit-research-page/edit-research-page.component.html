@@ -1,1 +1,163 @@
 <app-faculty-top-menu-bar></app-faculty-top-menu-bar>
+
+<div class="form">
+
+    <h1>
+        Edit Research Opportunity
+     </h1>
+     <form>
+
+        <label for = "active">Select whether the research opportunity is currently active or non-active. Whenever the research is no longer active, please change it to non-active. </label>
+        <mat-radio-group class="radio-btns" [formControl]="active">
+            <mat-radio-button value="active" class="radio-style">Active</mat-radio-button>
+            <mat-radio-button value="non-active" class="radio-style">Non-active</mat-radio-button>
+          </mat-radio-group>
+        <br><br>
+
+        <label for = "research name">Research Name</label>
+        <input type="text" id="research name" placeholder="Enter Research Name" size="50" [formControl]="name">
+        <br><br>
+
+        <label for = "researchlocation">Address of Research Location</label>
+        <input type="text" id="researchlocation" placeholder="4701 College Drive, Erie, PA, 16563" size="50" [formControl]="address">
+        <br><br>
+
+        <div class="left-container">
+            <br><span class="filter-title">Majors Associated with the Research</span>
+            <mat-nav-list>
+                <!-- Engineering Options -->
+                <mat-list-item (click)="toggle[1] = !toggle[1]">
+                    <a matLine *ngIf="!toggle[1]"><mat-icon>keyboard_arrow_right</mat-icon></a>
+                    <a matLine *ngIf="toggle[1]"><mat-icon>keyboard_arrow_down</mat-icon></a>
+                    <a style="padding-bottom: 2.5px; margin-right: 400px;">{{departments[0].name}}</a>
+                    <span><mat-icon *ngIf="!toggle[1]"></mat-icon> <mat-icon *ngIf="toggle[1]"></mat-icon></span>
+                </mat-list-item>
+                <div [hidden]="!toggle[1]">
+                    <mat-selection-list [formControl]="engineeringValue">
+                        <mat-list-option *ngFor="let item of engineeringItems" checkboxPosition="before" value={{item.name}}>
+                            {{ item.name }}
+                        </mat-list-option>
+                    </mat-selection-list>
+                </div>
+            
+                <!-- Political Science Options -->
+                <mat-list-item (click)="toggle[2] = !toggle[2]">
+                    <a matLine *ngIf="!toggle[2]"><mat-icon>keyboard_arrow_right</mat-icon></a>
+                    <a matLine *ngIf="toggle[2]"><mat-icon>keyboard_arrow_down</mat-icon></a>
+                    <a style="padding-bottom: 2.5px; margin-right: 400px;">{{departments[1].name}}</a>
+                    <span><mat-icon *ngIf="!toggle[2]"></mat-icon><mat-icon *ngIf="toggle[2]"></mat-icon></span>
+                </mat-list-item>
+                <div [hidden]="!toggle[2]">
+                    <mat-selection-list [formControl]="politicalValue">
+                        <mat-list-option *ngFor="let item of politicalScienceItems" checkboxPosition="before" value={{item.name}}>
+                            {{ item.name }}
+                        </mat-list-option>
+                    </mat-selection-list>
+                </div>
+    
+                <!-- Business Options -->
+                <mat-list-item (click)="toggle[3] = !toggle[3]">
+                    <a matLine *ngIf="!toggle[3]"><mat-icon>keyboard_arrow_right</mat-icon></a>
+                    <a matLine *ngIf="toggle[3]"><mat-icon>keyboard_arrow_down</mat-icon></a>
+                    <a style="padding-bottom: 2.5px; margin-right: 400px;">{{departments[2].name}}</a>
+                    <span><mat-icon *ngIf="!toggle[3]"></mat-icon><mat-icon *ngIf="toggle[3]"></mat-icon></span>
+                </mat-list-item>
+                <div [hidden]="!toggle[3]">
+                    <mat-selection-list [formControl]="businessValue">
+                        <mat-list-option *ngFor="let item of businessItems" checkboxPosition="before" value={{item.name}}>
+                            {{ item.name }}
+                        </mat-list-option>
+                    </mat-selection-list>
+                </div>
+    
+                <!-- Humanities Options -->
+                <mat-list-item (click)="toggle[4] = !toggle[4]">
+                    <a matLine *ngIf="!toggle[4]"><mat-icon>keyboard_arrow_right</mat-icon></a>
+                    <a matLine *ngIf="toggle[4]"><mat-icon>keyboard_arrow_down</mat-icon></a>
+                    <a style="padding-bottom: 2.5px; margin-right: 400px;">{{departments[3].name}}</a>
+                    <span><mat-icon *ngIf="!toggle[4]"></mat-icon><mat-icon *ngIf="toggle[4]"></mat-icon></span>
+                </mat-list-item>
+                <div [hidden]="!toggle[4]">
+                    <mat-selection-list [formControl]="humanitiesValue">
+                        <mat-list-option *ngFor="let item of humanitiesSocialScienceItems" checkboxPosition="before" value={{item.name}}>
+                            {{ item.name }}
+                        </mat-list-option>
+                    </mat-selection-list>
+                </div>
+    
+                <!-- Sciences Options -->
+                <mat-list-item (click)="toggle[5] = !toggle[5]">
+                    <a matLine *ngIf="!toggle[5]"><mat-icon>keyboard_arrow_right</mat-icon></a>
+                    <a matLine *ngIf="toggle[5]"><mat-icon>keyboard_arrow_down</mat-icon></a>
+                    <a style="padding-bottom: 2.5px; margin-right: 400px;">{{departments[4].name}}</a>
+                    <span><mat-icon *ngIf="!toggle[5]"></mat-icon><mat-icon *ngIf="toggle[5]"></mat-icon></span>
+                </mat-list-item>
+                <div [hidden]="!toggle[5]">
+                    <mat-selection-list [formControl]="scienceValue">
+                        <mat-list-option *ngFor="let item of scienceItems" checkboxPosition="before" value={{item.name}}>
+                            {{ item.name }}
+                        </mat-list-option>
+                    </mat-selection-list>
+                </div>
+    
+                <!-- Nursing Options -->
+                <mat-list-item (click)="toggle[6] = !toggle[6]">
+                    <a matLine *ngIf="!toggle[6]"><mat-icon>keyboard_arrow_right</mat-icon></a>
+                    <a matLine *ngIf="toggle[6]"><mat-icon>keyboard_arrow_down</mat-icon></a>
+                    <a style="padding-bottom: 2.5px; margin-right: 400px;">{{departments[5].name}}</a>
+                    <span><mat-icon *ngIf="!toggle[6]"></mat-icon><mat-icon *ngIf="toggle[6]"></mat-icon></span>
+                </mat-list-item>
+                <div [hidden]="!toggle[6]">
+                    <mat-selection-list [formControl]="nursingValue">
+                        <mat-list-option *ngFor="let item of nursingItems" checkboxPosition="before" value={{item.name}}>
+                            {{ item.name }}
+                        </mat-list-option>
+                    </mat-selection-list>
+                </div>
+            
+            </mat-nav-list>
+        </div><br>
+
+        <label for = "campus">Choose whether you would like your research opportunity matches to include to on campus research, online research, or both.   </label>
+        <mat-radio-group class="radio-btns" [formControl]="location">
+            <mat-radio-button value="On-Campus" class="radio-style">On-Campus</mat-radio-button>
+            <mat-radio-button value="Online" class="radio-style">Online</mat-radio-button>
+            <mat-radio-button value="On-Campus/Online" class="radio-style">Both</mat-radio-button>
+          </mat-radio-group>
+
+        <br><br>
+        <label for = "money">Choose whether you would like your research opportunity matches to include paid research, non-paid research, or research that offers credit. You may choose multiple options.</label>
+        <input type="checkbox" name="money" id="paid" value="paid" [formControl]="paid">
+        <label type="options" for="paid">Paid </label>
+        <input type="checkbox" name="money" id="nonpaid" value="nonpaid" [formControl]="nonpaid">
+        <label type="options" for="nonpaid">Non-paid </label>
+        <input type="checkbox" name="money" id="credit" value="credit" [formControl]="credit">
+        <label type="options" for="nonpaid">Research Credit </label>
+        <br><br>
+
+
+        <label type="date" for = "start date">Start Date for Research</label>
+        <input type="date" id="start date" name="research start" [formControl]="startDate"><br>
+        
+        <label type="date" for = "end date">End Date for Research</label>
+        <input type="date" id="end date" name="research end" [formControl]="endDate">
+
+        <br><br>
+        <label for = "research description">Research Description</label>
+        <textarea rows="15" cols="75" name="research description" id="research description" placeholder="Please describe the research in detail here" [formControl]="description"></textarea>
+        <br><br>
+
+        <label type="skills" for = "required skills">Required Skills(Seperate by Semicolon)</label>
+        <textarea type="rskills" rows="7" cols="30" name="required skills" id="required skills" placeholder="Skill 1;Skill 2;Skill 3" [formControl]="rskills"></textarea>
+        
+
+        <label type="skills" for = "encouraged skills">Encouraged Skills(Seperate by Semicolon)</label>
+        <textarea type="eskills" rows="7" cols="30" name="encouraged skills" id="encouraged skills" placeholder="Skill 1;Skill 2;Skill 3" [formControl]="eskills"></textarea>
+        <br><br>
+
+        <input type="submit" value="Submit" id="submitBtn" (click)="goToFacultyManageResearch();">
+        <br><br>
+
+
+     </form>
+</div>
