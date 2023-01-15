@@ -8,7 +8,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FacultyModel } from '../../models/faculty.model';
-import { TopMenuBarComponent } from '../../student-folder/student-home-page/student-top-menu-bar/student-top-menu-bar.component';
+import { TopMenuBarComponent } from '../../student-folder/student-top-menu-bar/student-top-menu-bar.component';
 
 import { ViewFacultyPageComponent } from './view-faculty-page.component';
 

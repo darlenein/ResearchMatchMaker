@@ -4,7 +4,7 @@ import { MatStepper } from '@angular/material/stepper';
 import { ActivatedRoute, ActivatedRouteSnapshot, convertToParamMap } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NEVER, never, Observable, observable, of } from 'rxjs';
-import { TopMenuBarComponent } from 'src/app/student-folder/student-home-page/student-top-menu-bar/student-top-menu-bar.component';
+import { TopMenuBarComponent } from 'src/app/student-folder/student-top-menu-bar/student-top-menu-bar.component';
 import { ViewApplicantsComponent } from './view-applicants.component';
 import { MatStepperHarness, MatStepperNextHarness } from '@angular/material/stepper/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';

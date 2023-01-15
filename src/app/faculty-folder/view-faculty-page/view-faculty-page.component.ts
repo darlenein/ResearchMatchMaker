@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { ServiceDispatcher } from '../../ServiceDispatcher';
 
 @Component({
@@ -43,6 +43,15 @@ export class ViewFacultyPageComponent implements OnInit {
   separateByComma(rawText: String) {
     let text = rawText.split(';');
     return text;
+  }
+
+  goToEditProfile(){
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        "psuID": this.psuID
+      }
+    };
+    this.router.navigate(['/edit-faculty-profile'], navigationExtras);
   }
 
 }

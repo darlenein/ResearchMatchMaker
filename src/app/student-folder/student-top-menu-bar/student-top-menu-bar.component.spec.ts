@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Location } from "@angular/common";
 import { TopMenuBarComponent } from './student-top-menu-bar.component';
-import { routes } from '../../../app-routing.module';
+import { routes } from '../../app-routing.module';
 import { MatMenuModule } from '@angular/material/menu';
 
 fdescribe('TopMenuBarComponent', () => {

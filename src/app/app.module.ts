@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatTabsModule } from '@angular/material/tabs';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TopMenuBarComponent } from './student-folder/student-home-page/student-top-menu-bar/student-top-menu-bar.component';
+import { TopMenuBarComponent } from './student-folder/student-top-menu-bar/student-top-menu-bar.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { OpportunityBoardPageComponent } from './student-folder/opportunity-board-page/opportunity-board-page.component';
 import { MatchPageComponent } from './student-folder/match-page/match-page.component';

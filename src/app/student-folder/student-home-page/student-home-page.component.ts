@@ -14,7 +14,10 @@ export class StudentHomePageComponent implements OnInit {
   psuID: string;
   research: ResearchModel[]; 
 
-  constructor(private router: Router, private http: HttpClient, private route: ActivatedRoute, public serviceDispatcher: ServiceDispatcher) { 
+  constructor(private router: Router, private route: ActivatedRoute, public serviceDispatcher: ServiceDispatcher) { 
+    this.route.queryParams.subscribe(params => {
+      this.psuID = params["psuID"];
+    });
   }
 
   ngOnInit(): void {
@@ -25,18 +28,6 @@ export class StudentHomePageComponent implements OnInit {
 
   goToOppBoardPage() {
     this.router.navigate(['/opp-board']);
-  }
-
-  goToProfileViewPage() {
-    this.router.navigate(['/profile-view']);
-  }
-
-  goToViewStudentPage() {
-    this.router.navigate(['/view-student-profile']);
-  }
-
-  goToViewFacultyPage() {
-    this.router.navigate(['/view-faculy-profile']);
   }
 
 }

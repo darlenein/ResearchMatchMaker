@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { ServiceDispatcher } from '../../ServiceDispatcher';
 
 @Component({
@@ -38,6 +38,16 @@ export class ViewStudentPageComponent implements OnInit {
   separateBySemicolon(rawText: String) {
     let text = rawText.split(';');
     return text;
+  }
+
+  goToEditProfile(){
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        "psuID": this.psuID
+      }
+    };
+    
+    this.router.navigate(['/edit-student-profile'], navigationExtras);
   }
 
 
