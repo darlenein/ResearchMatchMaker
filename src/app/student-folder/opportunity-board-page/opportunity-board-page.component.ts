@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { DepartmentModel } from 'src/app/models/department.model';
+import { ResearchModel } from 'src/app/models/research.model';
 import { ServiceDispatcher } from '../../ServiceDispatcher';
 
 @Component({
@@ -25,11 +26,19 @@ export class OpportunityBoardPageComponent implements OnInit {
   businessItems: any[];
   scienceItems: any[];
   nursingItems: any[];
+
+  research: ResearchModel[];
+  facultyID: string;
+
   
   constructor(public serviceDispatcher: ServiceDispatcher, private router: Router, private route: ActivatedRoute) { 
+        // this.route.queryParams.subscribe(params => {
+    //   this.facultyID = params["facultyID"];
+    // });
   }
 
   ngOnInit(): void {
+    // get all departments
     this.serviceDispatcher.getAllDepartments().subscribe(response => { 
       this.departments = response;
       this.engineeringItems = this.getSubDepts(this.departments[0].id);
@@ -38,6 +47,11 @@ export class OpportunityBoardPageComponent implements OnInit {
       this.businessItems = this.getSubDepts(this.departments[3].id);
       this.scienceItems = this.getSubDepts(this.departments[4].id);
       this.nursingItems = this.getSubDepts(this.departments[5].id);
+    });
+
+    // get all research 
+    this.serviceDispatcher.getAllResearch().subscribe(response => {
+      this.research = response
     });
   }
 
@@ -49,5 +63,20 @@ export class OpportunityBoardPageComponent implements OnInit {
       });
     });
     return subdepartments;
+  }
+
+  separateByComma(rawText: String) {
+    let text = rawText.split(';');
+    return text;
+  }
+
+  goToProfile(id:string){
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        "psuID": id
+      }
+    };
+    this.router.navigate(['/view-faculty-profile'], navigationExtras);
+    //this.router.navigate(['']);
   }
 }

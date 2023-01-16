@@ -1,6 +1,6 @@
 export class ResearchModel {
     id: number;
-    faculty_Id: String;
+    faculty_Id: string;
     name: String;
     description: String;
     location: string;

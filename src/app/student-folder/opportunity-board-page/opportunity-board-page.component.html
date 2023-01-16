@@ -3,14 +3,14 @@
 
 <div class="container">
     <div class="left-container">
-        <br><span class="filter-title">Filter Match Results</span>
+        <span class="filter-title">Filter Match Results</span><br>
 
         <mat-nav-list>
             <!-- Engineering Options -->
             <mat-list-item (click)="toggle[1] = !toggle[1]">
                 <a matLine *ngIf="!toggle[1]"><mat-icon>keyboard_arrow_right</mat-icon></a>
                 <a matLine *ngIf="toggle[1]"><mat-icon>keyboard_arrow_down</mat-icon></a>
-                <a style="padding-bottom: 2.5px; margin-right: 70px;">{{departments[0].name}}</a>
+                <a style="padding-bottom: 2.5px; margin-right: 50px;">{{departments[0].name}}</a>
                 <span><mat-icon *ngIf="!toggle[1]"></mat-icon> <mat-icon *ngIf="toggle[1]"></mat-icon></span>
             </mat-list-item>
             <div [hidden]="!toggle[1]">
@@ -25,7 +25,7 @@
             <mat-list-item (click)="toggle[2] = !toggle[2]">
                 <a matLine *ngIf="!toggle[2]"><mat-icon>keyboard_arrow_right</mat-icon></a>
                 <a matLine *ngIf="toggle[2]"><mat-icon>keyboard_arrow_down</mat-icon></a>
-                <a style="padding-bottom: 2.5px; margin-right: 40px;">{{departments[1].name}}</a>
+                <a style="padding-bottom: 2.5px; margin-right: 20px;">{{departments[1].name}}</a>
                 <span><mat-icon *ngIf="!toggle[2]"></mat-icon><mat-icon *ngIf="toggle[2]"></mat-icon></span>
             </mat-list-item>
             <div [hidden]="!toggle[2]">
@@ -40,7 +40,7 @@
             <mat-list-item (click)="toggle[3] = !toggle[3]">
                 <a matLine *ngIf="!toggle[3]"><mat-icon>keyboard_arrow_right</mat-icon></a>
                 <a matLine *ngIf="toggle[3]"><mat-icon>keyboard_arrow_down</mat-icon></a>
-                <a style="padding-bottom: 2.5px; margin-right: 90px;">{{departments[2].name}}</a>
+                <a style="padding-bottom: 2.5px; margin-right: 70px;">{{departments[2].name}}</a>
                 <span><mat-icon *ngIf="!toggle[3]"></mat-icon><mat-icon *ngIf="toggle[3]"></mat-icon></span>
             </mat-list-item>
             <div [hidden]="!toggle[3]">
@@ -55,7 +55,7 @@
             <mat-list-item (click)="toggle[4] = !toggle[4]">
                 <a matLine *ngIf="!toggle[4]"><mat-icon>keyboard_arrow_right</mat-icon></a>
                 <a matLine *ngIf="toggle[4]"><mat-icon>keyboard_arrow_down</mat-icon></a>
-                <a style="padding-bottom: 2.5px; margin-right: 75px;">{{departments[3].name}}</a>
+                <a style="padding-bottom: 2.5px; margin-right: 55px;">{{departments[3].name}}</a>
                 <span><mat-icon *ngIf="!toggle[4]"></mat-icon><mat-icon *ngIf="toggle[4]"></mat-icon></span>
             </mat-list-item>
             <div [hidden]="!toggle[4]">
@@ -70,7 +70,7 @@
             <mat-list-item (click)="toggle[5] = !toggle[5]">
                 <a matLine *ngIf="!toggle[5]"><mat-icon>keyboard_arrow_right</mat-icon></a>
                 <a matLine *ngIf="toggle[5]"><mat-icon>keyboard_arrow_down</mat-icon></a>
-                <a style="padding-bottom: 2.5px; margin-right: 98px;">{{departments[4].name}}</a>
+                <a style="padding-bottom: 2.5px; margin-right: 80px;">{{departments[4].name}}</a>
                 <span><mat-icon *ngIf="!toggle[5]"></mat-icon><mat-icon *ngIf="toggle[5]"></mat-icon></span>
             </mat-list-item>
             <div [hidden]="!toggle[5]">
@@ -85,7 +85,7 @@
             <mat-list-item (click)="toggle[6] = !toggle[6]">
                 <a matLine *ngIf="!toggle[6]"><mat-icon>keyboard_arrow_right</mat-icon></a>
                 <a matLine *ngIf="toggle[6]"><mat-icon>keyboard_arrow_down</mat-icon></a>
-                <a style="padding-bottom: 2.5px; margin-right: 98px;">{{departments[5].name}}</a>
+                <a style="padding-bottom: 2.5px; margin-right: 80px;">{{departments[5].name}}</a>
                 <span><mat-icon *ngIf="!toggle[6]"></mat-icon><mat-icon *ngIf="toggle[6]"></mat-icon></span>
             </mat-list-item>
             <div [hidden]="!toggle[6]">
@@ -98,8 +98,35 @@
         </mat-nav-list>
     </div>
 
+    <!-- Match Result -->
     <div class="right-container">
-        <br><span class="result-title">Match Results</span>
+        <span class="result-title">Match Results</span>
+        <ul style="list-style: none;">
+            <li *ngFor="let r of research">
+                    <br><div class="left-sub-container">
+                        <b><div style="font-size: 24px;">{{r.name}}</div></b>
+                        <div class="link" (click)="goToProfile(r.faculty_Id);">{{r.faculty_FirstName}} {{r.faculty_LastName}}</div>
+                        {{r.address}} <br><br>
+                        <b>Description:</b> {{r.description}}<br><br>
+                        <b>Required Skills:</b> {{r.required_skills}}<br>
+                        <b>Encouraged Skills:</b> {{r.encouraged_Skills}}<br><br>
+                        <button> Apply to Research </button>
+                        <br><br>
+                    </div>
+        
+                    <div class="right-sub-container">
+                        <div *ngIf="r.active==false"> Complete </div>
+                        <div *ngIf="r.active==true"> Ongoing </div>
+                        {{r.start_Date}} - {{r.end_Date}}<br>
+                        {{r.location}}<br>
+                        <div *ngIf="r.isPaid==1"> Paid</div>
+                        <div *ngIf="r.isNonpaid==1"> Nonpaid</div>
+                        <div *ngIf="r.isCredit==1"> Credit</div>
+                    </div>
+                    <div style="clear:both; border-bottom:1px solid gray; "></div>
+
+            </li>
+        </ul>    
     </div>
 </div>
 
