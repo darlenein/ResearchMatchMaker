@@ -82,7 +82,6 @@ export class ServiceDispatcher{
   }
 
   public updateAppProgressBar(p : ProgressModel): Observable<any> {
-    // find url on swagger UI
     const url = 'https://localhost:44390/api/Research/updateAppProgress/';
     return this.http.put<any>(url, p);
   }
@@ -96,6 +95,18 @@ export class ServiceDispatcher{
     const url = 'https://localhost:44390/api/Department/getAllSubDeptByDeptId/' + department_id;
     return this.http.get<any>(url);
   }
+
+  public addResearchApplicant(p : ProgressModel): Observable<any> {
+    const url = 'https://localhost:44390/api/Research/addResearchApplicant';
+    return this.http.post<any>(url, p);
+  }
+
+  public deleteResearchApplicant(p : ProgressModel): Observable<any> {
+    const url = 'https://localhost:44390/api/Research/deleteResearchApplicant';
+    // return this.http.delete<any>(url);
+    return this.http.request('delete', url, { body:p });
+  }
+  
 
 }
 

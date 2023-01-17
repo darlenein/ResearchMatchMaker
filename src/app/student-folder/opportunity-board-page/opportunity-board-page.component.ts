@@ -1,10 +1,12 @@
-import { HttpClient } from '@angular/common/http';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { DepartmentModel } from 'src/app/models/department.model';
+import { ProgressModel } from 'src/app/models/progress.model';
 import { ResearchModel } from 'src/app/models/research.model';
 import { ServiceDispatcher } from '../../ServiceDispatcher';
+import { ResearchApplicantDialogComponent } from '../research-applicant-dialog/research-applicant-dialog.component';
 
 @Component({
   selector: 'app-opportunity-board-page',
@@ -29,12 +31,12 @@ export class OpportunityBoardPageComponent implements OnInit {
 
   research: ResearchModel[];
   facultyID: string;
-
+  psuID: string;
   
-  constructor(public serviceDispatcher: ServiceDispatcher, private router: Router, private route: ActivatedRoute) { 
-        // this.route.queryParams.subscribe(params => {
-    //   this.facultyID = params["facultyID"];
-    // });
+  constructor(public serviceDispatcher: ServiceDispatcher, private router: Router, private route: ActivatedRoute, private dialog: MatDialog) { 
+    this.route.queryParams.subscribe(params => {
+      this.psuID = params["psuID"];
+    });
   }
 
   ngOnInit(): void {
@@ -78,5 +80,21 @@ export class OpportunityBoardPageComponent implements OnInit {
     };
     this.router.navigate(['/view-faculty-profile'], navigationExtras);
     //this.router.navigate(['']);
+  }
+
+  applyToResearch(rID:number){
+    let p = new ProgressModel();
+    p.research_id = rID;
+    p.student_id = this.psuID;
+    //this.serviceDispatcher.addResearchApplicant(p).subscribe(response => {});
+    this.openDialog('0ms', '0ms');
+  }
+
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(ResearchApplicantDialogComponent, {
+      width: '500px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
   }
 }

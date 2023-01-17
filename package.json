@@ -19,6 +19,7 @@
     "@angular/platform-browser": "^14.2.0",
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",
+    "@material/dialog": "^14.0.0",
     "ng-multiselect-dropdown": "^0.3.9",
     "rxjs": "~7.5.0",
     "tslib": "^2.4.1",

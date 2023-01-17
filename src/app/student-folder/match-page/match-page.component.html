@@ -31,6 +31,7 @@
               <b>Description:</b> {{r.description}}<br><br>
               <b>Required Skills: </b>{{r.splitRequiredSkills}}<br>
               <b>Encouraged Skills: </b>{{r.splitEncouragedSkills}}<br><br>
+              <button (click)="deleteApplication(r.id);"> Cancel Application </button>
           </div>
 
           <div class="right-container">

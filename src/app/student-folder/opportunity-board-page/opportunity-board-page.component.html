@@ -110,7 +110,7 @@
                         <b>Description:</b> {{r.description}}<br><br>
                         <b>Required Skills:</b> {{r.required_skills}}<br>
                         <b>Encouraged Skills:</b> {{r.encouraged_Skills}}<br><br>
-                        <button> Apply to Research </button>
+                        <button (click)="applyToResearch(r.id);"> Apply to Research </button>
                         <br><br>
                     </div>
         

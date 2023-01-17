@@ -44,6 +44,8 @@ import { FacultyListComponent } from './student-folder/faculty-list/faculty-list
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import { SSOPageComponent } from './sso-page/sso-page.component';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -94,7 +96,8 @@ import { SSOPageComponent } from './sso-page/sso-page.component';
     MatStepperModule,
     MatRadioModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -5,6 +5,7 @@ import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 import { FormGroup } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ProgressModel } from 'src/app/models/progress.model';
 
 
 @Component({
@@ -91,6 +92,15 @@ goBack(stepper: MatStepper){
 
 goForward(stepper: MatStepper){
     stepper.next();
+}
+
+deleteApplication(rID:number){
+  let p = new ProgressModel();
+  p.research_id = rID;
+  p.student_id = this.psuID;
+  // p.research_id = 1;
+  // p.student_id = "abc123";
+  //this.serviceDispatcher.deleteResearchApplicant(p).subscribe(response => {});
 }
   
 }
