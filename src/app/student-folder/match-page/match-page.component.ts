@@ -6,6 +6,8 @@ import { FormGroup } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProgressModel } from 'src/app/models/progress.model';
+import { CancelResearchDialogComponent } from '../cancel-research-dialog/cancel-research-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
@@ -27,7 +29,7 @@ export class MatchPageComponent implements OnInit {
   splitEncouragedSkills: any;
   psuID: string;
 
-  constructor(private router: Router, public serviceDispatcher: ServiceDispatcher, private route: ActivatedRoute) {
+  constructor(private router: Router, public serviceDispatcher: ServiceDispatcher, private route: ActivatedRoute, private dialog: MatDialog) {
     this.route.queryParams.subscribe(params => {
       this.psuID = params["psuID"];
     });
@@ -96,11 +98,22 @@ goForward(stepper: MatStepper){
 
 deleteApplication(rID:number){
   let p = new ProgressModel();
-  p.research_id = rID;
-  p.student_id = this.psuID;
-  // p.research_id = 1;
-  // p.student_id = "abc123";
-  //this.serviceDispatcher.deleteResearchApplicant(p).subscribe(response => {});
+  // p.research_id = rID;
+  // p.student_id = this.psuID;
+  //  p.research_id = 123;
+  //  p.student_id = "hello";
+  this.openDialog('0ms', '0ms', p);
+}
+
+openDialog(enterAnimationDuration: string, exitAnimationDuration: string, p: ProgressModel): void {
+  this.dialog.open(CancelResearchDialogComponent, {
+    width: '500px',
+    enterAnimationDuration,
+    exitAnimationDuration,
+    data: {
+      applicationInfo: p
+    }
+  });
 }
   
 }
