@@ -1,12 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
     "\\ProfileManager",
-    "\\ProfileManager\\ProfileManager",
-    "\\src",
-    "\\src\\app",
-    "\\src\\images"
+    "\\src"
   ],
-  "SelectedNode": "\\src\\index.html",
   "PreviewInSolutionExplorer": false
 }

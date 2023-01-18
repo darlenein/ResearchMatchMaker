@@ -45,6 +45,9 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import { SSOPageComponent } from './sso-page/sso-page.component';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { AuthGuardService } from './services/auth-guard.service';
+import { AuthService } from './services/auth.service';
+import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
 
 @NgModule({
   declarations: [
@@ -99,7 +102,10 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
     MatNativeDateModule,
     MatDialogModule
   ],
-  providers: [],
+  providers: 
+  [ AuthGuardService,
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
