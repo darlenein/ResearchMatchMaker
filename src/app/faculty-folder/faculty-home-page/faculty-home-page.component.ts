@@ -12,6 +12,8 @@ import { ServiceDispatcher } from '../../ServiceDispatcher';
 export class FacultyHomePageComponent implements OnInit {
   psuID: string;
   research: ResearchModel[]; 
+  max: number;
+  num: number;
   
   constructor(private router: Router, private http: HttpClient, private route: ActivatedRoute, public serviceDispatcher: ServiceDispatcher) { 
     this.route.queryParams.subscribe(params => {
@@ -27,6 +29,17 @@ export class FacultyHomePageComponent implements OnInit {
 
   goToResearchPage() {
     this.router.navigate(['/faculty-research']);
+  }
+
+  getRandomNumber(){
+    let max = 0;
+
+    for (let i=0; i<this.research.length; i++){
+        max++;
+    }
+
+    this.num = Math.random() * max | 0;
+    return this.num;
   }
 
 }

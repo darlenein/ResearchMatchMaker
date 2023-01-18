@@ -52,4 +52,13 @@ export class ManageResearchPageComponent implements OnInit {
     this.router.navigate(['/view-applicants'], {queryParams: {research_id: research_id}});
   }
 
+  goToViewResearchPage(){
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        "psuID": this.psuID
+      }
+    };
+    this.router.navigate(['./view-research-page'], navigationExtras)
+  }
+
 }

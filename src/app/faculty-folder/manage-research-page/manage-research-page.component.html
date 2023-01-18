@@ -10,8 +10,8 @@
         <div class="container">
             
             <div class="left-container">
-                <b>{{r.name}}</b> <br>
-                {{r.faculty_FirstName}} {{r.faculty_LastName}}<br>
+                <div class="link" (click)="goToViewResearchPage();"> <b>{{r.name}}</b></div>
+                <br>{{r.faculty_FirstName}} {{r.faculty_LastName}}<br>
                 {{r.address}} <br><br>
                 <b>Description:</b> {{r.description}}<br><br>
                 <b>Required Skills:</b> {{r.required_skills}}<br>
