@@ -4,7 +4,7 @@ import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 import { FormGroup } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { ProgressModel } from 'src/app/models/progress.model';
 import { CancelResearchDialogComponent } from '../cancel-research-dialog/cancel-research-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -114,6 +114,16 @@ openDialog(enterAnimationDuration: string, exitAnimationDuration: string, p: Pro
       applicationInfo: p
     }
   });
+}
+
+goToProfile(id:string){
+  let navigationExtras: NavigationExtras = {
+    queryParams: {
+      "psuID": id
+    }
+  };
+  this.router.navigate(['/view-faculty-profile'], navigationExtras);
+  //this.router.navigate(['']);
 }
   
 }

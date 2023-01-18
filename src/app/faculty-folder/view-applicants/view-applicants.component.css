@@ -31,3 +31,11 @@
 .button{
     margin-right: 10px;
 }
+
+.link{
+    background:none; 
+    border:none; 
+    font-weight: bold;
+    font-size: 16px;
+    color: #1c2e4a;
+}

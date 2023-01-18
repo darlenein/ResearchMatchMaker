@@ -2,7 +2,7 @@ import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
 import { StudentModel } from 'src/app/models/student.model';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { MatStepper } from '@angular/material/stepper';
 import { ProgressModel } from 'src/app/models/progress.model';
 
@@ -92,6 +92,15 @@ export class ViewApplicantsComponent implements OnInit {
 
     this.serviceDispatcher.updateAppProgressBar(pm).subscribe(response => {
     });
+  }
+
+  goToProfile(id:string){
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        "psuID": id
+      }
+    };
+    this.router.navigate(['/view-student-profile'], navigationExtras);
   }
 
 }

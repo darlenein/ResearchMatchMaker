@@ -25,8 +25,8 @@
           </div>
 
             <div class="left-container">
-              <p><b>{{r.name}}</b> <br>
-              {{r.faculty_FirstName}} {{r.faculty_LastName}}<br>
+              <p><b>{{r.name}}</b><br>
+              <span class="link" (click)="goToProfile(r.faculty_Id);">{{r.faculty_FirstName}} {{r.faculty_LastName}}</span><br>
               {{r.address}} <br><br>
               <b>Description:</b> {{r.description}}<br><br>
               <b>Required Skills: </b>{{r.splitRequiredSkills}}<br>
