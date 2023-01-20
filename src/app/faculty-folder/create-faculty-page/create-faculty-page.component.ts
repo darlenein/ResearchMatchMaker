@@ -10,6 +10,7 @@ import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
   styleUrls: ['./create-faculty-page.component.css']
 })
 export class CreateFacultyPageComponent implements OnInit {
+  facultyForm: FormGroup;
   firstName = new FormControl('', [Validators.required, Validators.pattern("[a-zA-Z -]*")]);
   lastName = new FormControl('', [Validators.required, Validators.pattern("[a-zA-Z -]*")]);
   email = new FormControl('', [Validators.required, Validators.email]);
@@ -65,7 +66,31 @@ export class CreateFacultyPageComponent implements OnInit {
     fd.link2 = this.link2.value!;
     fd.link3 = this.link3.value!;
     //this.serviceDispatcher.createFacultyProfile(fd).subscribe(response => { });
-    this.router.navigate(['/faculty-home'], navigationExtras); // should be success page -> log in -> faculty-home
+
+    if(!this.validate()){
+      this.router.navigate(['/faculty-home'], navigationExtras);
+    }
+  }
+
+  validate(): any {
+    let hasError = false;
+
+    if (this.firstName.invalid) {
+      this.firstName.markAsDirty();
+      hasError = true;
+    }
+
+    if (this.lastName.invalid) {
+      this.lastName.markAsDirty();
+      hasError = true;
+    }
+
+    if (this.email.invalid) {
+      this.email.markAsDirty();
+      hasError = true;
+    }
+    return hasError;
+    
   }
 
   getEmailErrorMessage() {
@@ -83,10 +108,10 @@ export class CreateFacultyPageComponent implements OnInit {
   }
 
   getLastNameErrorMessage() {
-    if (this.firstName.hasError('required')) {
+    if (this.lastName.hasError('required')) {
       return 'You must enter a last name';
     }
-    return this.firstName.hasError('pattern') ? 'Not a valid last name' : '';
+    return this.lastName.hasError('pattern') ? 'Not a valid last name' : '';
   }
 
 

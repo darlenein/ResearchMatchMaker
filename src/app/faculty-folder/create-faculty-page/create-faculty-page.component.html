@@ -7,7 +7,7 @@
     <h1>
         Faculty Profile Creation
      </h1>
-     <form>
+     <form [formGroup]="facultyForm">
         <button class="btns" mat-stroked-button (click)="openFile()">Add Profile Picture
             <input type="file" style="display:none" (change)="handle($event)">
         </button><br><br>
