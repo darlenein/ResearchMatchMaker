@@ -124,3 +124,11 @@ label[type = options]{
     width: 200px;
     height: 50px;
 }
+
+.mat-error {
+    font-size: 12px;
+}
+.mat-error::before{
+    content: '\a';
+    white-space: pre;
+}

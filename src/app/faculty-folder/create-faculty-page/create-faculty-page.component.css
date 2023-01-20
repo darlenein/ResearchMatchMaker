@@ -39,7 +39,6 @@ textarea{
     padding: 12px 20px;
     margin: 8px;
     box-sizing: border-box;
-    
 }
 
 
@@ -94,4 +93,12 @@ label[type = options]{
     margin-right: 10px;
     width: 200px;
     height: 50px;
+}
+
+.mat-error {
+    font-size: 12px;
+}
+.mat-error::before{
+    content: '\a';
+    white-space: pre;
 }

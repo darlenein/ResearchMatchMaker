@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { FacultyModel } from 'src/app/models/faculty.model';
 import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
@@ -10,9 +10,9 @@ import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
   styleUrls: ['./create-faculty-page.component.css']
 })
 export class CreateFacultyPageComponent implements OnInit {
-  firstName = new FormControl('');
-  lastName = new FormControl('');
-  email = new FormControl('');
+  firstName = new FormControl('', [Validators.required, Validators.pattern("[a-zA-Z -]*")]);
+  lastName = new FormControl('', [Validators.required, Validators.pattern("[a-zA-Z -]*")]);
+  email = new FormControl('', [Validators.required, Validators.email]);
   title = new FormControl('');
   dept = new FormControl(''); // do not think prof need dept (only need in research field)
   office = new FormControl('');
@@ -24,6 +24,7 @@ export class CreateFacultyPageComponent implements OnInit {
   link3 = new FormControl('');
   psuID: string;
 
+
   constructor(public serviceDispatcher: ServiceDispatcher, private router: Router, private route: ActivatedRoute) { 
     this.route.queryParams.subscribe(params => {
       this.psuID = params["psuID"];
@@ -31,41 +32,62 @@ export class CreateFacultyPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
 
-}
+  openFile() {
+    document.querySelector('input')?.click();
+  }
 
-openFile() {
-  document.querySelector('input')?.click();
-}
+  handle(e: any){
+    console.log (e.value);
+    // need to upload image to somewhere then
+    // need to save into database
+  }
 
-handle(e: any){
-  console.log (e.value);
-  // need to upload image to somewhere then
-  // need to save into database
-}
+  goToFacultyHomePage() {
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        "psuID": this.psuID
+      }
+    };
 
-goToFacultyHomePage() {
-  let navigationExtras: NavigationExtras = {
-    queryParams: {
-      "psuID": this.psuID
+    let fd = new FacultyModel();
+    fd.id = this.psuID;
+    fd.firstName = this.firstName.value!;
+    fd.lastName = this.lastName.value!;
+    fd.email = this.email.value!;
+    fd.title = this.title.value!;
+    fd.office = this.office.value!;
+    fd.phone = this.phone.value!;
+    fd.aboutMe = this.about.value!;
+    fd.researchInterest  = this.research.value!;
+    fd.link1 = this.link1.value!;
+    fd.link2 = this.link2.value!;
+    fd.link3 = this.link3.value!;
+    //this.serviceDispatcher.createFacultyProfile(fd).subscribe(response => { });
+    this.router.navigate(['/faculty-home'], navigationExtras); // should be success page -> log in -> faculty-home
+  }
+
+  getEmailErrorMessage() {
+    if (this.email.hasError('required')) {
+      return 'You must enter an email';
     }
-  };
-  //console.log(this.dept.value);
-  let fd = new FacultyModel();
-  fd.id = this.psuID;
-  fd.firstName = this.firstName.value!;
-  fd.lastName = this.lastName.value!;
-  fd.email = this.email.value!;
-  fd.title = this.title.value!;
-  fd.office = this.office.value!;
-  fd.phone = this.phone.value!;
-  fd.aboutMe = this.about.value!;
-  fd.researchInterest  = this.research.value!;
-  fd.link1 = this.link1.value!;
-  fd.link2 = this.link2.value!;
-  fd.link3 = this.link3.value!;
-  //this.serviceDispatcher.createFacultyProfile(fd).subscribe(response => { });
-  this.router.navigate(['/faculty-home'], navigationExtras); // should be success page -> log in -> faculty-home
-}
+    return this.email.hasError('email') ? 'Not a valid email' : '';
+  }
+
+  getFirstNameErrorMessage() {
+    if (this.firstName.hasError('required')) {
+      return 'You must enter a first name';
+    }
+    return this.firstName.hasError('pattern') ? 'Not a valid first name' : '';
+  }
+
+  getLastNameErrorMessage() {
+    if (this.firstName.hasError('required')) {
+      return 'You must enter a last name';
+    }
+    return this.firstName.hasError('pattern') ? 'Not a valid last name' : '';
+  }
+
 
 }
