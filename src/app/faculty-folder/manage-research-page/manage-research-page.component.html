@@ -25,9 +25,9 @@
                 <div *ngIf="r.active==true"> Ongoing </div>
                 {{r.start_Date}} - {{r.end_Date}}<br>
                 {{ r.location }}<br>
-                <div *ngIf="r.isPaid==1"> Paid</div>
-                <div *ngIf="r.isNonpaid==1"> Nonpaid</div>
-                <div *ngIf="r.isCredit==1"> Credit</div>
+                <div *ngIf="r.isPaid==true"> Paid</div>
+                <div *ngIf="r.isNonpaid==true"> Nonpaid</div>
+                <div *ngIf="r.isCredit==true"> Credit</div>
 
             </div>
 
