@@ -55,17 +55,17 @@ export class EditStudentProfilePageComponent implements OnInit {
       this.major = new FormControl(this.student.major);
       this.minor = new FormControl(this.student.minor);
       this.location = new FormControl(this.student.location);
-      this.gradMonth = new FormControl(this.student.gradMonth);
-      this.gradYear = new FormControl(this.student.gradYear);
+      this.gradMonth = new FormControl(this.student.graduationMonth);
+      this.gradYear = new FormControl(this.student.graduationYear);
       this.skills = new FormControl(this.student.skills);
       this.link1 = new FormControl(this.student.link1);
       this.link2 = new FormControl(this.student.link2);
       this.link3 = new FormControl(this.student.link3);
-      this.paid = new FormControl(this.student.paid);
-      this.nonpaid = new FormControl(this.student.nonpaid);
-      this.credit = new FormControl(this.student.credit);
-      this.interest = new FormControl(this.student.interest);
-      this.projects = new FormControl(this.student.projects);
+      this.paid = new FormControl(this.student.preferPaid);
+      this.nonpaid = new FormControl(this.student.preferNonpaid);
+      this.credit = new FormControl(this.student.preferCredit);
+      this.interest = new FormControl(this.student.researchInterest);
+      this.projects = new FormControl(this.student.researchProjects);
     });
   }
   engineeringItems: string[] = [ "Computer", "Chemical", "Electrical", "Mechanical", "Software"];
