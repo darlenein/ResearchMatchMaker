@@ -65,7 +65,7 @@ export class EditStudentProfilePageComponent implements OnInit {
       this.nonpaid = new FormControl(this.student.preferNonpaid);
       this.credit = new FormControl(this.student.preferCredit);
       this.interest = new FormControl(this.student.researchInterest);
-      this.projects = new FormControl(this.student.researchProjects);
+      this.projects = new FormControl(this.student.researchProject);
     });
   }
   engineeringItems: string[] = [ "Computer", "Chemical", "Electrical", "Mechanical", "Software"];
