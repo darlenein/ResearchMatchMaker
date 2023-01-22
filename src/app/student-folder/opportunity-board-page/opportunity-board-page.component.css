@@ -29,6 +29,7 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     margin-left: 10px;
     font-size: 18px;
+    text-decoration: underline;
 }
 
 .result-title {
@@ -55,4 +56,17 @@
     font-weight: bold;
     font-size: 18px;
     color: #23395d;
+}
+
+.parent-filter{
+    padding-bottom: 2.5px; 
+}
+
+.child-filter{
+    padding-bottom: 2.5px; 
+}
+
+.parent-filter-bold{
+    padding-bottom: 2.5px; 
+    font-weight: bold;
 }

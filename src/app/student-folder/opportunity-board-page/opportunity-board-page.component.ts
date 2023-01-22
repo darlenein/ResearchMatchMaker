@@ -7,6 +7,8 @@ import { ProgressModel } from 'src/app/models/progress.model';
 import { ResearchModel } from 'src/app/models/research.model';
 import { ServiceDispatcher } from '../../ServiceDispatcher';
 import { ResearchApplicantDialogComponent } from '../research-applicant-dialog/research-applicant-dialog.component';
+import { StudentModel } from 'src/app/models/student.model';
+import { SubDepartmentModel } from 'src/app/models/subdepartment.model';
 
 @Component({
   selector: 'app-opportunity-board-page',
@@ -20,6 +22,9 @@ export class OpportunityBoardPageComponent implements OnInit {
   scienceValue = new FormControl('');
   nursingValue = new FormControl('');
   businessValue = new FormControl('');
+  status = new FormControl('');
+  incentive = new FormControl('');
+  location = new FormControl('');
   departments: DepartmentModel[];
   toggle = [false];
   engineeringItems: any[];
@@ -29,9 +34,11 @@ export class OpportunityBoardPageComponent implements OnInit {
   scienceItems: any[];
   nursingItems: any[];
 
+  sortedResearch: ResearchModel[];
   research: ResearchModel[];
   facultyID: string;
   psuID: string;
+  researchSubdepts: SubDepartmentModel[];
   
   constructor(public serviceDispatcher: ServiceDispatcher, private router: Router, private route: ActivatedRoute, private dialog: MatDialog) { 
     this.route.queryParams.subscribe(params => {
@@ -51,14 +58,27 @@ export class OpportunityBoardPageComponent implements OnInit {
       this.nursingItems = this.getSubDepts(this.departments[5].id);
     });
 
-    // get all research 
+    // this.serviceDispatcher.getAllSortedResearchByStudent(this.psuID).subscribe(response => {
+    //   this.research = response;
+    // });
+
     this.serviceDispatcher.getAllResearch().subscribe(response => {
-      this.research = response
+      this.research = response;
+      });
+  }
+
+  getSubDeptsByResearchID(id:number): any{
+    let subdepartments: any[] = [];
+    this.serviceDispatcher.getAllSubdeptByResearchId(id).subscribe(items => {
+      items.map((item: any) => {
+        subdepartments.push(item);
+      });
     });
+    return subdepartments;
   }
 
   getSubDepts(id:number): any{
-  let subdepartments: any[] = [];
+    let subdepartments: any[] = [];
     this.serviceDispatcher.getAllSubdeptByDeptId(id).subscribe(items => {
       items.map((item: any) => {
         subdepartments.push(item);

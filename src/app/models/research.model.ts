@@ -1,3 +1,5 @@
+import { SubDepartmentModel } from "./subdepartment.model";
+
 export class ResearchModel {
     id: number;
     faculty_Id: string;
@@ -21,4 +23,5 @@ export class ResearchModel {
     isNonpaid: number;
     isCredit: number;
     researchDepts: string[];
+    departments: SubDepartmentModel[];
 }
