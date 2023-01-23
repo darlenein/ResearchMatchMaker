@@ -14,14 +14,14 @@ export class ViewResearchPageComponent implements OnInit {
   research: ResearchModel[]; 
   researchPage: number;
   num: number;
-  left: number;
   right: number;
-  newResearchPage: number;
+  ynPaid: string;
+  ynActive: string;
 
 
   constructor(private router: Router, private http: HttpClient, private route: ActivatedRoute, public serviceDispatcher: ServiceDispatcher) { 
     this.route.queryParams.subscribe(params => {
-      this.psuID = params["psuID"];
+      //this.psuID = params["psuID"];
       this.researchPage = params["researchPage"];
       
     });
@@ -48,6 +48,11 @@ export class ViewResearchPageComponent implements OnInit {
     return this.num;
   }
 
+  goRight(){
+    this.right = 1;
+    return this.right = this.num + this.right;
+  }
+
   goToResearchPage() {
     let navigationExtras: NavigationExtras = {
       queryParams: {
@@ -55,6 +60,26 @@ export class ViewResearchPageComponent implements OnInit {
       }
     };
     this.router.navigate(['/faculty-research'], navigationExtras);
+  }
+
+  showPaidStatus(b: boolean){
+    if (b == true){
+      this.ynPaid = "Paid";
+    }
+    else {
+      this.ynPaid = "Non-Paid";
+    }
+    return this.ynPaid;
+  }
+
+  showActiveStatus(b: boolean){
+    if (b == true){
+      this.ynActive = "Active";
+    }
+    else {
+      this.ynActive = "Not-Active";
+    }
+    return this.ynActive;
   }
 
 
