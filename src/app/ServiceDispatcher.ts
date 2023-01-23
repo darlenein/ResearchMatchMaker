@@ -81,6 +81,12 @@ export class ServiceDispatcher{
     return this.http.get<any>(url);
   }
 
+  public getAllSortedResearchByStudent(student_id : string): Observable<any> {
+    // find url on swagger UI
+    const url = 'https://localhost:44390/api/Research/getAllResearchSorted/' + student_id;
+    return this.http.get<any>(url);
+  }
+
   public updateAppProgressBar(p : ProgressModel): Observable<any> {
     const url = 'https://localhost:44390/api/Research/updateAppProgress/';
     return this.http.put<any>(url, p);
@@ -93,6 +99,11 @@ export class ServiceDispatcher{
 
   public getAllSubdeptByDeptId(department_id : number): Observable<any> {
     const url = 'https://localhost:44390/api/Department/getAllSubDeptByDeptId/' + department_id;
+    return this.http.get<any>(url);
+  }
+
+  public getAllSubdeptByResearchId(research_id : number): Observable<any> {
+    const url = 'https://localhost:44390/api/Department/getAllSubDeptByResearchId/' + research_id;
     return this.http.get<any>(url);
   }
 

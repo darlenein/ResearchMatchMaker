@@ -92,17 +92,17 @@ export class EditResearchPageComponent implements OnInit {
     else rm.active = false;
     rm.address = this.address.value!;
     if (this.paid.value) {
-      rm.isPaid = 1;
+      rm.isPaid = true;
     }
-    else rm.isPaid = 0;
+    else rm.isPaid = false;
     if (this.nonpaid.value) {
-      rm.isNonpaid = 1;
+      rm.isNonpaid = true;
     }
-    else rm.isNonpaid = 0;
+    else rm.isNonpaid = false;
     if (this.credit.value) {
-      rm.isCredit = 1;
+      rm.isCredit = true;
     }
-    else rm.isCredit = 0;
+    else rm.isCredit = false;
     //this.serviceDispatcher.createResearch(rm).subscribe(response => { });
     this.router.navigate(['/faculty-research']);
   }

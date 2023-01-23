@@ -9,7 +9,8 @@
             <!-- <div class="left-container"> -->
 
                 
-                Current Progress of Applicant: <a href="/faculty-view-student"><b>{{s.firstName}} {{s.lastName}}</b></a><br><br>
+                Current Progress of Applicant: 
+                <span class="link" (click)="goToProfile(s.id);">{{s.firstName}} {{s.lastName}}</span><br><br>
                 <b>Graduation Date:</b> {{s.graduationMonth}} {{s.graduationYear}}<br>
                 <b>Major:</b> {{s.major}}<br>
                 <b>GPA:</b> {{s.gpa}} <br>

@@ -7,6 +7,9 @@ import { ProgressModel } from 'src/app/models/progress.model';
 import { ResearchModel } from 'src/app/models/research.model';
 import { ServiceDispatcher } from '../../ServiceDispatcher';
 import { ResearchApplicantDialogComponent } from '../research-applicant-dialog/research-applicant-dialog.component';
+import { StudentModel } from 'src/app/models/student.model';
+import { SubDepartmentModel } from 'src/app/models/subdepartment.model';
+import { MatListOption, MatSelectionListChange } from '@angular/material/list';
 
 @Component({
   selector: 'app-opportunity-board-page',
@@ -20,6 +23,9 @@ export class OpportunityBoardPageComponent implements OnInit {
   scienceValue = new FormControl('');
   nursingValue = new FormControl('');
   businessValue = new FormControl('');
+  status = new FormControl('');
+  incentive = new FormControl('');
+  location = new FormControl('');
   departments: DepartmentModel[];
   toggle = [false];
   engineeringItems: any[];
@@ -29,9 +35,13 @@ export class OpportunityBoardPageComponent implements OnInit {
   scienceItems: any[];
   nursingItems: any[];
 
+  sortedResearch: ResearchModel[];
   research: ResearchModel[];
   facultyID: string;
   psuID: string;
+  researchSubdepts: SubDepartmentModel[];
+  filteredItems: string[] = [];
+  filteredResearch: ResearchModel[];
   
   constructor(public serviceDispatcher: ServiceDispatcher, private router: Router, private route: ActivatedRoute, private dialog: MatDialog) { 
     this.route.queryParams.subscribe(params => {
@@ -51,14 +61,29 @@ export class OpportunityBoardPageComponent implements OnInit {
       this.nursingItems = this.getSubDepts(this.departments[5].id);
     });
 
-    // get all research 
-    this.serviceDispatcher.getAllResearch().subscribe(response => {
-      this.research = response
+    this.serviceDispatcher.getAllSortedResearchByStudent(this.psuID).subscribe(response => {
+      this.research = response;
+      this.filteredResearch = response;
     });
+
+    // this.serviceDispatcher.getAllResearch().subscribe(response => {
+    //   this.research = response;
+    //   this.filteredResearch = response;
+    //   });
+  }
+
+  getSubDeptsByResearchID(id:number): any{
+    let subdepartments: any[] = [];
+    this.serviceDispatcher.getAllSubdeptByResearchId(id).subscribe(items => {
+      items.map((item: any) => {
+        subdepartments.push(item);
+      });
+    });
+    return subdepartments;
   }
 
   getSubDepts(id:number): any{
-  let subdepartments: any[] = [];
+    let subdepartments: any[] = [];
     this.serviceDispatcher.getAllSubdeptByDeptId(id).subscribe(items => {
       items.map((item: any) => {
         subdepartments.push(item);
@@ -96,5 +121,186 @@ export class OpportunityBoardPageComponent implements OnInit {
       enterAnimationDuration,
       exitAnimationDuration,
     });
+  }
+
+  onDepartmentFilterClick(change: any) {
+    this.filteredResearch = [];
+    if(change.options[0].selected === true) {
+      this.filteredItems.push(change.options[0].value);
+      this.filteredItems.forEach(element => {
+        let temp: any = [];
+        temp = this.research.filter(x => x.researchDepts[0] === element || element === x.researchDepts[1] || element === x.researchDepts[2]);
+        
+        this.filteredResearch.forEach(r => {
+          temp.forEach((t: { id: number; }) => {
+            if(r.id == t.id) {
+              const index = temp.indexOf(t, 0);
+              if (index > -1) {
+                temp.splice(index, 1);
+              }
+            }
+          });
+        });
+
+        this.filteredResearch.push(...temp);
+      });
+    }
+    else {
+      this.filteredResearch = [];
+      const index = this.filteredItems.indexOf(change.options[0].value, 0);
+      if (index > -1) {
+        this.filteredItems.splice(index, 1);
+      }
+      this.filteredItems.forEach(element => {
+        let temp: any = [];
+        debugger;
+        temp = this.research.filter(x => x.researchDepts[0] === element || element === x.researchDepts[1] || element === x.researchDepts[2]);
+        this.filteredResearch.push(...temp);
+      });
+      if (this.filteredResearch.length === 0){
+        this.filteredResearch = this.research;
+      }
+    }
+  }
+
+  onStatusFilterClick(change: any) {
+    this.filteredResearch = [];
+    if(change.options[0].selected === true) {
+      this.filteredItems.push(change.options[0].value);
+      this.filteredItems.forEach(element => {
+        let temp: any = [];
+        if (element === "true") {
+          temp = this.research.filter(x => x.active === true);
+        }
+        else temp = this.research.filter(x => x.active === false);
+        this.filteredResearch.forEach(r => {
+          temp.forEach((t: { id: number; }) => {
+            debugger;
+            if(r.id == t.id) {
+              const index = temp.indexOf(t, 0);
+              if (index > -1) {
+                temp.splice(index, 1);
+              }
+            }
+          });
+        });
+
+        this.filteredResearch.push(...temp);
+      });
+    }
+    else {
+      this.filteredResearch = [];
+      const index = this.filteredItems.indexOf(change.options[0].value, 0);
+      if (index > -1) {
+        this.filteredItems.splice(index, 1);
+      }
+      this.filteredItems.forEach(element => {
+        let temp: any = [];
+        if (element === "true") {
+          temp = this.research.filter(x => x.active === true);
+        }
+        else temp = this.research.filter(x => x.active === false);
+        this.filteredResearch.push(...temp);
+      });
+      if (this.filteredResearch.length === 0){
+        this.filteredResearch = this.research;
+      }
+    }
+  }
+
+  onLocationFilterClick(change: any) {
+    this.filteredResearch = [];
+    if(change.options[0].selected === true) {
+      this.filteredItems.push(change.options[0].value);
+      this.filteredItems.forEach(element => {
+        let temp: any = [];
+        temp = this.research.filter(x => x.location === element);
+        this.filteredResearch.forEach(r => {
+          temp.forEach((t: { id: number; }) => {
+            if(r.id == t.id) {
+              const index = temp.indexOf(t, 0);
+              if (index > -1) {
+                temp.splice(index, 1);
+              }
+            }
+          });
+        });
+
+        this.filteredResearch.push(...temp);
+      });
+    }
+    else {
+      this.filteredResearch = [];
+      const index = this.filteredItems.indexOf(change.options[0].value, 0);
+      if (index > -1) {
+        this.filteredItems.splice(index, 1);
+      }
+      this.filteredItems.forEach(element => {
+        let temp: any = [];
+        temp = this.research.filter(x => x.location === element);
+        this.filteredResearch.push(...temp);
+      });
+      if (this.filteredResearch.length === 0){
+        this.filteredResearch = this.research;
+      }
+    }
+  }
+
+  onIncentiveFilterClick(change: any) {
+    this.filteredResearch = [];
+    if(change.options[0].selected === true) {
+      this.filteredItems.push(change.options[0].value);
+      this.filteredItems.forEach(element => {
+        let temp: any = [];
+        let paid, nonpaid, credit;
+        if (element === "Paid"){
+          temp = this.research.filter(x => x.isPaid === true);
+        }
+        else if (element === "Nonpaid"){
+          temp = this.research.filter(x => x.isNonpaid === true);
+        }
+        else if (element === "Credit"){
+          temp = this.research.filter(x => x.isCredit === true);
+        }
+
+        this.filteredResearch.forEach(r => {
+          temp.forEach((t: { id: number; }) => {
+            debugger;
+            if(r.id == t.id) {
+              const index = temp.indexOf(t, 0);
+              if (index > -1) {
+                temp.splice(index, 1);
+              }
+            }
+          });
+        });
+
+        this.filteredResearch.push(...temp);
+      });
+    }
+    else {
+      this.filteredResearch = [];
+      const index = this.filteredItems.indexOf(change.options[0].value, 0);
+      if (index > -1) {
+        this.filteredItems.splice(index, 1);
+      }
+      this.filteredItems.forEach(element => {
+        let temp: any = [];
+        let paid, nonpaid, credit;
+        if (element === "Paid"){
+          temp = this.research.filter(x => x.isPaid === true);
+        }
+        else if (element === "Nonpaid"){
+          temp = this.research.filter(x => x.isNonpaid === true);
+        }
+        else if (element === "Credit"){
+          temp = this.research.filter(x => x.isCredit === true);
+        }
+        this.filteredResearch.push(...temp);
+      });
+      if (this.filteredResearch.length === 0){
+        this.filteredResearch = this.research;
+      }
+    }
   }
 }

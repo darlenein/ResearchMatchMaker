@@ -30,3 +30,11 @@
 ::ng-deep .mat-horizontal-stepper-header{
     pointer-events: none !important;
 }
+
+.link{
+    background:none; 
+    border:none; 
+    font-weight: bold;
+    font-size: 16px;
+    color: #1c2e4a;
+}

@@ -25,8 +25,8 @@
           </div>
 
             <div class="left-container">
-              <p><b>{{r.name}}</b> <br>
-              {{r.faculty_FirstName}} {{r.faculty_LastName}}<br>
+              <p><b>{{r.name}}</b><br>
+              <span class="link" (click)="goToProfile(r.faculty_Id);">{{r.faculty_FirstName}} {{r.faculty_LastName}}</span><br>
               {{r.address}} <br><br>
               <b>Description:</b> {{r.description}}<br><br>
               <b>Required Skills: </b>{{r.splitRequiredSkills}}<br>
@@ -39,9 +39,9 @@
               <div *ngIf="r.active==true"> Ongoing </div>
               {{r.start_Date}} - {{r.end_Date}}<br>
               {{r.location}}<br>
-              <div *ngIf="r.isPaid==1"> Paid</div>
-              <div *ngIf="r.isNonpaid==1"> Nonpaid</div>
-              <div *ngIf="r.isCredit==1"> Credit</div>
+              <div *ngIf="r.isPaid==true"> Paid</div>
+              <div *ngIf="r.isNonpaid==true"> Nonpaid</div>
+              <div *ngIf="r.isCredit==true"> Credit</div>
           </div>
           <div style="clear:both;"></div>
       </div>
