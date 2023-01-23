@@ -31,6 +31,7 @@ export class EditResearchPageComponent implements OnInit {
   scienceValue = new FormControl('');
   nursingValue = new FormControl('');
   businessValue = new FormControl('');
+  research: any;
 
   psuID: string;
   researchDeptList: string[];
@@ -50,6 +51,22 @@ export class EditResearchPageComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.serviceDispatcher.getResearchByFaculty('nii1').subscribe(response => {
+      this.research = response
+      this.name = new FormControl(this.research.name);
+      this.description = new FormControl(this.research.description);
+      this.location = new FormControl(this.research.location);
+      this.rskills = new FormControl(this.research.required_skills);
+      this.eskills = new FormControl(this.research.encouraged_Skills);
+      this.address = new FormControl(this.research.address);
+      this.startDate = new FormControl(this.research.start_Date);
+      this.endDate = new FormControl(this.research.end_Date);
+      this.active = new FormControl(this.research.active);
+      this.credit = new FormControl(this.research.isCredit);
+      this.paid = new FormControl(this.research.isPaid);
+      this.nonpaid = new FormControl(this.research.isNonpaid);
+
+    });
     this.serviceDispatcher.getAllDepartments().subscribe(response => { 
       this.departments = response;
       this.engineeringItems = this.getSubDepts(this.departments[0].id);

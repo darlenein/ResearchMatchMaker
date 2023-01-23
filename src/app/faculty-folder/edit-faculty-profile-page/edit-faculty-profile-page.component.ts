@@ -24,6 +24,7 @@ export class EditFacultyProfilePageComponent implements OnInit {
   link2 = new FormControl('');
   link3 = new FormControl('');
   psuID: string;
+  faculty: any;
   constructor(public serviceDispatcher: ServiceDispatcher, private router: Router, private route: ActivatedRoute) { 
     this.route.queryParams.subscribe(params => {
       this.psuID = params["psuID"];
@@ -31,6 +32,21 @@ export class EditFacultyProfilePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.serviceDispatcher.getFaculty('nii1').subscribe(response => {
+      this.faculty = response
+      this.firstName = new FormControl(this.faculty.firstName);
+      this.lastName = new FormControl(this.faculty.lastName);
+      this.email = new FormControl(this.faculty.email); 
+      this.title = new FormControl(this.faculty.title);
+      this.dept = new FormControl(this.faculty.dept);
+      this.office = new FormControl(this.faculty.office);
+      this.phone = new FormControl(this.faculty.phone);
+      this.about = new FormControl(this.faculty.aboutMe);
+      this.research = new FormControl(this.faculty.researchInterest);
+      this.link1 = new FormControl(this.faculty.link1);
+      this.link2 = new FormControl(this.faculty.link2);
+      this.link3 = new FormControl(this.faculty.link3);
+    });
   }
  
   openFile() {
