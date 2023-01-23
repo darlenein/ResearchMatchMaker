@@ -47,16 +47,6 @@ export class ViewResearchPageComponent implements OnInit {
     this.num = this.researchPage;
     return this.num;
   }
- 
-  goLeft(){
-    this.num -= 1;
-    return this.num;
-  }
-
-  goRight(){
-    this.num += 1;
-    return this.num;
-  }
 
   goToResearchPage() {
     let navigationExtras: NavigationExtras = {

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute,NavigationExtras, Router } from '@angular/router';
 import { ResearchModel } from 'src/app/models/research.model';
 import { ServiceDispatcher } from '../../ServiceDispatcher';
 
@@ -52,6 +52,16 @@ export class StudentHomePageComponent implements OnInit {
   getSecondNum(){
     this.second = this.getRandomNumber();
     return this.second;
+  }
+
+  goToViewResearchPage(n: number){
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        "psuID": this.psuID,
+        "researchPage": n
+      }
+    };
+    this.router.navigate(['./view-research-page'], navigationExtras)
   }
 
 }

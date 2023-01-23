@@ -148,8 +148,8 @@
     <div class="right-container">
         <span class="result-title">Research Results</span>
         <ul style="list-style: none;">
-            <li *ngFor="let r of filteredResearch">
-                    <br><div class="left-sub-container">
+            <li *ngFor="let r of filteredResearch, let researchPage=index">
+                    <br><div class="left-sub-container" class="link" (click)="goToViewResearchPage(researchPage);">
                         <b><div style="font-size: 24px;">{{r.name}}</div></b>
                         <div class="link" (click)="goToProfile(r.faculty_Id);">{{r.faculty_FirstName}} {{r.faculty_LastName}}</div>
                         {{r.address}} <br><br>

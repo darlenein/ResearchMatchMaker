@@ -11,7 +11,7 @@
                 <p>Posted By: {{research[first].faculty_FirstName}} {{research[first].faculty_LastName}}</p>
                 <p>Location: {{research[first].location}}</p>
                 <p>Dates: {{research[first].start_Date}} - {{research[first].end_Date}}</p>
-                <button type="button" class="btn" (click)="goToOppBoardPage();">View Research</button>
+                <button type="button" class="btn" (click)="goToViewResearchPage(first);">View Research</button>
             </div>
         </div>
 
@@ -23,7 +23,7 @@
                 <p>Posted By: {{research[second].faculty_FirstName}} {{research[second].faculty_LastName}}</p>
                 <p>Location: {{research[second].location}}</p>
                 <p>Dates: {{research[second].start_Date}} - {{research[second].end_Date}}</p>
-                <button type="button" class="btn" (click)="goToOppBoardPage();">View Research</button>
+                <button type="button" class="btn" (click)="goToViewResearchPage(second);">View Research</button>
             </div>
         </div>
 

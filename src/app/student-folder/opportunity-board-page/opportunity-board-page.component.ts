@@ -42,6 +42,9 @@ export class OpportunityBoardPageComponent implements OnInit {
   researchSubdepts: SubDepartmentModel[];
   filteredItems: string[] = [];
   filteredResearch: ResearchModel[];
+
+  //view research page
+  researchPage: number;
   
   constructor(public serviceDispatcher: ServiceDispatcher, private router: Router, private route: ActivatedRoute, private dialog: MatDialog) { 
     this.route.queryParams.subscribe(params => {
@@ -303,4 +306,18 @@ export class OpportunityBoardPageComponent implements OnInit {
       }
     }
   }
+
+  //view research page
+  goToViewResearchPage(index: number){
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        "psuID": this.psuID,
+        "researchPage": index
+      }
+    };
+    this.router.navigate(['./view-research-page'], navigationExtras)
+  }
+
+
+
 }
