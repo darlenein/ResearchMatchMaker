@@ -6,12 +6,12 @@
 </div>
 
 <ul style="list-style: none;">
-    <li *ngFor="let r of research">
+    <li *ngFor="let r of research, let researchPage=index">
         <div class="container">
             
-            <div class="left-container">
-                <div class="link" (click)="goToViewResearchPage();"> <b>{{r.name}}</b></div>
-                {{r.faculty_FirstName}} {{r.faculty_LastName}}<br>
+            <div class="left-container" class="link" (click)="goToViewResearchPage(researchPage);">
+                <div> <b>{{r.name}}</b></div>
+                <br>{{r.faculty_FirstName}} {{r.faculty_LastName}}<br>
                 {{r.address}} <br><br>
                 <b>Description:</b> {{r.description}}<br><br>
                 <b>Required Skills:</b> {{r.required_skills}}<br>

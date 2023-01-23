@@ -11,6 +11,7 @@ import { ServiceDispatcher } from '../../ServiceDispatcher';
 export class ManageResearchPageComponent implements OnInit {
   psuID: string;
   research: ResearchModel[]; 
+  researchPage: number;
 
   constructor(private router: Router, private route: ActivatedRoute,public serviceDispatcher: ServiceDispatcher) { 
     this.route.queryParams.subscribe(params => {
@@ -52,10 +53,11 @@ export class ManageResearchPageComponent implements OnInit {
     this.router.navigate(['/view-applicants'], {queryParams: {research_id: research_id}});
   }
 
-  goToViewResearchPage(){
+  goToViewResearchPage(index: number){
     let navigationExtras: NavigationExtras = {
       queryParams: {
-        "psuID": this.psuID
+        "psuID": this.psuID,
+        "researchPage": index
       }
     };
     this.router.navigate(['./view-research-page'], navigationExtras)
