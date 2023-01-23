@@ -1,20 +1,20 @@
 <app-faculty-top-menu-bar></app-faculty-top-menu-bar>
 
 <div class="link">
-    <div class="left-container" (click)="goToResearchPage();"></div>
+    <div class="left-container" (click)="goToViewResearchPage(num-1);"></div>
 </div>
 
 <div class="link">
-    <div class="right-container" (click)="goToResearchPage();"></div>
+    <div class="right-container" (click)="goToViewResearchPage(num+2);"></div>
 </div>
 
 <div class="container">
-    <h1>{{research[0].name}}</h1>
-    <h3>{{research[0].faculty_FirstName}} {{research[0].faculty_LastName}} 
-    <br>{{research[0].address}}<br></h3>
-    <b>Description:</b> {{research[0].description}}<br><br>
-    <b>Required Skills:</b> {{research[0].required_skills}}<br>
-    <b>Encouraged Skills:</b> {{research[0].encouraged_Skills}}<br><br>           
+    <h1>{{research[getResearchPage()].name}}</h1>
+    <h3>{{research[num].faculty_FirstName}} {{research[num].faculty_LastName}} 
+    <br>{{research[num].address}}<br></h3>
+    <b>Description:</b> {{research[num].description}}<br><br>
+    <b>Required Skills:</b> {{research[num].required_skills}}<br>
+    <b>Encouraged Skills:</b> {{research[num].encouraged_Skills}}<br><br>           
 </div>
 
 

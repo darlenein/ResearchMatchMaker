@@ -7,10 +7,10 @@
         <div class="projectImage">
                 <img class="projImage">
             <div class="text1">
-                <p>Research Name: {{research[0].name}}</p>
-                <p>Posted By: {{research[0].faculty_FirstName}} {{research[0].faculty_LastName}}</p>
-                <p>Location: {{research[0].location}}</p>
-                <p>Dates: {{research[0].start_Date}} - {{research[0].end_Date}}</p>
+                <p>Research Name: {{research[getFirstNum()].name}}</p>
+                <p>Posted By: {{research[first].faculty_FirstName}} {{research[first].faculty_LastName}}</p>
+                <p>Location: {{research[first].location}}</p>
+                <p>Dates: {{research[first].start_Date}} - {{research[first].end_Date}}</p>
                 <button type="button" class="btn" (click)="goToOppBoardPage();">View Research</button>
             </div>
         </div>
@@ -19,10 +19,10 @@
             <div class="projectImage2">
                 <img class="projImage2">
             <div class="text2">
-                <p>Research Name: {{research[1].name}}</p>
-                <p>Posted By: {{research[1].faculty_FirstName}} {{research[1].faculty_LastName}}</p>
-                <p>Location: {{research[1].location}}</p>
-                <p>Dates: {{research[1].start_Date}} - {{research[1].end_Date}}</p>
+                <p>Research Name: {{research[getSecondNum()].name}}</p>
+                <p>Posted By: {{research[second].faculty_FirstName}} {{research[second].faculty_LastName}}</p>
+                <p>Location: {{research[second].location}}</p>
+                <p>Dates: {{research[second].start_Date}} - {{research[second].end_Date}}</p>
                 <button type="button" class="btn" (click)="goToOppBoardPage();">View Research</button>
             </div>
         </div>
