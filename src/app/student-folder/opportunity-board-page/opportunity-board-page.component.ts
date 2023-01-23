@@ -17,6 +17,7 @@ import { MatListOption, MatSelectionListChange } from '@angular/material/list';
   styleUrls: ['./opportunity-board-page.component.css']
 })
 export class OpportunityBoardPageComponent implements OnInit {
+  searchTerm = new FormControl('');
   engineeringValue = new FormControl('');
   humanitiesValue = new FormControl('');
   politicalValue = new FormControl('');
@@ -37,6 +38,8 @@ export class OpportunityBoardPageComponent implements OnInit {
 
   sortedResearch: ResearchModel[];
   research: ResearchModel[];
+  separatedRequiredSkills: string;
+  separateEncouragedSkills: string;
   facultyID: string;
   psuID: string;
   researchSubdepts: SubDepartmentModel[];
@@ -66,13 +69,21 @@ export class OpportunityBoardPageComponent implements OnInit {
 
     this.serviceDispatcher.getAllSortedResearchByStudent(this.psuID).subscribe(response => {
       this.research = response;
-      this.filteredResearch = response;
+      this.replaceInfoBySemicolon(this.research);
+      this.filteredResearch = this.research;
     });
 
     // this.serviceDispatcher.getAllResearch().subscribe(response => {
     //   this.research = response;
     //   this.filteredResearch = response;
     //   });
+  }
+
+  replaceInfoBySemicolon(researchArray: ResearchModel[]) {
+    researchArray.forEach(research => {
+      research.splitRequiredSkills = research.required_Skills.replace(/;/g, ',');
+      research.splitEncouragedSkills = research.encouraged_Skills.replace(/;/g, ',');
+    });
   }
 
   getSubDeptsByResearchID(id:number): any{
@@ -107,7 +118,6 @@ export class OpportunityBoardPageComponent implements OnInit {
       }
     };
     this.router.navigate(['/view-faculty-profile'], navigationExtras);
-    //this.router.navigate(['']);
   }
 
   applyToResearch(rID:number){
@@ -126,6 +136,7 @@ export class OpportunityBoardPageComponent implements OnInit {
     });
   }
 
+  // // ------------------------------------ start filter functions ------------------------------------
   onDepartmentFilterClick(change: any) {
     this.filteredResearch = [];
     if(change.options[0].selected === true) {
@@ -305,7 +316,20 @@ export class OpportunityBoardPageComponent implements OnInit {
         this.filteredResearch = this.research;
       }
     }
+  } // ------------------------------------ end filter functions ------------------------------------
+
+  //search function 
+  getSearchedList(){
+    if (this.searchTerm.value! === ""){
+      this.filteredResearch = this.research;
+    } else {
+      this.serviceDispatcher.getSearchedResearchList(this.searchTerm.value!).subscribe(response => {
+        this.filteredResearch = response;
+      });
+    }
+
   }
+
 
   //view research page
   goToViewResearchPage(index: number){
@@ -317,7 +341,4 @@ export class OpportunityBoardPageComponent implements OnInit {
     };
     this.router.navigate(['./view-research-page'], navigationExtras)
   }
-
-
-
 }

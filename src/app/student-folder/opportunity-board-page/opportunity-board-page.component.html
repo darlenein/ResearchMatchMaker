@@ -146,16 +146,22 @@
 
     <!-- Match Result -->
     <div class="right-container">
-        <span class="result-title">Research Results</span>
+        <span class="result-title">Research Results</span><br><br>
+
+        <mat-form-field class="search-bar" appearance="fill">
+            <mat-label>Search Researches By: Research Name, Description, Skills, Faculty Name</mat-label>
+            <input matInput class="search-bar" [formControl]="searchTerm" (keydown.enter)="getSearchedList();"><mat-icon matPrefix>search</mat-icon>
+          </mat-form-field>
+    
         <ul style="list-style: none;">
             <li *ngFor="let r of filteredResearch, let researchPage=index">
-                    <br><div class="left-sub-container" class="link" (click)="goToViewResearchPage(researchPage);">
-                        <b><div style="font-size: 24px;">{{r.name}}</div></b>
-                        <div class="link" (click)="goToProfile(r.faculty_Id);">{{r.faculty_FirstName}} {{r.faculty_LastName}}</div>
+                    <br><div class="left-sub-container">
+                        <b><a class="link" style="font-size: 24px !important;" (click)="goToViewResearchPage(researchPage);">{{r.name}}</a><br></b>
+                        <a class="link" (click)="goToProfile(r.faculty_Id);">{{r.faculty_FirstName}} {{r.faculty_LastName}}</a><br>
                         {{r.address}} <br><br>
                         <b>Description:</b> {{r.description}}<br><br>
-                        <b>Required Skills:</b> {{r.required_skills}}<br>
-                        <b>Encouraged Skills:</b> {{r.encouraged_Skills}}<br><br>
+                        <b>Required Skills:</b> {{r.splitRequiredSkills}}<br>
+                        <b>Encouraged Skills:</b> {{r.splitEncouragedSkills}}<br><br>
                         <button (click)="applyToResearch(r.id);"> Apply to Research </button>
                         <br><br>
                     </div>
@@ -170,7 +176,6 @@
                         <div *ngIf="r.isCredit==true"> Credit</div>
                     </div>
                     <div style="clear:both; border-bottom:1px solid gray; "></div>
-
             </li>
         </ul>    
     </div>

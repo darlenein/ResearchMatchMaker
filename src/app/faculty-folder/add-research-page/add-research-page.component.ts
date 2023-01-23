@@ -81,7 +81,7 @@ goToFacultyManageResearch() {
   rm.name = this.name.value!;
   rm.description = this.description.value!;
   rm.location = this.location.value!;
-  rm.required_skills = this.rskills.value!;
+  rm.required_Skills = this.rskills.value!;
   rm.encouraged_Skills = this.eskills.value!;
   rm.start_Date = this.startDate.value!;
   rm.end_Date = this.endDate.value!;

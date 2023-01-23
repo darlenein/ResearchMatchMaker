@@ -87,6 +87,12 @@ export class ServiceDispatcher{
     return this.http.get<any>(url);
   }
 
+  public getSearchedResearchList(keyword : string): Observable<any> {
+    // find url on swagger UI
+    const url = 'https://localhost:44390/api/Research/getSearchedResearchList/' + keyword;
+    return this.http.get<any>(url);
+  }
+
   public updateAppProgressBar(p : ProgressModel): Observable<any> {
     const url = 'https://localhost:44390/api/Research/updateAppProgress/';
     return this.http.put<any>(url, p);

@@ -16,25 +16,25 @@
 .right-container {
     /* border: 1px solid gray; */
     float: right;
-    padding-left: 10px;
+    padding-left: 5px;
     width: 80%;
-    padding: 2rem;
+    /* padding: 2rem; */
     /* border: 2px solid #92a8d1;
     background-color: #e4f2fe; */
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: sans-serif;
 }
 
 .filter-title {
     font-weight: bold;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: sans-serif;
     margin-left: 10px;
     font-size: 18px;
-    text-decoration: underline;
+    /* text-decoration: underline; */
 }
 
 .result-title {
     font-weight: bold;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: sans-serif;
     margin-left: 10px;
     font-size: 26px;
 }
@@ -55,7 +55,10 @@
     border:none; 
     font-weight: bold;
     font-size: 18px;
-    color: #23395d;
+}
+
+.link:hover {
+    color:  #1663BE
 }
 
 .parent-filter{
@@ -69,4 +72,21 @@
 .parent-filter-bold{
     padding-bottom: 2.5px; 
     font-weight: bold;
+}
+
+.search-bar{
+    width: 1000px;
+    height: 20px;
+    margin-left: 20px;
+}
+
+
+.search-btn {
+  margin-left: 10px;
+  align-items: center;
+  padding: 6px 14px;
+  font-family: sans-serif;
+  border-radius: 6px;
+  color: #fff;
+  background: linear-gradient(180deg, #4B91F7 0%, #367AF6 100%);
 }

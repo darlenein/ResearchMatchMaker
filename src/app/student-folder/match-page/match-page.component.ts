@@ -72,7 +72,7 @@ export class MatchPageComponent implements OnInit {
 
   replaceInfoBySemicolon(researchArray: ResearchModel[]) {
     researchArray.forEach(research => {
-      research.splitRequiredSkills = research.required_skills.replace(/;/g, ',');
+      research.splitRequiredSkills = research.required_Skills.replace(/;/g, ',');
       research.splitEncouragedSkills = research.encouraged_Skills.replace(/;/g, ',');
     });
 

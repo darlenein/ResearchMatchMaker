@@ -6,7 +6,7 @@ export class ResearchModel {
     name: String;
     description: String;
     location: string;
-    required_skills: String;
+    required_Skills: String;
     encouraged_Skills: String;
     start_Date: String;
     end_Date: String;
