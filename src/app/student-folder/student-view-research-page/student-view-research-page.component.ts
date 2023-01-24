@@ -3,13 +3,15 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { ResearchModel } from 'src/app/models/research.model';
 import { ServiceDispatcher } from '../../ServiceDispatcher';
+import { TopMenuBarComponent } from '../student-top-menu-bar/student-top-menu-bar.component';
 
 @Component({
-  selector: 'app-view-research-page',
-  templateUrl: './view-research-page.component.html',
-  styleUrls: ['./view-research-page.component.css']
+  selector: 'app-student-view-research-page',
+  templateUrl: './student-view-research-page.component.html',
+  styleUrls: ['./student-view-research-page.component.css'],
 })
-export class ViewResearchPageComponent implements OnInit {
+
+export class ViewStudentResearchPageComponent implements OnInit {
   psuID: string;
   research: ResearchModel[]; 
   researchPage: number;
@@ -17,19 +19,25 @@ export class ViewResearchPageComponent implements OnInit {
   right: number;
   ynPaid: string;
   ynActive: string;
+  filteredResearch: ResearchModel[];
 
 
   constructor(private router: Router, private http: HttpClient, private route: ActivatedRoute, public serviceDispatcher: ServiceDispatcher) { 
     this.route.queryParams.subscribe(params => {
       this.psuID = params["psuID"];
-      this.researchPage = params["researchPage"];
-      
+      this.num = params["researchPage"];
+      this.filteredResearch = params["fResearch"];
     });
   }
 
   ngOnInit(): void {
-    this.serviceDispatcher.getResearchByFaculty(this.psuID).subscribe(response => {
+    this.serviceDispatcher.getAllResearch().subscribe(response => {
       this.research = response
+    });
+
+    this.serviceDispatcher.getAllSortedResearchByStudent(this.psuID).subscribe(response => {
+      this.research = response;
+      //this.filteredResearch = this.research;
     });
   }
 
@@ -40,7 +48,7 @@ export class ViewResearchPageComponent implements OnInit {
         "researchPage": index
       }
     };
-    this.router.navigate(['./view-research-page'], navigationExtras)
+    this.router.navigate(['/student-view-research-page'], navigationExtras)
   }
 
   getResearchPage(){
@@ -51,15 +59,6 @@ export class ViewResearchPageComponent implements OnInit {
   goRight(){
     this.right = 1;
     return this.right = this.num + this.right;
-  }
-
-  goToResearchPage() {
-    let navigationExtras: NavigationExtras = {
-      queryParams: {
-        "psuID": this.psuID
-      }
-    };
-    this.router.navigate(['/faculty-research'], navigationExtras);
   }
 
   showPaidStatus(b: boolean){

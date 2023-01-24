@@ -46,6 +46,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import { SSOPageComponent } from './sso-page/sso-page.component';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { CancelResearchDialogComponent } from './student-folder/cancel-research-dialog/cancel-research-dialog.component';
+import { ViewStudentResearchPageComponent } from './student-folder/student-view-research-page/student-view-research-page.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { CancelResearchDialogComponent } from './student-folder/cancel-research-
     StudentListComponent,
     FacultyListComponent,
     SSOPageComponent,
-    CancelResearchDialogComponent
+    CancelResearchDialogComponent,
+    ViewStudentResearchPageComponent
   ],
   imports: [
     BrowserModule,

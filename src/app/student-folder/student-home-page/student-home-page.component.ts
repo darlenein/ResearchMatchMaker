@@ -26,7 +26,7 @@ export class StudentHomePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.serviceDispatcher.getResearchByFaculty('nii1').subscribe(response => {
+    this.serviceDispatcher.getAllResearch().subscribe(response => {
       this.research = response
     });
   }
@@ -35,7 +35,7 @@ export class StudentHomePageComponent implements OnInit {
     this.router.navigate(['/opp-board']);
   }
 
-    getRandomNumber(){
+  getRandomNumber(){
     let max = 0;
     for (let i=0; i<this.research.length; i++){
         max++;
@@ -61,7 +61,7 @@ export class StudentHomePageComponent implements OnInit {
         "researchPage": n
       }
     };
-    this.router.navigate(['./view-research-page'], navigationExtras)
+    this.router.navigate(['./student-view-research-page'], navigationExtras)
   }
 
 }
