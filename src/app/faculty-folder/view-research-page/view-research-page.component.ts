@@ -31,6 +31,10 @@ export class ViewResearchPageComponent implements OnInit {
     this.serviceDispatcher.getResearchByFaculty(this.psuID).subscribe(response => {
       this.research = response
     });
+
+    this.serviceDispatcher.getAllResearch().subscribe(response => {
+      this.research = response
+    });
   }
 
   goToViewResearchPage(index: number){

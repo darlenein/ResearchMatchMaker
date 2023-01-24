@@ -26,7 +26,7 @@ export class FacultyHomePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.serviceDispatcher.getResearchByFaculty('nii1').subscribe(response => {
+    this.serviceDispatcher.getAllResearch().subscribe(response => {
       this.research = response
     });
   }
