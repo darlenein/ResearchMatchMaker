@@ -9,10 +9,10 @@
     <li *ngFor="let r of research, let researchPage=index">
         <div class="container">
             
-            <div class="left-container" class="link" (click)="goToViewResearchPage(researchPage);">
-                <div><b>{{r.name}}</b></div>
-                <br>{{r.faculty_FirstName}} {{r.faculty_LastName}}<br>
-                {{r.address}} <br><br>
+            <div class="left-container">
+                <b><a class="link" style="font-size: 24px !important;" (click)="goToViewResearchPage(researchPage);">{{r.name}}</a><br></b>
+                <br><b>{{r.faculty_FirstName}} {{r.faculty_LastName}}</b><br>
+                <b>{{r.address}}</b><br><br>
                 <b>Description:</b> {{r.description}}<br><br>
                 <b>Required Skills:</b> {{r.required_Skills}}<br>
                 <b>Encouraged Skills:</b> {{r.encouraged_Skills}}<br><br>
