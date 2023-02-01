@@ -10,6 +10,7 @@ import { ResearchApplicantDialogComponent } from '../research-applicant-dialog/r
 import { StudentModel } from 'src/app/models/student.model';
 import { SubDepartmentModel } from 'src/app/models/subdepartment.model';
 import { MatListOption, MatSelectionListChange } from '@angular/material/list';
+import { FilterModel, FilterValueModel } from 'src/app/models/filter.model';
 
 @Component({
   selector: 'app-opportunity-board-page',
@@ -45,6 +46,13 @@ export class OpportunityBoardPageComponent implements OnInit {
   researchSubdepts: SubDepartmentModel[];
   filteredItems: string[] = [];
   filteredResearch: ResearchModel[];
+  searchFilteredResearch: ResearchModel[];
+  fm: FilterModel = {
+    research: [],
+    filterValue: [],
+    psuID: "",
+    keyword: ""
+  };
 
   //view research page
   researchPage: number;
@@ -52,6 +60,7 @@ export class OpportunityBoardPageComponent implements OnInit {
   constructor(public serviceDispatcher: ServiceDispatcher, private router: Router, private route: ActivatedRoute, private dialog: MatDialog) { 
     this.route.queryParams.subscribe(params => {
       this.psuID = params["psuID"];
+      this.fm.psuID = this.psuID;
     });
   }
 
@@ -71,6 +80,7 @@ export class OpportunityBoardPageComponent implements OnInit {
       this.research = response;
       this.replaceInfoBySemicolon(this.research);
       this.filteredResearch = this.research;
+      this.searchFilteredResearch = this.research;
     });
 
     // this.serviceDispatcher.getAllResearch().subscribe(response => {
@@ -137,201 +147,94 @@ export class OpportunityBoardPageComponent implements OnInit {
   }
 
   // // ------------------------------------ start filter functions ------------------------------------
-  onDepartmentFilterClick(change: any) {
-    this.filteredResearch = [];
-    if(change.options[0].selected === true) {
-      this.filteredItems.push(change.options[0].value);
-      this.filteredItems.forEach(element => {
-        let temp: any = [];
-        temp = this.research.filter(x => x.researchDepts[0] === element || element === x.researchDepts[1] || element === x.researchDepts[2]);
-        
-        this.filteredResearch.forEach(r => {
-          temp.forEach((t: { id: number; }) => {
-            if(r.id == t.id) {
-              const index = temp.indexOf(t, 0);
-              if (index > -1) {
-                temp.splice(index, 1);
-              }
-            }
-          });
-        });
 
-        this.filteredResearch.push(...temp);
-      });
+  FilterOnClick(category:string, change:any){
+    let fvm = new FilterValueModel();
+    debugger;
+    this.fm.research = this.filteredResearch;
+
+    // add checked option to filtered value array
+    if(change.options[0].selected === true) {
+      fvm.categoryValue = category;
+      fvm.checkedValue = change.options[0].value;
+      this.fm.filterValue.push(fvm);
     }
     else {
-      this.filteredResearch = [];
-      const index = this.filteredItems.indexOf(change.options[0].value, 0);
-      if (index > -1) {
-        this.filteredItems.splice(index, 1);
-      }
-      this.filteredItems.forEach(element => {
-        let temp: any = [];
-        debugger;
-        temp = this.research.filter(x => x.researchDepts[0] === element || element === x.researchDepts[1] || element === x.researchDepts[2]);
-        this.filteredResearch.push(...temp);
-      });
-      if (this.filteredResearch.length === 0){
-        this.filteredResearch = this.research;
-      }
+      // remove the checked option from filtered value array
+      this.fm.filterValue.forEach((element,index)=>{
+        if(element.checkedValue == change.options[0].value) this.fm.filterValue.splice(index,1);
+     });
     }
+
+    // get filtered research list
+    this.serviceDispatcher.getFilteredResearchList(this.fm).subscribe(response => {
+      this.filteredResearch = response;
+      this.replaceInfoBySemicolon(this.filteredResearch);
+    });
   }
 
-  onStatusFilterClick(change: any) {
-    this.filteredResearch = [];
-    if(change.options[0].selected === true) {
-      this.filteredItems.push(change.options[0].value);
-      this.filteredItems.forEach(element => {
-        let temp: any = [];
-        if (element === "true") {
-          temp = this.research.filter(x => x.active === true);
-        }
-        else temp = this.research.filter(x => x.active === false);
-        this.filteredResearch.forEach(r => {
-          temp.forEach((t: { id: number; }) => {
-            debugger;
-            if(r.id == t.id) {
-              const index = temp.indexOf(t, 0);
-              if (index > -1) {
-                temp.splice(index, 1);
-              }
-            }
-          });
-        });
-
-        this.filteredResearch.push(...temp);
-      });
-    }
-    else {
-      this.filteredResearch = [];
-      const index = this.filteredItems.indexOf(change.options[0].value, 0);
-      if (index > -1) {
-        this.filteredItems.splice(index, 1);
-      }
-      this.filteredItems.forEach(element => {
-        let temp: any = [];
-        if (element === "true") {
-          temp = this.research.filter(x => x.active === true);
-        }
-        else temp = this.research.filter(x => x.active === false);
-        this.filteredResearch.push(...temp);
-      });
-      if (this.filteredResearch.length === 0){
-        this.filteredResearch = this.research;
-      }
-    }
-  }
-
-  onLocationFilterClick(change: any) {
-    this.filteredResearch = [];
-    if(change.options[0].selected === true) {
-      this.filteredItems.push(change.options[0].value);
-      this.filteredItems.forEach(element => {
-        let temp: any = [];
-        temp = this.research.filter(x => x.location === element);
-        this.filteredResearch.forEach(r => {
-          temp.forEach((t: { id: number; }) => {
-            if(r.id == t.id) {
-              const index = temp.indexOf(t, 0);
-              if (index > -1) {
-                temp.splice(index, 1);
-              }
-            }
-          });
-        });
-
-        this.filteredResearch.push(...temp);
-      });
-    }
-    else {
-      this.filteredResearch = [];
-      const index = this.filteredItems.indexOf(change.options[0].value, 0);
-      if (index > -1) {
-        this.filteredItems.splice(index, 1);
-      }
-      this.filteredItems.forEach(element => {
-        let temp: any = [];
-        temp = this.research.filter(x => x.location === element);
-        this.filteredResearch.push(...temp);
-      });
-      if (this.filteredResearch.length === 0){
-        this.filteredResearch = this.research;
-      }
-    }
-  }
-
-  onIncentiveFilterClick(change: any) {
-    this.filteredResearch = [];
-    if(change.options[0].selected === true) {
-      this.filteredItems.push(change.options[0].value);
-      this.filteredItems.forEach(element => {
-        let temp: any = [];
-        let paid, nonpaid, credit;
-        if (element === "Paid"){
-          temp = this.research.filter(x => x.isPaid === true);
-        }
-        else if (element === "Nonpaid"){
-          temp = this.research.filter(x => x.isNonpaid === true);
-        }
-        else if (element === "Credit"){
-          temp = this.research.filter(x => x.isCredit === true);
-        }
-
-        this.filteredResearch.forEach(r => {
-          temp.forEach((t: { id: number; }) => {
-            debugger;
-            if(r.id == t.id) {
-              const index = temp.indexOf(t, 0);
-              if (index > -1) {
-                temp.splice(index, 1);
-              }
-            }
-          });
-        });
-
-        this.filteredResearch.push(...temp);
-      });
-    }
-    else {
-      this.filteredResearch = [];
-      const index = this.filteredItems.indexOf(change.options[0].value, 0);
-      if (index > -1) {
-        this.filteredItems.splice(index, 1);
-      }
-      this.filteredItems.forEach(element => {
-        let temp: any = [];
-        let paid, nonpaid, credit;
-        if (element === "Paid"){
-          temp = this.research.filter(x => x.isPaid === true);
-        }
-        else if (element === "Nonpaid"){
-          temp = this.research.filter(x => x.isNonpaid === true);
-        }
-        else if (element === "Credit"){
-          temp = this.research.filter(x => x.isCredit === true);
-        }
-        this.filteredResearch.push(...temp);
-      });
-      if (this.filteredResearch.length === 0){
-        this.filteredResearch = this.research;
-      }
-    }
-  } // ------------------------------------ end filter functions ------------------------------------
+  // ------------------------------------ end filter functions ------------------------------------
 
   //search function 
   getSearchedList(){
+
+    // if search field empty, get filtered list using filters and not by search term
     if (this.searchTerm.value! === ""){
-      this.filteredResearch = this.research;
-    } else {
-      this.serviceDispatcher.getSearchedResearchList(this.searchTerm.value!).subscribe(response => {
+      this.serviceDispatcher.getFilteredResearchList(this.fm).subscribe(response => {
         this.filteredResearch = response;
+        this.replaceInfoBySemicolon(this.filteredResearch);
+      });
+    }
+    // if filter value is empty (no filtered checked), filter by search term
+    else if (this.fm.filterValue){
+      this.serviceDispatcher.getSearchedResearchList(this.searchTerm.value!, this.filteredResearch).subscribe(response => {
+        this.searchFilteredResearch = this.filteredResearch;
+        this.filteredResearch = response;
+        this.replaceInfoBySemicolon(this.filteredResearch);
+      });
+    } 
+    // else filter the whole research list by search term 
+    else {
+      this.serviceDispatcher.getSearchedResearchList(this.searchTerm.value!, this.research).subscribe(response => {
+        this.searchFilteredResearch = this.filteredResearch;
+        this.filteredResearch = response;
+        this.replaceInfoBySemicolon(this.filteredResearch);
       });
     }
 
   }
 
+  // ---------------Filter and Search Function-------------------------
+  FilterAndSearch(category:string, change:any){
+    let fvm = new FilterValueModel();
+    debugger;
+    this.fm.research = this.research;
+    this.fm.keyword = this.searchTerm.value!;
 
-  //view research page
+    if (change) {
+    // add checked option to filtered value array
+      if(change.options[0].selected === true) {
+        fvm.categoryValue = category;
+        fvm.checkedValue = change.options[0].value;
+        this.fm.filterValue.push(fvm);
+      }
+      else {
+        // remove the checked option from filtered value array
+        this.fm.filterValue.forEach((element,index)=>{
+          if(element.checkedValue == change.options[0].value) this.fm.filterValue.splice(index,1);
+        });
+      }
+    }
+
+    // get filtered research list
+    this.serviceDispatcher.getFilteredAndSearchedResearchList(this.fm).subscribe(response => {
+      this.filteredResearch = response;
+      this.replaceInfoBySemicolon(this.filteredResearch);
+    });
+  }
+
+
+  // --------------------------view research page------------------------
   goToViewResearchPage(index: number){
     let navigationExtras: NavigationExtras = {
       queryParams: {
