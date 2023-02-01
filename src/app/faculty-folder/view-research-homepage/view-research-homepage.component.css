@@ -1,0 +1,86 @@
+.container {  
+    width: 800px;
+    height: 900px;
+    margin: 2rem auto;
+    border: 2px solid #92a8d1;
+    padding: 2rem;
+    background-color: #e4f2fe;
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.details{
+    text-align: left;
+    width: 800px;
+    height: 800px;
+}
+
+.tab {
+    tab-size: 5;
+}
+
+.left-container {
+    height: 150px;
+    width: 180px;
+    background-image: url('src\images\leftArrow.jpg');
+    background-repeat: no-repeat;
+    max-width: 100%;
+    margin-top: 400px;
+    margin-left: 200px;
+    float: left;
+}
+
+.right-container {
+    height: 150px;
+    width: 180px;
+    background-image: url('src\images\rightArrow.jpg');
+    background-repeat: no-repeat;
+    max-width: 100%;
+    margin-top: 400px;
+    margin-right: 200px;
+    float: right;   
+}
+
+.container {  
+    width: 800px;
+    height: 900px;
+    margin: 2rem auto;
+    border: 2px solid #92a8d1;
+    padding: 2rem;
+    background-color: #e4f2fe;
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.details{
+    text-align: left;
+    width: 800px;
+    height: 800px;
+}
+
+.tab {
+    tab-size: 5;
+}
+
+.left-container {
+    height: 150px;
+    width: 180px;
+    background-image: url('src\images\leftArrow.jpg');
+    background-repeat: no-repeat;
+    max-width: 100%;
+    margin-top: 400px;
+    margin-left: 200px;
+    float: left;
+}
+
+.right-container {
+    height: 150px;
+    width: 180px;
+    background-image: url('src\images\rightArrow.jpg');
+    background-repeat: no-repeat;
+    max-width: 100%;
+    margin-top: 400px;
+    margin-right: 200px;
+    float: right;   
+}
+

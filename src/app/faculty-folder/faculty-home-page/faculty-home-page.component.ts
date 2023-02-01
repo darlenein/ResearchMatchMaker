@@ -17,7 +17,6 @@ export class FacultyHomePageComponent implements OnInit {
   value: number;
   first: number;
   second: number;
-  researchPage: number;
   
   constructor(private router: Router, private http: HttpClient, private route: ActivatedRoute, public serviceDispatcher: ServiceDispatcher) { 
     this.route.queryParams.subscribe(params => {
@@ -54,10 +53,10 @@ export class FacultyHomePageComponent implements OnInit {
     let navigationExtras: NavigationExtras = {
       queryParams: {
         "psuID": this.psuID,
-        "researchPage": n
+        "researchPage": n,
       }
     };
-    this.router.navigate(['./view-research-page'], navigationExtras)
+    this.router.navigate(['./view-research-homepage'], navigationExtras)
   }
 
 }

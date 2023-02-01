@@ -17,24 +17,20 @@ export class ViewResearchPageComponent implements OnInit {
   right: number;
   ynPaid: string;
   ynActive: string;
+  researchType: number;
 
 
   constructor(private router: Router, private http: HttpClient, private route: ActivatedRoute, public serviceDispatcher: ServiceDispatcher) { 
     this.route.queryParams.subscribe(params => {
       this.psuID = params["psuID"];
       this.researchPage = params["researchPage"];
-      
     });
   }
 
   ngOnInit(): void {
-    this.serviceDispatcher.getResearchByFaculty(this.psuID).subscribe(response => {
-      this.research = response
-    });
-
-    this.serviceDispatcher.getAllResearch().subscribe(response => {
-      this.research = response
-    });
+      this.serviceDispatcher.getResearchByFaculty(this.psuID).subscribe(response => {
+        this.research = response
+      });
   }
 
   goToViewResearchPage(index: number){
