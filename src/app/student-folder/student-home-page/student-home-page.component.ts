@@ -61,7 +61,7 @@ export class StudentHomePageComponent implements OnInit {
         "researchPage": n
       }
     };
-    this.router.navigate(['./student-view-research-page'], navigationExtras)
+    this.router.navigate(['./student-view-research-homepage'], navigationExtras)
   }
 
 }

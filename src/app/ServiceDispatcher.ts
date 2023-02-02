@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { StudentModel } from './models/student.model';
 import { ProgressModel } from './models/progress.model';
 import { FacultyModel } from './models/faculty.model';
 import { ResearchModel } from './models/research.model';
+import { FilterModel } from './models/filter.model';
 
 @Injectable({
   providedIn: 'root'
@@ -87,10 +88,22 @@ export class ServiceDispatcher{
     return this.http.get<any>(url);
   }
 
-  public getSearchedResearchList(keyword : string): Observable<any> {
-    // find url on swagger UI
+  public getSearchedResearchList(keyword : string, r: ResearchModel[]): Observable<any> {
+    // API call to get the results of searched research list 
     const url = 'https://localhost:44390/api/Research/getSearchedResearchList/' + keyword;
-    return this.http.get<any>(url);
+    return this.http.post<any>(url, r);
+  }
+
+  public getFilteredAndSearchedResearchList(f: FilterModel): Observable<any> {
+    // API call to get the results of searched research list 
+    const url = 'https://localhost:44390/api/Research/getFilteredAndSearchedResearchList/';
+    return this.http.post<any>(url, f);
+  }
+
+  public getFilteredResearchList(f: FilterModel): Observable<any> {
+    // API call to get the results of filtered research list 
+    const url = 'https://localhost:44390/api/Research/getFilteredResearchList/';
+    return this.http.post<any>(url, f);
   }
 
   public updateAppProgressBar(p : ProgressModel): Observable<any> {

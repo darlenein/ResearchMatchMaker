@@ -1,0 +1,34 @@
+<app-faculty-top-menu-bar></app-faculty-top-menu-bar>
+
+<div class="link">
+    <div class="left-container" (click)="goToViewResearchPage(num-1);"></div>
+</div>
+
+<div class="link">
+    <div class="right-container" (click)="goToViewResearchPage(num-1+2);"></div>
+</div>
+
+<div class="container">
+    <h1><ins>{{research[getResearchPage()].name}}</ins></h1>
+    <h3>Posted By: <ins>{{research[num].faculty_FirstName}} {{research[num].faculty_LastName}} </ins>
+    <br>Located At: <ins>{{research[num].address}}</ins><br>
+    Status: <ins>{{showActiveStatus(research[num].active)}}</ins></h3>
+
+    <div class="details">
+        <h2>Research Length: </h2>
+        <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⚫ {{research[num].start_Date}} To {{research[num].end_Date}}</h3>
+
+        <h2>Paid or Non-Paid:</h2>
+        <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⚫ {{showPaidStatus(research[num].isPaid)}}</h3>
+
+        <h2>Required Skills:</h2>
+        <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⚫ {{research[num].required_Skills}}</h3>
+
+        <h2>Encouraged Skills:</h2>
+        <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⚫ {{research[num].encouraged_Skills}}</h3>
+
+        <h2>Description:</h2>
+        <h3>{{research[num].description}}</h3>
+    </div>
+              
+</div>
