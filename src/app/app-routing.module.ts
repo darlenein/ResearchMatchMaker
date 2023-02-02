@@ -23,6 +23,12 @@ import { SSOPageComponent } from './sso-page/sso-page.component';
 import { StudentViewFacultyPageComponent } from './student-folder/student-view-faculty-page/student-view-faculty-page.component';
 import { ViewResearchPageComponent } from './faculty-folder/view-research-page/view-research-page.component';
 import { ViewStudentResearchPageComponent } from './student-folder/student-view-research-page/student-view-research-page.component';
+import { ViewResearchHomepageFacultyComponent } from './faculty-folder/view-research-homepage/view-research-homepage.component';
+import { ViewResearchHomepageStudentComponent } from './student-folder/student-view-research-homepage/student-view-research-homepage.component';
+
+
+import { AuthGuardService } from './services/auth-guard.service';
+import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
 
 export const routes: Routes = [
   { path: '', component: LoginPageComponent},
@@ -46,10 +52,12 @@ export const routes: Routes = [
   { path: 'faculty-view-student', component: FacultyViewStudentPageComponent},
   { path: 'student-view-faculty', component: StudentViewFacultyPageComponent},
   { path: 'faculty-list', component: FacultyListComponent},
-  { path: 'sso-page', component: SSOPageComponent},
+  { path: 'sso-page', component: SSOPageComponent, canActivate: [AuthGuardService]},
+  { path: 'auth-callback', component: AuthCallbackComponent},
   { path: 'view-research-page', component: ViewResearchPageComponent},
-  { path: 'student-view-research-page', component: ViewStudentResearchPageComponent}
-  
+  { path: 'student-view-research-page', component: ViewStudentResearchPageComponent},
+  { path: 'view-research-homepage', component: ViewResearchHomepageFacultyComponent},
+  { path: 'student-view-research-homepage', component: ViewResearchHomepageStudentComponent}
 ];
 
 @NgModule({

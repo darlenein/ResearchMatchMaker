@@ -20,10 +20,6 @@ export class ManageResearchPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.serviceDispatcher.getResearchByFaculty(this.psuID).subscribe(response => {
-    //   this.research = response
-    // });
-
     this.serviceDispatcher.getResearchByFaculty(this.psuID).subscribe(response => {
       this.research = response
     });
@@ -57,7 +53,7 @@ export class ManageResearchPageComponent implements OnInit {
     let navigationExtras: NavigationExtras = {
       queryParams: {
         "psuID": this.psuID,
-        "researchPage": index
+        "researchPage": index,
       }
     };
     this.router.navigate(['./view-research-page'], navigationExtras)

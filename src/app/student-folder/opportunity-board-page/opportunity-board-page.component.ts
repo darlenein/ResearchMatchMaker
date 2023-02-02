@@ -240,7 +240,7 @@ export class OpportunityBoardPageComponent implements OnInit {
       queryParams: {
         "psuID": this.psuID,
         "researchPage": index,
-        "fResearch": this.filteredResearch
+        "fResearch": this.filteredResearch,
       }
     };
     this.router.navigate(['/student-view-research-page'], navigationExtras)

@@ -47,6 +47,12 @@ import { SSOPageComponent } from './sso-page/sso-page.component';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { CancelResearchDialogComponent } from './student-folder/cancel-research-dialog/cancel-research-dialog.component';
 import { ViewStudentResearchPageComponent } from './student-folder/student-view-research-page/student-view-research-page.component';
+import { ViewResearchHomepageFacultyComponent } from './faculty-folder/view-research-homepage/view-research-homepage.component';
+import { ViewResearchHomepageStudentComponent } from './student-folder/student-view-research-homepage/student-view-research-homepage.component';
+
+import { AuthGuardService } from './services/auth-guard.service';
+import { AuthService } from './services/auth.service';
+import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +84,10 @@ import { ViewStudentResearchPageComponent } from './student-folder/student-view-
     FacultyListComponent,
     SSOPageComponent,
     CancelResearchDialogComponent,
-    ViewStudentResearchPageComponent
+    ViewStudentResearchPageComponent,
+    ViewResearchHomepageFacultyComponent,
+    ViewResearchHomepageStudentComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -103,7 +112,10 @@ import { ViewStudentResearchPageComponent } from './student-folder/student-view-
     MatNativeDateModule,
     MatDialogModule,
   ],
-  providers: [],
+  providers: 
+  [ AuthGuardService,
+    AuthService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
