@@ -111,3 +111,21 @@ label[type = options]{
     font-family: 'Times New Roman', Times, serif;
     margin-right: 10px;
 }
+
+.parent-filter{
+    padding-bottom: 2.5px; 
+}
+
+
+.parent-filter-bold{
+    padding-bottom: 2.5px; 
+    font-weight: bold;
+}
+
+.mat-error {
+    font-size: 12px;
+}
+.mat-error::before{
+    content: '\a';
+    white-space: pre;
+}

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DepartmentModel } from 'src/app/models/department.model';
 import { ResearchModel } from 'src/app/models/research.model';
@@ -12,24 +12,25 @@ import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
   styleUrls: ['./add-research-page.component.css']
 })
 export class AddResearchPageComponent implements OnInit {
-  name = new FormControl('');
-  description = new FormControl('');
-  location = new FormControl('');
-  rskills = new FormControl('');
-  eskills = new FormControl('');
+  researchForm : FormGroup;
+  name = new FormControl('', [Validators.required]);
+  description = new FormControl('', [Validators.required]);
+  location = new FormControl('', [Validators.required]);
+  rskills = new FormControl('', [Validators.required]);
+  eskills = new FormControl('', [Validators.required]);
   address = new FormControl('');
   startDate = new FormControl('');
   endDate = new FormControl('');
-  active = new FormControl('');
+  active = new FormControl('', [Validators.required]);
   credit = new FormControl('');
   paid = new FormControl('');
   nonpaid = new FormControl('');
-  engineeringValue = new FormControl('');
-  humanitiesValue = new FormControl('');
-  politicalValue = new FormControl('');
-  scienceValue = new FormControl('');
-  nursingValue = new FormControl('');
-  businessValue = new FormControl('');
+  engineeringValue = new FormControl('', [Validators.required]);
+  humanitiesValue = new FormControl('', [Validators.required]);
+  politicalValue = new FormControl('', [Validators.required]);
+  scienceValue = new FormControl('', [Validators.required]);
+  nursingValue = new FormControl('', [Validators.required]);
+  businessValue = new FormControl('', [Validators.required]);
 
   psuID: string;
   researchDeptList: string[];
@@ -42,10 +43,20 @@ export class AddResearchPageComponent implements OnInit {
   scienceItems: any[];
   nursingItems: any[];
 
-  constructor(public serviceDispatcher: ServiceDispatcher, private router: Router, private route: ActivatedRoute) { 
+  constructor(public serviceDispatcher: ServiceDispatcher, private router: Router, private route: ActivatedRoute, private fb: FormBuilder) { 
     this.route.queryParams.subscribe(params => {
       this.psuID = params["psuID"];
     });
+
+    this.researchForm = this.fb.group({
+      paid: this.paid,
+      nonpaid: this.nonpaid,
+      credit: this.credit,
+    });
+
+    this.researchForm.setErrors({required: true});
+
+    this.researchDeptList = [];
   }
 
   ngOnInit(): void {
@@ -58,6 +69,15 @@ export class AddResearchPageComponent implements OnInit {
       this.scienceItems = this.getSubDepts(this.departments[4].id);
       this.nursingItems = this.getSubDepts(this.departments[5].id);
     });
+
+    this.researchForm.valueChanges.subscribe(newValue => {
+      if (newValue.paid === true || newValue.nonpaid === true || newValue.credit === true) {
+        this.researchForm.setErrors(null);
+      } else {
+        this.researchForm.setErrors({required: true});
+      }
+      });
+
   }
 
   
@@ -104,7 +124,100 @@ goToFacultyManageResearch() {
   }
   else rm.isCredit = false;
   //this.serviceDispatcher.createResearch(rm).subscribe(response => { });
-  this.router.navigate(['/faculty-research']);
+
+  if(!this.validate()){
+    this.router.navigate(['/faculty-research']);
+  }
+
 }
 
+validate(): any {
+  let hasError = false;
+
+  if (this.active.invalid) {
+    this.active.markAsDirty();
+    hasError = true;
+  }
+
+  if (this.name.invalid) {
+    this.name.markAsDirty();
+    hasError = true;
+  }
+
+  if (this.researchDeptList.length === 0) {
+    this.engineeringValue.markAsDirty();
+    this.humanitiesValue.markAsDirty();
+    this.politicalValue.markAsDirty();
+    this.scienceValue.markAsDirty();
+    this.nursingValue.markAsDirty();
+    this.businessValue.markAsDirty();
+    hasError = true;
+  }
+
+  if (this.location.invalid) {
+    this.location.markAsDirty();
+    hasError = true;
+  }
+
+  if (this.description.invalid) {
+    this.description.markAsDirty();
+    hasError = true;
+  }
+
+  if (this.location.invalid) {
+    this.location.markAsDirty();
+    hasError = true;
+  }
+
+  if (this.rskills.invalid) {
+    this.rskills.markAsDirty();
+    hasError = true;
+  }
+
+  if (this.eskills.invalid) {
+    this.eskills.markAsDirty();
+    hasError = true;
+  }
+
+  if (this.paid.value || this.nonpaid.value || this.credit.value) {
+    this.researchForm.setErrors(null);
+  } else {
+    this.researchForm.setErrors({required: true});
+    hasError = true;
+  }
+  return hasError;
+}
+
+//----------------- validation error msgs -------------------------------
+getSelectAtLeastOneError() {
+  if (this.active.hasError('required') || this.location.hasError('required') || 
+   (this.engineeringValue.hasError('required') && this.humanitiesValue.hasError('required') && this.politicalValue.hasError('required') 
+   && this.scienceValue.hasError('required') && this.nursingValue.hasError('required') && this.businessValue.hasError('required'))) {
+    return 'You must select one of the options';
+  }
+  return '';
+}
+
+getEmptyFieldError() {
+  if (this.description.hasError('required') || this.rskills.hasError('required') || this.eskills.hasError('required')) {
+    return "Enter 'n/a' or 'none' if not available";
+  }
+  return '';
+}
+
+getResearchNameError() {
+  if (this.name.hasError('required')) {
+    return 'You must enter a Research Name';
+  }
+  return '';
+}
+
+getPaidErrorMessage() {
+  if (this.researchForm.invalid) {
+    return 'You must enter a Research Incentive';
+  }
+  return '';
+}
+
+//----------------- end validation error msgs -------------------------------
 }
