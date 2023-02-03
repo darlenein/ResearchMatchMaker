@@ -37,12 +37,11 @@
     margin-right: 10px;
   }
 
-  .link{
+.link{
     background:none; 
     border:none; 
     font-weight: bold;
     font-size: 15px;
-    color: #1c2e4a;
     font-family: sans-serif;
 }
 

@@ -46,7 +46,6 @@ export class OpportunityBoardPageComponent implements OnInit {
   researchSubdepts: SubDepartmentModel[];
   filteredItems: string[] = [];
   filteredResearch: ResearchModel[];
-  searchFilteredResearch: ResearchModel[];
   fm: FilterModel = {
     research: [],
     filterValue: [],
@@ -80,7 +79,6 @@ export class OpportunityBoardPageComponent implements OnInit {
       this.research = response;
       this.replaceInfoBySemicolon(this.research);
       this.filteredResearch = this.research;
-      this.searchFilteredResearch = this.research;
     });
 
     // this.serviceDispatcher.getAllResearch().subscribe(response => {
@@ -188,7 +186,6 @@ export class OpportunityBoardPageComponent implements OnInit {
     // if filter value is empty (no filtered checked), filter by search term
     else if (this.fm.filterValue){
       this.serviceDispatcher.getSearchedResearchList(this.searchTerm.value!, this.filteredResearch).subscribe(response => {
-        this.searchFilteredResearch = this.filteredResearch;
         this.filteredResearch = response;
         this.replaceInfoBySemicolon(this.filteredResearch);
       });
@@ -196,7 +193,6 @@ export class OpportunityBoardPageComponent implements OnInit {
     // else filter the whole research list by search term 
     else {
       this.serviceDispatcher.getSearchedResearchList(this.searchTerm.value!, this.research).subscribe(response => {
-        this.searchFilteredResearch = this.filteredResearch;
         this.filteredResearch = response;
         this.replaceInfoBySemicolon(this.filteredResearch);
       });
