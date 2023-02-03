@@ -28,6 +28,7 @@ import { ViewResearchHomepageStudentComponent } from './student-folder/student-v
 
 
 import { AuthGuardService } from './services/auth-guard.service';
+//add , canActivate: [AuthGuardService] to path to protect component with oidc authorization
 import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
 
 export const routes: Routes = [
@@ -52,7 +53,7 @@ export const routes: Routes = [
   { path: 'faculty-view-student', component: FacultyViewStudentPageComponent},
   { path: 'student-view-faculty', component: StudentViewFacultyPageComponent},
   { path: 'faculty-list', component: FacultyListComponent},
-  { path: 'sso-page', component: SSOPageComponent, canActivate: [AuthGuardService]},
+  { path: 'sso-page', component: SSOPageComponent},
   { path: 'auth-callback', component: AuthCallbackComponent},
   { path: 'view-research-page', component: ViewResearchPageComponent},
   { path: 'student-view-research-page', component: ViewStudentResearchPageComponent},

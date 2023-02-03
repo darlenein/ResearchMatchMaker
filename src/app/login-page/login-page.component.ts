@@ -8,7 +8,6 @@ import { NavigationExtras, Router } from '@angular/router';
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent implements OnInit {
-  isStudent: boolean;
 
   constructor(private router: Router, private http: HttpClient) { 
   }
@@ -17,26 +16,12 @@ export class LoginPageComponent implements OnInit {
   }
 
   goToCreateFacultyPage() {
-    this.isStudent = false;
-    let navigationExtras: NavigationExtras = {
-      queryParams: {
-        "isStudent": this.isStudent
-      }
-    };
-
-    this.router.navigate(['/sso-page'], navigationExtras);
+    this.router.navigate(['/sso-page']);
     //this.router.navigate(['/create-faculty-page']);
   }
 
   goToCreateStudentPage() {
-    this.isStudent = true;
-    let navigationExtras: NavigationExtras = {
-      queryParams: {
-        "isStudent": this.isStudent
-      }
-    };
-    
-    this.router.navigate(['/sso-page'], navigationExtras);
+    this.router.navigate(['/sso-page']);
     //this.router.navigate(['/create-student-page']);
   }
 
