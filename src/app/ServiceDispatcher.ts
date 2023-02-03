@@ -70,6 +70,11 @@ export class ServiceDispatcher{
     return this.http.get<any>(url);
   }
 
+  public getResearchByID(id: number): Observable<any> {
+    const url = 'https://localhost:44390/api/Research/getResearchByID/' + id;
+    return this.http.get<any>(url);
+  }
+
   public getAllResearch(): Observable<any> {
     // find url on swagger UI
     const url = 'https://localhost:44390/api/Research/getAllResearch';
