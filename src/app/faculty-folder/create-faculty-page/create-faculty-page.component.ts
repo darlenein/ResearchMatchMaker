@@ -10,7 +10,6 @@ import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
   styleUrls: ['./create-faculty-page.component.css']
 })
 export class CreateFacultyPageComponent implements OnInit {
-  facultyForm: FormGroup;
   firstName = new FormControl('', [Validators.required, Validators.pattern("[a-zA-Z -]*")]);
   lastName = new FormControl('', [Validators.required, Validators.pattern("[a-zA-Z -]*")]);
   email = new FormControl('', [Validators.required, Validators.email]);
