@@ -24,7 +24,9 @@ export class ViewApplicantsComponent implements OnInit {
   research_id: any;
 
 
-  constructor(private router: Router, private route: ActivatedRoute, public serviceDispatcher: ServiceDispatcher) { }
+  constructor(private router: Router, private route: ActivatedRoute, public serviceDispatcher: ServiceDispatcher) { 
+    this.student = [];
+  }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params: any) => { 

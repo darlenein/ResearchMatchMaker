@@ -9,18 +9,19 @@
     border: 2px solid #92a8d1;
     padding: 2rem;
     background-color: #e4f2fe;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: sans-serif;
 }
 
-.left-container{
-    /* float: left;
-    width: 80%; */
+.link{
+    background:none; 
+    border:none; 
+    font-weight: bold;
+    font-size: 24px;
+    font-family: sans-serif;
 }
 
-.right-container {
-    /* text-align: right;
-    float: right;
-    width: 20%; */
+.link:hover {
+    color:  #1663BE
 }
 
 .profilename {
@@ -30,12 +31,4 @@
 
 .stepper {
     align-self: center;
-}
-
-.link { 
-    background:none; 
-    border:none; 
-    font-weight: bold;
-    font-size: 20px;
-    color: #1c2e4a;
 }

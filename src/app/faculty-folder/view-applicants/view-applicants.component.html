@@ -1,63 +1,56 @@
 <app-faculty-top-menu-bar></app-faculty-top-menu-bar>
 <!-- /view-matches page -->
-
-<h1 class="header">APPLICANTS FOR: {{student[0].research_name}}</h1>
-
-<ul style="list-style: none;">
+<span class="noAppheader" *ngIf="student.length === 0">NO APPLICANTS YET!</span> 
+<span *ngIf="student.length > 0">
+  <h1 class="header">APPLICANTS FOR: {{student[0].research_name}}</h1>
+  <ul style="list-style: none;">
     <li *ngFor="let s of student">
         <div class="container">
-            <!-- <div class="left-container"> -->
 
+          Current Progress of Applicant: 
+          <span class="link" (click)="goToProfile(s.id);">{{s.firstName}} {{s.lastName}}</span><br><br>
+          <b>Graduation Date:</b> {{s.graduationMonth}} {{s.graduationYear}}<br>
+          <b>Major:</b> {{s.major}}<br>
+          <b>GPA:</b> {{s.gpa}} <br>
+          <b>Skills: </b> {{s.skillsWithComma}} <br>
                 
-                Current Progress of Applicant: 
-                <span class="link" (click)="goToProfile(s.id);">{{s.firstName}} {{s.lastName}}</span><br><br>
-                <b>Graduation Date:</b> {{s.graduationMonth}} {{s.graduationYear}}<br>
-                <b>Major:</b> {{s.major}}<br>
-                <b>GPA:</b> {{s.gpa}} <br>
-                <b>Skills: </b> {{s.skillsWithComma}} <br>
-                
-                <!-- progress bar -->
-                <mat-horizontal-stepper [linear]="false" class="stepper" #stepper>
-                    <mat-step label="Applied"><div>
-                        <button mat-button matStepperNext class="button">Next Step: Recieved</button>
-                        <button mat-button class="button" (click)="saveAppProgress(0, s.id)">Save</button>
-                        
-                      </div>
-                    </mat-step>
+          <!-- progress bar -->
+          <mat-horizontal-stepper [linear]="false" class="stepper" #stepper>
+          <mat-step label="Applied"><div>
+          <button mat-button matStepperNext class="button">Next Step: Recieved</button>
+          <button mat-button class="button" (click)="saveAppProgress(0, s.id)">Save</button>
 
-                    <mat-step label="Received">
-                      <div>
-                        <button (click)="goBack(stepper)" mat-button matStepperPrevious class="button">Back</button>
-                        <button mat-button matStepperNext class="button">Next Step: Review</button>
-                        <button mat-button class="button" (click)="saveAppProgress(1, s.id)">Save</button>
-                      </div>
-                    </mat-step>
-
-                    <mat-step label="In Review">
-                        <div>
-                          <button (click)="goBack(stepper)" mat-button matStepperPrevious class="button">Back</button>
-                          <button mat-button matStepperNext class="button">Next Step: Verdict</button>
-                          <button mat-button class="button" (click)="saveAppProgress(2, s.id);">Save</button>
-                        </div>
-                      </mat-step>
-
-                      <!-- <mat-step [completed]="completed" [state]="state" label="Verdict"> -->
-                      <mat-step label="Verdict">
-                        <div>
-                          <!-- <button mat-button (click)="stepperDone()">Accept</button> -->
-                          <button (click)="goBack(stepper)" mat-button matStepperPrevious class="button">Back</button>
-                          <button mat-button class="button" (click)="saveAppProgress(3, s.id);">Save</button>
-                        </div>
-                      </mat-step>
-                  </mat-horizontal-stepper>   
-            <!-- </div> -->
-
-            <!-- <div class="right-container">
-                <div *ngIf="r.active==false"> Complete </div>
-                <div *ngIf="r.active==true"> Ongoing </div>
-            </div> -->
-            <div style="clear:both;"></div>
         </div>
-    </li>
+
+      </mat-step>
+      <mat-step label="Received">
+        <div>
+          <button (click)="goBack(stepper)" mat-button matStepperPrevious class="button">Back</button>
+          <button mat-button matStepperNext class="button">Next Step: Review</button>
+          <button mat-button class="button" (click)="saveAppProgress(1, s.id)">Save</button>
+        </div>
+      </mat-step>
+      
+      <mat-step label="In Review">
+        <div>
+          <button (click)="goBack(stepper)" mat-button matStepperPrevious class="button">Back</button>
+          <button mat-button matStepperNext class="button">Next Step: Verdict</button>
+          <button mat-button class="button" (click)="saveAppProgress(2, s.id);">Save</button>
+        </div>
+      </mat-step>
+      
+      <!-- <mat-step [completed]="completed" [state]="state" label="Verdict"> -->
+        <mat-step label="Verdict">
+          <div>
+            <!-- <button mat-button (click)="stepperDone()">Accept</button> -->
+            <button (click)="goBack(stepper)" mat-button matStepperPrevious class="button">Back</button>
+            <button mat-button class="button" (click)="saveAppProgress(3, s.id);">Save</button>
+          </div>
+        </mat-step>
+      </mat-horizontal-stepper>   
+      <div style="clear:both;"></div>
+    </div>
+  </li>
 </ul>   
+</span>
 
