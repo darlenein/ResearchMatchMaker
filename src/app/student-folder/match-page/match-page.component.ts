@@ -58,9 +58,9 @@ export class MatchPageComponent implements OnInit {
     let num = 0;
     this.steppers.forEach(stepper => {
       for(let i = 0; i < researches[num].progression; i++) {
-        stepper.selectedIndex = researches[i].progression;
+        debugger;
+        stepper.selectedIndex = i+1;
       }
-      
       num++;
     });
   }
@@ -123,7 +123,16 @@ goToProfile(id:string){
     }
   };
   this.router.navigate(['/view-faculty-profile'], navigationExtras);
-  //this.router.navigate(['']);
 }
+
+  // --------------------------view research page------------------------
+  goToViewResearchPage(id: number){
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        "researchID": id,
+      }
+    };
+    this.router.navigate(['/student-view-research-page'], navigationExtras)
+  }
   
 }

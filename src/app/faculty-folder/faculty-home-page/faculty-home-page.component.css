@@ -1,7 +1,7 @@
 h1 {
     text-align: left;
     padding-left: 100px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: sans-serif;
 }
 
 .projImage {
@@ -84,8 +84,7 @@ h1 {
     padding-top: 460px;
     margin-left: 90px;
     vertical-align:  bottom;
-    font-weight: bold;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: sans-serif;
 }
 
 .text2 {
@@ -94,6 +93,5 @@ h1 {
     padding-top: 460px;
     margin-left: 190px;
     vertical-align:  bottom;
-    font-weight: bold;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family:  sans-serif;
 }

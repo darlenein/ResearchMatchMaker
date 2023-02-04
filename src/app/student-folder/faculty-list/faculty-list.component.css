@@ -16,10 +16,14 @@
     align-self: center;
 }
 
-.link { 
+.link{
     background:none; 
     border:none; 
     font-weight: bold;
-    font-size: 20px;
-    color: #1c2e4a;
+    font-size: 24px;
+    font-family: sans-serif;
+}
+
+.link:hover {
+    color:  #1663BE
 }
