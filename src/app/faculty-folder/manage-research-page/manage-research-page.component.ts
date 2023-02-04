@@ -13,6 +13,7 @@ export class ManageResearchPageComponent implements OnInit {
   research: ResearchModel[]; 
   researchPage: number;
 
+
   constructor(private router: Router, private route: ActivatedRoute,public serviceDispatcher: ServiceDispatcher) { 
     this.route.queryParams.subscribe(params => {
       this.psuID = params["psuID"];
@@ -32,8 +33,13 @@ export class ManageResearchPageComponent implements OnInit {
     return text;
   }
 
-  editResearchPage() {
-    this.router.navigate(['/edit-research']);
+  editResearchPage(researchID: number) {
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        "researchID": researchID
+      }
+    };
+    this.router.navigate(['/edit-research'], navigationExtras);
   }
 
   addResearchPage() {
