@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { StudentModel } from 'src/app/models/student.model';
 import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
@@ -14,8 +14,8 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./edit-student-profile-page.component.css']
 })
 export class EditStudentProfilePageComponent implements OnInit {
-
-  firstName = new FormControl('');
+  
+  firstName = new FormControl('', [Validators.required, Validators.pattern("[a-zA-Z -]*")]);;
   lastName = new FormControl('');
   email = new FormControl('');
   phone = new FormControl(''); // dont need?
@@ -46,7 +46,7 @@ export class EditStudentProfilePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.serviceDispatcher.getStudent('dxi5017').subscribe(response => {
+    this.serviceDispatcher.getStudent(this.psuID).subscribe(response => {
       this.student = response
       this.firstName = new FormControl(this.student.firstName);
       this.lastName = new FormControl(this.student.lastName);
@@ -120,7 +120,7 @@ export class EditStudentProfilePageComponent implements OnInit {
     }
     sd.researchInterest = this.interest.value!;
     sd.researchProject = this.projects.value!;
-    //this.serviceDispatcher.createStudentProfile(sd).subscribe(response => { });
+    this.serviceDispatcher.editStudentProfile(sd).subscribe(response => { });
 
     let navigationExtras: NavigationExtras = {
       queryParams: {

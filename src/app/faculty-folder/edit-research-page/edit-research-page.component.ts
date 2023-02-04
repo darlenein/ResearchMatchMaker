@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { DepartmentModel } from 'src/app/models/department.model';
 import { ResearchModel } from 'src/app/models/research.model';
 import { SubDepartmentModel } from 'src/app/models/subdepartment.model';
@@ -32,7 +32,7 @@ export class EditResearchPageComponent implements OnInit {
   nursingValue = new FormControl('');
   businessValue = new FormControl('');
   research: any;
-
+  researchID: number;
   psuID: string;
   researchDeptList: string[];
   departments: DepartmentModel[];
@@ -43,15 +43,17 @@ export class EditResearchPageComponent implements OnInit {
   businessItems: any[];
   scienceItems: any[];
   nursingItems: any[];
-
+  
   constructor(public serviceDispatcher: ServiceDispatcher, private router: Router, private route: ActivatedRoute) {
     this.route.queryParams.subscribe(params => {
-      this.psuID = params["psuID"];
+     
+      this.researchID = params["researchID"];
+
     });
    }
 
   ngOnInit(): void {
-    this.serviceDispatcher.getResearchByFaculty('nii1').subscribe(response => {
+    this.serviceDispatcher.getResearchByID(this.researchID).subscribe(response => {
       this.research = response
       this.name = new FormControl(this.research.name);
       this.description = new FormControl(this.research.description);
@@ -65,7 +67,7 @@ export class EditResearchPageComponent implements OnInit {
       this.credit = new FormControl(this.research.isCredit);
       this.paid = new FormControl(this.research.isPaid);
       this.nonpaid = new FormControl(this.research.isNonpaid);
-
+      this.psuID = this.research.faculty_Id;
     });
     this.serviceDispatcher.getAllDepartments().subscribe(response => { 
       this.departments = response;
@@ -88,11 +90,18 @@ export class EditResearchPageComponent implements OnInit {
       return subdepartments;
     }
   
-  goToFacultyManageResearch() {
+  goToFacultyManageResearch() {  
+    let navigationExtras: NavigationExtras = {
+    queryParams: {
+      "psuID": this.psuID
+    }
+  };
+  debugger;
     this.researchDeptList = [...this.engineeringValue.value!, ...this.politicalValue.value!, ...this.businessValue.value!, 
       ...this.humanitiesValue.value!, ...this.scienceValue.value!, ...this.nursingValue.value!];
   
     let rm = new ResearchModel();
+    rm.id = this.researchID;
     rm.researchDepts = this.researchDeptList;
     rm.faculty_Id = this.psuID;
     rm.name = this.name.value!;
@@ -120,8 +129,9 @@ export class EditResearchPageComponent implements OnInit {
       rm.isCredit = true;
     }
     else rm.isCredit = false;
-    //this.serviceDispatcher.createResearch(rm).subscribe(response => { });
-    this.router.navigate(['/faculty-research']);
+    
+    this.serviceDispatcher.editResearch(rm).subscribe(response => { });
+    this.router.navigate(['/faculty-research'], navigationExtras);
   }
   
 
