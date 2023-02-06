@@ -22,6 +22,7 @@ export class ViewApplicantsComponent implements OnInit {
   student: StudentModel[]; 
   splitSkills: any;
   research_id: any;
+  verdict: number;
 
 
   constructor(private router: Router, private route: ActivatedRoute, public serviceDispatcher: ServiceDispatcher) { 
@@ -46,9 +47,11 @@ export class ViewApplicantsComponent implements OnInit {
 
   updateProgress(students : StudentModel[]) {
     let num = 0;
+    this.verdict = 0;
     this.steppers.forEach(stepper => {
       for(let i = 0; i <= students[num].progression; i++) {
         stepper.selectedIndex = i;
+        this.verdict++;
       }
       num++;
     });
@@ -77,7 +80,6 @@ export class ViewApplicantsComponent implements OnInit {
     {
       stepper.selectedIndex = i;
     }
-    
   }
 
   goToStudentProfile(){
