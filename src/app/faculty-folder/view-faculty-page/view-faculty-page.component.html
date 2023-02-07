@@ -3,7 +3,7 @@
 
 <div class="top-container">
     <div class="top-left-container">
-        <button (click)="goToEditProfile();">Edit Profile</button><br><br>
+        <button *ngIf="fpsuID === psuID" (click)="goToEditProfile();">Edit Profile</button><br><br>
         <span class="name">{{faculty.firstName}} {{faculty.lastName}}</span><br>
         <img src="{{faculty.profileUrl}}" class="profile-logo">
     </div>
