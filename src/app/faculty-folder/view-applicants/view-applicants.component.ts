@@ -5,6 +5,7 @@ import { StudentModel } from 'src/app/models/student.model';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { MatStepper } from '@angular/material/stepper';
 import { ProgressModel } from 'src/app/models/progress.model';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-view-applicants',
@@ -18,12 +19,13 @@ export class ViewApplicantsComponent implements OnInit {
   @ViewChildren('stepper') steppers:QueryList<MatStepper>;
   completed: boolean = false;
   state: string;
+  verdict = new FormControl('');
   
   student: StudentModel[]; 
   splitSkills: any;
   research_id: any;
-  verdict: number;
-
+  reject = 4;
+  accept = 3;
 
   constructor(private router: Router, private route: ActivatedRoute, public serviceDispatcher: ServiceDispatcher) { 
     this.student = [];
@@ -45,18 +47,7 @@ export class ViewApplicantsComponent implements OnInit {
     },1000);
   }
 
-  updateProgress(students : StudentModel[]) {
-    let num = 0;
-    this.verdict = 0;
-    this.steppers.forEach(stepper => {
-      for(let i = 0; i <= students[num].progression; i++) {
-        stepper.selectedIndex = i;
-        this.verdict++;
-      }
-      num++;
-    });
-  }
-
+  // ------------ display info functions ---------------
   separateBySemicolon(rawText: String) {
     let text = rawText.split(';');
     return text;
@@ -68,11 +59,23 @@ export class ViewApplicantsComponent implements OnInit {
     });
   }
 
+  // populate stepper progress bar
+  updateProgress(students : StudentModel[]) {
+    let num = 0;
+    this.steppers.forEach(stepper => {
+      for(let i = 0; i <= students[num].progression; i++) {
+        stepper.selectedIndex = i;
+      }
+      num++;
+    });
+  }
+
   stepperDone() {
     this.completed = true;
     this.state = 'done';
   }
 
+  // go backwards on stepper
   goBack(stepper: MatStepper) {
     let lastSelectedIndex = stepper.selectedIndex;
     stepper.reset();
@@ -82,20 +85,25 @@ export class ViewApplicantsComponent implements OnInit {
     }
   }
 
-  goToStudentProfile(){
-    this.router.navigate(['/goToStudentProfile']);
-  }
-
-  
-  saveAppProgress(p : number, sID : string) {
+   // save progress to database 
+  saveAppProgress(p : any, sID : string) {
     debugger;
     let pm = new ProgressModel();
-    pm.progress = p;
+    pm.progress = Number(p);
     pm.research_id = Number(this.research_id);
     pm.student_id = sID;
 
     this.serviceDispatcher.updateAppProgressBar(pm).subscribe(response => {
     });
+
+    setTimeout(()=>{
+      location.reload();
+    },1000);
+  }
+
+  // ------------- router methods -------------
+  goToStudentProfile(){
+    this.router.navigate(['/goToStudentProfile']);
   }
 
   goToProfile(id:string){

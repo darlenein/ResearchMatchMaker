@@ -19,34 +19,55 @@
           <mat-step label="Applied"><div>
           <button mat-button matStepperNext class="button">Next Step: Recieved</button>
           <button mat-button class="button" (click)="saveAppProgress(0, s.id)">Save</button>
+          </div></mat-step>
 
-        </div>
-
-      </mat-step>
-      <mat-step label="Received">
-        <div>
+          <mat-step label="Received"><div>
           <button (click)="goBack(stepper)" mat-button matStepperPrevious class="button">Back</button>
           <button mat-button matStepperNext class="button">Next Step: Review</button>
           <button mat-button class="button" (click)="saveAppProgress(1, s.id)">Save</button>
-        </div>
-      </mat-step>
+          </div></mat-step>
       
-      <mat-step label="In Review">
-        <div>
+          <mat-step label="In Review"><div>
           <button (click)="goBack(stepper)" mat-button matStepperPrevious class="button">Back</button>
           <button mat-button matStepperNext class="button">Next Step: Verdict</button>
           <button mat-button class="button" (click)="saveAppProgress(2, s.id);">Save</button>
-        </div>
-      </mat-step>
+          </div></mat-step>
       
       <!-- <mat-step [completed]="completed" [state]="state" label="Verdict"> -->
-        <mat-step label="Verdict">
+          <mat-step *ngIf="s.progression < 3" label="Verdict">
           <div>
-            <!-- <button mat-button (click)="stepperDone()">Accept</button> -->
             <button (click)="goBack(stepper)" mat-button matStepperPrevious class="button">Back</button>
-            <button mat-button class="button" (click)="saveAppProgress(3, s.id);">Save</button>
-          </div>
-        </mat-step>
+          <select id="verdict" style="margin-right: 10px" [formControl]="verdict">
+              <option [value]=3>Accept</option>
+              <option [value]=4>Reject</option>
+          </select>
+            <button mat-button class="button" (click)="saveAppProgress(verdict.value!, s.id);">Save</button></div>
+          </mat-step>
+
+          <mat-step *ngIf="s.progression === 3" label="Accepted!">
+            <ng-template matStepperIcon="edit"><mat-icon>sentiment_satisfied_alt</mat-icon></ng-template>
+            <div>
+              <button (click)="goBack(stepper)" mat-button matStepperPrevious class="button">Back</button>
+            <select id="verdict" style="margin-right: 10px" [(ngModel)]="accept" [formControl]="verdict">
+                <option [value]=3>Accept</option>
+                <option [value]=4>Reject</option>
+            </select>
+              <button mat-button class="button" (click)="saveAppProgress(verdict.value!, s.id);">Save</button></div>
+          </mat-step>
+
+
+          <mat-step *ngIf="s.progression === 4" label="Rejected">
+            <ng-template matStepperIcon="edit"><mat-icon>clear</mat-icon></ng-template>
+          
+            <div>
+              <button (click)="goBack(stepper)" mat-button matStepperPrevious class="button">Back</button>
+            <select id="verdict" style="margin-right: 10px" [(ngModel)]="reject" [formControl]="verdict">
+                <option [value]=3>Accept</option>
+                <option [value]=4>Reject</option>
+            </select>
+              <button mat-button class="button" (click)="saveAppProgress(verdict.value!, s.id);">Save</button></div>
+          </mat-step>
+
       </mat-horizontal-stepper>   
       <div style="clear:both;"></div>
     </div>
