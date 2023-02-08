@@ -1,7 +1,7 @@
 <app-student-top-menu-bar></app-student-top-menu-bar>
 <!-- /view-matches page -->
 
-<h1 class="header">APPLIED MATCHES</h1>
+<h1 class="header">APPLIED RESEARCHES</h1>
 
 <ul style="list-style: none;">
     <li *ngFor="let r of research">
@@ -11,21 +11,25 @@
               <b>Current Progress:</b><br>
               <mat-horizontal-stepper #stepper class="stepper">
 
+                <!-- icons for each step (a checkmark) -->
                 <ng-template matStepperIcon="edit">
                   <mat-icon>done</mat-icon>
                 </ng-template>
 
-                <mat-step label="Applied" state="isDone"></mat-step>
+                <mat-step label="Applied"></mat-step>
                 <mat-step label="Received"></mat-step>
                 <mat-step label="In Review"></mat-step>
-                <mat-step [state]="state" label="Verdict"></mat-step>
-                
+                <mat-step *ngIf="r.progression < 3" label="Verdict"></mat-step>
+                <mat-step *ngIf="r.progression === 3" label="Accepted!">
+                  <ng-template matStepperIcon="edit"><mat-icon>sentiment_satisfied_alt</mat-icon></ng-template></mat-step>
+                <mat-step *ngIf="r.progression === 4" label="Rejected">
+                  <ng-template matStepperIcon="edit"><mat-icon>clear</mat-icon></ng-template></mat-step>
               </mat-horizontal-stepper>
 
           </div>
 
             <div class="left-container">
-              <p><b>{{r.name}}</b><br>
+              <p><a class="link" (click)="goToViewResearchPage(r.id)">{{r.name}}</a><br>
               <span class="link" (click)="goToProfile(r.faculty_Id);">{{r.faculty_FirstName}} {{r.faculty_LastName}}</span><br>
               {{r.address}} <br><br>
               <b>Description:</b> {{r.description}}<br><br>

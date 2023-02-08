@@ -36,14 +36,28 @@ export class ServiceDispatcher{
     return this.http.post<any>(url, s);
   }
 
+  public editStudentProfile(s : StudentModel): Observable<any> {
+    const url = 'https://localhost:44390/api/Student/editStudent';
+    return this.http.put<any>(url, s);
+  }
   public createFacultyProfile(f : FacultyModel): Observable<any> {   
     const url = 'https://localhost:44390/api/Faculty/createFaculty';
     return this.http.post<any>(url, f);
   }
 
+  public editFacultyProfile(f : FacultyModel): Observable<any> {   
+    const url = 'https://localhost:44390/api/Faculty/editFaculty';
+    return this.http.put<any>(url, f);
+  }
+
   public createResearch(r : ResearchModel): Observable<any> {
     const url = 'https://localhost:44390/api/Research/createResearch';
     return this.http.post<any>(url, r);
+  }
+
+  public editResearch(r : ResearchModel): Observable<any> {
+    const url = 'https://localhost:44390/api/Research/editResearch';
+    return this.http.put<any>(url, r);
   }
 
   public getStudent(student_id : string): Observable<any> {

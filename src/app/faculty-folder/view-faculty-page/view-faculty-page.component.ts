@@ -16,10 +16,12 @@ export class ViewFacultyPageComponent implements OnInit {
   splitAboutMe: any;
   splitTitle: any;
   psuID: string;
+  fpsuID: string;
 
   constructor(private router: Router, public serviceDispatcher: ServiceDispatcher, private route: ActivatedRoute) {
     this.route.queryParams.subscribe(params => {
       this.psuID = params["psuID"];
+      this.fpsuID = params["facultyPSUID"];
     });
    }
 

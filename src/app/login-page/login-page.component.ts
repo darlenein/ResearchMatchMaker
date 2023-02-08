@@ -16,12 +16,22 @@ export class LoginPageComponent implements OnInit {
   }
 
   goToCreateFacultyPage() {
-    this.router.navigate(['/sso-page']);
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        "isStudent": false
+      }
+    };
+    this.router.navigate(['/sso-page'], navigationExtras);
     //this.router.navigate(['/create-faculty-page']);
   }
 
   goToCreateStudentPage() {
-    this.router.navigate(['/sso-page']);
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        "isStudent": true
+      }
+    };
+    this.router.navigate(['/sso-page'], navigationExtras);
     //this.router.navigate(['/create-student-page']);
   }
 

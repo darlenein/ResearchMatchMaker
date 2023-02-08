@@ -1,4 +1,4 @@
-import { Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Component, OnInit, QueryList, ViewChild, ViewChildren, ViewEncapsulation } from '@angular/core';
 import { ResearchModel } from 'src/app/models/research.model';
 import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
@@ -20,6 +20,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class MatchPageComponent implements OnInit {
 
+  
   @ViewChildren('stepper') steppers:QueryList<MatStepper>;
   completed: boolean = false;
   state: string;
@@ -57,10 +58,10 @@ export class MatchPageComponent implements OnInit {
   updateProgress(researches : ResearchModel[]) {
     let num = 0;
     this.steppers.forEach(stepper => {
+      // go through every step and check mark it 
       for(let i = 0; i < researches[num].progression; i++) {
-        stepper.selectedIndex = researches[i].progression;
+        stepper.selectedIndex = i+1;
       }
-      
       num++;
     });
   }
@@ -123,7 +124,16 @@ goToProfile(id:string){
     }
   };
   this.router.navigate(['/view-faculty-profile'], navigationExtras);
-  //this.router.navigate(['']);
 }
+
+  // --------------------------view research page------------------------
+  goToViewResearchPage(id: number){
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        "researchID": id,
+      }
+    };
+    this.router.navigate(['/student-view-research-page'], navigationExtras)
+  }
   
 }

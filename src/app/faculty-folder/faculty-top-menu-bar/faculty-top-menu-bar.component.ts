@@ -22,7 +22,8 @@ export class FacultyTopMenuBarComponent implements OnInit {
   goToProfileViewPage() {
     let navigationExtras: NavigationExtras = {
       queryParams: {
-        "psuID": this.psuID
+        "psuID": this.psuID,
+        "facultyPSUID": this.psuID
       }
     };
     this.router.navigate(['/view-faculty-profile'], navigationExtras);

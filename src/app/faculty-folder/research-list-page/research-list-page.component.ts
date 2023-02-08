@@ -35,6 +35,7 @@ export class ResearchListPageComponent implements OnInit {
   scienceItems: any[];
   nursingItems: any[];
 
+  psuID: string;
   filteredItems: string[] = [];
   filteredResearch: ResearchModel[];
   searchFilteredResearch: ResearchModel[];
@@ -47,7 +48,7 @@ export class ResearchListPageComponent implements OnInit {
 
   constructor(private router: Router, public serviceDispatcher: ServiceDispatcher, private route: ActivatedRoute) {
     this.route.queryParams.subscribe(params => {
-      // this.fm.psuID = params["psuID"]; (do not use)
+      this.psuID = params["psuID"];
     });
    }
 
@@ -94,7 +95,8 @@ export class ResearchListPageComponent implements OnInit {
   goToProfile(id:string){
     let navigationExtras: NavigationExtras = {
       queryParams: {
-        "psuID": id
+        "psuID": this.psuID,
+        "facultyPSUID": id
       }
     };
     this.router.navigate(['/view-faculty-profile'], navigationExtras);
