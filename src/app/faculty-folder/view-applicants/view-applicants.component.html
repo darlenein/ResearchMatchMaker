@@ -8,8 +8,8 @@
         <div class="container">
 
           Current Progress of Applicant: 
-          <span class="link" (click)="goToProfile(s.id);">{{s.firstName}} {{s.lastName}}</span><br><br>
-          <b>Graduation Date:</b> {{s.graduationMonth}} {{s.graduationYear}}<br>
+          <span class="link" (click)="goToProfile(s.student_Id);">{{s.first_Name}} {{s.last_Name}}</span><br><br>
+          <b>Graduation Date:</b> {{s.graduation_Month}} {{s.graduation_Year}}<br>
           <b>Major:</b> {{s.major}}<br>
           <b>GPA:</b> {{s.gpa}} <br>
           <b>Skills: </b> {{s.skillsWithComma}} <br>
@@ -18,33 +18,33 @@
           <mat-horizontal-stepper [linear]="false" class="stepper" #stepper>
           <mat-step label="Applied"><div>
           <button mat-button matStepperNext class="button">Next Step: Recieved</button>
-          <button mat-button class="button" (click)="saveAppProgress(0, s.id)">Save</button>
+          <button mat-button class="button" (click)="saveAppProgress(0, s.student_Id)">Save</button>
           </div></mat-step>
 
           <mat-step label="Received"><div>
           <button (click)="goBack(stepper)" mat-button matStepperPrevious class="button">Back</button>
           <button mat-button matStepperNext class="button">Next Step: Review</button>
-          <button mat-button class="button" (click)="saveAppProgress(1, s.id)">Save</button>
+          <button mat-button class="button" (click)="saveAppProgress(1, s.student_Id)">Save</button>
           </div></mat-step>
       
           <mat-step label="In Review"><div>
           <button (click)="goBack(stepper)" mat-button matStepperPrevious class="button">Back</button>
           <button mat-button matStepperNext class="button">Next Step: Verdict</button>
-          <button mat-button class="button" (click)="saveAppProgress(2, s.id);">Save</button>
+          <button mat-button class="button" (click)="saveAppProgress(2, s.student_Id);">Save</button>
           </div></mat-step>
       
       <!-- <mat-step [completed]="completed" [state]="state" label="Verdict"> -->
-          <mat-step *ngIf="s.progression < 3" label="Verdict">
+          <mat-step *ngIf="s.progress_Bar < 3" label="Verdict">
           <div>
             <button (click)="goBack(stepper)" mat-button matStepperPrevious class="button">Back</button>
           <select id="verdict" style="margin-right: 10px" [formControl]="verdict">
               <option [value]=3>Accept</option>
               <option [value]=4>Reject</option>
           </select>
-            <button mat-button class="button" (click)="saveAppProgress(verdict.value!, s.id);">Save</button></div>
+            <button mat-button class="button" (click)="saveAppProgress(verdict.value!, s.student_Id);">Save</button></div>
           </mat-step>
 
-          <mat-step *ngIf="s.progression === 3" label="Accepted!">
+          <mat-step *ngIf="s.progress_Bar === 3" label="Accepted!">
             <ng-template matStepperIcon="edit"><mat-icon>sentiment_satisfied_alt</mat-icon></ng-template>
             <div>
               <button (click)="goBack(stepper)" mat-button matStepperPrevious class="button">Back</button>
@@ -52,11 +52,11 @@
                 <option [value]=3>Accept</option>
                 <option [value]=4>Reject</option>
             </select>
-              <button mat-button class="button" (click)="saveAppProgress(verdict.value!, s.id);">Save</button></div>
+              <button mat-button class="button" (click)="saveAppProgress(verdict.value!, s.student_Id);">Save</button></div>
           </mat-step>
 
 
-          <mat-step *ngIf="s.progression === 4" label="Rejected">
+          <mat-step *ngIf="s.progress_Bar === 4" label="Rejected">
             <ng-template matStepperIcon="edit"><mat-icon>clear</mat-icon></ng-template>
           
             <div>
@@ -65,7 +65,7 @@
                 <option [value]=3>Accept</option>
                 <option [value]=4>Reject</option>
             </select>
-              <button mat-button class="button" (click)="saveAppProgress(verdict.value!, s.id);">Save</button></div>
+              <button mat-button class="button" (click)="saveAppProgress(verdict.value!, s.student_Id);">Save</button></div>
           </mat-step>
 
       </mat-horizontal-stepper>   

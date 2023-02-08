@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { StudentModel } from 'src/app/models/student.model';
 import { ServiceDispatcher } from '../../ServiceDispatcher';
 
 @Component({
@@ -10,7 +11,7 @@ import { ServiceDispatcher } from '../../ServiceDispatcher';
 })
 export class ViewStudentPageComponent implements OnInit {
 
-  student: any; 
+  student = new StudentModel();
   splitSkills: any;
   splitResearchInterest: any;
   psuID: string;
@@ -31,7 +32,7 @@ export class ViewStudentPageComponent implements OnInit {
     this.serviceDispatcher.getStudent('dxi5017').subscribe(response => {
       this.student = response
       this.splitSkills = this.separateBySemicolon(this.student.skills);
-      this.splitResearchInterest = this.separateBySemicolon(this.student.researchInterest);
+      this.splitResearchInterest = this.separateBySemicolon(this.student.research_Interest);
     });
   }
 

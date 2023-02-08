@@ -48,15 +48,15 @@ export class EditStudentProfilePageComponent implements OnInit {
   ngOnInit(): void {
     this.serviceDispatcher.getStudent(this.psuID).subscribe(response => {
       this.student = response
-      this.firstName = new FormControl(this.student.firstName);
-      this.lastName = new FormControl(this.student.lastName);
+      this.firstName = new FormControl(this.student.first_Name);
+      this.lastName = new FormControl(this.student.last_Name);
       this.email = new FormControl(this.student.email); 
       this.gpa = new FormControl(this.student.gpa);
       this.major = new FormControl(this.student.major);
       this.minor = new FormControl(this.student.minor);
       this.location = new FormControl(this.student.location);
-      this.gradMonth = new FormControl(this.student.graduationMonth);
-      this.gradYear = new FormControl(this.student.graduationYear);
+      this.gradMonth = new FormControl(this.student.graduation_Month);
+      this.gradYear = new FormControl(this.student.graduation_Year);
       this.skills = new FormControl(this.student.skills);
       this.link1 = new FormControl(this.student.link1);
       this.link2 = new FormControl(this.student.link2);
@@ -64,8 +64,8 @@ export class EditStudentProfilePageComponent implements OnInit {
       this.paid = new FormControl(this.student.preferPaid);
       this.nonpaid = new FormControl(this.student.preferNonpaid);
       this.credit = new FormControl(this.student.preferCredit);
-      this.interest = new FormControl(this.student.researchInterest);
-      this.projects = new FormControl(this.student.researchProject);
+      this.interest = new FormControl(this.student.research_Interest);
+      this.projects = new FormControl(this.student.research_Project);
     });
   }
   engineeringItems: string[] = [ "Computer", "Chemical", "Electrical", "Mechanical", "Software"];
@@ -86,15 +86,15 @@ export class EditStudentProfilePageComponent implements OnInit {
 
   goToProfileViewPage() {
     let sd = new StudentModel();
-    sd.id = this.psuID;
-    sd.firstName = this.firstName.value!;
-    sd.lastName = this.lastName.value!;
+    sd.student_Id = this.psuID;
+    sd.first_Name = this.firstName.value!;
+    sd.last_Name = this.lastName.value!;
     sd.email = this.email.value!;
     sd.gpa = Number(this.gpa.value!);
     sd.major = this.major.value!;
     sd.minor = this.minor.value!;
-    sd.graduationMonth = this.gradMonth.value!;
-    sd.graduationYear = this.gradYear.value!;
+    sd.graduation_Month = this.gradMonth.value!;
+    sd.graduation_Year = this.gradYear.value!;
     sd.preferLocation = this.location.value!;
     sd.skills = this.skills.value!;
     sd.link1 = this.link1.value!;
@@ -118,8 +118,8 @@ export class EditStudentProfilePageComponent implements OnInit {
     else {
       sd.preferCredit = false;
     }
-    sd.researchInterest = this.interest.value!;
-    sd.researchProject = this.projects.value!;
+    sd.research_Interest = this.interest.value!;
+    sd.research_Project = this.projects.value!;
     this.serviceDispatcher.editStudentProfile(sd).subscribe(response => { });
 
     let navigationExtras: NavigationExtras = {

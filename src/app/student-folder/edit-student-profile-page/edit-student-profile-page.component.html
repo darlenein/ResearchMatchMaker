@@ -13,20 +13,16 @@
         <br><br>
 
         <label type="first_name" for = "first_name">First Name</label>
-        <input type="text" id="first_name"  size="50" value = {{student.firstName}} [formControl]="firstName" /> 
+        <input type="text" id="first_name"  size="50" value = {{student.first_Name}} [formControl]="firstName" /> 
         <br> <br>
 
         <label type="last_name" for = "last_name">Last Name</label>
-        <input type="text" id="last_name"  value = {{student.lastName}} autocomplete="off" size="50" [formControl]="lastName"/> 
+        <input type="text" id="last_name"  value = {{student.last_Name}} autocomplete="off" size="50" [formControl]="lastName"/> 
         <br> <br>
 
         <label for = "email">Email</label>
         <input type="text" id="email" placeholder="Enter PSU Email" size="50" [formControl]="email">
         <br> <br>
-
-        <label for = "phone">Phone Number</label>
-        <input type="text" id="phone" placeholder="Enter Phone Number" size="50" [formControl]="phone">
-        <br><br>
 
         <label for = "gpa">GPA</label>
         <input type="text" id="gpa" placeholder="Enter GPA" size="50" [formControl]="gpa">

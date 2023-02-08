@@ -87,15 +87,15 @@ export class CreateStudentPageComponent implements OnInit {
 
   goToStudentHomePage() {
     let sd = new StudentModel();
-    sd.id = this.psuID;
-    sd.firstName = this.firstName.value!;
-    sd.lastName = this.lastName.value!;
+    sd.student_Id = this.psuID;
+    sd.first_Name = this.firstName.value!;
+    sd.last_Name = this.lastName.value!;
     sd.email = this.email.value!;
     sd.gpa = Number(this.gpa.value!);
     sd.major = this.major.value!;
     sd.minor = this.minor.value!;
-    sd.graduationMonth = this.gradMonth.value!;
-    sd.graduationYear = this.gradYear.value!;
+    sd.graduation_Month = this.gradMonth.value!;
+    sd.graduation_Year = this.gradYear.value!;
     sd.preferLocation = this.location.value!;
     sd.skills = this.skills.value!;
     sd.link1 = this.link1.value!;
@@ -119,8 +119,8 @@ export class CreateStudentPageComponent implements OnInit {
     else {
       sd.preferCredit = false;
     }
-    sd.researchInterest = this.interest.value!;
-    sd.researchProject = this.projects.value!;
+    sd.research_Interest = this.interest.value!;
+    sd.research_Project = this.projects.value!;
     //this.serviceDispatcher.createStudentProfile(sd).subscribe(response => { });
 
     let navigationExtras: NavigationExtras = {

@@ -28,7 +28,7 @@ export class OpportunityBoardPageComponent implements OnInit {
   status = new FormControl('');
   incentive = new FormControl('');
   location = new FormControl('');
-  departments: DepartmentModel[];
+  departments: DepartmentModel[] = [];
   toggle = [false];
   engineeringItems: any[];
   politicalScienceItems: any[];
@@ -67,12 +67,12 @@ export class OpportunityBoardPageComponent implements OnInit {
     // get all departments
     this.serviceDispatcher.getAllDepartments().subscribe(response => { 
       this.departments = response;
-      this.engineeringItems = this.getSubDepts(this.departments[0].id);
-      this.politicalScienceItems = this.getSubDepts(this.departments[1].id);
-      this.humanitiesSocialScienceItems = this.getSubDepts(this.departments[2].id);
-      this.businessItems = this.getSubDepts(this.departments[3].id);
-      this.scienceItems = this.getSubDepts(this.departments[4].id);
-      this.nursingItems = this.getSubDepts(this.departments[5].id);
+      this.engineeringItems = this.getSubDepts(this.departments[0].department_id);
+      this.politicalScienceItems = this.getSubDepts(this.departments[1].department_id);
+      this.humanitiesSocialScienceItems = this.getSubDepts(this.departments[2].department_id);
+      this.businessItems = this.getSubDepts(this.departments[3].department_id);
+      this.scienceItems = this.getSubDepts(this.departments[4].department_id);
+      this.nursingItems = this.getSubDepts(this.departments[5].department_id);
     });
 
     this.serviceDispatcher.getAllSortedResearchByStudent(this.psuID).subscribe(response => {
@@ -92,16 +92,6 @@ export class OpportunityBoardPageComponent implements OnInit {
       research.splitRequiredSkills = research.required_Skills.replace(/;/g, ',');
       research.splitEncouragedSkills = research.encouraged_Skills.replace(/;/g, ',');
     });
-  }
-
-  getSubDeptsByResearchID(id:number): any{
-    let subdepartments: any[] = [];
-    this.serviceDispatcher.getAllSubdeptByResearchId(id).subscribe(items => {
-      items.map((item: any) => {
-        subdepartments.push(item);
-      });
-    });
-    return subdepartments;
   }
 
   getSubDepts(id:number): any{

@@ -11,13 +11,13 @@
             
             <div class="left-container">
                 <b><a class="link" style="font-size: 24px !important;" (click)="goToViewResearchPage(researchPage);">{{r.name}}</a></b>
-                <br><b>{{r.faculty_FirstName}} {{r.faculty_LastName}}</b><br>
+                <br><b>{{ r.first_Name }} {{ r.last_Name }}</b><br>
                 <b>{{r.address}}</b><br><br>
                 <b>Description:</b> {{r.description}}<br><br>
                 <b>Required Skills:</b> {{r.required_Skills}}<br>
                 <b>Encouraged Skills:</b> {{r.encouraged_Skills}}<br><br>
-                <button type="button" class="btn" (click)="editResearchPage(r.id);">Edit Research Info</button>
-                <button type="button" class="btn" (click)="viewApplicantsPage(r.id);">View Applicants</button>
+                <button type="button" class="btn" (click)="editResearchPage(r.research_Id);">Edit Research Info</button>
+                <button type="button" class="btn" (click)="viewApplicantsPage(r.research_Id);">View Applicants</button>
             </div>
 
             <div class="right-container">

@@ -10,7 +10,7 @@
 
 <div class="container">
     <h1><ins>{{research[getResearchPage()].name}}</ins></h1>
-    <h3>Posted By: <ins>{{research[num].faculty_FirstName}} {{research[num].faculty_LastName}} </ins>
+    <h3>Posted By: <ins>{{ research[num].first_Name }} {{ research[num].last_Name }} </ins>
     <br>Located At: <ins>{{research[num].address}}</ins><br>
     Status: <ins>{{showActiveStatus(research[num].active)}}</ins></h3>
 
