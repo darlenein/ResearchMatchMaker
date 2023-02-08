@@ -27,7 +27,7 @@ import { ViewResearchHomepageFacultyComponent } from './faculty-folder/view-rese
 import { ViewResearchHomepageStudentComponent } from './student-folder/student-view-research-homepage/student-view-research-homepage.component';
 
 
-import { AuthGuardService } from './services/auth-guard.service';
+import { AuthGuardService } from './services/auth-guard.service'; 
 //add , canActivate: [AuthGuardService] to path to protect component with oidc authorization
 import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
 

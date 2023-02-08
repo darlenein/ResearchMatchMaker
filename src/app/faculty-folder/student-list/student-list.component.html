@@ -1,18 +1,98 @@
 <app-faculty-top-menu-bar></app-faculty-top-menu-bar>
-<!-- ../student-list -->
 
-<ul style="list-style: none;">
-    <li *ngFor="let s of student">
-        <div class="container">
-            
-            <div class="left-container">
-                <div class="link" (click)="goToStudentProfile(s.student_Id);">{{s.first_Name}} {{s.last_Name}}</div>
-                <b>Graduation Date:</b> {{s.graduation_Month}} {{s.graduation_Year}}<br>
-                <b>Major:</b> {{s.major}}<br>
-                <b>GPA:</b> {{s.gpa}} <br><br>
-                <b>Skills:</b> <div *ngFor="let skill of s.splitSkills">{{skill}}</div>
+<!-- filters -->
+
+<div class="studentFilterContainer">
+    <div class="Lcontainer">
+        <span class="studentFilterTitle">Filter Student List</span><br><br>
+        <button type="button" class="btn" (click)="resetFilters();">Reset Filters</button><br>
+
+        <mat-nav-list>
+            <!-- GPA Filters -->
+            <mat-list-item (click)="toggle[0] = !toggle[0]">
+                <a *ngIf="!toggle[0]"><mat-icon>keyboard_arrow_right</mat-icon></a>
+                <a *ngIf="toggle[0]"><mat-icon>keyboard_arrow_down</mat-icon></a>
+                <a [ngClass]="!toggle[0] ? 'parent-filter' : 'parent-filter-bold'">GPA</a>
+            </mat-list-item>
+            <div [hidden]="!toggle[0]">
+                <!-- GPA Ascending or Descending Filters -->
+                <mat-selection-list [formControl]="GPA" (selectionChange)="GPAFilter('GPA', $event)">
+                    <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="ascending">Ascending</mat-list-option>
+                    <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="descending">Descending</mat-list-option>
+                </mat-selection-list>=
             </div>
-            <div style="clear:both;"></div>
-        </div>
-    </li>
-</ul>    
+
+            <!-- Major Filters -->
+            <mat-list-item (click)="toggle[1] = !toggle[1]">
+                <a *ngIf="!toggle[1]"><mat-icon>keyboard_arrow_right</mat-icon></a>
+                <a *ngIf="toggle[1]"><mat-icon>keyboard_arrow_down</mat-icon></a>
+                <a [ngClass]="!toggle[1] ? 'parent-filter' : 'parent-filter-bold'">Major</a>
+            </mat-list-item>
+            <div [hidden]="!toggle[1]">
+                <!-- Major Filters -->
+                <mat-selection-list [formControl]="Major" (selectionChange)="MajorFilter('Major', $event)">
+                    <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="Software Engineer">Software Engineer</mat-list-option>
+                    <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="test_major">test_major</mat-list-option>
+                </mat-selection-list>=
+            </div>
+
+            <!-- Location Filters -->
+            <mat-list-item (click)="toggle[2] = !toggle[2]">
+                <a *ngIf="!toggle[2]"><mat-icon>keyboard_arrow_right</mat-icon></a>
+                <a *ngIf="toggle[2]"><mat-icon>keyboard_arrow_down</mat-icon></a>
+                <a [ngClass]="!toggle[2] ? 'parent-filter' : 'parent-filter-bold'">Location</a>
+            </mat-list-item>
+            <div [hidden]="!toggle[2]">
+                <!-- Location Filters -->
+                <mat-selection-list [formControl]="Location" (selectionChange)="LocationFilter('Location', $event)">
+                    <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="Online">Online</mat-list-option>
+                    <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="On-Campus">On-Campus</mat-list-option>
+                    <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="Both">Both</mat-list-option>
+                </mat-selection-list>=
+            </div>
+
+            <!-- Compensation Filters -->
+            <mat-list-item (click)="toggle[3] = !toggle[3]">
+                <a *ngIf="!toggle[3]"><mat-icon>keyboard_arrow_right</mat-icon></a>
+                <a *ngIf="toggle[3]"><mat-icon>keyboard_arrow_down</mat-icon></a>
+                <a [ngClass]="!toggle[3] ? 'parent-filter' : 'parent-filter-bold'">Compensation</a>
+            </mat-list-item>
+            <div [hidden]="!toggle[3]">
+                <!-- Compensation Filters -->
+                <mat-selection-list [formControl]="Location" (selectionChange)="LocationFilter('Compensation', $event)">
+                    <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="Online">Paid</mat-list-option>
+                    <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="On-Campus">Non-Paid</mat-list-option>
+                    <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="Both">Credit</mat-list-option>
+                </mat-selection-list>=
+            </div>
+   
+
+            <!-- Skills Filters -->
+  
+
+
+        </mat-nav-list>
+
+    </div>
+</div>
+
+
+<div class="C">
+    <span class="result-title">Student List</span><br>
+    <!-- ../student-list -->
+    <ul style="list-style: none;">
+        <li *ngFor="let s of student">
+            <div class="container">
+
+                <div class="left-container">
+                    <div class="link" (click)="goToStudentProfile(s.student_Id);">{{s.first_Name}} {{s.last_Name}}</div>
+                    <b>Graduation Date:</b> {{s.graduation_Month}} {{s.graduation_Year}}<br>
+                    <b>Major:</b> {{s.major}}<br>
+                    <b>GPA:</b> {{s.gpa}} <br><br>
+                    <b>Skills:</b> <div *ngFor="let skill of s.splitSkills">{{skill}}</div>
+                </div>
+                <div style="clear:both;"></div>
+            </div>
+        </li>
+    </ul>   
+</div> 
