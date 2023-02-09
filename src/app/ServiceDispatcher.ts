@@ -7,6 +7,7 @@ import { FacultyModel } from './models/faculty.model';
 import { ResearchModel } from './models/research.model';
 import { FilterModel } from './models/filter.model';
 import { StudentFilterModel } from './models/StudentFilter.model';
+import { FacultyFilterModel } from "./models/FacultyFilter.model";
 
 @Injectable({
   providedIn: 'root'
@@ -180,6 +181,17 @@ export class ServiceDispatcher{
     // find url on swagger UI
     const url = 'https://localhost:44390/api/Student/getAllStudentSorted/' + faculty_id;
     return this.http.get<any>(url);
+  }
+
+  public getFilteredAndSearchFacultyList(ff: FacultyFilterModel): Observable<any> {
+    // API call to get the results of searched faculty list 
+    const url = 'https://localhost:44390/api/Faculty/GetFilteredAndSearchFacultyList/';
+    return this.http.post<any>(url, ff);
+  }
+  public getSearchedFacultyList(keyword : string, f: FacultyModel[]): Observable<any> {
+    // API call to get the results of searched faculty list 
+    const url = 'https://localhost:44390/api/Faculty/getSearchedFacultyList/' + keyword;
+    return this.http.post<any>(url, f);
   }
 
 
