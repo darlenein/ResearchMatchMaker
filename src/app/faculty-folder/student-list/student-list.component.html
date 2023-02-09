@@ -19,7 +19,7 @@
                 <mat-selection-list [formControl]="GPA" (selectionChange)="GPAFilter('GPA', $event)">
                     <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="Ascending">Ascending</mat-list-option>
                     <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="Descending">Descending</mat-list-option>
-                </mat-selection-list>=
+                </mat-selection-list>
             </div>
 
             <!-- Major Filters -->
@@ -34,8 +34,8 @@
                 <mat-selection-list [formControl]="Major" (selectionChange)="FilterAndSearch('Major', $event)">
                     <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="Software Engineer">Software Engineer</mat-list-option>
                     <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="test_major">test_major</mat-list-option>
-                </mat-selection-list>=
-            </div>
+                </mat-selection-list>
+            <div>
 
             <!-- Location Filters -->
             <mat-list-item (click)="toggle[2] = !toggle[2]">
@@ -50,8 +50,8 @@
                     <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="Online">Online</mat-list-option>
                     <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="On-Campus">On-Campus</mat-list-option>
                     <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="Both">Both</mat-list-option>
-                </mat-selection-list>=
-            </div>
+                </mat-selection-list>
+            <div>
 
             <!-- Compensation Filters -->
             <mat-list-item (click)="toggle[3] = !toggle[3]">
@@ -65,7 +65,7 @@
                     <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="Online">Paid</mat-list-option>
                     <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="On-Campus">Non-Paid</mat-list-option>
                     <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="Both">Credit</mat-list-option>
-                </mat-selection-list>=
+                </mat-selection-list>
             </div>
    
 
@@ -73,9 +73,9 @@
   
 
 
-        </mat-nav-list>
+        <mat-nav-list>
 
-    </div>
+    <div>
 </div>
 
 
