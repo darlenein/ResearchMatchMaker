@@ -17,8 +17,8 @@
             <div [hidden]="!toggle[0]">
                 <!-- GPA Ascending or Descending Filters -->
                 <mat-selection-list [formControl]="GPA" (selectionChange)="GPAFilter('GPA', $event)">
-                    <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="ascending">Ascending</mat-list-option>
-                    <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="descending">Descending</mat-list-option>
+                    <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="Ascending">Ascending</mat-list-option>
+                    <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="Descending">Descending</mat-list-option>
                 </mat-selection-list>=
             </div>
 
@@ -55,7 +55,7 @@
             <mat-list-item (click)="toggle[3] = !toggle[3]">
                 <a *ngIf="!toggle[3]"><mat-icon>keyboard_arrow_right</mat-icon></a>
                 <a *ngIf="toggle[3]"><mat-icon>keyboard_arrow_down</mat-icon></a>
-                <a [ngClass]="!toggle[3] ? 'parent-filter' : 'parent-filter-bold'">Compensation</a>
+                <a [ngClass]="!toggle[3] ? 'parent-filter' : 'parent-filter-bold'">Incentive</a>
             </mat-list-item>
             <div [hidden]="!toggle[3]">
                 <!-- Compensation Filters -->
