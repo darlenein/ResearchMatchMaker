@@ -3,7 +3,7 @@ import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { StudentModel } from 'src/app/models/student.model';
 import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
 import { FormControl } from '@angular/forms';
-import { StudentFilterModel, StudentFilterValueModel } from 'src/app/models/filter.model';
+import { StudentFilterModel, StudentFilterValueModel } from 'src/app/models/StudentFilter.model';
 
 
 @Component({
@@ -12,26 +12,25 @@ import { StudentFilterModel, StudentFilterValueModel } from 'src/app/models/filt
   styleUrls: ['./student-list.component.css']
 })
 export class StudentListComponent implements OnInit {
-  searchTerm = new FormControl('');
-
   student: StudentModel[]; 
   splitSkills: any;
   splitResearchInterest: any;
   studentID: string;
   psuID: string;
 
+  searchTerm = new FormControl('');
   GPA = new FormControl('');
   Major = new FormControl('');
   Location = new FormControl('');
+  Incentive = new FormControl('');
 
   toggle = [false];
 
   filteredStudents: StudentModel[];
-  location: StudentModel[];
 
-  fm: StudentFilterModel = {
-    research: [],
-    filterValue: [],
+  sm: StudentFilterModel = {
+    student: [],
+    studentFilterValue: [],
     psuID: "",
     keyword: ""
   };
@@ -46,6 +45,7 @@ export class StudentListComponent implements OnInit {
     this.serviceDispatcher.getAllStudents().subscribe(response => {
       this.student = response;
       this.splitStudentsInformationBySemicolon(this.student);
+      this.filteredStudents = this.student;
     });
   }
 
@@ -78,13 +78,13 @@ export class StudentListComponent implements OnInit {
   }
 
   sortGPAAscending(){
-    this.filteredStudents = this.student.sort((a, b) => a.gpa - b.gpa);
+    this.filteredStudents = this.filteredStudents.sort((a, b) => a.gpa - b.gpa);
     return this.filteredStudents;
 
   }
 
   sortGPADescending(){
-    this.filteredStudents = this.student.sort((a, b) => b.gpa - a.gpa);
+    this.filteredStudents = this.filteredStudents.sort((a, b) => b.gpa - a.gpa);
     return this.filteredStudents;
   }
 
@@ -98,34 +98,35 @@ export class StudentListComponent implements OnInit {
         this.sortGPADescending();
       }
     }
-    //return this.filteredStudents;
+
   }
 
     // ---------------Filter and Search Function-------------------------
     FilterAndSearch(category:string, change:any){
-      let fvm = new FilterValueModel();
-      this.fm.research = this.research;
-      this.fm.keyword = this.searchTerm.value!;
+      let svm = new StudentFilterValueModel();
+      this.sm.student = this.student;
+      this.sm.keyword = this.searchTerm.value!;
   
       if (change) {
       // add checked option to filtered value array
         if(change.options[0].selected === true) {
-          fvm.categoryValue = category;
-          fvm.checkedValue = change.options[0].value;
-          this.fm.filterValue.push(fvm);
+          svm.categoryValue = category;
+          svm.checkedValue = change.options[0].value;
+          this.sm.studentFilterValue.push(svm);
         }
         else {
           // remove the checked option from filtered value array
-          this.fm.filterValue.forEach((element,index)=>{
-            if(element.checkedValue == change.options[0].value) this.fm.filterValue.splice(index,1);
+          this.sm.studentFilterValue.forEach((element,index)=>{
+            if(element.checkedValue == change.options[0].value) this.sm.studentFilterValue.splice(index,1);
           });
         }
       }
   
       // get filtered research list
-      this.serviceDispatcher.getFilteredAndSearchedResearchList(this.fm).subscribe(response => {
-        this.filteredResearch = response;
-        this.replaceInfoBySemicolon(this.filteredResearch);
+      this.serviceDispatcher.getFilteredAndSearchStudentList(this.sm).subscribe(response => {
+        this.filteredStudents = response;
+        this.splitStudentsInformationBySemicolon(this.filteredStudents);
+
       });
     }
 

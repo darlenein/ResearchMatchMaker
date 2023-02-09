@@ -158,9 +158,9 @@ export class ServiceDispatcher{
   }
 
   //Newly added below
-  public getFilteredAndSearchedStudentList(sf: StudentFilterModel): Observable<any> {
+  public getFilteredAndSearchStudentList(sf: StudentFilterModel): Observable<any> {
     // API call to get the results of searched student list 
-    const url = 'https://localhost:44390/api/Student/GetFilteredAndSearchedStudentList/';
+    const url = 'https://localhost:44390/api/Student/GetFilteredAndSearchStudentList/';
     return this.http.post<any>(url, sf);
   }
 

@@ -36,9 +36,9 @@ export class ResearchListPageComponent implements OnInit {
   nursingItems: any[];
 
   psuID: string;
-  filteredItems: string[] = [];
+  //filteredItems: string[] = [];
   filteredResearch: ResearchModel[];
-  searchFilteredResearch: ResearchModel[];
+  //searchFilteredResearch: ResearchModel[];
   fm: FilterModel = {
     research: [],
     filterValue: [],

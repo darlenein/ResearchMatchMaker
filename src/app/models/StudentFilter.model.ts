@@ -2,7 +2,7 @@ import { StudentModel } from "./student.model";
 
 export class StudentFilterModel {
     student: StudentModel[];
-    filterValue: StudentFilterValueModel[];
+    studentFilterValue: StudentFilterValueModel[];
     psuID: string;
     keyword: string;
 }

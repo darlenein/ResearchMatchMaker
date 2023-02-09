@@ -30,7 +30,7 @@
             </mat-list-item>
             <div [hidden]="!toggle[1]">
                 <!-- Major Filters -->
-                <mat-selection-list [formControl]="Major" (selectionChange)="MajorFilter('Major', $event)">
+                <mat-selection-list [formControl]="Major" (selectionChange)="FilterAndSearch('Major', $event)">
                     <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="Software Engineer">Software Engineer</mat-list-option>
                     <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="test_major">test_major</mat-list-option>
                 </mat-selection-list>=
@@ -44,7 +44,7 @@
             </mat-list-item>
             <div [hidden]="!toggle[2]">
                 <!-- Location Filters -->
-                <mat-selection-list [formControl]="Location" (selectionChange)="LocationFilter('Location', $event)">
+                <mat-selection-list [formControl]="Location" (selectionChange)="FilterAndSearch('Location', $event)">
                     <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="Online">Online</mat-list-option>
                     <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="On-Campus">On-Campus</mat-list-option>
                     <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="Both">Both</mat-list-option>
@@ -59,7 +59,7 @@
             </mat-list-item>
             <div [hidden]="!toggle[3]">
                 <!-- Compensation Filters -->
-                <mat-selection-list [formControl]="Location" (selectionChange)="LocationFilter('Compensation', $event)">
+                <mat-selection-list [formControl]="Incentive" (selectionChange)="FilterAndSearch('Incentive', $event)">
                     <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="Online">Paid</mat-list-option>
                     <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="On-Campus">Non-Paid</mat-list-option>
                     <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="Both">Credit</mat-list-option>
@@ -77,19 +77,27 @@
 </div>
 
 
+
+
 <div class="C">
     <span class="result-title">Student List</span><br>
+
+    <mat-form-field class="search-bar" appearance="fill">
+        <mat-label>Search Students By: Name, Major, Location, or Skills</mat-label>
+        <input matInput class="search-bar" [formControl]="searchTerm" (keydown.enter)="FilterAndSearch('', null);"><mat-icon matPrefix>search</mat-icon>
+      </mat-form-field>
+
     <!-- ../student-list -->
     <ul style="list-style: none;">
-        <li *ngFor="let s of student">
+        <li *ngFor="let fs of filteredStudents">
             <div class="container">
 
                 <div class="left-container">
-                    <div class="link" (click)="goToStudentProfile(s.student_Id);">{{s.first_Name}} {{s.last_Name}}</div>
-                    <b>Graduation Date:</b> {{s.graduation_Month}} {{s.graduation_Year}}<br>
-                    <b>Major:</b> {{s.major}}<br>
-                    <b>GPA:</b> {{s.gpa}} <br><br>
-                    <b>Skills:</b> <div *ngFor="let skill of s.splitSkills">{{skill}}</div>
+                    <div class="link" (click)="goToStudentProfile(fs.student_Id);">{{fs.first_Name}} {{fs.last_Name}}</div>
+                    <b>Graduation Date:</b> {{fs.graduation_Month}} {{fs.graduation_Year}}<br>
+                    <b>Major:</b> {{fs.major}}<br>
+                    <b>GPA:</b> {{fs.gpa}} <br><br>
+                    <b>Skills:</b> <div *ngFor="let skill of fs.splitSkills">{{skill}}</div>
                 </div>
                 <div style="clear:both;"></div>
             </div>
