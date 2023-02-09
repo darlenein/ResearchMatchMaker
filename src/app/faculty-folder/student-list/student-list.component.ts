@@ -3,7 +3,7 @@ import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { StudentModel } from 'src/app/models/student.model';
 import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
 import { FormControl } from '@angular/forms';
-import { StudentFilterModel, StudentFilterValueModel } from 'src/app/models/filter.model';
+import { StudentFilterModel, StudentFilterValueModel } from 'src/app/models/StudentFilter.model';
 
 
 @Component({
@@ -18,23 +18,27 @@ export class StudentListComponent implements OnInit {
   splitSkills: any;
   splitResearchInterest: any;
   studentID: string;
-  psuID: string;
 
   GPA = new FormControl('');
   Major = new FormControl('');
   Location = new FormControl('');
+  Incentive = new FormControl('');
 
   toggle = [false];
 
+  psuID: string;
   filteredStudents: StudentModel[];
   location: StudentModel[];
+  studentCopy: StudentModel[];
+  temp: StudentModel[];
 
-  fm: StudentFilterModel = {
-    research: [],
+  sm: StudentFilterModel = {
+    student: [],
     filterValue: [],
     psuID: "",
     keyword: ""
   };
+
 
   constructor(private router: Router, public serviceDispatcher: ServiceDispatcher, private route: ActivatedRoute) { 
     this.route.queryParams.subscribe(params => {
@@ -45,6 +49,7 @@ export class StudentListComponent implements OnInit {
   ngOnInit(): void {
     this.serviceDispatcher.getAllStudents().subscribe(response => {
       this.student = response;
+      this.studentCopy = this.student;
       this.splitStudentsInformationBySemicolon(this.student);
     });
   }
@@ -91,7 +96,7 @@ export class StudentListComponent implements OnInit {
   //done
   GPAFilter(category:string, change:any){
     if (change){
-      if (change.options[0].value === "Ascending"){
+      if (change.options[0].value === "ascending"){
         this.sortGPAAscending();
       } 
       else {
@@ -101,35 +106,37 @@ export class StudentListComponent implements OnInit {
     //return this.filteredStudents;
   }
 
-    // ---------------Filter and Search Function-------------------------
-    FilterAndSearch(category:string, change:any){
-      let fvm = new FilterValueModel();
-      this.fm.research = this.research;
-      this.fm.keyword = this.searchTerm.value!;
-  
-      if (change) {
-      // add checked option to filtered value array
-        if(change.options[0].selected === true) {
-          fvm.categoryValue = category;
-          fvm.checkedValue = change.options[0].value;
-          this.fm.filterValue.push(fvm);
-        }
-        else {
-          // remove the checked option from filtered value array
-          this.fm.filterValue.forEach((element,index)=>{
-            if(element.checkedValue == change.options[0].value) this.fm.filterValue.splice(index,1);
-          });
-        }
+  FilterAndSearch(category:string, change:any){
+    let svm = new StudentFilterValueModel();
+    this.sm.student = this.student;
+    this.sm.keyword = this.searchTerm.value!;
+
+    if (change) {
+    // add checked option to filtered value array
+      if(change.options[0].selected === true) {
+        svm.categoryValue = category;
+        svm.checkedValue = change.options[0].value;
+        this.sm.filterValue.push(svm);
       }
-  
-      // get filtered research list
-      this.serviceDispatcher.getFilteredAndSearchedResearchList(this.fm).subscribe(response => {
-        this.filteredResearch = response;
-        this.replaceInfoBySemicolon(this.filteredResearch);
-      });
+      else {
+        // remove the checked option from filtered value array
+        this.sm.filterValue.forEach((element,index)=>{
+          if(element.checkedValue == change.options[0].value) this.sm.filterValue.splice(index,1);
+        });
+      }
     }
 
+    // get filtered research list
+    this.serviceDispatcher.getFilteredAndSearchedStudentList(this.sm).subscribe(response => {
+      this.filteredStudents = response;
+      this.splitStudentsInformationBySemicolon(this.filteredStudents);
+    });
+  }
 
+  //done just add more
+  
+
+  
 
 
 
