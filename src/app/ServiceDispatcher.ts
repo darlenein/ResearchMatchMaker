@@ -6,6 +6,7 @@ import { ProgressModel } from './models/progress.model';
 import { FacultyModel } from './models/faculty.model';
 import { ResearchModel } from './models/research.model';
 import { FilterModel } from './models/filter.model';
+import { StudentFilterModel } from './models/StudentFilter.model';
 
 @Injectable({
   providedIn: 'root'
@@ -155,6 +156,33 @@ export class ServiceDispatcher{
     // return this.http.delete<any>(url);
     return this.http.request('delete', url, { body:p });
   }
+
+  //Newly added below
+  public getFilteredAndSearchedStudentList(sf: StudentFilterModel): Observable<any> {
+    // API call to get the results of searched student list 
+    const url = 'https://localhost:44390/api/Student/GetFilteredAndSearchedStudentList/';
+    return this.http.post<any>(url, sf);
+  }
+
+  public getFilteredStudentList(sf: StudentFilterModel): Observable<any> {
+    // API call to get the results of filtered student list 
+    const url = 'https://localhost:44390/api/Student/getFilteredStudentList/';
+    return this.http.post<any>(url, sf);
+  }
+
+  public getSearchedStudentList(keyword : string, s: StudentModel[]): Observable<any> {
+    // API call to get the results of searched student list 
+    const url = 'https://localhost:44390/api/Student/getSearchedStudentList/' + keyword;
+    return this.http.post<any>(url, s);
+  }
+
+  public getAllSortedStudentByFaculty(faculty_id : string): Observable<any> {
+    // find url on swagger UI
+    const url = 'https://localhost:44390/api/Student/getAllStudentSorted/' + faculty_id;
+    return this.http.get<any>(url);
+  }
+
+
   
 }
 
