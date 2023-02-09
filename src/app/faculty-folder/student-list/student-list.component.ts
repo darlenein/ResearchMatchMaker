@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationExtras, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { StudentModel } from 'src/app/models/student.model';
 import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
 import { FormControl } from '@angular/forms';
+import { StudentFilterModel, StudentFilterValueModel } from 'src/app/models/filter.model';
 
 
 @Component({
@@ -17,6 +18,7 @@ export class StudentListComponent implements OnInit {
   splitSkills: any;
   splitResearchInterest: any;
   studentID: string;
+  psuID: string;
 
   GPA = new FormControl('');
   Major = new FormControl('');
@@ -26,18 +28,23 @@ export class StudentListComponent implements OnInit {
 
   filteredStudents: StudentModel[];
   location: StudentModel[];
-  studentCopy: StudentModel[];
-  temp: StudentModel[];
 
+  fm: StudentFilterModel = {
+    research: [],
+    filterValue: [],
+    psuID: "",
+    keyword: ""
+  };
 
-  constructor(private router: Router, public serviceDispatcher: ServiceDispatcher) { 
-
+  constructor(private router: Router, public serviceDispatcher: ServiceDispatcher, private route: ActivatedRoute) { 
+    this.route.queryParams.subscribe(params => {
+      this.psuID = params["psuID"];
+    });
   }
 
   ngOnInit(): void {
     this.serviceDispatcher.getAllStudents().subscribe(response => {
       this.student = response;
-      this.studentCopy = this.student;
       this.splitStudentsInformationBySemicolon(this.student);
     });
   }
@@ -84,7 +91,7 @@ export class StudentListComponent implements OnInit {
   //done
   GPAFilter(category:string, change:any){
     if (change){
-      if (change.options[0].value === "ascending"){
+      if (change.options[0].value === "Ascending"){
         this.sortGPAAscending();
       } 
       else {
@@ -94,85 +101,35 @@ export class StudentListComponent implements OnInit {
     //return this.filteredStudents;
   }
 
-  //done just add more
-  filterMajor(change:any){
-
-
-    switch (change.options[0].value){
-      
-      case 'Software Engineer':
-        
-
-        for (let i=0; i<this.student.length; i++){
-          while (this.student[i].major != "Software Engineer"){
-            this.student.splice(i, 1);
-          }
-        }
-      
-      break;
-        
-      case 'test_major':
-        for (let i=0; i<this.student.length; i++){
-          while (this.student[i].major != "test_major"){
-            this.student.splice(i,1);
-          }
-          this.filteredStudents.concat(this.temp);
-        }
-        //this.temp = this.student.concat(this.student[0]);
-
-        
-        
-      break;
-      
-      }
-
-  }
-
-  //done
-  MajorFilter(category:string, change:any){
-    if (change){
-      this.filterMajor(change);
-    }
-  }
-
-  //done
-  sortLocation(change:any){
-    
-    switch (change.options[0].value){
-      
-      case 'Online':
-        for (let i=0; i<this.student.length; i++){
-          while (this.student[i].preferLocation != "Online"){
-            this.student.splice(i,1);
-          }
-        }
-      break;
-
-      case 'On-Campus':
-        for (let i=0; i<this.student.length; i++){
-          while (this.student[i].preferLocation != "On-Campus"){
-            this.student.splice(i,1);
-          }
-        }
-      break;
-
-      case 'Both':
-        for (let i=0; i<this.student.length; i++){
-          while (this.student[i].preferLocation != "Both"){
-            this.student.splice(i,1);
-          }
-        }
-      break;
-      }
-  }
-
-  LocationFilter(category:string, change:any){
-    if (change){
-      this.sortLocation(change);
-    }
-  }
-
+    // ---------------Filter and Search Function-------------------------
+    FilterAndSearch(category:string, change:any){
+      let fvm = new FilterValueModel();
+      this.fm.research = this.research;
+      this.fm.keyword = this.searchTerm.value!;
   
+      if (change) {
+      // add checked option to filtered value array
+        if(change.options[0].selected === true) {
+          fvm.categoryValue = category;
+          fvm.checkedValue = change.options[0].value;
+          this.fm.filterValue.push(fvm);
+        }
+        else {
+          // remove the checked option from filtered value array
+          this.fm.filterValue.forEach((element,index)=>{
+            if(element.checkedValue == change.options[0].value) this.fm.filterValue.splice(index,1);
+          });
+        }
+      }
+  
+      // get filtered research list
+      this.serviceDispatcher.getFilteredAndSearchedResearchList(this.fm).subscribe(response => {
+        this.filteredResearch = response;
+        this.replaceInfoBySemicolon(this.filteredResearch);
+      });
+    }
+
+
 
 
 
