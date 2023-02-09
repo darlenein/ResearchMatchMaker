@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AuthCallbackComponent } from './auth-callback.component';
+import { LandingPageComponent } from './landing-page.component';
 
-describe('AuthCallbackComponent', () => {
-  let component: AuthCallbackComponent;
-  let fixture: ComponentFixture<AuthCallbackComponent>;
+describe('LandingPageComponent', () => {
+  let component: LandingPageComponent;
+  let fixture: ComponentFixture<LandingPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AuthCallbackComponent ]
+      declarations: [ LandingPageComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AuthCallbackComponent);
+    fixture = TestBed.createComponent(LandingPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

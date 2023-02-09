@@ -25,14 +25,12 @@ import { ViewResearchPageComponent } from './faculty-folder/view-research-page/v
 import { ViewStudentResearchPageComponent } from './student-folder/student-view-research-page/student-view-research-page.component';
 import { ViewResearchHomepageFacultyComponent } from './faculty-folder/view-research-homepage/view-research-homepage.component';
 import { ViewResearchHomepageStudentComponent } from './student-folder/student-view-research-homepage/student-view-research-homepage.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 
-import { AuthGuardService } from './services/auth-guard.service';
-//add , canActivate: [AuthGuardService] to path to protect component with oidc authorization
-import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
 
 export const routes: Routes = [
-  { path: '', component: LoginPageComponent},
+  { path: '', component: FacultyListComponent},
   { path: 'view-matches', component: MatchPageComponent},
   { path: 'opp-board', component: OpportunityBoardPageComponent},
   { path: 'view-faculty-profile', component: ViewFacultyPageComponent},
@@ -54,7 +52,6 @@ export const routes: Routes = [
   { path: 'student-view-faculty', component: StudentViewFacultyPageComponent},
   { path: 'faculty-list', component: FacultyListComponent},
   { path: 'sso-page', component: SSOPageComponent},
-  { path: 'auth-callback', component: AuthCallbackComponent},
   { path: 'view-research-page', component: ViewResearchPageComponent},
   { path: 'student-view-research-page', component: ViewStudentResearchPageComponent},
   { path: 'view-research-homepage', component: ViewResearchHomepageFacultyComponent},

@@ -49,10 +49,8 @@ import { CancelResearchDialogComponent } from './student-folder/cancel-research-
 import { ViewStudentResearchPageComponent } from './student-folder/student-view-research-page/student-view-research-page.component';
 import { ViewResearchHomepageFacultyComponent } from './faculty-folder/view-research-homepage/view-research-homepage.component';
 import { ViewResearchHomepageStudentComponent } from './student-folder/student-view-research-homepage/student-view-research-homepage.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
-import { AuthGuardService } from './services/auth-guard.service';
-import { AuthService } from './services/auth.service';
-import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +84,8 @@ import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
     CancelResearchDialogComponent,
     ViewStudentResearchPageComponent,
     ViewResearchHomepageFacultyComponent,
-    ViewResearchHomepageStudentComponent
+    ViewResearchHomepageStudentComponent,
+    LandingPageComponent
     
   ],
   imports: [
@@ -113,8 +112,7 @@ import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
     MatDialogModule,
   ],
   providers: 
-  [ AuthGuardService,
-    AuthService,
+  [ 
   ],
   bootstrap: [AppComponent]
 })
