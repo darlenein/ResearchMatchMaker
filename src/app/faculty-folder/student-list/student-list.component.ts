@@ -98,7 +98,6 @@ export class StudentListComponent implements OnInit {
         this.sortGPADescending();
       }
     }
-
   }
 
     // ---------------Filter and Search Function-------------------------

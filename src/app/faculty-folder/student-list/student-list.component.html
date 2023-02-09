@@ -31,6 +31,7 @@
             <div [hidden]="!toggle[1]">
                 <!-- Major Filters -->
                 <mat-selection-list [formControl]="Major" (selectionChange)="FilterAndSearch('Major', $event)">
+                <mat-selection-list [formControl]="Major" (selectionChange)="FilterAndSearch('Major', $event)">
                     <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="Software Engineer">Software Engineer</mat-list-option>
                     <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="test_major">test_major</mat-list-option>
                 </mat-selection-list>=
@@ -44,6 +45,7 @@
             </mat-list-item>
             <div [hidden]="!toggle[2]">
                 <!-- Location Filters -->
+                <mat-selection-list [formControl]="Location" (selectionChange)="FilterAndSearch('Location', $event)">
                 <mat-selection-list [formControl]="Location" (selectionChange)="FilterAndSearch('Location', $event)">
                     <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="Online">Online</mat-list-option>
                     <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="On-Campus">On-Campus</mat-list-option>
