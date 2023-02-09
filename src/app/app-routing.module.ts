@@ -32,7 +32,7 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
 
 export const routes: Routes = [
-  { path: '', component: LoginPageComponent},
+  { path: '', component: FacultyListComponent},
   { path: 'view-matches', component: MatchPageComponent},
   { path: 'opp-board', component: OpportunityBoardPageComponent},
   { path: 'view-faculty-profile', component: ViewFacultyPageComponent},

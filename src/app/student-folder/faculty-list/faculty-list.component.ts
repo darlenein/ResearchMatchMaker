@@ -4,6 +4,7 @@ import { FacultyModel } from 'src/app/models/faculty.model';
 import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
 import { FormControl } from '@angular/forms';
 import { FacultyFilterModel, FacultyFilterValueModel } from 'src/app/models/FacultyFilter.model';
+
 @Component({
   selector: 'app-faculty-list',
   templateUrl: './faculty-list.component.html',
@@ -18,21 +19,21 @@ export class FacultyListComponent implements OnInit {
 
 
   searchTerm = new FormControl('');
-  GPA = new FormControl('');
-  Major = new FormControl('');
-  Location = new FormControl('');
-  Incentive = new FormControl('');
+  // GPA = new FormControl('');
+  // Major = new FormControl('');
+  // Location = new FormControl('');
+  // Incentive = new FormControl('');
 
   toggle = [false];
 
-  filteredStudents: FacultyModel[];
+  filteredFaculty: FacultyModel[];
 
-  fm: FacultyFilterModel = {
-    faculty: [],
-    facultyFilterValue: [],
-    psuID: "",
-    keyword: ""
-  };
+   fm: FacultyFilterModel = {
+     faculty: [],
+     facultyFilterValue: [],
+     psuID: "",
+     keyword: ""
+   };
   constructor(private router: Router, public serviceDispatcher: ServiceDispatcher, private route:ActivatedRoute) { 
     this.route.queryParams.subscribe(params => {
       this.psuID = params["psuID"];
@@ -75,29 +76,29 @@ export class FacultyListComponent implements OnInit {
 
   // ---------------Filter and Search Function-------------------------
   FilterAndSearch(category:string, change:any){
-    let fvm = new FacultyFilterValueModel();
-    this.fm.faculty = this.faculty;
-    this.fm.keyword = this.searchTerm.value!;
+     let fvm = new FacultyFilterValueModel();
+     this.fm.faculty = this.faculty;
+     this.fm.keyword = this.searchTerm.value!;
 
-    if (change) {
+   //  if (change) {
     // add checked option to filtered value array
-      if(change.options[0].selected === true) {
-        fvm.categoryValue = category;
-        fvm.checkedValue = change.options[0].value;
-        this.fm.facultyFilterValue.push(fvm);
-      }
-      else {
-        // remove the checked option from filtered value array
-        this.fm.facultyFilterValue.forEach((element,index)=>{
-          if(element.checkedValue == change.options[0].value) this.fm.facultyFilterValue.splice(index,1);
-        });
-      }
-    }
+  //  //   if(change.options[0].selected === true) {
+  //       fvm.categoryValue = category;
+  //       fvm.checkedValue = change.options[0].value;
+  //       this.fm.studentFilterValue.push(fvm);
+  //     }
+  //     else {
+  //       // remove the checked option from filtered value array
+  //       this.fm.studentFilterValue.forEach((element,index)=>{
+  //         if(element.checkedValue == change.options[0].value) this.fm.studentFilterValue.splice(index,1);
+  //       });
+  //     }
+  //  }
 
     // get filtered research list
     this.serviceDispatcher.getFilteredAndSearchFacultyList(this.fm).subscribe(response => {
-      this.filteredStudents = response;
-      this.splitInformationBySemicolon(this.filteredStudents);
+      this.filteredFaculty = response;
+      this.splitInformationBySemicolon(this.filteredFaculty);
 
     });
   }
