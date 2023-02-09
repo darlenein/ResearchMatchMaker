@@ -69,15 +69,15 @@ export class EditFacultyProfilePageComponent implements OnInit {
 
       //console.log(this.dept.value);
   let fd = new FacultyModel();
-  fd.id = this.psuID;
-  fd.firstName = this.firstName.value!;
-  fd.lastName = this.lastName.value!;
+  fd.faculty_Id = this.psuID;
+  fd.first_Name = this.firstName.value!;
+  fd.last_Name = this.lastName.value!;
   fd.email = this.email.value!;
   fd.title = this.title.value!;
   fd.office = this.office.value!;
   fd.phone = this.phone.value!;
-  fd.aboutMe = this.about.value!;
-  fd.researchInterest  = this.research.value!;
+  fd.about_Me = this.about.value!;
+  fd.research_Interest  = this.research.value!;
   fd.link1 = this.link1.value!;
   fd.link2 = this.link2.value!;
   fd.link3 = this.link3.value!;

@@ -85,8 +85,8 @@
             <div class="container">
 
                 <div class="left-container">
-                    <div class="link" (click)="goToStudentProfile(s.id);">{{s.firstName}} {{s.lastName}}</div>
-                    <b>Graduation Date:</b> {{s.graduationMonth}} {{s.graduationYear}}<br>
+                    <div class="link" (click)="goToStudentProfile(s.student_Id);">{{s.first_Name}} {{s.last_Name}}</div>
+                    <b>Graduation Date:</b> {{s.graduation_Month}} {{s.graduation_Year}}<br>
                     <b>Major:</b> {{s.major}}<br>
                     <b>GPA:</b> {{s.gpa}} <br><br>
                     <b>Skills:</b> <div *ngFor="let skill of s.splitSkills">{{skill}}</div>

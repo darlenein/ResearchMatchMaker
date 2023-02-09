@@ -30,14 +30,17 @@ export class FacultyListComponent implements OnInit {
   }
 
   separateBySemicolon(rawText: String) {
-    let text = rawText.split(';');
+    let text: string[] = [];
+    if(rawText){
+      text = rawText.split(';');
+    }
     return text;
   }
 
   splitInformationBySemicolon(facultyArray: FacultyModel[]) {
     facultyArray.forEach(faculty => {
-      faculty.splitAbout = this.separateBySemicolon(faculty.aboutMe);
-      faculty.splitResearchInterest = this.separateBySemicolon(faculty.researchInterest);
+      faculty.splitAbout = this.separateBySemicolon(faculty.about_Me);
+      faculty.splitResearchInterest = this.separateBySemicolon(faculty.research_Interest);
     });
   }
 

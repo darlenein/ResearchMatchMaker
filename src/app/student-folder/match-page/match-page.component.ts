@@ -58,8 +58,9 @@ export class MatchPageComponent implements OnInit {
   updateProgress(researches : ResearchModel[]) {
     let num = 0;
     this.steppers.forEach(stepper => {
+      debugger;
       // go through every step and check mark it 
-      for(let i = 0; i < researches[num].progression; i++) {
+      for(let i = 0; i < researches[num].progress_Bar; i++) {
         stepper.selectedIndex = i+1;
       }
       num++;
@@ -67,7 +68,10 @@ export class MatchPageComponent implements OnInit {
   }
 
   separateBySemicolon(rawText: String) {
-    let text = rawText.split(';');
+    let text: string[] = [];
+    if(rawText){
+      text = rawText.split(';');
+    }
     return text;
   }
 

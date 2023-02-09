@@ -4,13 +4,13 @@
     <div class="left-container" (click)="goToViewResearchPage(num-1);"></div>
 </div>
 
-<div class="link">
+<div class="link"> 
     <div class="right-container" (click)="goToViewResearchPage(num-1+2);"></div>
 </div>
 
 <div class="container">
     <h1><ins>{{filteredResearch[getResearchPage()].name}}</ins></h1>
-    <h3>Posted By: <ins>{{filteredResearch[num].faculty_FirstName}} {{filteredResearch[num].faculty_LastName}} </ins>
+    <h3>Posted By: <ins>{{filteredResearch[num].first_Name}} {{filteredResearch[num].last_Name}} </ins>
     <br>Located At: <ins>{{filteredResearch[num].address}}</ins><br>
     Status: <ins>{{showActiveStatus(filteredResearch[num].active)}}</ins></h3>
 

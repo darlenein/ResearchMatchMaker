@@ -1,7 +1,7 @@
 export class FacultyModel {
-    id: String;
-    firstName: String;
-    lastName: String;
+    faculty_Id: String;
+    first_Name: String;
+    last_Name: String;
     title: String;
     email: String;
     office: String;
@@ -11,9 +11,9 @@ export class FacultyModel {
     link3: String;
     researchID: number;
     studentID: String;
-    aboutMe: String;
-    researchInterest: String;
-    profileUrl: String;
+    about_Me: String;
+    research_Interest: String;
+    profile_Url: String;
     splitAbout: String[];
     splitResearchInterest: String[];
     skillsWithComma: String;

@@ -1,7 +1,7 @@
 import { SubDepartmentModel } from "./subdepartment.model";
 
 export class ResearchModel {
-    id: number;
+    research_Id: number;
     faculty_Id: string;
     name: String;
     description: String;
@@ -12,13 +12,15 @@ export class ResearchModel {
     end_Date: String;
     active: boolean;
     studentID: String;
-    // incentive_type: String;
     address: String;
-    faculty_FirstName: String;
-    faculty_LastName: String;
+    
+    // faculty first and last name 
+    first_Name: String; 
+    last_Name: String;
+
     splitEncouragedSkills: String;
     splitRequiredSkills: String;
-    progression: number;
+    progress_Bar: number;
     isPaid: boolean;
     isNonpaid: boolean;
     isCredit: boolean;

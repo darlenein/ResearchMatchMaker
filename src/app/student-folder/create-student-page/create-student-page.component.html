@@ -29,10 +29,6 @@
         <mat-error *ngIf="email.invalid && email.dirty">{{getEmailErrorMessage()}}</mat-error>
         <br> <br>
 
-        <label for = "phone">Phone Number</label>
-        <input type="text" id="phone" placeholder="Enter Phone Number" size="50" [formControl]="phone">
-        <br><br>
-
         <label for = "gpa">GPA*</label>
         <input type="text" id="gpa" placeholder="Enter GPA" size="50" [formControl]="gpa">
         <mat-error *ngIf="gpa.invalid && gpa.dirty">{{getGPAErrorMessage()}}</mat-error>

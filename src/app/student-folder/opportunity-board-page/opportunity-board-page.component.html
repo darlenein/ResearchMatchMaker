@@ -157,12 +157,12 @@
             <li *ngFor="let r of filteredResearch, let researchPage=index">
                     <br><div class="left-sub-container">
                         <b><a class="link" style="font-size: 24px !important;" (click)="goToViewResearchPage(researchPage);">{{r.name}}</a><br></b>
-                        <a class="link" (click)="goToProfile(r.faculty_Id);">{{r.faculty_FirstName}} {{r.faculty_LastName}}</a><br>
+                        <a class="link" (click)="goToProfile(r.faculty_Id);">{{r.first_Name}} {{r.last_Name}}</a><br>
                         {{r.address}} <br><br>
                         <b>Description:</b> {{r.description}}<br><br>
                         <b>Required Skills:</b> {{r.splitRequiredSkills}}<br>
                         <b>Encouraged Skills:</b> {{r.splitEncouragedSkills}}<br><br>
-                        <button (click)="applyToResearch(r.id);"> Apply to Research </button>
+                        <button (click)="applyToResearch(r.research_Id);"> Apply to Research </button>
                         <br><br>
                     </div>
         

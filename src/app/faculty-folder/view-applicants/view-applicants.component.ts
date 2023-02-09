@@ -63,7 +63,7 @@ export class ViewApplicantsComponent implements OnInit {
   updateProgress(students : StudentModel[]) {
     let num = 0;
     this.steppers.forEach(stepper => {
-      for(let i = 0; i <= students[num].progression; i++) {
+      for(let i = 0; i <= students[num].progress_Bar; i++) {
         stepper.selectedIndex = i;
       }
       num++;
@@ -89,7 +89,7 @@ export class ViewApplicantsComponent implements OnInit {
   saveAppProgress(p : any, sID : string) {
     debugger;
     let pm = new ProgressModel();
-    pm.progress = Number(p);
+    pm.progress_Bar = Number(p);
     pm.research_id = Number(this.research_id);
     pm.student_id = sID;
 

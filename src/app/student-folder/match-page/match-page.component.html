@@ -19,23 +19,23 @@
                 <mat-step label="Applied"></mat-step>
                 <mat-step label="Received"></mat-step>
                 <mat-step label="In Review"></mat-step>
-                <mat-step *ngIf="r.progression < 3" label="Verdict"></mat-step>
-                <mat-step *ngIf="r.progression === 3" label="Accepted!">
+                <mat-step *ngIf="r.progress_Bar < 3" label="Verdict"></mat-step>
+                <mat-step *ngIf="r.progress_Bar === 3" label="Accepted!">
                   <ng-template matStepperIcon="edit"><mat-icon>sentiment_satisfied_alt</mat-icon></ng-template></mat-step>
-                <mat-step *ngIf="r.progression === 4" label="Rejected">
+                <mat-step *ngIf="r.progress_Bar === 4" label="Rejected">
                   <ng-template matStepperIcon="edit"><mat-icon>clear</mat-icon></ng-template></mat-step>
               </mat-horizontal-stepper>
 
           </div>
 
             <div class="left-container">
-              <p><a class="link" (click)="goToViewResearchPage(r.id)">{{r.name}}</a><br>
-              <span class="link" (click)="goToProfile(r.faculty_Id);">{{r.faculty_FirstName}} {{r.faculty_LastName}}</span><br>
+              <p><a class="link" (click)="goToViewResearchPage(r.research_Id)">{{r.name}}</a><br>
+              <span class="link" (click)="goToProfile(r.faculty_Id);">{{r.first_Name}} {{r.last_Name}}</span><br>
               {{r.address}} <br><br>
               <b>Description:</b> {{r.description}}<br><br>
               <b>Required Skills: </b>{{r.splitRequiredSkills}}<br>
               <b>Encouraged Skills: </b>{{r.splitEncouragedSkills}}<br><br>
-              <button (click)="deleteApplication(r.id);"> Cancel Application </button>
+              <button (click)="deleteApplication(r.research_Id);"> Cancel Application </button>
           </div>
 
           <div class="right-container">
