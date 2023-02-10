@@ -30,7 +30,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 
 
 export const routes: Routes = [
-  { path: '', component: FacultyListComponent},
+  { path: '', component: LandingPageComponent},
   { path: 'view-matches', component: MatchPageComponent},
   { path: 'opp-board', component: OpportunityBoardPageComponent},
   { path: 'view-faculty-profile', component: ViewFacultyPageComponent},

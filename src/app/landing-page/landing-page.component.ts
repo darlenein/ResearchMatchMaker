@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./landing-page.component.css']
 })
 export class LandingPageComponent implements OnInit {
-
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  logIn() {
+    console.log("Attempting to log user into application..");
+    console.log("Redirecting to Azure AD");
+    
+  }
 }
