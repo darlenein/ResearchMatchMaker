@@ -79,7 +79,8 @@ export class FacultyListComponent implements OnInit {
      let fvm = new FacultyFilterValueModel();
      this.fm.faculty = this.faculty;
      this.fm.keyword = this.searchTerm.value!;
-
+    console.log(this.fm.keyword)
+    
    //  if (change) {
     // add checked option to filtered value array
   //  //   if(change.options[0].selected === true) {
@@ -97,7 +98,9 @@ export class FacultyListComponent implements OnInit {
 
     // get filtered research list
     this.serviceDispatcher.getFilteredAndSearchFacultyList(this.fm).subscribe(response => {
-      this.filteredFaculty = response;
+      debugger;
+      this.faculty = response;
+      console.log(response);
       this.splitInformationBySemicolon(this.filteredFaculty);
 
     });
