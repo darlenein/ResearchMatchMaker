@@ -3,7 +3,7 @@
 <!-- filters -->
 
 <div class="studentFilterContainer">
-    <div class="Lcontainer">
+     <div class="Lcontainer"> 
         <span class="studentFilterTitle">Filter Student List</span><br><br>
         <button type="button" class="btn" (click)="resetFilters();">Reset Filters</button><br>
 
@@ -15,7 +15,7 @@
                 <a [ngClass]="!toggle[0] ? 'parent-filter' : 'parent-filter-bold'">GPA</a>
             </mat-list-item>
             <div [hidden]="!toggle[0]">
-                <mat-selection-list [formControl]="GPA" (selectionChange)="FilterAndSearch('GPA', $event)">
+                <mat-selection-list [formControl]="GPA" (selectionChange)="GPAFilter('GPA', $event)">
                     <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="Ascending">Ascending</mat-list-option>
                     <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="Descending">Descending</mat-list-option>
                 </mat-selection-list>
@@ -64,7 +64,7 @@
             
             
         </mat-nav-list>
-    </div>
+   </div> 
 </div>
         
 
