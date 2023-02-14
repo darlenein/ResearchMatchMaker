@@ -51,7 +51,10 @@ label[type = options]{
     display: inline-block;
 }
 
-
+.addbtn{
+    display: block;
+    margin-right: 15px !important;
+}
 
 .submitBtn{
     border:0;

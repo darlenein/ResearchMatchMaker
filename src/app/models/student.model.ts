@@ -24,4 +24,5 @@ export class StudentModel {
     preferCredit: boolean
     preferPaid: boolean;
     preferNonpaid: boolean;
+    skillLevel: String;
 }

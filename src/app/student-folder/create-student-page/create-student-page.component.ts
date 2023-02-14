@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { StudentModel } from 'src/app/models/student.model';
 import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
@@ -10,19 +10,25 @@ import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
   styleUrls: ['./create-student-page.component.css']
 })
 export class CreateStudentPageComponent implements OnInit {
-  studentForm: FormGroup;
+  skillForm = [
+    {
+      skill: '',
+      skillLevel: ''
+    }
+  ];
 
+  studentForm: FormGroup = new FormGroup('');
   firstName = new FormControl('', [Validators.required, Validators.pattern("[a-zA-Z -]*")]);
   lastName = new FormControl('', [Validators.required, Validators.pattern("[a-zA-Z -]*")]);
   email = new FormControl('', [Validators.required, Validators.email]);
-  phone = new FormControl(''); // dont need?
   gpa = new FormControl('', [Validators.required, Validators.pattern('\\-?\\d*\\.?\\d{1,2}')]);
   major = new FormControl('', [Validators.required]);
   minor = new FormControl('');
   location = new FormControl('', [Validators.required]);
   gradMonth = new FormControl('');
   gradYear = new FormControl('');
-  skills = new FormControl('');
+  skillSet = new FormControl('');
+  skillSetLevel = new FormControl('');
   link1 = new FormControl('');
   link2 = new FormControl('');
   link3 = new FormControl('');
@@ -51,8 +57,6 @@ export class CreateStudentPageComponent implements OnInit {
    }
 
   ngOnInit(): void {
-
-    
     this.studentForm.valueChanges.subscribe(newValue => {
     if (newValue.paid === true || newValue.nonpaid === true || newValue.credit === true) {
       this.studentForm.setErrors(null);
@@ -60,14 +64,7 @@ export class CreateStudentPageComponent implements OnInit {
       this.studentForm.setErrors({required: true});
     }
     });
-
   }
-
-  // incentiveData: Array<any> = [
-  //   { name: 'Paid', value: 'paid'},
-  //   { name: 'Nonpaid', value: 'nonpaid'},
-  //   { name: 'Credit', value: 'credit'}
-  // ]
 
   engineeringItems: string[] = [ "Computer", "Chemical", "Electrical", "Mechanical", "Software"];
   humanitiesSocialScienceItems: string[] = [ "Communication", "English", "Psychology", "Politcal Science", "History", "Digital Media"];
@@ -87,6 +84,14 @@ export class CreateStudentPageComponent implements OnInit {
 
   goToStudentHomePage() {
     let sd = new StudentModel();
+    let skillString = "";
+    let skillLevelString = "";
+
+    this.skillForm.forEach(element => {
+      skillString = skillString.concat(element.skill + ";");
+      skillLevelString = skillLevelString.concat(element.skillLevel + ";");
+    });
+
     sd.student_Id = this.psuID;
     sd.first_Name = this.firstName.value!;
     sd.last_Name = this.lastName.value!;
@@ -97,7 +102,8 @@ export class CreateStudentPageComponent implements OnInit {
     sd.graduation_Month = this.gradMonth.value!;
     sd.graduation_Year = this.gradYear.value!;
     sd.preferLocation = this.location.value!;
-    sd.skills = this.skills.value!;
+    sd.skills = skillString;
+    sd.skillLevel = skillLevelString;
     sd.link1 = this.link1.value!;
     sd.link2 = this.link2.value!;
     sd.link3 = this.link3.value!;
@@ -121,7 +127,7 @@ export class CreateStudentPageComponent implements OnInit {
     }
     sd.research_Interest = this.interest.value!;
     sd.research_Project = this.projects.value!;
-    //this.serviceDispatcher.createStudentProfile(sd).subscribe(response => { });
+
 
     let navigationExtras: NavigationExtras = {
       queryParams: {
@@ -130,6 +136,7 @@ export class CreateStudentPageComponent implements OnInit {
     };
     
     if(!this.validate()){
+      //this.serviceDispatcher.createStudentProfile(sd).subscribe(response => { });
       this.router.navigate(['/student-home'], navigationExtras);
     }
   }
@@ -225,4 +232,17 @@ export class CreateStudentPageComponent implements OnInit {
     }
     return '';
   }
+
+  // dynamically add more skills 
+  addSkillField() {
+    this.skillForm.push({
+      skill: '',
+      skillLevel: ''
+    });
+  }
+
+  removeSkillField(index: number) {
+    this.skillForm.splice(index,1);
+  }
+
 }

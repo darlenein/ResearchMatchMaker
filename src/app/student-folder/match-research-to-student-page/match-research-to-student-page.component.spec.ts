@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MatchInfoPageComponent } from './match-progress-page.component';
+import { MatchInfoPageComponent } from './match-research-to-student-page.component';
 
 describe('MatchInfoPageComponent', () => {
   let component: MatchInfoPageComponent;
