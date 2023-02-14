@@ -35,7 +35,7 @@ import { StudentHomeComponent } from './Inbox/inbox-StudentHome/student-home.com
 import { MatchResearchToStudentPageComponent } from './student-folder/match-research-to-student-page/match-research-to-student-page.component';
 
 export const routes: Routes = [
-  { path: '', component: FacultyListComponent},
+  { path: '', component: LoginPageComponent},
   { path: 'view-matches', component: MatchPageComponent},
   { path: 'opp-board', component: OpportunityBoardPageComponent},
   { path: 'view-faculty-profile', component: ViewFacultyPageComponent},
