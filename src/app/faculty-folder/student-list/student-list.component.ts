@@ -3,6 +3,7 @@ import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { StudentModel } from 'src/app/models/student.model';
 import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
 import { FormControl } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 import { StudentFilterModel, StudentFilterValueModel } from 'src/app/models/StudentFilter.model';
 
 
@@ -35,7 +36,7 @@ export class StudentListComponent implements OnInit {
     keyword: ""
   };
 
-  constructor(private router: Router, public serviceDispatcher: ServiceDispatcher, private route: ActivatedRoute) { 
+  constructor(private router: Router, private http: HttpClient, public serviceDispatcher: ServiceDispatcher, private route: ActivatedRoute) { 
     this.route.queryParams.subscribe(params => {
       this.psuID = params["psuID"];
     });
@@ -71,10 +72,7 @@ export class StudentListComponent implements OnInit {
   }
 
   resetFilters(){
-    this.serviceDispatcher.getAllStudents().subscribe(response => {
-      this.student = response
-      this.splitStudentsInformationBySemicolon(this.student);
-    });
+    window.location.reload();
   }
 
   sortGPAAscending(){

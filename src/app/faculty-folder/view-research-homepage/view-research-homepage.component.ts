@@ -31,8 +31,8 @@ export class ViewResearchHomepageFacultyComponent implements OnInit {
         this.research = response
       });
 
-      this.serviceDispatcher.getResearchByID(1).subscribe(response => {
-        // this.research = response
+      this.serviceDispatcher.getResearchByID(4).subscribe(response => {
+        this.research = response
       });
   }
 

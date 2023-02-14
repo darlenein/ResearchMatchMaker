@@ -1,6 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { AuthService } from 'src/app/Inbox/auth.service';
+
+interface FacultyCred {
+  username: string;
+  password: string;
+}
 
 @Component({
   selector: 'app-faculty-top-menu-bar',
@@ -10,7 +16,8 @@ import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 export class FacultyTopMenuBarComponent implements OnInit {
   psuID: string;
 
-  constructor(private router: Router, private http: HttpClient, private route: ActivatedRoute) { 
+
+  constructor(private router: Router, private http: HttpClient, private route: ActivatedRoute, private authService: AuthService) { 
     this.route.queryParams.subscribe(params => {
       this.psuID = params["psuID"];
     });
@@ -39,6 +46,7 @@ export class FacultyTopMenuBarComponent implements OnInit {
   }
 
   goToStudentListPage(){
+
     let navigationExtras: NavigationExtras = {
       queryParams: {
         "psuID": this.psuID
@@ -74,5 +82,28 @@ export class FacultyTopMenuBarComponent implements OnInit {
     };
     this.router.navigate(['/research-list'], navigationExtras);
   } 
+
+  /*goToInboxFacultyHomePage(){
+
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        "psuID": this.psuID
+      }
+    };
+    this.router.navigate(['/inbox-FacultyHome'], navigationExtras);
+  }*/
+
+  facultyClickInbox(){
+    let facultyCred: FacultyCred = {
+      username: "nii1",
+      password: "nii1"
+    }
+
+    this.authService.clickInbox(facultyCred).subscribe({
+      next: () => {
+        this.router.navigateByUrl('/inbox-FacultyHome')
+      },
+    });
+  }
 
 }

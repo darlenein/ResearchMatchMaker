@@ -10,6 +10,7 @@
     padding: 2rem;
     background-color: #e4f2fe;
     font-family: sans-serif;
+    height: 200px;
 }
 
 .link{
@@ -56,12 +57,18 @@
     display: flex;
     padding-left: 20px;
     padding-top: 20px;
-    width: auto;
+    width: 270px;
 
     float: left;
 }
 
 .Lcontainer{
     padding-right: 80px;
+    
+}
+
+.search-bar{
+    padding-left: 30px;
+    width: 1000px;
     
 }

@@ -1,15 +1,31 @@
-.container-1 {
-    padding-left: 180px;
+.container {
+    padding-left: 20px;
     padding-top: 50px;
 }
 
-.container{
+.faculty-container{
     width: 1500px;
     margin: 1rem auto;
     border: 2px solid #92a8d1;
     padding: 2rem;
     background-color: #e4f2fe;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.search-container {
+    padding: 20px;
+}
+
+.search-title {
+    font-weight: bold;
+    font-family: sans-serif;
+    font-size: 26px;
+    padding: 20px;
+}
+
+.search-bar {
+    width: 500px;
+    padding-left: 20px;
 }
 
 .stepper {
@@ -27,3 +43,5 @@
 .link:hover {
     color:  #1663BE
 }
+
+

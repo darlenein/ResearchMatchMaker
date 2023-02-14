@@ -54,6 +54,16 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
 import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
 
+//Messaging
+import { InboxHomeComponent } from './Inbox/inbox-FacultyHome/inbox-FacultyHome.component';
+import { EmailCreateComponent } from './Inbox/email-create/email-create.component';
+import { EmailReplyComponent } from './Inbox/email-reply/email-reply.component';
+import { EmailIndexComponent } from './Inbox/email-index/email-index.component';
+import { EmailShowComponent } from './Inbox/email-show/email-show.component';
+import { StudentHomeComponent } from './Inbox/inbox-StudentHome/student-home.component';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -86,7 +96,13 @@ import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
     CancelResearchDialogComponent,
     ViewStudentResearchPageComponent,
     ViewResearchHomepageFacultyComponent,
-    ViewResearchHomepageStudentComponent
+    ViewResearchHomepageStudentComponent,
+    InboxHomeComponent,
+    EmailCreateComponent,
+    EmailReplyComponent,
+    EmailIndexComponent,
+    EmailShowComponent,
+    StudentHomeComponent
     
   ],
   imports: [
