@@ -30,6 +30,9 @@ import { ViewResearchHomepageStudentComponent } from './student-folder/student-v
 import { AuthGuardService } from './services/auth-guard.service'; 
 //add , canActivate: [AuthGuardService] to path to protect component with oidc authorization
 import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
+import { InboxHomeComponent } from './Inbox/inbox-FacultyHome/inbox-FacultyHome.component';
+import { StudentHomeComponent } from './Inbox/inbox-StudentHome/student-home.component';
+import { MatchResearchToStudentPageComponent } from './student-folder/match-research-to-student-page/match-research-to-student-page.component';
 
 export const routes: Routes = [
   { path: '', component: FacultyListComponent},
