@@ -73,4 +73,13 @@ export class TopMenuBarComponent implements OnInit {
     this.router.navigate(['/faculty-list'], navigationExtras);
   }
 
+  goToInboxStudentHomePage(){
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        "psuID": this.psuID
+      }
+    };
+    this.router.navigate(['/inbox-StudentHome'], navigationExtras);
+  }
+
 }

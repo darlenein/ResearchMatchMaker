@@ -31,6 +31,10 @@ import { AuthGuardService } from './services/auth-guard.service';
 //add , canActivate: [AuthGuardService] to path to protect component with oidc authorization
 import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
 
+//messaging system
+import { InboxHomeComponent } from './Inbox/inbox-FacultyHome/inbox-FacultyHome.component';
+import { StudentHomeComponent } from './Inbox/inbox-StudentHome/student-home.component';
+
 export const routes: Routes = [
   { path: '', component: FacultyListComponent},
   { path: 'view-matches', component: MatchPageComponent},
@@ -58,7 +62,9 @@ export const routes: Routes = [
   { path: 'view-research-page', component: ViewResearchPageComponent},
   { path: 'student-view-research-page', component: ViewStudentResearchPageComponent},
   { path: 'view-research-homepage', component: ViewResearchHomepageFacultyComponent},
-  { path: 'student-view-research-homepage', component: ViewResearchHomepageStudentComponent}
+  { path: 'student-view-research-homepage', component: ViewResearchHomepageStudentComponent},
+  { path: 'inbox-FacultyHome', component: InboxHomeComponent}, 
+  { path: 'inbox-StudentHome', component: StudentHomeComponent}
 ];
 
 @NgModule({
