@@ -25,7 +25,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatRadioModule } from '@angular/material/radio';
-import { MatchInfoPageComponent } from './student-folder/match-progress-page/match-progress-page.component';
+import { MatchResearchToStudentPageComponent } from './student-folder/match-research-to-student-page/match-research-to-student-page.component';
 import { EditFacultyProfilePageComponent } from './faculty-folder/edit-faculty-profile-page/edit-faculty-profile-page.component';
 import { EditStudentProfilePageComponent } from './student-folder/edit-student-profile-page/edit-student-profile-page.component';
 import { AddResearchPageComponent } from './faculty-folder/add-research-page/add-research-page.component';
@@ -76,7 +76,7 @@ import { AuthHttpInterceptor } from './Inbox/auth-http-interceptor';
     CreateStudentPageComponent,
     CreateFacultyPageComponent,
     BannerNoButtonsComponent,
-    MatchInfoPageComponent,
+    MatchResearchToStudentPageComponent,
     EditFacultyProfilePageComponent,
     EditStudentProfilePageComponent,
     AddResearchPageComponent,

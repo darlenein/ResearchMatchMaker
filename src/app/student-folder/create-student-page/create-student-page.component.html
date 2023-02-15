@@ -55,7 +55,26 @@
         <mat-error *ngIf="major.invalid && major.dirty">{{getMajorErrorMessage()}}</mat-error>
         <pre></pre>
 
-        <label for = "minor">Minor</label>
+        <label for = "major">Double Major (optional)</label>
+        <select id="major" [formControl]="doubleMajor">
+            <option value="accounting">Accounting</option>
+            <option value="biology">Biology</option>
+            <option value="businessecon">Business Economics</option>
+            <option value="chemistry">Chemistry</option>
+            <option value="comm">Communications</option>
+            <option value="compEng">Computer Engineering</option>
+            <option value="compsci">Computer Science</option>
+            <option value="creative writing">Creative Writing</option>
+            <option value="digitalmedia">Digital Media, Arts, and Technology</option>
+            <option value="elec/comp tech">Electrical and Computer Engineering Techonology</option>
+            <option value="electrical">Electrical Engineering</option>
+            <option value="child ed">Elementary and Early Childhood Education</option>
+            <option value="english">English</option>
+            <option value="envScience">Environmental Science</option>
+            <option value="finance">Finance</option>
+        </select><pre></pre>
+
+        <label for = "minor">Minor (optional)</label>
         <select id="minor" [formControl]="minor">
             <option value="accounting">Accounting</option>
             <option value="biology">Biology</option>
@@ -101,22 +120,33 @@
         <mat-error *ngIf="studentForm.invalid">{{getPaidErrorMessage()}}</mat-error>
         <br><br>
 
+        <!-- <label type="skills" for = "acquired skills">List any skills you have (Seperate by semicolon)</label>
+        <textarea  rows="7" cols="75" name="acquired skills" id="acquired skills" placeholder="Skill 1;Skill 2;Skill 3"></textarea> -->
 
-        <label type="skills" for = "acquired skills">List any skills you have (Seperate by semicolon)</label>
-        <textarea  rows="7" cols="75" name="acquired skills" id="acquired skills" placeholder="Skill 1;Skill 2;Skill 3" [formControl]="skills"></textarea>
-        
         <label type="research_interest" >List any research intersts you have (Seperate by semicolon)</label>
         <textarea  rows="7" cols="75" name="acquired skills" id="acquired skills" placeholder="Interest 1;Interest 2;Interest 3" [formControl]="interest"></textarea>
 
         <label type="research_projects">List any previous research projects you have participated in (Seperate by semicolon)</label>
         <textarea  rows="7" cols="75" name="acquired skills" id="acquired skills" placeholder="Research Project 1;Research Project 2;Research Project 3" [formControl]="projects"></textarea>
 
+        <label type="skills" for = "acquired skills">List any skills you have and your skill level for each skill</label>
+        <div *ngFor="let item of skillForm; index as i">
+            <input style="width: 300px" placeholder="skill" [(ngModel)]="item.skill" [ngModelOptions]="{standalone: true}">
+            <select [(ngModel)]="item.skillLevel" [ngModelOptions]="{standalone: true}">
+            <option value="Basic">Basic Knowledge</option>
+            <option value="Novice">Novice</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Advanced">Advanced</option>
+            <option value="Expert">Expert</option>
+          </select><button (click)="removeSkillField(i)">Remove skill</button>
+        </div><button class="addbtn" (click)="addSkillField()">Add Another Skill</button> <br><br>
+
+
         <label for = "associated links">Include up to 3 links for any further information about yourself.</label>
         <input type="text" id="link1" placeholder="Link 1" size="50" [formControl]="link1">
         <input type="text" id="link2" placeholder="Link 2" size="50" [formControl]="link2">
         <input type="text" id="link3" placeholder="Link 3" size="50" [formControl]="link3">
         <br><br>
-
 
         <button class="submitBtn" (click)="goToStudentHomePage();">Submit</button>
         <br><br>

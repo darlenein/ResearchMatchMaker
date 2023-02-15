@@ -12,6 +12,19 @@ import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
   styleUrls: ['./add-research-page.component.css']
 })
 export class AddResearchPageComponent implements OnInit {
+  requiredSkillList = [
+    {
+      skill: '',
+      skillLevel: ''
+    }
+  ];
+  encouragedSkillList = [
+    {
+      skill: '',
+      skillLevel: ''
+    }
+  ];
+
   researchForm : FormGroup;
   name = new FormControl('', [Validators.required]);
   description = new FormControl('', [Validators.required]);
@@ -95,17 +108,35 @@ goToFacultyManageResearch() {
   this.researchDeptList = [...this.engineeringValue.value!, ...this.politicalValue.value!, ...this.businessValue.value!, 
     ...this.humanitiesValue.value!, ...this.scienceValue.value!, ...this.nursingValue.value!];
 
+  let rSkillString = "";
+  let rSkillLevelString = "";
+  let eSkillString = "";
+  let eSkillLevelString = "";
+
+  this.requiredSkillList.forEach(element => {
+      rSkillString = rSkillString.concat(element.skill + " ;");
+      rSkillLevelString = rSkillLevelString.concat(element.skillLevel + " ;");
+  });
+
+  this.encouragedSkillList.forEach(element => {
+    eSkillString = eSkillString.concat(element.skill + " ;");
+    eSkillLevelString = eSkillLevelString.concat(element.skillLevel + " ;");
+  });
+
   let rm = new ResearchModel();
   rm.researchDepts = this.researchDeptList;
   rm.faculty_Id = this.psuID;
   rm.name = this.name.value!;
   rm.description = this.description.value!;
   rm.location = this.location.value!;
-  rm.required_Skills = this.rskills.value!;
-  rm.encouraged_Skills = this.eskills.value!;
   rm.start_Date = this.startDate.value!;
   rm.end_Date = this.endDate.value!;
-  
+
+  rm.required_Skills = rSkillString;
+  rm.encouraged_Skills = eSkillString;
+  rm.requiredSkillLevel = rSkillLevelString;
+  rm.encouragedSkillLevel = eSkillLevelString;
+
   if (this.active.value === "active") {
     rm.active = true;
   }
@@ -123,9 +154,9 @@ goToFacultyManageResearch() {
     rm.isCredit = true;
   }
   else rm.isCredit = false;
-  //this.serviceDispatcher.createResearch(rm).subscribe(response => { });
 
   if(!this.validate()){
+    this.serviceDispatcher.createResearch(rm).subscribe(response => { });
     this.router.navigate(['/faculty-research']);
   }
 
@@ -220,4 +251,28 @@ getPaidErrorMessage() {
 }
 
 //----------------- end validation error msgs -------------------------------
+
+//---------------- functions to add and remove skills on HTML end-----------------------
+addEncouragedSkillField() {
+  this.encouragedSkillList.push({
+    skill: '',
+    skillLevel: ''
+  });
+}
+
+addRequiredSkillField() {
+  this.requiredSkillList.push({
+    skill: '',
+    skillLevel: ''
+  });
+}
+
+removeEncouragedSkillField(index: number) {
+  this.encouragedSkillList.splice(index,1);
+}
+
+removeRequiredSkillField(index: number) {
+  this.requiredSkillList.splice(index,1);
+}
+
 }

@@ -26,4 +26,6 @@ export class ResearchModel {
     isCredit: boolean;
     researchDepts: string[];
     departments: SubDepartmentModel[];
+    requiredSkillLevel: String;
+    encouragedSkillLevel: String;
 }

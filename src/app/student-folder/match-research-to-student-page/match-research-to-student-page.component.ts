@@ -1,27 +1,18 @@
-import { Component, OnInit, QueryList, ViewChild, ViewChildren, ViewEncapsulation } from '@angular/core';
-import { ResearchModel } from 'src/app/models/research.model';
-import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
-import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
-import { FormGroup } from '@angular/forms';
+import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatStepper } from '@angular/material/stepper';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { ProgressModel } from 'src/app/models/progress.model';
-import { CancelResearchDialogComponent } from '../cancel-research-dialog/cancel-research-dialog.component';
-import { MatDialog } from '@angular/material/dialog';
-
+import { ResearchModel } from 'src/app/models/research.model';
+import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
+import { ResearchApplicantDialogComponent } from '../research-applicant-dialog/research-applicant-dialog.component';
 
 @Component({
-  selector: 'app-match-page',
-  templateUrl: './match-page.component.html',
-  styleUrls: ['./match-page.component.css'],
-  providers: [{
-    provide: STEPPER_GLOBAL_OPTIONS, useValue: {displayDefaultIndicatorType: false}
-  }]
+  selector: 'match-research-to-student-page',
+  templateUrl: './match-research-to-student-page.component.html',
+  styleUrls: ['./match-research-to-student-page.component.css']
 })
-export class MatchPageComponent implements OnInit {
-
-  
-  @ViewChildren('stepper') steppers:QueryList<MatStepper>;
+export class MatchResearchToStudentPageComponent implements OnInit {
   completed: boolean = false;
   state: string;
   
@@ -49,29 +40,7 @@ export class MatchPageComponent implements OnInit {
     });
   }
 
-  ngAfterViewInit(): void {
-    setTimeout(()=>{
-      this.updateProgress(this.research);
-    },1000);
-  }
 
-  updateProgress(researches : ResearchModel[]) {
-    let num = 0;
-    let stepAmt = 0;
-    this.steppers.forEach(stepper => {
-      if (researches[num].progress_Bar >= 4) {
-        stepAmt = 3;
-      }
-      else {
-        stepAmt = researches[num].progress_Bar;
-      }
-      // go through every step and check mark it 
-      for(let i = 0; i <= stepAmt; i++) {
-        stepper.selectedIndex = i;
-      }
-      num++;
-    });
-  }
 
   separateBySemicolon(rawText: String) {
     let text: string[] = [];
@@ -94,38 +63,8 @@ export class MatchPageComponent implements OnInit {
   //   });
   }
 
-  stepperDone() {
-    this.completed = true;
-    this.state = 'done';
-  }
 
-goBack(stepper: MatStepper){
-    stepper.previous();
-}
 
-goForward(stepper: MatStepper){
-    stepper.next();
-}
-
-deleteApplication(rID:number){
-  let p = new ProgressModel();
-  // p.research_id = rID;
-  // p.student_id = this.psuID;
-  //  p.research_id = 123;
-  //  p.student_id = "hello";
-  this.openDialog('0ms', '0ms', p);
-}
-
-openDialog(enterAnimationDuration: string, exitAnimationDuration: string, p: ProgressModel): void {
-  this.dialog.open(CancelResearchDialogComponent, {
-    width: '500px',
-    enterAnimationDuration,
-    exitAnimationDuration,
-    data: {
-      applicationInfo: p
-    }
-  });
-}
 
 goToProfile(id:string){
   let navigationExtras: NavigationExtras = {
@@ -145,5 +84,22 @@ goToProfile(id:string){
     };
     this.router.navigate(['/student-view-research-page'], navigationExtras)
   }
-  
+
+  // apply to research
+  applyToResearch(rID:number){
+    let p = new ProgressModel();
+    p.research_id = rID;
+    p.student_id = this.psuID;
+    //this.serviceDispatcher.addResearchApplicant(p).subscribe(response => {});
+    this.openDialog('0ms', '0ms');
+  }
+
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(ResearchApplicantDialogComponent, {
+      width: '500px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
+  }
+
 }

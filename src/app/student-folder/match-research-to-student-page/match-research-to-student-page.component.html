@@ -1,0 +1,37 @@
+<app-student-top-menu-bar></app-student-top-menu-bar>
+<!-- This page is for students to view their matches (which are ranked from best match to least).
+This page should only show researches that pertain to the student's needs! -->
+
+<h1 class="header">MATCHED RESEARCHES</h1>
+
+<ul style="list-style: none;">
+    <li *ngFor="let r of research">
+        <div class="container">
+          <!-- <div class="top-container"></div> -->
+
+            <div class="left-container">
+              <p><a class="link" (click)="goToViewResearchPage(r.research_Id)">{{r.name}}</a><br>
+              <span class="link" (click)="goToProfile(r.faculty_Id);">{{r.first_Name}} {{r.last_Name}}</span><br>
+              {{r.address}} <br><br>
+              <b>Description:</b> {{r.description}}<br><br>
+              <b>Required Skills: </b>{{r.splitRequiredSkills}}<br>
+              <b>Encouraged Skills: </b>{{r.splitEncouragedSkills}}<br><br>
+              <button (click)="applyToResearch(r.research_Id);"> Apply to Research </button>
+          </div>
+
+          <div class="right-container">
+              <div *ngIf="r.active==false"> Complete </div>
+              <div *ngIf="r.active==true"> Ongoing </div>
+              {{r.start_Date}} - {{r.end_Date}}<br>
+              {{r.location}}<br>
+              <div *ngIf="r.isPaid==true"> Paid</div>
+              <div *ngIf="r.isNonpaid==true"> Nonpaid</div>
+              <div *ngIf="r.isCredit==true"> Credit</div>
+          </div>
+          <div style="clear:both;"></div>
+      </div>
+
+            
+    </li>
+</ul>   
+

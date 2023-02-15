@@ -49,7 +49,10 @@ export class ViewApplicantsComponent implements OnInit {
 
   // ------------ display info functions ---------------
   separateBySemicolon(rawText: String) {
-    let text = rawText.split(';');
+    let text: string[] = [];
+    if(rawText){
+      text = rawText.split(';');
+    }
     return text;
   }
 
@@ -61,9 +64,17 @@ export class ViewApplicantsComponent implements OnInit {
 
   // populate stepper progress bar
   updateProgress(students : StudentModel[]) {
-    let num = 0;
+   let num = 0;
+    let stepAmt = 0;
     this.steppers.forEach(stepper => {
-      for(let i = 0; i <= students[num].progress_Bar; i++) {
+      if (students[num].progress_Bar >= 4) {
+        stepAmt = 3;
+      }
+      else {
+        stepAmt = students[num].progress_Bar;
+      }
+      // go through every step and check mark it 
+      for(let i = 0; i <= stepAmt; i++) {
         stepper.selectedIndex = i;
       }
       num++;

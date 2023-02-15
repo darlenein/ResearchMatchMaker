@@ -150,15 +150,33 @@
         <mat-error *ngIf="description.invalid && description.dirty">{{getEmptyFieldError()}}</mat-error>
         <br><br>
 
-        <label type="skills" for = "required skills">Required Skills* (Seperate by Semicolon)</label>
-        <textarea type="rskills" rows="7" cols="75" name="required skills" id="required skills" placeholder="Skill 1;Skill 2;Skill 3" [formControl]="rskills"></textarea>
-        <mat-error *ngIf="rskills.invalid && rskills.dirty">{{getEmptyFieldError()}}</mat-error>
-        <br><br>
+        <label type="skills" for = "required skills">Required Skills</label>
+        <div *ngFor="let item of requiredSkillList; index as i">
+            <input style="width: 325px" placeholder="required skill" [(ngModel)]="item.skill" [ngModelOptions]="{standalone: true}">
+            <select [(ngModel)]="item.skillLevel" [ngModelOptions]="{standalone: true}">
+            <option value="Basic">Basic Knowledge</option>
+            <option value="Novice">Novice</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Advanced">Advanced</option>
+            <option value="Expert">Expert</option>
+          </select><button (click)="removeRequiredSkillField(i)">Remove</button>
+        </div><button class="addbtn" (click)="addRequiredSkillField()">Add Another Required Skill</button> <br><br>
+        <!-- <textarea type="rskills" rows="7" cols="75" name="required skills" id="required skills" placeholder="Skill 1;Skill 2;Skill 3" [formControl]="rskills"></textarea>
+        <mat-error *ngIf="rskills.invalid && rskills.dirty">{{getEmptyFieldError()}}</mat-error> -->
 
-        <label type="skills" for = "encouraged skills">Encouraged Skills* (Seperate by Semicolon)</label>
-        <textarea type="eskills" rows="7" cols="75" name="encouraged skills" id="encouraged skills" placeholder="Skill 1;Skill 2;Skill 3" [formControl]="eskills"></textarea>
-        <mat-error *ngIf="eskills.invalid && eskills.dirty">{{getEmptyFieldError()}}</mat-error>
-        <br><br>
+        <label type="skills" for = "encouraged skills">Encouraged Skills</label>
+        <div *ngFor="let item of encouragedSkillList; index as i">
+            <input style="width: 325px" placeholder="encouraged skill" [(ngModel)]="item.skill" [ngModelOptions]="{standalone: true}">
+            <select [(ngModel)]="item.skillLevel" [ngModelOptions]="{standalone: true}">
+            <option value="Basic">Basic Knowledge</option>
+            <option value="Novice">Novice</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Advanced">Advanced</option>
+            <option value="Expert">Expert</option>
+          </select><button (click)="removeEncouragedSkillField(i)">Remove</button>
+        </div><button class="addbtn" (click)="addEncouragedSkillField()">Add Another Encouraged Skill</button> <br><br>
+        <!-- <textarea type="eskills" rows="7" cols="75" name="encouraged skills" id="encouraged skills" placeholder="Skill 1;Skill 2;Skill 3" [formControl]="eskills"></textarea>
+        <mat-error *ngIf="eskills.invalid && eskills.dirty">{{getEmptyFieldError()}}</mat-error> -->
 
         <input type="submit" value="Submit" id="submitBtn" (click)="goToFacultyManageResearch();">
         <br><br>

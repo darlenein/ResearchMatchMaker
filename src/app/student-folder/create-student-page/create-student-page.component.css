@@ -51,7 +51,10 @@ label[type = options]{
     display: inline-block;
 }
 
-
+.addbtn{
+    display: block;
+    margin-right: 15px !important;
+}
 
 .submitBtn{
     border:0;
@@ -82,13 +85,13 @@ label[type = options]{
 
 .filter-title {
     font-weight: bold;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: sans-serif;
     margin-left: 10px;
 }
 
 .result-title {
     font-weight: bold;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: sans-serif;
     margin-left: 10px;
     font-size: 26px;
 }
