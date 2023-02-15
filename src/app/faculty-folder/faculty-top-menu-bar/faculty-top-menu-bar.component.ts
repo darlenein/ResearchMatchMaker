@@ -95,8 +95,8 @@ export class FacultyTopMenuBarComponent implements OnInit {
 
   facultyClickInbox(){
     let facultyCred: FacultyCred = {
-      username: "nii1",
-      password: "nii1"
+      username: 'nii1',
+      password: 'nii1'
     }
 
     this.authService.clickInbox(facultyCred).subscribe({

@@ -15,14 +15,14 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
   rootUrl = 'https://api.angular-email.com';
-  signedin$ = new BehaviorSubject(null);
+  signedin$ = new BehaviorSubject(true);
 
 
   clickInbox(facultyCred: FacultyCred){
     return this.http.post(`${this.rootUrl}/auth/signin`, facultyCred)
       .pipe(
         tap(() => {
-          this.signedin$.next(null);
+          this.signedin$.next(true);
         })
       );
 
