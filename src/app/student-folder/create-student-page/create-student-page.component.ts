@@ -24,6 +24,7 @@ export class CreateStudentPageComponent implements OnInit {
   gpa = new FormControl('', [Validators.required, Validators.pattern('\\-?\\d*\\.?\\d{1,2}')]);
   major = new FormControl('', [Validators.required]);
   minor = new FormControl('');
+  doubleMajor = new FormControl('');
   location = new FormControl('', [Validators.required]);
   gradMonth = new FormControl('');
   gradYear = new FormControl('');
@@ -99,6 +100,7 @@ export class CreateStudentPageComponent implements OnInit {
     sd.gpa = Number(this.gpa.value!);
     sd.major = this.major.value!;
     sd.minor = this.minor.value!;
+    sd.major2 = this.doubleMajor.value!;
     sd.graduation_Month = this.gradMonth.value!;
     sd.graduation_Year = this.gradYear.value!;
     sd.preferLocation = this.location.value!;

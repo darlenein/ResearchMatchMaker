@@ -25,4 +25,5 @@ export class StudentModel {
     preferPaid: boolean;
     preferNonpaid: boolean;
     skillLevel: String;
+    major2: String;
 }
