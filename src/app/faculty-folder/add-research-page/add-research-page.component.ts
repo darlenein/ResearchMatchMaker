@@ -114,13 +114,13 @@ goToFacultyManageResearch() {
   let eSkillLevelString = "";
 
   this.requiredSkillList.forEach(element => {
-      rSkillString = rSkillString.concat(element.skill + ";");
-      rSkillLevelString = rSkillLevelString.concat(element.skillLevel + ";");
+      rSkillString = rSkillString.concat(element.skill + " ;");
+      rSkillLevelString = rSkillLevelString.concat(element.skillLevel + " ;");
   });
 
   this.encouragedSkillList.forEach(element => {
-    eSkillString = eSkillString.concat(element.skill + ";");
-    eSkillLevelString = eSkillLevelString.concat(element.skillLevel + ";");
+    eSkillString = eSkillString.concat(element.skill + " ;");
+    eSkillLevelString = eSkillLevelString.concat(element.skillLevel + " ;");
   });
 
   let rm = new ResearchModel();

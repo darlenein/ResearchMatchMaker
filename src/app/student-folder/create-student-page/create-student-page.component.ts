@@ -89,8 +89,8 @@ export class CreateStudentPageComponent implements OnInit {
     let skillLevelString = "";
 
     this.skillForm.forEach(element => {
-      skillString = skillString.concat(element.skill + ";");
-      skillLevelString = skillLevelString.concat(element.skillLevel + ";");
+      skillString = skillString.concat(element.skill + "; ");
+      skillLevelString = skillLevelString.concat(element.skillLevel + "; ");
     });
 
     sd.student_Id = this.psuID;
