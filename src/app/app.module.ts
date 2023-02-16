@@ -11,7 +11,6 @@ import { MatchPageComponent } from './student-folder/match-page/match-page.compo
 import { ViewFacultyPageComponent } from './faculty-folder/view-faculty-page/view-faculty-page.component';
 import { ViewStudentPageComponent } from './student-folder/view-student-page/view-student-page.component'; 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoginPageComponent } from './login-page/login-page.component';
 import { CreateStudentPageComponent } from './student-folder/create-student-page/create-student-page.component';
 import { CreateFacultyPageComponent } from './faculty-folder/create-faculty-page/create-faculty-page.component';
 import { BannerNoButtonsComponent } from './banner-no-buttons/banner-no-buttons.component';
@@ -50,7 +49,10 @@ import { ViewStudentResearchPageComponent } from './student-folder/student-view-
 import { ViewResearchHomepageFacultyComponent } from './faculty-folder/view-research-homepage/view-research-homepage.component';
 import { ViewResearchHomepageStudentComponent } from './student-folder/student-view-research-homepage/student-view-research-homepage.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
-
+import { AuthConfigModule } from './auth-config/auth-config.module';
+import { EventTypes, PublicEventsService } from 'angular-auth-oidc-client';
+import { filter } from 'rxjs/operators';
+import { AuthenticatorComponent } from './authenticator/authenticator.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,6 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     MatchPageComponent,
     ViewFacultyPageComponent,
     ViewStudentPageComponent,
-    LoginPageComponent,
     CreateStudentPageComponent,
     CreateFacultyPageComponent,
     BannerNoButtonsComponent,
@@ -85,7 +86,8 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     ViewStudentResearchPageComponent,
     ViewResearchHomepageFacultyComponent,
     ViewResearchHomepageStudentComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    AuthenticatorComponent
     
   ],
   imports: [
@@ -110,10 +112,22 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatDialogModule,
+    AuthConfigModule
   ],
   providers: 
   [ 
+    LandingPageComponent,
+    AuthenticatorComponent
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(private readonly eventService: PublicEventsService) {
+    this.eventService
+      .registerForEvents()
+      .pipe(filter((notification) => notification.type === EventTypes.ConfigLoaded))
+      .subscribe((config) => {
+        console.log('ConfigLoaded', config);
+      });
+  }
+}

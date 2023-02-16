@@ -1,5 +1,6 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AutoLoginAllRoutesGuard, AutoLoginPartialRoutesGuard } from 'angular-auth-oidc-client';
 import { AddResearchPageComponent } from './faculty-folder/add-research-page/add-research-page.component';
 import { CreateFacultyPageComponent } from './faculty-folder/create-faculty-page/create-faculty-page.component';
 import { CreateStudentPageComponent } from './student-folder/create-student-page/create-student-page.component';
@@ -8,7 +9,6 @@ import { EditResearchPageComponent } from './faculty-folder/edit-research-page/e
 import { EditStudentProfilePageComponent } from './student-folder/edit-student-profile-page/edit-student-profile-page.component';
 import { FacultyHomePageComponent } from './faculty-folder/faculty-home-page/faculty-home-page.component';
 import { FacultyViewStudentPageComponent } from './faculty-folder/faculty-view-student-page/faculty-view-student-page.component';
-import { LoginPageComponent } from './login-page/login-page.component';
 import { ManageResearchPageComponent } from './faculty-folder/manage-research-page/manage-research-page.component';
 import { MatchPageComponent } from './student-folder/match-page/match-page.component';
 import { OpportunityBoardPageComponent } from './student-folder/opportunity-board-page/opportunity-board-page.component';
@@ -26,36 +26,38 @@ import { ViewStudentResearchPageComponent } from './student-folder/student-view-
 import { ViewResearchHomepageFacultyComponent } from './faculty-folder/view-research-homepage/view-research-homepage.component';
 import { ViewResearchHomepageStudentComponent } from './student-folder/student-view-research-homepage/student-view-research-homepage.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { AuthenticatorComponent } from './authenticator/authenticator.component';
 
 
 
 export const routes: Routes = [
-  { path: '', component: LandingPageComponent},
-  { path: 'view-matches', component: MatchPageComponent},
-  { path: 'opp-board', component: OpportunityBoardPageComponent},
-  { path: 'view-faculty-profile', component: ViewFacultyPageComponent},
-  { path: 'view-student-profile', component: ViewStudentPageComponent},
-  { path: 'create-faculty-page', component: CreateFacultyPageComponent},
-  { path: 'create-student-page', component: CreateStudentPageComponent},
-  { path: 'login', component: LoginPageComponent},
-  { path: 'faculty-home', component: FacultyHomePageComponent},
-  { path: 'student-home', component: StudentHomePageComponent},
-  { path: 'faculty-research', component: ManageResearchPageComponent},
-  { path: 'edit-research', component: EditResearchPageComponent},
-  { path: 'add-research', component: AddResearchPageComponent},
-  { path: 'research-list', component: ResearchListPageComponent},
-  { path: 'edit-faculty-profile', component: EditFacultyProfilePageComponent},
-  { path: 'edit-student-profile', component: EditStudentProfilePageComponent},
-  { path: 'student-list', component: StudentListComponent},
-  { path: 'view-applicants', component: ViewApplicantsComponent},
-  { path: 'faculty-view-student', component: FacultyViewStudentPageComponent},
-  { path: 'student-view-faculty', component: StudentViewFacultyPageComponent},
-  { path: 'faculty-list', component: FacultyListComponent},
-  { path: 'sso-page', component: SSOPageComponent},
-  { path: 'view-research-page', component: ViewResearchPageComponent},
-  { path: 'student-view-research-page', component: ViewStudentResearchPageComponent},
-  { path: 'view-research-homepage', component: ViewResearchHomepageFacultyComponent},
-  { path: 'student-view-research-homepage', component: ViewResearchHomepageStudentComponent}
+  { path: '', redirectTo: 'home', pathMatch: 'full'},
+  { path: 'home', component: LandingPageComponent},
+  { path: 'auth-callback', component: AuthenticatorComponent},
+  { path: 'view-matches', component: MatchPageComponent, canActivate: [AutoLoginPartialRoutesGuard]},
+  { path: 'opp-board', component: OpportunityBoardPageComponent, canActivate: [AutoLoginPartialRoutesGuard]},
+  { path: 'view-faculty-profile', component: ViewFacultyPageComponent, canActivate: [AutoLoginPartialRoutesGuard]},
+  { path: 'view-student-profile', component: ViewStudentPageComponent, canActivate: [AutoLoginPartialRoutesGuard]},
+  { path: 'create-faculty-page', component: CreateFacultyPageComponent, canActivate: [AutoLoginPartialRoutesGuard]},
+  { path: 'create-student-page', component: CreateStudentPageComponent, canActivate: [AutoLoginPartialRoutesGuard]},
+  { path: 'faculty-home', component: FacultyHomePageComponent, canActivate: [AutoLoginPartialRoutesGuard]},
+  { path: 'student-home', component: StudentHomePageComponent, canActivate: [AutoLoginPartialRoutesGuard]},
+  { path: 'faculty-research', component: ManageResearchPageComponent, canActivate: [AutoLoginPartialRoutesGuard]},
+  { path: 'edit-research', component: EditResearchPageComponent, canActivate: [AutoLoginPartialRoutesGuard]},
+  { path: 'add-research', component: AddResearchPageComponent, canActivate: [AutoLoginPartialRoutesGuard]},
+  { path: 'research-list', component: ResearchListPageComponent, canActivate: [AutoLoginPartialRoutesGuard]},
+  { path: 'edit-faculty-profile', component: EditFacultyProfilePageComponent, canActivate: [AutoLoginPartialRoutesGuard]},
+  { path: 'edit-student-profile', component: EditStudentProfilePageComponent, canActivate: [AutoLoginPartialRoutesGuard]},
+  { path: 'student-list', component: StudentListComponent, canActivate: [AutoLoginPartialRoutesGuard]},
+  { path: 'view-applicants', component: ViewApplicantsComponent, canActivate: [AutoLoginPartialRoutesGuard]},
+  { path: 'faculty-view-student', component: FacultyViewStudentPageComponent, canActivate: [AutoLoginPartialRoutesGuard]},
+  { path: 'student-view-faculty', component: StudentViewFacultyPageComponent, canActivate: [AutoLoginPartialRoutesGuard]},
+  { path: 'faculty-list', component: FacultyListComponent, canActivate: [AutoLoginPartialRoutesGuard]},
+  { path: 'sso-page', component: SSOPageComponent, canActivate: [AutoLoginPartialRoutesGuard]},
+  { path: 'view-research-page', component: ViewResearchPageComponent, canActivate: [AutoLoginPartialRoutesGuard]},
+  { path: 'student-view-research-page', component: ViewStudentResearchPageComponent, canActivate: [AutoLoginPartialRoutesGuard]},
+  { path: 'view-research-homepage', component: ViewResearchHomepageFacultyComponent, canActivate: [AutoLoginPartialRoutesGuard]},
+  { path: 'student-view-research-homepage', component: ViewResearchHomepageStudentComponent, canActivate: [AutoLoginPartialRoutesGuard]}
 ];
 
 @NgModule({

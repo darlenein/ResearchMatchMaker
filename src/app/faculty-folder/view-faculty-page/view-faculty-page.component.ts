@@ -31,6 +31,7 @@ export class ViewFacultyPageComponent implements OnInit {
       this.splitResearchInterest = this.separateByComma(this.faculty.researchInterest);
       this.splitAboutMe = this.separateByComma(this.faculty.aboutMe);
       this.splitTitle = this.separateByComma(this.faculty.title);
+      
     });
 
     // ---test---
