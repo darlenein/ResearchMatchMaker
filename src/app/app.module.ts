@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatTabsModule } from '@angular/material/tabs';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -61,7 +61,7 @@ import { EmailReplyComponent } from './Inbox/email-reply/email-reply.component';
 import { EmailIndexComponent } from './Inbox/email-index/email-index.component';
 import { EmailShowComponent } from './Inbox/email-show/email-show.component';
 import { StudentHomeComponent } from './Inbox/inbox-StudentHome/student-home.component';
-
+import { AuthHttpInterceptor } from './Inbox/auth-http-interceptor';
 
 
 @NgModule({
@@ -129,7 +129,12 @@ import { StudentHomeComponent } from './Inbox/inbox-StudentHome/student-home.com
     MatDialogModule,
   ],
   providers: 
-  [ AuthGuardService,
+  [ 
+    //messaging stuff
+    { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true },
+    
+    //Kole stuff
+    AuthGuardService,
     AuthService,
   ],
   bootstrap: [AppComponent]
