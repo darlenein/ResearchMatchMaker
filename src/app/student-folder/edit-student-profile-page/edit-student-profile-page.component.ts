@@ -23,7 +23,7 @@ export class EditStudentProfilePageComponent implements OnInit {
   ];
 
   studentForm: FormGroup = new FormGroup('');
-  firstName = new FormControl('', [Validators.required, Validators.pattern("[a-zA-Z -]*")]);fb: any;
+  firstName = new FormControl('', [Validators.required, Validators.pattern("[a-zA-Z -]*")]);
 ;
   lastName = new FormControl('', [Validators.required, Validators.pattern("[a-zA-Z -]*")]);
   email = new FormControl('', [Validators.required, Validators.email]);
@@ -49,7 +49,7 @@ export class EditStudentProfilePageComponent implements OnInit {
   pfp: any;
   student: any;
 
-  constructor(private router: Router, public serviceDispatcher: ServiceDispatcher, private route: ActivatedRoute,) { 
+  constructor(private router: Router, public serviceDispatcher: ServiceDispatcher, private route: ActivatedRoute,private fb: FormBuilder) { 
     this.route.queryParams.subscribe(params => {
       this.psuID = params["psuID"];
 
