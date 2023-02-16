@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { OidcClientNotification, OidcSecurityService, OpenIdConfiguration, UserDataResult } from 'angular-auth-oidc-client';
 import { Observable, map } from 'rxjs';
 import { ServiceDispatcher } from '../ServiceDispatcher';
@@ -23,6 +23,7 @@ export class AuthenticatorComponent implements OnInit {
   //Checks user data and navigates to corresponding page after authentication
   constructor(private router: Router, private oidcSecurityService: OidcSecurityService, public serviceDispatcher: ServiceDispatcher) {
       this.oidcSecurityService = oidcSecurityService;
+      
    }
 
   ngOnInit(): void {
@@ -51,6 +52,7 @@ export class AuthenticatorComponent implements OnInit {
       this.psuEmail = psuEmail.substring(1, psuEmail.length-1);
       this.psuID = this.psuEmail.replace('@psu.edu', '');
 
+      
       //Isolate user affiliation type (STUDENT, FACULTY, or STAFF) from userData
       let userExtensionAttribute = userInfo[22].split(":");
       //Second element in userExtensionAttribute contains value surrounded by "". 
@@ -103,26 +105,30 @@ export class AuthenticatorComponent implements OnInit {
 
   redirectUser() {
     //Navigate to corresponding webpage
-      
-      console.log("Redirect User callled...");
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        "psuID": this.psuID
+      }
+    };
+    console.log("Redirect User callled...");
 
-      console.log(this.userType, ', ', this.profileExists)
-      //Student Home Page
-      if(this.userType === "STUDENT" && this.profileExists) {
-        this.router.navigate(['/student-home']);
-      }
-      //Faculty Home Page
-      else if(this.userType === "FACULTY" && this.profileExists) {
-        this.router.navigate(['/faculty-home']);
-      }
-      //Create Student Profile Page
-      else if(this.userType === "STUDENT" && !(this.profileExists)) {
-        this.router.navigate(['/create-student-page']);
-      }
-      //Create Faculty Profile Page
-      else if(this.userType === "FACULTY" && !(this.profileExists)) {
-        this.router.navigate(['/create-faculty-page']);
-      }
+    console.log(this.userType, ', ', this.profileExists)
+    //Student Home Page
+    if(this.userType === "STUDENT" && this.profileExists) {
+      this.router.navigate(['/student-home'], navigationExtras);
+    }
+    //Faculty Home Page
+    else if(this.userType === "FACULTY" && this.profileExists) {
+      this.router.navigate(['/faculty-home'], navigationExtras);
+    }
+    //Create Student Profile Page
+    else if(this.userType === "STUDENT" && !(this.profileExists)) {
+      this.router.navigate(['/create-student-page'], navigationExtras);
+    }
+    //Create Faculty Profile Page
+    else if(this.userType === "FACULTY" && !(this.profileExists)) {
+      this.router.navigate(['/create-faculty-page'], navigationExtras);
+    }
   }
 
   login() {
@@ -130,7 +136,8 @@ export class AuthenticatorComponent implements OnInit {
   }
 
   logout() {
-    this.oidcSecurityService.logoff().subscribe((result) => console.log(result));
+    this.oidcSecurityService.logoff();
+    // this.oidcSecurityService.logoff().subscribe((result) => console.log(result));
   }
 
 

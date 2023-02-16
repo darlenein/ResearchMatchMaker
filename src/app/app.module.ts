@@ -42,7 +42,6 @@ import { StudentListComponent } from './faculty-folder/student-list/student-list
 import { FacultyListComponent } from './student-folder/faculty-list/faculty-list.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
-import { SSOPageComponent } from './sso-page/sso-page.component';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { CancelResearchDialogComponent } from './student-folder/cancel-research-dialog/cancel-research-dialog.component';
 import { ViewStudentResearchPageComponent } from './student-folder/student-view-research-page/student-view-research-page.component';
@@ -91,7 +90,6 @@ import { PlaceholderComponent } from './Inbox/placeholder/placeholder.component'
     ViewApplicantsComponent,
     StudentListComponent,
     FacultyListComponent,
-    SSOPageComponent,
     CancelResearchDialogComponent,
     ViewStudentResearchPageComponent,
     ViewResearchHomepageFacultyComponent,

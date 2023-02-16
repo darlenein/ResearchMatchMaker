@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { AuthenticatorComponent } from 'src/app/authenticator/authenticator.component';
 
 @Component({
   selector: 'app-student-top-menu-bar',
@@ -10,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
 export class TopMenuBarComponent implements OnInit {
   psuID: string;
 
-  constructor(private router: Router, private route: ActivatedRoute) {
+  constructor(private router: Router, private route: ActivatedRoute, private authenticator: AuthenticatorComponent) {
     this.route.queryParams.subscribe(params => {
       this.psuID = params["psuID"];
     });
@@ -80,6 +81,10 @@ export class TopMenuBarComponent implements OnInit {
       }
     };
     this.router.navigate(['/inbox-StudentHome'], navigationExtras);
+  }
+
+  signOut() {
+    this.authenticator.logout();
   }
 
 }

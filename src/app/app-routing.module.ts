@@ -19,7 +19,6 @@ import { ViewStudentPageComponent } from './student-folder/view-student-page/vie
 import { ViewApplicantsComponent } from './faculty-folder/view-applicants/view-applicants.component';
 import { StudentListComponent } from './faculty-folder/student-list/student-list.component';
 import { FacultyListComponent } from './student-folder/faculty-list/faculty-list.component';
-import { SSOPageComponent } from './sso-page/sso-page.component';
 import { StudentViewFacultyPageComponent } from './student-folder/student-view-faculty-page/student-view-faculty-page.component';
 import { ViewResearchPageComponent } from './faculty-folder/view-research-page/view-research-page.component';
 import { ViewStudentResearchPageComponent } from './student-folder/student-view-research-page/student-view-research-page.component';
@@ -59,14 +58,13 @@ export const routes: Routes = [
   { path: 'faculty-view-student', component: FacultyViewStudentPageComponent, canActivate: [AutoLoginPartialRoutesGuard]},
   { path: 'student-view-faculty', component: StudentViewFacultyPageComponent, canActivate: [AutoLoginPartialRoutesGuard]},
   { path: 'faculty-list', component: FacultyListComponent, canActivate: [AutoLoginPartialRoutesGuard]},
-  { path: 'sso-page', component: SSOPageComponent, canActivate: [AutoLoginPartialRoutesGuard]},
   { path: 'view-research-page', component: ViewResearchPageComponent, canActivate: [AutoLoginPartialRoutesGuard]},
   { path: 'student-view-research-page', component: ViewStudentResearchPageComponent, canActivate: [AutoLoginPartialRoutesGuard]},
   { path: 'view-research-homepage', component: ViewResearchHomepageFacultyComponent, canActivate: [AutoLoginPartialRoutesGuard]},
   { path: 'student-view-research-homepage', component: ViewResearchHomepageStudentComponent, canActivate: [AutoLoginPartialRoutesGuard]},
-  { path: 'inbox-FacultyHome', component: InboxHomeComponent}, 
-  { path: 'inbox-StudentHome', component: StudentHomeComponent},
-  { path: 'match-researches', component: MatchResearchToStudentPageComponent},
+  { path: 'inbox-FacultyHome', component: InboxHomeComponent, canActivate: [AutoLoginPartialRoutesGuard]}, 
+  { path: 'inbox-StudentHome', component: StudentHomeComponent, canActivate: [AutoLoginPartialRoutesGuard]},
+  { path: 'match-researches', component: MatchResearchToStudentPageComponent, canActivate: [AutoLoginPartialRoutesGuard]},
 ];
 
 @NgModule({
