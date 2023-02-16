@@ -18,7 +18,7 @@ export class EmailService {
   }
 
   getEmails(){
-    return this.http.get<EmailSummary[]>(`${this.rootUrl}/emails`);
+    return this.http.get<EmailSummary[]>(`${this.rootUrl}/emails`, {withCredentials: true});
   }
 
 

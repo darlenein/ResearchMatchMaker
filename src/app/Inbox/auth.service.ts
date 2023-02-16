@@ -19,7 +19,7 @@ export class AuthService {
 
 
   clickInbox(facultyCred: FacultyCred){
-    return this.http.post(`${this.rootUrl}/auth/signin`, facultyCred)
+    return this.http.post(`${this.rootUrl}/auth/signin`, facultyCred, {withCredentials: true})
       .pipe(
         tap(() => {
           this.signedin$.next(true);

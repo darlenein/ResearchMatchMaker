@@ -1,7 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
+
+/* this import seems to mess up the formatting for site currently so i will work out something later
 @import 'semantic-ui-css/semantic.css';
+*/
+
 
 body {
     margin: 0;

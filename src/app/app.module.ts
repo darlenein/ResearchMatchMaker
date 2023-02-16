@@ -61,7 +61,7 @@ import { EmailReplyComponent } from './Inbox/email-reply/email-reply.component';
 import { EmailIndexComponent } from './Inbox/email-index/email-index.component';
 import { EmailShowComponent } from './Inbox/email-show/email-show.component';
 import { StudentHomeComponent } from './Inbox/inbox-StudentHome/student-home.component';
-import { AuthHttpInterceptor } from './Inbox/auth-http-interceptor';
+import { PlaceholderComponent } from './Inbox/placeholder/placeholder.component';
 
 
 @NgModule({
@@ -102,7 +102,8 @@ import { AuthHttpInterceptor } from './Inbox/auth-http-interceptor';
     EmailReplyComponent,
     EmailIndexComponent,
     EmailShowComponent,
-    StudentHomeComponent
+    StudentHomeComponent,
+    PlaceholderComponent
     
   ],
   imports: [
@@ -130,9 +131,6 @@ import { AuthHttpInterceptor } from './Inbox/auth-http-interceptor';
   ],
   providers: 
   [ 
-    //messaging stuff
-    { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true },
-    
     //Kole stuff
     AuthGuardService,
     AuthService,
