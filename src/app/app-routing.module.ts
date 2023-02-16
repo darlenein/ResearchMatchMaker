@@ -33,6 +33,8 @@ import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
 import { InboxHomeComponent } from './Inbox/inbox-FacultyHome/inbox-FacultyHome.component';
 import { StudentHomeComponent } from './Inbox/inbox-StudentHome/student-home.component';
 import { MatchResearchToStudentPageComponent } from './student-folder/match-research-to-student-page/match-research-to-student-page.component';
+import { PlaceholderComponent } from './Inbox/placeholder/placeholder.component';
+import { EmailShowComponent } from './Inbox/email-show/email-show.component';
 
 export const routes: Routes = [
   { path: '', component: LoginPageComponent},
@@ -64,7 +66,7 @@ export const routes: Routes = [
   { path: 'student-view-research-homepage', component: ViewResearchHomepageStudentComponent},
   { path: 'inbox-FacultyHome', component: InboxHomeComponent}, 
   { path: 'inbox-StudentHome', component: StudentHomeComponent},
-  { path: 'match-researches', component: MatchResearchToStudentPageComponent}
+  { path: 'match-researches', component: MatchResearchToStudentPageComponent},
 ];
 
 @NgModule({
