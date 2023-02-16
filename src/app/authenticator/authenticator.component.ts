@@ -136,8 +136,7 @@ export class AuthenticatorComponent implements OnInit {
   }
 
   logout() {
-    this.oidcSecurityService.logoff();
-    // this.oidcSecurityService.logoff().subscribe((result) => console.log(result));
+    this.oidcSecurityService.logoff().subscribe((result) => console.log(result));
   }
 
 
