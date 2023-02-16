@@ -29,12 +29,12 @@ export class MatchResearchToStudentPageComponent implements OnInit {
 
   
   ngOnInit(): void {
-    // this.serviceDispatcher.getAllResearchByStudent(this.psuID).subscribe(response => {
+    // this.serviceDispatcher.getMatchedResearches(this.psuID).subscribe(response => {
     //   this.research = response
     //   this.replaceInfoBySemicolon(this.research);
     // });
 
-    this.serviceDispatcher.getAllResearchByStudent('dxi5017').subscribe(response => {
+    this.serviceDispatcher.getMatchedResearches('dxi5017').subscribe(response => {
       this.research = response
       this.replaceInfoBySemicolon(this.research);
     });
@@ -55,12 +55,6 @@ export class MatchResearchToStudentPageComponent implements OnInit {
       research.splitRequiredSkills = research.required_Skills.replace(/;/g, ',');
       research.splitEncouragedSkills = research.encouraged_Skills.replace(/;/g, ',');
     });
-
-  // splitStudentsInformationBySemicolon(researchArray: ResearchModel[]) {
-  //   researchArray.forEach(research => {
-  //     this.splitRequiredSkills = this.separateBySemicolon(research.required_skills);
-  //     this.splitEncouragedSkills = this.separateBySemicolon(research.encouraged_skills);
-  //   });
   }
 
 

@@ -109,6 +109,12 @@ export class ServiceDispatcher{
     return this.http.get<any>(url);
   }
 
+  public getMatchedResearches(student_id : string): Observable<any> {
+    // find url on swagger UI
+    const url = 'https://localhost:44390/api/Research/getMatchedResearches/' + student_id;
+    return this.http.get<any>(url);
+  }
+
   public getSearchedResearchList(keyword : string, r: ResearchModel[]): Observable<any> {
     // API call to get the results of searched research list 
     const url = 'https://localhost:44390/api/Research/getSearchedResearchList/' + keyword;

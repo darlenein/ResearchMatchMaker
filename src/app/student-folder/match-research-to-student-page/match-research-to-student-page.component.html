@@ -16,7 +16,8 @@ This page should only show researches that pertain to the student's needs! -->
               <b>Description:</b> {{r.description}}<br><br>
               <b>Required Skills: </b>{{r.splitRequiredSkills}}<br>
               <b>Encouraged Skills: </b>{{r.splitEncouragedSkills}}<br><br>
-              <button (click)="applyToResearch(r.research_Id);"> Apply to Research </button>
+              <button class="button" (click)="applyToResearch(r.research_Id);"> Apply to Research </button>
+              <button class="button"> Not Interested </button>
           </div>
 
           <div class="right-container">
