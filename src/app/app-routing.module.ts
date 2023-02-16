@@ -67,10 +67,6 @@ export const routes: Routes = [
   { path: 'inbox-FacultyHome', component: InboxHomeComponent}, 
   { path: 'inbox-StudentHome', component: StudentHomeComponent},
   { path: 'match-researches', component: MatchResearchToStudentPageComponent},
-  {children: [
-    {path: ':id', component: EmailShowComponent},
-    {path: '', component: PlaceholderComponent}
-  ]}
 ];
 
 @NgModule({
