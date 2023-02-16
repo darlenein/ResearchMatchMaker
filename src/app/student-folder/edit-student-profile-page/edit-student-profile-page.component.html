@@ -104,15 +104,24 @@
         <label type="options" for="nonpaid">Research Credit </label>
         <br><br>
 
-
-        <label type="skills" for = "acquired skills">List any skills you have (Separate by semicolon)</label>
-        <textarea  rows="7" cols="75" name="acquired skills" id="acquired skills" placeholder="Skill 1;Skill 2;Skill 3" [formControl]="skills"></textarea>
         
         <label type="research_interest" >List any research intersts you have (Separate by semicolon)</label>
         <textarea  rows="7" cols="75" name="acquired skills" id="acquired skills" placeholder="Interest 1;Interest 2;Interest 3" [formControl]="interest"></textarea>
 
         <label type="research_projects">List any previous research projects you have participated in (Separate by semicolon)</label>
         <textarea  rows="7" cols="75" name="acquired skills" id="acquired skills" placeholder="Research Project 1;Research Project 2;Research Project 3" [formControl]="projects"></textarea>
+
+        <label type="skills" for = "acquired skills">List any skills you have and your skill level for each skill</label>
+        <div *ngFor="let item of skillForm; index as i">
+            <input style="width: 300px" placeholder="skill" [(ngModel)]="item.skill" [ngModelOptions]="{standalone: true}">
+            <select [(ngModel)]="item.skillLevel" [ngModelOptions]="{standalone: true}">
+            <option value="Basic">Basic Knowledge</option>
+            <option value="Novice">Novice</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Advanced">Advanced</option>
+            <option value="Expert">Expert</option>
+          </select><button (click)="removeSkillField(i)">Remove skill</button>
+        </div><button class="addbtn" (click)="addSkillField()">Add Another Skill</button> <br><br>
 
         <label for = "associated links">Include up to 3 links for any further information about yourself.</label>
         <input type="text" id="link1" placeholder="Link 1" size="50" [formControl]="link1">
