@@ -62,7 +62,7 @@ export class TopMenuBarComponent implements OnInit {
         "psuID": this.psuID
       }
     };
-    this.router.navigate(['/research-matches'], navigationExtras);
+    this.router.navigate(['/match-researches'], navigationExtras);
   }
 
   goToOppBoardPage() {
