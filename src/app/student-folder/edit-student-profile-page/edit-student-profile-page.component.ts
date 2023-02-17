@@ -30,6 +30,7 @@ export class EditStudentProfilePageComponent implements OnInit {
   gpa = new FormControl('', [Validators.required, Validators.pattern('\\-?\\d*\\.?\\d{1,2}')]);
   major = new FormControl('', [Validators.required]);
   minor = new FormControl('');
+  doubleMajor = new FormControl('');
   location = new FormControl('', [Validators.required]);
   gradMonth = new FormControl('');
   gradYear = new FormControl('');
@@ -70,12 +71,13 @@ export class EditStudentProfilePageComponent implements OnInit {
       this.email = new FormControl(this.student.email); 
       this.gpa = new FormControl(this.student.gpa);
       this.major = new FormControl(this.student.major);
+      this.doubleMajor = new FormControl(this.student.major2)
       this.minor = new FormControl(this.student.minor);
-      this.location = new FormControl(this.student.location);
+      this.location = new FormControl(this.student.preferLocation);
       this.gradMonth = new FormControl(this.student.graduation_Month);
       this.gradYear = new FormControl(this.student.graduation_Year);
-      this.skillSet = new FormControl(this.student.skillString);
-      this.skillSetLevel = new FormControl(this.student.skillLevelString);
+      this.skillSet = new FormControl(this.student.skills);
+      this.skillSetLevel = new FormControl(this.student.skillLevel);
       this.link1 = new FormControl(this.student.link1);
       this.link2 = new FormControl(this.student.link2);
       this.link3 = new FormControl(this.student.link3);
@@ -125,6 +127,7 @@ export class EditStudentProfilePageComponent implements OnInit {
     sd.email = this.email.value!;
     sd.gpa = Number(this.gpa.value!);
     sd.major = this.major.value!;
+    sd.major2 = this.doubleMajor.value!;
     sd.minor = this.minor.value!;
     sd.graduation_Month = this.gradMonth.value!;
     sd.graduation_Year = this.gradYear.value!;
