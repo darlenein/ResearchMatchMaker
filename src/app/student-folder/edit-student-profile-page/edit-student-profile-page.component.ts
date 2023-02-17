@@ -24,7 +24,6 @@ export class EditStudentProfilePageComponent implements OnInit {
 
   studentForm: FormGroup = new FormGroup('');
   firstName = new FormControl('', [Validators.required, Validators.pattern("[a-zA-Z -]*")]);
-;
   lastName = new FormControl('', [Validators.required, Validators.pattern("[a-zA-Z -]*")]);
   email = new FormControl('', [Validators.required, Validators.email]);
   phone = new FormControl(''); // dont need?
@@ -163,7 +162,7 @@ export class EditStudentProfilePageComponent implements OnInit {
       }
     };
     if(!this.validate()){
-    this.serviceDispatcher.editStudentProfile(sd).subscribe(response => { });
+    //this.serviceDispatcher.editStudentProfile(sd).subscribe(response => { });
     this.router.navigate(['/view-student-profile'], navigationExtras);
   }
 }

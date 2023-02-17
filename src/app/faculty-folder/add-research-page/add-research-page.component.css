@@ -12,7 +12,7 @@ input{
     padding: 12px 20px;
     margin: 8px;
     box-sizing: border-box;
-    
+    font-family: Arial, Helvetica, sans-serif;
 }
 select{
     padding: 12px 20px;
@@ -25,16 +25,19 @@ input[type = button]{
     padding: 12px 20px;
     margin: 8px 0;
     font-size: 16px;
+    
 }
 
 label[type = date]{
     display: inline-block;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 textarea{
-    padding: 12px 20px;
+    padding: 12px 16px;
     margin: 8px;
     box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
     
 }
 
@@ -128,4 +131,14 @@ label[type = options]{
 .mat-error::before{
     content: '\a';
     white-space: pre;
+}
+
+label[type = text]{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+}
+
+label[type = options]{
+    font-family: Arial, Helvetica, sans-serif;
+    
 }

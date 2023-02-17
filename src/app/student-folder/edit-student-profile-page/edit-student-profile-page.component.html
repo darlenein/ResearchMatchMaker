@@ -6,29 +6,33 @@
         Edit Student Profile
      </h1>
      <form>
-        <button class="btns" mat-stroked-button>Add Resume</button>
-        <button class="btns" mat-stroked-button (click)="openFile()">Add Profile Picture
+        <button class="btns" mat-stroked-button style="font-size: large;" (click)="openFile()">Add Resume</button>
+        <button class="btns" mat-stroked-button style="font-size: large;" (click)="openFile()">Add Profile Picture
             <input type="file" style="display:none" (change)="handle($event)">
         </button>
         <br><br>
 
-        <label type="first_name" for = "first_name">First Name</label>
-        <input type="text" id="first_name"  size="50" value = {{student.first_Name}} [formControl]="firstName" /> 
+        <label type="text"  for = "first_name">First Name</label>
+        <input type="text" id="first_name"  size="50" value = {{student.first_Name}} [formControl]="firstName" />
+        <mat-error *ngIf="firstName.invalid && firstName.dirty">{{getFirstNameErrorMessage()}}</mat-error>
         <br> <br>
 
-        <label type="last_name" for = "last_name">Last Name</label>
-        <input type="text" id="last_name"  value = {{student.last_Name}} autocomplete="off" size="50" [formControl]="lastName"/> 
+        <label type="text" for = "last_name">Last Name</label>
+        <input type="text" id="last_name"  value = {{student.last_Name}} autocomplete="off" size="50" [formControl]="lastName"/>
+        <mat-error *ngIf="lastName.invalid && lastName.dirty">{{getLastNameErrorMessage()}}</mat-error> 
         <br> <br>
 
-        <label for = "email">Email</label>
+        <label type ="text"for = "email">Email</label>
         <input type="text" id="email" placeholder="Enter PSU Email" size="50" [formControl]="email">
+        <mat-error *ngIf="email.invalid && email.dirty">{{getEmailErrorMessage()}}</mat-error>
         <br> <br>
 
-        <label for = "gpa">GPA</label>
+        <label type="text" for = "gpa">GPA</label>
         <input type="text" id="gpa" placeholder="Enter GPA" size="50" [formControl]="gpa">
+        <mat-error *ngIf="gpa.invalid && gpa.dirty">{{getGPAErrorMessage()}}</mat-error>
         <pre></pre>
 
-        <label for = "major">Major</label>
+        <label type="text" for = "major">Major</label>
         <select id="major" [formControl]="major">
             <option value="accounting">Accounting</option>
             <option value="biology">Biology</option>
@@ -46,9 +50,10 @@
             <option value="envScience">Environmental Science</option>
             <option value="finance">Finance</option>
         </select>
+        <mat-error *ngIf="major.invalid && major.dirty">{{getMajorErrorMessage()}}</mat-error>
         <pre></pre>
 
-        <label for = "minor">Minor</label>
+        <label type="text" for = "minor">Minor</label>
         <select id="minor" [formControl]="minor">
             <option value="accounting">Accounting</option>
             <option value="biology">Biology</option>
@@ -82,36 +87,37 @@
 
 
 
-        <label for = "campus">Choose whether you would like your research opportunity matches to include on campus research, online research, or both.</label>
+        <label type="text" for = "campus">Choose whether you would like your research opportunity matches to include on campus research, online research, or both.</label>
         <mat-radio-group class="radio-btns" [formControl]="location">
-            <mat-radio-button value="On-Campus" class="radio-style">On-Campus</mat-radio-button>
-            <mat-radio-button value="Online" class="radio-style">Online</mat-radio-button>
-            <mat-radio-button value="On-Campus/Online" class="radio-style">No Preference</mat-radio-button>
+            <mat-radio-button value="On-Campus" style="font-family: Arial;" class="radio-style">On-Campus</mat-radio-button>
+            <mat-radio-button value="Online" style="font-family: Arial;" class="radio-style">Online</mat-radio-button>
+            <mat-radio-button value="On-Campus/Online" style="font-family: Arial;" class="radio-style">No Preference</mat-radio-button>
           </mat-radio-group>
-
+          <mat-error *ngIf="location.invalid && location.dirty">{{getLocationErrorMessage()}}</mat-error>
         <!-- <input type="checkbox" name="campus" id="on campus" value="on campus">
         <label type="options" for="on campus">On Campus</label>
         <input type="checkbox" name="campus" id="off campus" value="off campus">
         <label type="options" for="off campus">Online</label> -->
 
         <br><br>
-        <label for = "money">Choose whether you would like your research opportunity matches to include paid research, non-paid research, or research that offers credit. </label>
+        <label type="text" style = "font-family: Arial" for = "money">Choose whether you would like your research opportunity matches to include paid research, non-paid research, or research that offers credit. </label>
         <input type="checkbox" name="money" id="paid" value="paid" [formControl]="paid">
         <label type="options" for="paid">Paid </label>
         <input type="checkbox" name="money" id="nonpaid" value="nonpaid" [formControl]="nonpaid">
         <label type="options" for="nonpaid">Non-paid </label>
         <input type="checkbox" name="money" id="credit" value="credit" [formControl]="credit">
         <label type="options" for="nonpaid">Research Credit </label>
+        <mat-error *ngIf="studentForm.invalid">{{getPaidErrorMessage()}}</mat-error>
         <br><br>
 
         
-        <label type="research_interest" >List any research intersts you have (Separate by semicolon)</label>
+        <label type="text"  >List any research intersts you have (Separate by semicolon)</label>
         <textarea  rows="7" cols="75" name="acquired skills" id="acquired skills" placeholder="Interest 1;Interest 2;Interest 3" [formControl]="interest"></textarea>
 
-        <label type="research_projects">List any previous research projects you have participated in (Separate by semicolon)</label>
+        <label type="text">List any previous research projects you have participated in (Separate by semicolon)</label>
         <textarea  rows="7" cols="75" name="acquired skills" id="acquired skills" placeholder="Research Project 1;Research Project 2;Research Project 3" [formControl]="projects"></textarea>
 
-        <label type="skills" for = "acquired skills">List any skills you have and your skill level for each skill</label>
+        <label type="text" for = "acquired skills">List any skills you have and your skill level for each skill</label>
         <div *ngFor="let item of skillForm; index as i">
             <input style="width: 300px" placeholder="skill" [(ngModel)]="item.skill" [ngModelOptions]="{standalone: true}">
             <select [(ngModel)]="item.skillLevel" [ngModelOptions]="{standalone: true}">
@@ -123,7 +129,7 @@
           </select><button (click)="removeSkillField(i)">Remove skill</button>
         </div><button class="addbtn" (click)="addSkillField()">Add Another Skill</button> <br><br>
 
-        <label for = "associated links">Include up to 3 links for any further information about yourself.</label>
+        <label type="text" for = "associated links">Include up to 3 links for any further information about yourself.</label>
         <input type="text" id="link1" placeholder="Link 1" size="50" [formControl]="link1">
         <input type="text" id="link2" placeholder="Link 2" size="50" [formControl]="link2">
         <input type="text" id="link3" placeholder="Link 3" size="50" [formControl]="link3">
