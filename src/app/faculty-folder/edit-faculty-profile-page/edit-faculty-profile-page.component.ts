@@ -34,15 +34,15 @@ export class EditFacultyProfilePageComponent implements OnInit {
   ngOnInit(): void {
     this.serviceDispatcher.getFaculty('nii1').subscribe(response => {
       this.faculty = response
-      this.firstName = new FormControl(this.faculty.firstName);
-      this.lastName = new FormControl(this.faculty.lastName);
+      this.firstName = new FormControl(this.faculty.first_Name);
+      this.lastName = new FormControl(this.faculty.last_Name);
       this.email = new FormControl(this.faculty.email); 
       this.title = new FormControl(this.faculty.title);
       this.dept = new FormControl(this.faculty.dept);
       this.office = new FormControl(this.faculty.office);
       this.phone = new FormControl(this.faculty.phone);
-      this.about = new FormControl(this.faculty.aboutMe);
-      this.research = new FormControl(this.faculty.researchInterest);
+      this.about = new FormControl(this.faculty.about_Me);
+      this.research = new FormControl(this.faculty.research_Interest);
       this.link1 = new FormControl(this.faculty.link1);
       this.link2 = new FormControl(this.faculty.link2);
       this.link3 = new FormControl(this.faculty.link3);
@@ -81,7 +81,7 @@ export class EditFacultyProfilePageComponent implements OnInit {
   fd.link1 = this.link1.value!;
   fd.link2 = this.link2.value!;
   fd.link3 = this.link3.value!;
-  
+
   if(!this.validate()){
   //this.serviceDispatcher.editFacultyProfile(fd).subscribe(response => { });
   this.router.navigate(['/view-faculty-profile'], navigationExtras);
