@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { OidcClientNotification, OidcSecurityService, OpenIdConfiguration, UserDataResult } from 'angular-auth-oidc-client';
-import { Observable, map } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ServiceDispatcher } from '../ServiceDispatcher';
 
 
@@ -11,15 +11,19 @@ import { ServiceDispatcher } from '../ServiceDispatcher';
   styleUrls: ['./authenticator.component.css']
 })
 export class AuthenticatorComponent implements OnInit {
+
   configuration: Observable<OpenIdConfiguration>;
   userDataChanged: Observable<OidcClientNotification<any>>;
   userData: Observable<UserDataResult>;
-  userInfo: any;
+
   isAuthenticated = false;
-  profileExists = false;
-  userType: string;
-  psuID: string;
+  
   psuEmail: string;
+  psuID: string;
+  userType: string;
+  firstName: string;
+  lastName: string;
+  profileExists = false;
   //Checks user data and navigates to corresponding page after authentication
   constructor(private router: Router, private oidcSecurityService: OidcSecurityService, public serviceDispatcher: ServiceDispatcher) {
       this.oidcSecurityService = oidcSecurityService;
@@ -41,29 +45,26 @@ export class AuthenticatorComponent implements OnInit {
 
   authorizeUser() {
     //Check if user is student or faculty
-    this.oidcSecurityService.checkAuth().subscribe(({ isAuthenticated, userData, accessToken, idToken }) => {
+    this.oidcSecurityService.checkAuth().subscribe(({ configId, isAuthenticated, userData, accessToken, idToken, errorMessage}) => {
       // console.log(userData);
-      let userInfo = JSON.stringify(userData).replace('{', '').replace('}', '').split(",");
-      // for(let i = 0; i < userInfo.length; i++) {
-      //   console.log(i, ':', userInfo[i]);
-      // }
+      var user = JSON.parse(JSON.stringify(userData));
+      console.log(user);
       //Isolate psuID
-      let psuEmail = userInfo[18].split(":")[1];
-      this.psuEmail = psuEmail.substring(1, psuEmail.length-1);
+      this.psuEmail = user.unique_name;
       this.psuID = this.psuEmail.replace('@psu.edu', '');
-
-      
-      //Isolate user affiliation type (STUDENT, FACULTY, or STAFF) from userData
-      let userExtensionAttribute = userInfo[22].split(":");
-      //Second element in userExtensionAttribute contains value surrounded by "". 
-      this.userType = userExtensionAttribute[1].substring(1, userExtensionAttribute[1].length-1);
+      this.userType = user.extensionAttribute1;
+      this.firstName = user.given_name;
+      this.lastName = user.family_name;
       //Test line for userType
       /************************************** */
       // this.userType = "FACULTY";
       /************************************** */
-      console.log(this.userType);
       console.log(this.psuEmail);
       console.log(this.psuID);
+      console.log(this.userType);
+      console.log(this.firstName);
+      console.log(this.lastName);
+
       // console.log('isStudent: ', this.userType === "STUDENT");
       // console.log('isFaculty: ', this.userType === "FACULTY");
       //If userType is STUDENT, check student table in database

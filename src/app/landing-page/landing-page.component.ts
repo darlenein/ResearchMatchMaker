@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { OidcClientNotification, OidcSecurityService, OpenIdConfiguration, UserDataResult } from 'angular-auth-oidc-client';
-import { Observable } from 'rxjs';
 import { AuthenticatorComponent } from '../authenticator/authenticator.component';
 
 @Component({
@@ -11,11 +8,9 @@ import { AuthenticatorComponent } from '../authenticator/authenticator.component
 })
 export class LandingPageComponent implements OnInit {
   
-  constructor(private router: Router, private authenticator: AuthenticatorComponent) { }
+  constructor(private authenticator: AuthenticatorComponent) { }
 
   ngOnInit(): void {
-    
-
     
   }
   

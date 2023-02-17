@@ -131,7 +131,6 @@ import { PlaceholderComponent } from './Inbox/placeholder/placeholder.component'
   ],
   providers: 
   [ 
-    LandingPageComponent,
     AuthenticatorComponent
   ],
   bootstrap: [AppComponent]
