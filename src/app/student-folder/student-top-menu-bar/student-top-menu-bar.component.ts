@@ -47,13 +47,22 @@ export class TopMenuBarComponent implements OnInit {
     this.router.navigate(['/student-home'], navigationExtras);
   }
 
-  goToMatchPage() {
+  goToApplicationPage() {
     let navigationExtras: NavigationExtras = {
       queryParams: {
         "psuID": this.psuID
       }
     };
     this.router.navigate(['/view-matches'], navigationExtras);
+  }
+
+  goToMatchPage() {
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        "psuID": this.psuID
+      }
+    };
+    this.router.navigate(['/research-matches'], navigationExtras);
   }
 
   goToOppBoardPage() {
