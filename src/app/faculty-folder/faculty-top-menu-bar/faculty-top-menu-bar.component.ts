@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { AuthService } from 'src/app/Inbox/auth.service';
 
-interface FacultyCred {
+interface UserCred {
   username: string;
   password: string;
 }
@@ -94,12 +94,12 @@ export class FacultyTopMenuBarComponent implements OnInit {
   }*/
 
   facultyClickInbox(){
-    let facultyCred: FacultyCred = {
+    let userCred: UserCred = {
       username: 'nii1',
       password: 'nii1'
     }
 
-    this.authService.clickInbox(facultyCred).subscribe({
+    this.authService.clickInbox(userCred).subscribe({
       next: () => {
         this.router.navigateByUrl('/inbox-FacultyHome')
       },

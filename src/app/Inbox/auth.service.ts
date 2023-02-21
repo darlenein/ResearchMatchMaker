@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-interface FacultyCred {
+interface UserCred {
   username: string;
   password: string;
 }
@@ -18,8 +18,8 @@ export class AuthService {
   signedin$ = new BehaviorSubject(true);
 
 
-  clickInbox(facultyCred: FacultyCred){
-    return this.http.post(`${this.rootUrl}/auth/signin`, facultyCred, {withCredentials: true})
+  clickInbox(userCred: UserCred){
+    return this.http.post(`${this.rootUrl}/auth/signin`, userCred, {withCredentials: true})
       .pipe(
         tap(() => {
           this.signedin$.next(true);

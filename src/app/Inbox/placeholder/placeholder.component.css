@@ -1,0 +1,9 @@
+@import 'semantic-ui-css/semantic.css';
+.placeholder{
+    width: 800px;
+    height: 600px;
+    float: right;
+    padding-right: 500px;
+    display: flex;
+
+}

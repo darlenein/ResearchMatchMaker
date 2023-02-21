@@ -64,7 +64,12 @@ export const routes: Routes = [
   { path: 'student-view-research-page', component: ViewStudentResearchPageComponent},
   { path: 'view-research-homepage', component: ViewResearchHomepageFacultyComponent},
   { path: 'student-view-research-homepage', component: ViewResearchHomepageStudentComponent},
-  { path: 'inbox-FacultyHome', component: InboxHomeComponent}, 
+  { path: 'inbox-FacultyHome', component: InboxHomeComponent, 
+    children: [
+      {path:'', component: PlaceholderComponent},
+      {path:':id', component: EmailShowComponent}
+    ]
+  }, 
   { path: 'inbox-StudentHome', component: StudentHomeComponent},
   { path: 'match-researches', component: MatchResearchToStudentPageComponent},
 ];
