@@ -112,10 +112,11 @@ export class OpportunityBoardPageComponent implements OnInit {
   goToProfile(id:string){
     let navigationExtras: NavigationExtras = {
       queryParams: {
-        "psuID": id
+        "psuID": this.psuID,
+        "facultyID": id
       }
     };
-    this.router.navigate(['/view-faculty-profile'], navigationExtras);
+    this.router.navigate(['/student-view-faculty'], navigationExtras);
   }
 
   applyToResearch(rID:number){

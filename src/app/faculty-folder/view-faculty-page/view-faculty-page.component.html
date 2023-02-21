@@ -4,8 +4,8 @@
 <div class="top-container">
     <div class="top-left-container">
         <button *ngIf="fpsuID === psuID" (click)="goToEditProfile();">Edit Profile</button><br><br>
-        <span class="name">{{faculty.firstName}} {{faculty.lastName}}</span><br>
-        <img src="{{faculty.profileUrl}}" class="profile-logo">
+        <span class="name">{{faculty.first_Name}} {{faculty.last_Name}}</span><br>
+        <img src="{{faculty.profile_Url}}" class="profile-logo">
     </div>
     <div class="top-right-container">
         <span class="profile-text-title"><div *ngFor="let item of splitTitle">{{item}}</div></span><br>

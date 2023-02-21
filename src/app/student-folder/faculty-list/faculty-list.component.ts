@@ -66,11 +66,10 @@ export class FacultyListComponent implements OnInit {
   goToFacultyProfile(id:String) {
     let navigationExtras: NavigationExtras = {
       queryParams: {
+        "psuID": this.psuID,
         "facultyID": id
       }
     };
-    
-    this.serviceDispatcher.getFaculty('id').subscribe(response => {});
     this.router.navigate(['/student-view-faculty'], navigationExtras)
   }
 
