@@ -29,15 +29,15 @@ export class MatchResearchToStudentPageComponent implements OnInit {
 
   
   ngOnInit(): void {
-    // this.serviceDispatcher.getMatchedResearches(this.psuID).subscribe(response => {
-    //   this.research = response
-    //   this.replaceInfoBySemicolon(this.research);
-    // });
-
-    this.serviceDispatcher.getMatchedResearches('dxi5017').subscribe(response => {
+    this.serviceDispatcher.getMatchedResearches(this.psuID).subscribe(response => {
       this.research = response
       this.replaceInfoBySemicolon(this.research);
     });
+
+    // this.serviceDispatcher.getMatchedResearches('dxi5017').subscribe(response => {
+    //   this.research = response
+    //   this.replaceInfoBySemicolon(this.research);
+    // });
   }
 
 

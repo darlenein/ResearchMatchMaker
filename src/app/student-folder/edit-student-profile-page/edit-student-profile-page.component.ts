@@ -165,7 +165,7 @@ export class EditStudentProfilePageComponent implements OnInit {
       }
     };
     if(!this.validate()){
-    //this.serviceDispatcher.editStudentProfile(sd).subscribe(response => { });
+    this.serviceDispatcher.editStudentProfile(sd).subscribe(response => { }); // comment out when testing 
     this.router.navigate(['/view-student-profile'], navigationExtras);
   }
 }

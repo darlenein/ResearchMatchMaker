@@ -67,7 +67,7 @@ export class AuthenticatorComponent implements OnInit {
       // console.log('isStudent: ', this.userType === "STUDENT");
       // console.log('isFaculty: ', this.userType === "FACULTY");
       //If userType is STUDENT, check student table in database
-      if(this.userType === "STUDENT") {
+      if(this.userType === "STUDENT" || this.userType === "EMPLOYEE") {
         console.log('Checking if student id exists in database...');
         this.serviceDispatcher.getStudent(this.psuID).subscribe(response => {
           console.log(response);
@@ -114,7 +114,7 @@ export class AuthenticatorComponent implements OnInit {
 
     console.log(this.userType, ', ', this.profileExists)
     //Student Home Page
-    if(this.userType === "STUDENT" && this.profileExists) {
+    if((this.userType === "STUDENT" || this.userType === "EMPLOYEE")  && this.profileExists) {
       this.router.navigate(['/student-home'], navigationExtras);
     }
     //Faculty Home Page
@@ -122,7 +122,7 @@ export class AuthenticatorComponent implements OnInit {
       this.router.navigate(['/faculty-home'], navigationExtras);
     }
     //Create Student Profile Page
-    else if(this.userType === "STUDENT" && !(this.profileExists)) {
+    else if((this.userType === "STUDENT" || this.userType === "EMPLOYEE") && !(this.profileExists)) {
       this.router.navigate(['/create-student-page'], navigationExtras);
     }
     //Create Faculty Profile Page

@@ -38,15 +38,15 @@ export class MatchPageComponent implements OnInit {
 
   
   ngOnInit(): void {
-    // this.serviceDispatcher.getAllResearchByStudent(this.psuID).subscribe(response => {
-    //   this.research = response
-    //   this.replaceInfoBySemicolon(this.research);
-    // });
-
-    this.serviceDispatcher.getAllResearchByStudent('dxi5017').subscribe(response => {
+    this.serviceDispatcher.getAllResearchByStudent(this.psuID).subscribe(response => {
       this.research = response
       this.replaceInfoBySemicolon(this.research);
     });
+
+    // this.serviceDispatcher.getAllResearchByStudent('dxi5017').subscribe(response => {
+    //   this.research = response
+    //   this.replaceInfoBySemicolon(this.research);
+    // });
   }
 
   ngAfterViewInit(): void {
@@ -109,10 +109,8 @@ goForward(stepper: MatStepper){
 
 deleteApplication(rID:number){
   let p = new ProgressModel();
-  // p.research_id = rID;
-  // p.student_id = this.psuID;
-  //  p.research_id = 123;
-  //  p.student_id = "hello";
+  p.research_id = rID;
+  p.student_id = this.psuID;
   this.openDialog('0ms', '0ms', p);
 }
 

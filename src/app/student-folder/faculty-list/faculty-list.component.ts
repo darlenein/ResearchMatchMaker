@@ -70,7 +70,7 @@ export class FacultyListComponent implements OnInit {
       }
     };
     
-    //this.serviceDispatcher.getFaculty('id').subscribe(response => {});
+    this.serviceDispatcher.getFaculty('id').subscribe(response => {});
     this.router.navigate(['/student-view-faculty'], navigationExtras)
   }
 
