@@ -14,18 +14,21 @@ export class StudentViewFacultyPageComponent implements OnInit {
   splitAboutMe: any;
   splitTitle: any;
   facultyID: string;
+  psuID: string;
 
   constructor(private router: Router, public serviceDispatcher: ServiceDispatcher, private route: ActivatedRoute) {
     this.route.queryParams.subscribe(params => {
       this.facultyID = params["facultyID"];
+      this.psuID = params["psuID"];
     });
    }
 
   ngOnInit(): void {
     this.serviceDispatcher.getFaculty(this.facultyID).subscribe(response => {
       this.faculty = response
-      this.splitResearchInterest = this.separateByComma(this.faculty.researchInterest);
-      this.splitAboutMe = this.separateByComma(this.faculty.aboutMe);
+      debugger;
+      this.splitResearchInterest = this.separateByComma(this.faculty.research_Interest);
+      this.splitAboutMe = this.separateByComma(this.faculty.about_Me);
       this.splitTitle = this.separateByComma(this.faculty.title);
     });
 

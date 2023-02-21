@@ -29,15 +29,15 @@ export class MatchResearchToStudentPageComponent implements OnInit {
 
   
   ngOnInit(): void {
-    // this.serviceDispatcher.getMatchedResearches(this.psuID).subscribe(response => {
-    //   this.research = response
-    //   this.replaceInfoBySemicolon(this.research);
-    // });
-
-    this.serviceDispatcher.getMatchedResearches('dxi5017').subscribe(response => {
+    this.serviceDispatcher.getMatchedResearches(this.psuID).subscribe(response => {
       this.research = response
       this.replaceInfoBySemicolon(this.research);
     });
+
+    // this.serviceDispatcher.getMatchedResearches('dxi5017').subscribe(response => {
+    //   this.research = response
+    //   this.replaceInfoBySemicolon(this.research);
+    // });
   }
 
 
@@ -84,15 +84,17 @@ goToProfile(id:string){
     let p = new ProgressModel();
     p.research_id = rID;
     p.student_id = this.psuID;
-    //this.serviceDispatcher.addResearchApplicant(p).subscribe(response => {});
-    this.openDialog('0ms', '0ms');
+    this.openDialog('0ms', '0ms', p);
   }
 
-  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string, p: ProgressModel): void {
     this.dialog.open(ResearchApplicantDialogComponent, {
       width: '500px',
       enterAnimationDuration,
       exitAnimationDuration,
+      data: {
+        applicationInfo: p
+      }
     });
   }
 

@@ -26,11 +26,12 @@ export class ViewFacultyPageComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.serviceDispatcher.getFaculty(this.psuID).subscribe(response => {
+    this.serviceDispatcher.getFaculty(this.fpsuID).subscribe(response => {
       this.faculty = response
-      this.splitResearchInterest = this.separateByComma(this.faculty.researchInterest);
-      this.splitAboutMe = this.separateByComma(this.faculty.aboutMe);
+      this.splitResearchInterest = this.separateByComma(this.faculty.research_Interest);
+      this.splitAboutMe = this.separateByComma(this.faculty.about_Me);
       this.splitTitle = this.separateByComma(this.faculty.title);
+      
     });
 
     // ---test---

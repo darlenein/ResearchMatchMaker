@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { AuthenticatorComponent } from 'src/app/authenticator/authenticator.component';
 import { AuthService } from 'src/app/Inbox/auth.service';
 
 interface UserCred {
@@ -17,7 +18,7 @@ export class FacultyTopMenuBarComponent implements OnInit {
   psuID: string;
 
 
-  constructor(private router: Router, private http: HttpClient, private route: ActivatedRoute, private authService: AuthService) { 
+  constructor(private router: Router, private http: HttpClient, private route: ActivatedRoute, private authService: AuthService, private authenticator: AuthenticatorComponent) { 
     this.route.queryParams.subscribe(params => {
       this.psuID = params["psuID"];
     });
@@ -104,6 +105,10 @@ export class FacultyTopMenuBarComponent implements OnInit {
         this.router.navigateByUrl('/inbox-FacultyHome')
       },
     });
+  }
+
+  signOut() {
+    this.authenticator.logout();
   }
 
 }

@@ -1,5 +1,6 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AutoLoginAllRoutesGuard, AutoLoginPartialRoutesGuard } from 'angular-auth-oidc-client';
 import { AddResearchPageComponent } from './faculty-folder/add-research-page/add-research-page.component';
 import { CreateFacultyPageComponent } from './faculty-folder/create-faculty-page/create-faculty-page.component';
 import { CreateStudentPageComponent } from './student-folder/create-student-page/create-student-page.component';
@@ -8,7 +9,6 @@ import { EditResearchPageComponent } from './faculty-folder/edit-research-page/e
 import { EditStudentProfilePageComponent } from './student-folder/edit-student-profile-page/edit-student-profile-page.component';
 import { FacultyHomePageComponent } from './faculty-folder/faculty-home-page/faculty-home-page.component';
 import { FacultyViewStudentPageComponent } from './faculty-folder/faculty-view-student-page/faculty-view-student-page.component';
-import { LoginPageComponent } from './login-page/login-page.component';
 import { ManageResearchPageComponent } from './faculty-folder/manage-research-page/manage-research-page.component';
 import { MatchPageComponent } from './student-folder/match-page/match-page.component';
 import { OpportunityBoardPageComponent } from './student-folder/opportunity-board-page/opportunity-board-page.component';
@@ -19,17 +19,16 @@ import { ViewStudentPageComponent } from './student-folder/view-student-page/vie
 import { ViewApplicantsComponent } from './faculty-folder/view-applicants/view-applicants.component';
 import { StudentListComponent } from './faculty-folder/student-list/student-list.component';
 import { FacultyListComponent } from './student-folder/faculty-list/faculty-list.component';
-import { SSOPageComponent } from './sso-page/sso-page.component';
 import { StudentViewFacultyPageComponent } from './student-folder/student-view-faculty-page/student-view-faculty-page.component';
 import { ViewResearchPageComponent } from './faculty-folder/view-research-page/view-research-page.component';
 import { ViewStudentResearchPageComponent } from './student-folder/student-view-research-page/student-view-research-page.component';
 import { ViewResearchHomepageFacultyComponent } from './faculty-folder/view-research-homepage/view-research-homepage.component';
 import { ViewResearchHomepageStudentComponent } from './student-folder/student-view-research-homepage/student-view-research-homepage.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import { AuthenticatorComponent } from './authenticator/authenticator.component';
 
 
-import { AuthGuardService } from './services/auth-guard.service'; 
-//add , canActivate: [AuthGuardService] to path to protect component with oidc authorization
-import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
+
 import { InboxHomeComponent } from './Inbox/inbox-FacultyHome/inbox-FacultyHome.component';
 import { StudentHomeComponent } from './Inbox/inbox-StudentHome/student-home.component';
 import { MatchResearchToStudentPageComponent } from './student-folder/match-research-to-student-page/match-research-to-student-page.component';
@@ -64,12 +63,7 @@ export const routes: Routes = [
   { path: 'student-view-research-page', component: ViewStudentResearchPageComponent},
   { path: 'view-research-homepage', component: ViewResearchHomepageFacultyComponent},
   { path: 'student-view-research-homepage', component: ViewResearchHomepageStudentComponent},
-  { path: 'inbox-FacultyHome', component: InboxHomeComponent, 
-    children: [
-      {path:'', component: PlaceholderComponent},
-      {path:':id', component: EmailShowComponent}
-    ]
-  }, 
+  { path: 'inbox-FacultyHome', component: InboxHomeComponent}, 
   { path: 'inbox-StudentHome', component: StudentHomeComponent},
   { path: 'match-researches', component: MatchResearchToStudentPageComponent},
 ];

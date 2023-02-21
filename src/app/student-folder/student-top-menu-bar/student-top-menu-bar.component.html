@@ -7,7 +7,8 @@
         </div>
         <div class="gradient-button-container">
             <button mat-raised-button class="gradient-button" (click)="goToHomePage();">Home</button>
-            <button mat-raised-button class="gradient-button" (click)="goToMatchPage();">Applied Researches</button>
+            <button mat-raised-button class="gradient-button" (click)="goToApplicationPage();">Applied Researches</button>
+            <button mat-raised-button class="gradient-button" (click)="goToMatchPage();">Matches</button>
             <button mat-raised-button class="gradient-button" (click)="goToOppBoardPage();">Opportunity Board</button>
             <button mat-raised-button class="gradient-button" (click)="goToFacultyListPage();">Research Mentor List</button>
             </div>
@@ -22,6 +23,7 @@
         <button mat-menu-item (click)="goToProfileViewPage();">View Profile</button>
         <button mat-menu-item (click)="goToEditProfilePage();">Edit Profile</button>
         <button mat-menu-item (click)="goToInboxStudentHomePage();">Inbox</button>
+        <button mat-menu-item (click)="signOut();">Sign Out</button>
     </mat-menu>
 </div>
 

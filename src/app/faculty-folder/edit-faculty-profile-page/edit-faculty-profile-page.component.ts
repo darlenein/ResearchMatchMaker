@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild, ElementRef  } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { FacultyModel } from 'src/app/models/faculty.model';
 import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
@@ -11,9 +11,9 @@ import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
 })
 export class EditFacultyProfilePageComponent implements OnInit {
 
-  firstName = new FormControl('');
-  lastName = new FormControl('');
-  email = new FormControl('');
+  firstName = new FormControl('', [Validators.required, Validators.pattern("[a-zA-Z -]*")]);
+  lastName = new FormControl('', [Validators.required, Validators.pattern("[a-zA-Z -]*")]);
+  email = new FormControl('',  [Validators.required, Validators.email]);
   title = new FormControl('');
   dept = new FormControl(''); // do not think prof need dept (only need in research field)
   office = new FormControl('');
@@ -34,15 +34,15 @@ export class EditFacultyProfilePageComponent implements OnInit {
   ngOnInit(): void {
     this.serviceDispatcher.getFaculty('nii1').subscribe(response => {
       this.faculty = response
-      this.firstName = new FormControl(this.faculty.firstName);
-      this.lastName = new FormControl(this.faculty.lastName);
+      this.firstName = new FormControl(this.faculty.first_Name);
+      this.lastName = new FormControl(this.faculty.last_Name);
       this.email = new FormControl(this.faculty.email); 
       this.title = new FormControl(this.faculty.title);
       this.dept = new FormControl(this.faculty.dept);
       this.office = new FormControl(this.faculty.office);
       this.phone = new FormControl(this.faculty.phone);
-      this.about = new FormControl(this.faculty.aboutMe);
-      this.research = new FormControl(this.faculty.researchInterest);
+      this.about = new FormControl(this.faculty.about_Me);
+      this.research = new FormControl(this.faculty.research_Interest);
       this.link1 = new FormControl(this.faculty.link1);
       this.link2 = new FormControl(this.faculty.link2);
       this.link3 = new FormControl(this.faculty.link3);
@@ -81,8 +81,53 @@ export class EditFacultyProfilePageComponent implements OnInit {
   fd.link1 = this.link1.value!;
   fd.link2 = this.link2.value!;
   fd.link3 = this.link3.value!;
+
+  if(!this.validate()){
   //this.serviceDispatcher.editFacultyProfile(fd).subscribe(response => { });
   this.router.navigate(['/view-faculty-profile'], navigationExtras);
+  }
+}
+
+validate(): any {
+  let hasError = false;
+
+  if (this.firstName.invalid) {
+    this.firstName.markAsDirty();
+    hasError = true;
+  }
+
+  if (this.lastName.invalid) {
+    this.lastName.markAsDirty();
+    hasError = true;
+  }
+
+  if (this.email.invalid) {
+    this.email.markAsDirty();
+    hasError = true;
+  }
+  return hasError;
+  
+}
+
+getEmailErrorMessage() {
+  if (this.email.hasError('required')) {
+    return 'You must enter an email';
+  }
+  return this.email.hasError('email') ? 'Not a valid email' : '';
+}
+
+getFirstNameErrorMessage() {
+  if (this.firstName.hasError('required')) {
+    return 'You must enter a first name';
+  }
+  return this.firstName.hasError('pattern') ? 'Not a valid first name' : '';
+}
+
+getLastNameErrorMessage() {
+  if (this.lastName.hasError('required')) {
+    return 'You must enter a last name';
+  }
+  return this.lastName.hasError('pattern') ? 'Not a valid last name' : '';
 }
 
 }

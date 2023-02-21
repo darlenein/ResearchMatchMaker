@@ -25,6 +25,7 @@ input[type = button]{
     padding: 12px 20px;
     margin: 8px 0;
     font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #school{
@@ -39,7 +40,7 @@ textarea{
     padding: 12px 20px;
     margin: 8px;
     box-sizing: border-box;
-    
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 
@@ -94,4 +95,9 @@ label[type = options]{
     margin-right: 10px;
     width: 200px;
     height: 50px;
+}
+
+label[type = text]{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
 }

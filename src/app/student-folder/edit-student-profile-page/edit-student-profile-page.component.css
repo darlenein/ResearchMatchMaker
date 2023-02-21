@@ -12,8 +12,10 @@ input{
     padding: 12px 20px;
     margin: 8px;
     box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
     
 }
+
 select{
     padding: 12px 20px;
     margin: 8px;
@@ -24,7 +26,7 @@ input[type = button]{
     width: 50%;
     padding: 12px 20px;
     margin: 8px 0;
-    font-size: 16px;
+    font-size: 24px;
 }
 
 #department{
@@ -33,13 +35,20 @@ input[type = button]{
 }
 label[type = date]{
     display: inline-block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+}
+
+label[type = text]{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
 }
 
 textarea{
     padding: 12px 20px;
     margin: 8px;
     box-sizing: border-box;
-    
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #researchlocation{
@@ -123,4 +132,9 @@ label[type = options]{
     margin-right: 10px;
     width: 200px;
     height: 50px;
+}
+
+label[type = options]{
+    font-family: Arial, Helvetica, sans-serif;
+    
 }

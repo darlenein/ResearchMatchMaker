@@ -7,47 +7,47 @@
     <h1>
         Faculty Profile Creation
      </h1>
-        <button class="btns" mat-stroked-button (click)="openFile()">Add Profile Picture
+        <button class="btns" mat-stroked-button style="font-size: large;" (click)="openFile()">Add Profile Picture
             <input type="file" style="display:none" (change)="handle($event)">
         </button><br><br>
 
-        <label type="first_name" for = "first_name">First Name*</label>
+        <label type="text" for = "first_name">First Name*</label>
         <input type="text" id="first_name" placeholder="Enter First Name" size="50" [formControl]="firstName">
         <mat-error *ngIf="firstName.invalid && firstName.dirty">{{getFirstNameErrorMessage()}}</mat-error>
         <br> <br>
 
-        <label type="last_name" for = "last_name">Last Name*</label>
+        <label type="text" for = "last_name">Last Name*</label>
         <input type="text" id="last_name" placeholder="Enter Last Name*" size="50" [formControl]="lastName">
         <mat-error *ngIf="lastName.invalid && lastName.dirty">{{getLastNameErrorMessage()}}</mat-error>
         <br> <br>
 
-        <label for = "email">Email*</label>
+        <label type="text" for = "email">Email*</label>
         <input type="text" id="email" placeholder="Enter PSU Email" size="50" [formControl]="email">
         <mat-error *ngIf="email.invalid && email.dirty">{{getEmailErrorMessage()}}</mat-error>
         <br> <br>
 
-        <label for = "title">Title</label>
+        <label type="text" for = "title">Title</label>
         <input type="text" id="title" placeholder="Enter your Title" size="50" [formControl]="title">
         <br> <br>
 
-        <label for = "office">Office</label>
+        <label type="text" for = "office">Office</label>
         <input type="text" id="office" placeholder="Enter Office Address" size="50" [formControl]="office">
         <pre></pre>
         
-        <label for = "phone">Phone Number</label>
+        <label type="text" for = "phone">Phone Number</label>
         <input type="text" id="phone" placeholder="Enter Phone Number" size="50" [formControl]="phone">
         <br><br>
 
-        <label for = "about me">Include all relevent information about yourself as faculty, such as degrees, certifications, and anything else that is relevant. Please separate each by a semicolon.</label>
+        <label type="text" for = "about me">Include all relevent information about yourself as faculty, such as degrees, certifications, and anything else that is relevant. Please separate each by a semicolon.</label>
         <textarea rows="5" cols="75" name="links" id="links" placeholder="Ph.D, Computer Science, Pennsylvania State University;MS, Computer Engineering, Pennsylvania State University" [formControl]="about"></textarea>
         <br><br>
 
 
-        <label for = "research interest">Include all areas of interests involving your research opportunities. Please separate each by semicolon.</label>
+        <label type="text" for = "research interest">Include all areas of interests involving your research opportunities. Please separate each by semicolon.</label>
         <textarea rows="5" cols="75" name="links" id="links" placeholder="Software Engineering;Student-oriented Learning;Organic Chemistry" [formControl]="research"></textarea>
         <br><br>
 
-        <label for = "associated links">Include up to 3 links for any further information about yourself or research.</label>
+        <label type="text" for = "associated links">Include up to 3 links for any further information about yourself or research.</label>
         <input type="text" id="link1" placeholder="Link 1" size="50" [formControl]="link1">
         <input type="text" id="link2" placeholder="Link 2" size="50" [formControl]="link2">
         <input type="text" id="link3" placeholder="Link 3" size="50" [formControl]="link3">

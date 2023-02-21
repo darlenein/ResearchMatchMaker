@@ -23,17 +23,17 @@ export class ViewStudentPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.serviceDispatcher.getStudent(this.psuID).subscribe(response => {
-    //   this.student = response
-    //   this.splitSkills = this.separateBySemicolon(this.student.skills);
-    //   this.splitResearchInterest = this.separateBySemicolon(this.student.researchInterest);
-    // });
-
-    this.serviceDispatcher.getStudent('dxi5017').subscribe(response => {
+    this.serviceDispatcher.getStudent(this.psuID).subscribe(response => {
       this.student = response
       this.splitSkills = this.separateBySemicolon(this.student.skills);
       this.splitResearchInterest = this.separateBySemicolon(this.student.research_Interest);
     });
+
+    // this.serviceDispatcher.getStudent('dxi5017').subscribe(response => {
+    //   this.student = response
+    //   this.splitSkills = this.separateBySemicolon(this.student.skills);
+    //   this.splitResearchInterest = this.separateBySemicolon(this.student.research_Interest);
+    // });
   }
 
   separateBySemicolon(rawText: String) {

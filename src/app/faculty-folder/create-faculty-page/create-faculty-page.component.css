@@ -12,7 +12,7 @@ input{
     padding: 12px 20px;
     margin: 8px;
     box-sizing: border-box;
-    
+    font-family: Arial, Helvetica, sans-serif;
 }
 select{
     padding: 12px 20px;
@@ -39,6 +39,7 @@ textarea{
     padding: 12px 20px;
     margin: 8px;
     box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 
@@ -101,4 +102,9 @@ label[type = options]{
 .mat-error::before{
     content: '\a';
     white-space: pre;
+}
+
+label[type = text]{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
 }

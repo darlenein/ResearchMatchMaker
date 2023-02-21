@@ -11,7 +11,6 @@ import { MatchPageComponent } from './student-folder/match-page/match-page.compo
 import { ViewFacultyPageComponent } from './faculty-folder/view-faculty-page/view-faculty-page.component';
 import { ViewStudentPageComponent } from './student-folder/view-student-page/view-student-page.component'; 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoginPageComponent } from './login-page/login-page.component';
 import { CreateStudentPageComponent } from './student-folder/create-student-page/create-student-page.component';
 import { CreateFacultyPageComponent } from './faculty-folder/create-faculty-page/create-faculty-page.component';
 import { BannerNoButtonsComponent } from './banner-no-buttons/banner-no-buttons.component';
@@ -43,16 +42,16 @@ import { StudentListComponent } from './faculty-folder/student-list/student-list
 import { FacultyListComponent } from './student-folder/faculty-list/faculty-list.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
-import { SSOPageComponent } from './sso-page/sso-page.component';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { CancelResearchDialogComponent } from './student-folder/cancel-research-dialog/cancel-research-dialog.component';
 import { ViewStudentResearchPageComponent } from './student-folder/student-view-research-page/student-view-research-page.component';
 import { ViewResearchHomepageFacultyComponent } from './faculty-folder/view-research-homepage/view-research-homepage.component';
 import { ViewResearchHomepageStudentComponent } from './student-folder/student-view-research-homepage/student-view-research-homepage.component';
-
-import { AuthGuardService } from './services/auth-guard.service';
-import { AuthService } from './services/auth.service';
-import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import { AuthConfigModule } from './auth-config/auth-config.module';
+import { EventTypes, PublicEventsService } from 'angular-auth-oidc-client';
+import { filter } from 'rxjs/operators';
+import { AuthenticatorComponent } from './authenticator/authenticator.component';
 
 //Messaging
 import { InboxHomeComponent } from './Inbox/inbox-FacultyHome/inbox-FacultyHome.component';
@@ -72,7 +71,6 @@ import { PlaceholderComponent } from './Inbox/placeholder/placeholder.component'
     MatchPageComponent,
     ViewFacultyPageComponent,
     ViewStudentPageComponent,
-    LoginPageComponent,
     CreateStudentPageComponent,
     CreateFacultyPageComponent,
     BannerNoButtonsComponent,
@@ -92,11 +90,12 @@ import { PlaceholderComponent } from './Inbox/placeholder/placeholder.component'
     ViewApplicantsComponent,
     StudentListComponent,
     FacultyListComponent,
-    SSOPageComponent,
     CancelResearchDialogComponent,
     ViewStudentResearchPageComponent,
     ViewResearchHomepageFacultyComponent,
     ViewResearchHomepageStudentComponent,
+    LandingPageComponent,
+    AuthenticatorComponent,
     InboxHomeComponent,
     EmailCreateComponent,
     EmailReplyComponent,
@@ -128,13 +127,22 @@ import { PlaceholderComponent } from './Inbox/placeholder/placeholder.component'
     MatDatepickerModule,
     MatNativeDateModule,
     MatDialogModule,
+    AuthConfigModule
   ],
   providers: 
   [ 
-    //Kole stuff
-    AuthGuardService,
-    AuthService,
+    LandingPageComponent,
+    AuthenticatorComponent
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(private readonly eventService: PublicEventsService) {
+    this.eventService
+      .registerForEvents()
+      .pipe(filter((notification) => notification.type === EventTypes.ConfigLoaded))
+      .subscribe((config) => {
+        console.log('ConfigLoaded', config);
+      });
+  }
+}

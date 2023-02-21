@@ -27,5 +27,9 @@ export class CancelResearchDialogComponent implements OnInit {
     debugger;
     this.serviceDispatcher.deleteResearchApplicant(this.data.applicationInfo).subscribe(response => {});
     this.dialogRef.close();
+
+    setTimeout(()=>{
+      location.reload();
+    },1000);
   }
 }
