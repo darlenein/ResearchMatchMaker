@@ -64,7 +64,7 @@ export class CreateFacultyPageComponent implements OnInit {
     fd.link1 = this.link1.value!;
     fd.link2 = this.link2.value!;
     fd.link3 = this.link3.value!;
-    //this.serviceDispatcher.createFacultyProfile(fd).subscribe(response => { });
+    this.serviceDispatcher.createFacultyProfile(fd).subscribe(response => { });
 
     if(!this.validate()){
       this.router.navigate(['/faculty-home'], navigationExtras);
