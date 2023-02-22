@@ -26,9 +26,6 @@ import { ViewResearchHomepageFacultyComponent } from './faculty-folder/view-rese
 import { ViewResearchHomepageStudentComponent } from './student-folder/student-view-research-homepage/student-view-research-homepage.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { AuthenticatorComponent } from './authenticator/authenticator.component';
-
-
-
 import { InboxHomeComponent } from './Inbox/inbox-FacultyHome/inbox-FacultyHome.component';
 import { StudentHomeComponent } from './Inbox/inbox-StudentHome/student-home.component';
 import { MatchResearchToStudentPageComponent } from './student-folder/match-research-to-student-page/match-research-to-student-page.component';
@@ -36,14 +33,14 @@ import { PlaceholderComponent } from './Inbox/placeholder/placeholder.component'
 import { EmailShowComponent } from './Inbox/email-show/email-show.component';
 
 export const routes: Routes = [
-  { path: '', component: LoginPageComponent},
+  { path: '', component: LandingPageComponent},
   { path: 'view-matches', component: MatchPageComponent},
   { path: 'opp-board', component: OpportunityBoardPageComponent},
   { path: 'view-faculty-profile', component: ViewFacultyPageComponent},
   { path: 'view-student-profile', component: ViewStudentPageComponent},
   { path: 'create-faculty-page', component: CreateFacultyPageComponent},
   { path: 'create-student-page', component: CreateStudentPageComponent},
-  { path: 'login', component: LoginPageComponent},
+  { path: 'login', component: LandingPageComponent},
   { path: 'faculty-home', component: FacultyHomePageComponent},
   { path: 'student-home', component: StudentHomePageComponent},
   { path: 'faculty-research', component: ManageResearchPageComponent},
@@ -57,8 +54,7 @@ export const routes: Routes = [
   { path: 'faculty-view-student', component: FacultyViewStudentPageComponent},
   { path: 'student-view-faculty', component: StudentViewFacultyPageComponent},
   { path: 'faculty-list', component: FacultyListComponent},
-  { path: 'sso-page', component: SSOPageComponent},
-  { path: 'auth-callback', component: AuthCallbackComponent},
+  { path: 'auth-callback', component: AuthenticatorComponent },
   { path: 'view-research-page', component: ViewResearchPageComponent},
   { path: 'student-view-research-page', component: ViewStudentResearchPageComponent},
   { path: 'view-research-homepage', component: ViewResearchHomepageFacultyComponent},
