@@ -36,13 +36,14 @@
 
         <label type="text" for = "major">Major*</label>
         <select id="major" [formControl]="major">
+            <option value=""></option>
             <option value="accounting">Accounting</option>
             <option value="biology">Biology</option>
             <option value="businessecon">Business Economics</option>
             <option value="chemistry">Chemistry</option>
             <option value="comm">Communications</option>
-            <option value="compEng">Computer Engineering</option>
-            <option value="compsci">Computer Science</option>
+            <option value="Computer Engineer">Computer Engineer</option>
+            <option value="Computer Science">Computer Science</option>
             <option value="creative writing">Creative Writing</option>
             <option value="digitalmedia">Digital Media, Arts, and Technology</option>
             <option value="elec/comp tech">Electrical and Computer Engineering Techonology</option>
@@ -51,19 +52,21 @@
             <option value="english">English</option>
             <option value="envScience">Environmental Science</option>
             <option value="finance">Finance</option>
+            <option value="Software Engineer">Software Engineer</option>
         </select>
         <mat-error *ngIf="major.invalid && major.dirty">{{getMajorErrorMessage()}}</mat-error>
         <pre></pre>
 
         <label type="text" for = "major">Double Major (optional)</label>
         <select id="major" [formControl]="doubleMajor">
+            <option value=""></option>
             <option value="accounting">Accounting</option>
             <option value="biology">Biology</option>
             <option value="businessecon">Business Economics</option>
             <option value="chemistry">Chemistry</option>
             <option value="comm">Communications</option>
-            <option value="compEng">Computer Engineering</option>
-            <option value="compsci">Computer Science</option>
+            <option value="Computer Engineer">Computer Engineer</option>
+            <option value="Computer Science">Computer Science</option>
             <option value="creative writing">Creative Writing</option>
             <option value="digitalmedia">Digital Media, Arts, and Technology</option>
             <option value="elec/comp tech">Electrical and Computer Engineering Techonology</option>
@@ -72,17 +75,19 @@
             <option value="english">English</option>
             <option value="envScience">Environmental Science</option>
             <option value="finance">Finance</option>
+            <option value="Software Engineer">Software Engineer</option>
         </select><pre></pre>
 
         <label type="text" for = "minor">Minor (optional)</label>
         <select id="minor" [formControl]="minor">
+            <option value=""></option>
             <option value="accounting">Accounting</option>
             <option value="biology">Biology</option>
             <option value="businessecon">Business Economics</option>
             <option value="chemistry">Chemistry</option>
             <option value="comm">Communications</option>
-            <option value="compEng">Computer Engineering</option>
-            <option value="compsci">Computer Science</option>
+            <option value="Computer Engineer">Computer Engineer</option>
+            <option value="Computer Science">Computer Science</option>
             <option value="creative writing">Creative Writing</option>
             <option value="digitalmedia">Digital Media, Arts, and Technology</option>
             <option value="elec/comp tech">Electrical and Computer Engineering Techonology</option>
@@ -91,6 +96,7 @@
             <option value="english">English</option>
             <option value="envScience">Environmental Science</option>
             <option value="finance">Finance</option>
+            <option value="Software Engineer">Software Engineer</option>
         </select>
         <pre></pre>
 
