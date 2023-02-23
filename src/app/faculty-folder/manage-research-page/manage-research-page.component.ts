@@ -36,7 +36,8 @@ export class ManageResearchPageComponent implements OnInit {
   editResearchPage(researchID: number) {
     let navigationExtras: NavigationExtras = {
       queryParams: {
-        "researchID": researchID
+        "researchID": researchID,
+        "psuID": this.psuID
       }
     };
     this.router.navigate(['/edit-research'], navigationExtras);
@@ -52,7 +53,7 @@ export class ManageResearchPageComponent implements OnInit {
   }
 
   viewApplicantsPage(research_id: number) {
-    this.router.navigate(['/view-applicants'], {queryParams: {research_id: research_id}});
+    this.router.navigate(['/view-applicants'], {queryParams: {research_id: research_id, psuID: this.psuID}});
   }
 
   goToViewResearchPage(index: number){

@@ -100,8 +100,7 @@ export class FacultyListComponent implements OnInit {
       debugger;
       this.faculty = response;
       console.log(response);
-      this.splitInformationBySemicolon(this.filteredFaculty);
-
+      this.splitInformationBySemicolon(this.faculty);
     });
   }
 }
