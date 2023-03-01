@@ -11,7 +11,7 @@ parseResume(path:any){
 const {AffindaCredential, AffindaAPI} = require("@affinda/affinda");
 const fs = require("fs");
 
-const credential = new AffindaCredential("REPLACE_TOKEN")
+const credential = new AffindaCredential("c32aa17937068c1bbb18a57fa74477a21132d59c644df4a9273ea077f1870223")
 const client = new AffindaAPI(credential)
 const readStream = fs.createReadStream(path);
 

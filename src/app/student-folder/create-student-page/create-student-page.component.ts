@@ -91,6 +91,7 @@ export class CreateStudentPageComponent implements OnInit {
    }
     this.result = this.parseService.parseResume(this.filePath);
     let json = JSON.parse(this.result);
+    this.studentForm.get('firstName')?.setValue(json["first"]);
    
   }
 
