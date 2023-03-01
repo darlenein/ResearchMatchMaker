@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { StudentModel } from 'src/app/models/student.model';
+import { ParseService } from 'src/app/parse.service';
 import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
 
 @Component({
@@ -42,8 +43,10 @@ export class CreateStudentPageComponent implements OnInit {
   psuID: string;
   fileName = '';
   pfp: any;
-  
-  constructor(private router: Router, public serviceDispatcher: ServiceDispatcher, private route: ActivatedRoute, private fb: FormBuilder) {
+  result: any;
+  filePath: any;
+
+  constructor(private router: Router, public serviceDispatcher: ServiceDispatcher, private route: ActivatedRoute, private fb: FormBuilder, public parseService: ParseService) {
     this.route.queryParams.subscribe(params => {
       this.psuID = params["psuID"];
     });
@@ -78,9 +81,21 @@ export class CreateStudentPageComponent implements OnInit {
   }
 
   handle(e: any){
-    console.log (e.value);
-    // need to upload image to somewhere then
-    // need to save into database
+   let target = e.target
+   let selectedFile = target.files[0];
+   let fileReader = new FileReader();
+   fileReader.readAsDataURL(selectedFile);
+   fileReader.onload=()=>{
+    let fileresult = fileReader.result;
+    this.filePath = fileresult;
+   }
+    this.result = this.parseService.parseResume(this.filePath);
+    let json = JSON.parse(this.result);
+   
+  }
+
+  uploadResume(){
+  
   }
 
   goToStudentHomePage() {
