@@ -1,0 +1,13 @@
+.five.wide.column{
+    padding-top: 30px;
+    padding-left: 50px;
+    float: left;
+}
+
+.eleven.wide.column {
+    float: right;
+}
+
+.container {
+    display: flex;
+}

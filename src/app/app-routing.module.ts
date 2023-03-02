@@ -31,6 +31,7 @@ import { StudentHomeComponent } from './Inbox/inbox-StudentHome/student-home.com
 import { MatchResearchToStudentPageComponent } from './student-folder/match-research-to-student-page/match-research-to-student-page.component';
 import { PlaceholderComponent } from './Inbox/placeholder/placeholder.component';
 import { EmailShowComponent } from './Inbox/email-show/email-show.component';
+import { EmailResolverService } from './Inbox/email-resolver.service';
 
 export const routes: Routes = [
   { path: '', component: LandingPageComponent},
@@ -64,6 +65,9 @@ export const routes: Routes = [
       {
         path: ':id',
         component: EmailShowComponent,
+          resolve: {
+            email: EmailResolverService
+          }
       },
       { path: '', component: PlaceholderComponent }
   ]},
