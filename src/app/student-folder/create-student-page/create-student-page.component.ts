@@ -4,6 +4,7 @@ import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { StudentModel } from 'src/app/models/student.model';
 import { ParseService } from 'src/app/parse.service';
 import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-create-student-page',
@@ -45,8 +46,10 @@ export class CreateStudentPageComponent implements OnInit {
   pfp: any;
   result: any;
   filePath: any;
+  imgPath: any;
+  imgPath2: any;
 
-  constructor(private router: Router, public serviceDispatcher: ServiceDispatcher, private route: ActivatedRoute, private fb: FormBuilder, public parseService: ParseService) {
+  constructor(private router: Router, public serviceDispatcher: ServiceDispatcher, private route: ActivatedRoute, private fb: FormBuilder, public parseService: ParseService, private http: HttpClient) {
     this.route.queryParams.subscribe(params => {
       this.psuID = params["psuID"];
     });
@@ -80,6 +83,8 @@ export class CreateStudentPageComponent implements OnInit {
     document.querySelector('input')?.click();
   }
 
+  
+
   handle(e: any){
    let target = e.target
    let selectedFile = target.files[0];
@@ -90,10 +95,40 @@ export class CreateStudentPageComponent implements OnInit {
     this.filePath = fileresult;
    }
     this.result = this.parseService.parseResume(this.filePath);
-    let json = JSON.parse(this.result);
-    this.studentForm.get('firstName')?.setValue(json["first"]);
-   
+   // let json = JSON.parse(JSON.stringify(this.result));
+   // this.studentForm.get('firstName')?.setValue(json["first"]);
+   // console.dir(json["location"])
   }
+
+  handlePicture(eve: any){
+    let targetPic = eve.target
+    let selectedPic = targetPic.files[0];
+    let fileReader2 = new FileReader();
+    fileReader2.readAsDataURL(selectedPic);
+    fileReader2.onload=()=>{
+     let picresult = fileReader2.result;
+     this.imgPath = picresult;
+    }
+
+   }
+   
+   onFileSelected(event: any){
+    let targetImg = event.target
+    let selectedImg = targetImg.files[0]
+    let type = selectedImg.type.split('/')[0]
+    if(type!='image'){
+      alert('Please select image')
+      return;
+    }
+    let fileReader3 = new FileReader();
+    fileReader3.readAsDataURL(selectedImg);
+    fileReader3.onload=()=>{
+     let imgresult = fileReader3.result;
+     this.imgPath2 = imgresult;
+    }
+   }
+   
+
 
   uploadResume(){
   
