@@ -7,7 +7,7 @@ export class ParseService {
 
   constructor() { }
   
-parseResume(selectfile:any){
+parseResume(){
 const {AffindaCredential, AffindaAPI} = require("@affinda/affinda");
 const fs = require("fs");
 
@@ -20,14 +20,16 @@ const readStream = fetch("sampleResume.pdf")
 client.createResume({url:  "https://api.affinda.com/static/sample_resumes/example.pdf"}).then((result: any) => {
     console.log("Returned data:");
     console.dir(result)
-    var json = result;
+  //  var json = JSON.parse(JSON.stringify(result));
     //this.studentForm.get('firstName')?.setValue(json["first"]);
-    console.log(json.profession);
-    alert(json["profession"]);
+  //  console.log(json.data.profession);
+  //  console.log(json.data.name.first);
+  //  alert(json.data.profession);
     return result;
 }).catch((err: any) => {
     console.log("An error occurred:");
     console.error(err);
 });
 }
+
 }

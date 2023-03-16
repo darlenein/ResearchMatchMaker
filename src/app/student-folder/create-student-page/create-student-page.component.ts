@@ -93,13 +93,55 @@ export class CreateStudentPageComponent implements OnInit {
    fileReader.onload=()=>{
     let fileresult = fileReader.result;
     this.filePath = fileresult;
+
    }
-    this.result = this.parseService.parseResume(this.filePath);
-   // let json = JSON.parse(JSON.stringify(this.result));
-   // this.studentForm.get('firstName')?.setValue(json["first"]);
+   this.result = this.parseResume(this.filePath);
+    let obj = JSON.parse(JSON.stringify(this.result));
+    console.log(obj.data.profession);
+    console.log(obj.data.name.first);
    // console.dir(json["location"])
   }
+  parseResume(selectedfile: any){
+    const {AffindaCredential, AffindaAPI} = require("@affinda/affinda");
+    const fs = require("fs");
+    
+    
+    const credential = new AffindaCredential("fbbf9b7adef358bace64bba12937759c468db3a6")
+    const client = new AffindaAPI(credential)
+    const readStream = fetch(selectedfile)
+    
+  /*  client.createResume({file: readStream}).then((result: any) => {
+    console.log("Returned data:");
+    console.dir(result)
+}).catch((err: any) => {
+    console.log("An error occurred:");
+    console.error(err);
+});*/
+    client.createResume({url:  "https://api.affinda.com/static/sample_resumes/example.pdf"}).then((result: any) => {
+        console.log("Returned data:");
+        console.dir(result)
+        var json = JSON.parse(JSON.stringify(result));
+        //this.studentForm.get('firstName')?.setValue(json["first"]);
+        console.log(json.data.profession);
+        console.log(json.data.name.first);
+        console.log(json.data.emails[0]);
+        let rfirstname = json.data.name.first;
+        let rlastname = json.data.name.last;
+        let remail = json.data.emails[0];
 
+        this.firstName = new FormControl(rfirstname);
+        this.lastName = new FormControl(rlastname);
+        this.email = new FormControl(remail);
+       
+        return result;
+        
+    }).catch((err: any) => {
+        console.log("An error occurred:");
+        console.error(err);
+    });
+    
+    }
+    
   handlePicture(eve: any){
     let targetPic = eve.target
     let selectedPic = targetPic.files[0];
@@ -116,15 +158,16 @@ export class CreateStudentPageComponent implements OnInit {
     let targetImg = event.target
     let selectedImg = targetImg.files[0]
     let type = selectedImg.type.split('/')[0]
-    if(type!='image'){
-      alert('Please select image')
-      return;
-    }
+   // if(type!='image'){
+    //  alert('Please select image')
+    //  return;
+  //  }
     let fileReader3 = new FileReader();
     fileReader3.readAsDataURL(selectedImg);
     fileReader3.onload=()=>{
      let imgresult = fileReader3.result;
      this.imgPath2 = imgresult;
+    // this.result = this.parseResume(this.imgPath2);
     }
    }
    
