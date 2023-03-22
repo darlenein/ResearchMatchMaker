@@ -105,9 +105,7 @@ export class CreateStudentPageComponent implements OnInit {
     const {AffindaCredential, AffindaAPI} = require("@affinda/affinda");
     const fs = require("fs");
     
-    
-    let chosenfile = selectedfile;
-    console.log(chosenfile);
+    console.log(selectedfile);
     
     const credential = new AffindaCredential("fbbf9b7adef358bace64bba12937759c468db3a6")
     const client = new AffindaAPI(credential)
