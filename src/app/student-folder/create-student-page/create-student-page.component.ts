@@ -95,10 +95,10 @@ export class CreateStudentPageComponent implements OnInit {
     this.filePath = fileresult;
 
    }
-   this.result = this.parseResume(this.filePath);
-    let obj = JSON.parse(JSON.stringify(this.result));
-    console.log(obj.data.profession);
-    console.log(obj.data.name.first);
+   this.result = this.parseResume(selectedFile);
+   // let obj = JSON.parse(JSON.stringify(this.result));
+   // console.log(obj.data.profession);
+   // console.log(obj.data.name.first);
    // console.dir(json["location"])
   }
   parseResume(selectedfile: any){
