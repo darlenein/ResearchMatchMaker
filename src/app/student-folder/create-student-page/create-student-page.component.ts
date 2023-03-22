@@ -106,18 +106,21 @@ export class CreateStudentPageComponent implements OnInit {
     const fs = require("fs");
     
     
+    let chosenfile = selectedfile;
+    console.log(chosenfile);
+    
     const credential = new AffindaCredential("fbbf9b7adef358bace64bba12937759c468db3a6")
     const client = new AffindaAPI(credential)
-    const readStream = fetch(selectedfile)
+    const readStream = fs.createReadStream('sampleResume.pdf')
     
-  /*  client.createResume({file: readStream}).then((result: any) => {
+    client.createResume({file: readStream}).then((result: any) => {
     console.log("Returned data:");
     console.dir(result)
 }).catch((err: any) => {
     console.log("An error occurred:");
     console.error(err);
-});*/
-    client.createResume({url:  "https://api.affinda.com/static/sample_resumes/example.pdf"}).then((result: any) => {
+}); 
+  /*  client.createResume({url:  "https://api.affinda.com/static/sample_resumes/example.pdf"}).then((result: any) => {
         console.log("Returned data:");
         console.dir(result)
         var json = JSON.parse(JSON.stringify(result));
@@ -138,7 +141,7 @@ export class CreateStudentPageComponent implements OnInit {
     }).catch((err: any) => {
         console.log("An error occurred:");
         console.error(err);
-    });
+    }); */
     
     }
     
@@ -155,6 +158,7 @@ export class CreateStudentPageComponent implements OnInit {
    }
    
    onFileSelected(event: any){
+    
     let targetImg = event.target
     let selectedImg = targetImg.files[0]
     let type = selectedImg.type.split('/')[0]
@@ -164,11 +168,14 @@ export class CreateStudentPageComponent implements OnInit {
   //  }
     let fileReader3 = new FileReader();
     fileReader3.readAsDataURL(selectedImg);
-    fileReader3.onload=()=>{
+    fileReader3.onload=(event)=>{
+    console.log(fileReader3.result);
      let imgresult = fileReader3.result;
      this.imgPath2 = imgresult;
-    // this.result = this.parseResume(this.imgPath2);
+     console.log(selectedImg.name); 
+     this.result = this.parseResume(selectedImg); 
     }
+    fileReader3.readAsText(selectedImg)
    }
    
 
