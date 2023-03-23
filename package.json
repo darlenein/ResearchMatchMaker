@@ -10,7 +10,7 @@
   },
   "private": true,
   "dependencies": {
-    "@affinda/affinda": "^4.3.0",
+    "@affinda/affinda": "^4.4.0",
     "@angular/animations": "^14.2.0",
     "@angular/cdk": "^14.2.7",
     "@angular/common": "^14.2.0",
@@ -30,6 +30,7 @@
     "rxjs": "~7.5.0",
     "semantic-ui-css": "^2.5.0",
     "semantic-ui-react": "^2.1.4",
+    "source-map-support": "^0.5.21",
     "util": "^0.12.5",
     "zone.js": "~0.11.4"
   },
@@ -37,7 +38,7 @@
     "@angular-devkit/build-angular": "^14.2.4",
     "@angular/cli": "~14.2.4",
     "@angular/compiler-cli": "^14.2.0",
-    "@playwright/test": "^1.31.1",
+    "@playwright/test": "^1.31.2",
     "@types/jasmine": "~4.0.0",
     "jasmine-core": "~4.3.0",
     "karma": "^6.3.0",

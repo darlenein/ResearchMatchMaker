@@ -1,1 +1,8 @@
-<p>input works!</p>
+<div class="field">
+    <label>{{ label }}</label>
+
+    <input *ngIf="controlType === 'input'" [type]="inputType" [formControl]="control" />
+
+    <textarea label="Content: " *ngIf="controlType === 'textarea'" rows="10" cols="40" [formControl]="control"></textarea>
+
+</div>

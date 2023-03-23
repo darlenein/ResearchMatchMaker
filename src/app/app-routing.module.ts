@@ -27,7 +27,7 @@ import { ViewResearchHomepageStudentComponent } from './student-folder/student-v
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { AuthenticatorComponent } from './authenticator/authenticator.component';
 import { InboxHomeComponent } from './Inbox/inbox-FacultyHome/inbox-FacultyHome.component';
-import { StudentHomeComponent } from './Inbox/inbox-StudentHome/student-home.component';
+import { StudentHomeComponent } from './Inbox/inbox-StudentHome/inbox-StudentHome.component';
 import { MatchResearchToStudentPageComponent } from './student-folder/match-research-to-student-page/match-research-to-student-page.component';
 import { PlaceholderComponent } from './Inbox/placeholder/placeholder.component';
 import { EmailShowComponent } from './Inbox/email-show/email-show.component';
@@ -71,7 +71,17 @@ export const routes: Routes = [
       },
       { path: '', component: PlaceholderComponent }
   ]},
-  { path: 'inbox-StudentHome', component: StudentHomeComponent},
+  { path: 'inbox-StudentHome', component: StudentHomeComponent,
+    children: [
+      {
+        path: ':id',
+        component: EmailShowComponent,
+          resolve: {
+            email: EmailResolverService
+          }
+      },
+      { path: '', component: PlaceholderComponent }
+  ]},
   { path: 'match-researches', component: MatchResearchToStudentPageComponent},
 ];
 

@@ -8,6 +8,7 @@ import { Email } from '../email';
   styleUrls: ['./email-show.component.css']
 })
 export class EmailShowComponent implements OnInit {
+  showModal = false;
   email: Email;
 
   constructor(private route: ActivatedRoute) {

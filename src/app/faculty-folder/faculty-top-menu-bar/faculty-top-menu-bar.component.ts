@@ -16,6 +16,7 @@ interface UserCred {
 })
 export class FacultyTopMenuBarComponent implements OnInit {
   psuID: string;
+  //userName: string;
 
 
   constructor(private router: Router, private http: HttpClient, private route: ActivatedRoute, private authService: AuthService, private authenticator: AuthenticatorComponent) { 
@@ -84,25 +85,21 @@ export class FacultyTopMenuBarComponent implements OnInit {
     this.router.navigate(['/research-list'], navigationExtras);
   } 
 
-  /*goToInboxFacultyHomePage(){
-
-    let navigationExtras: NavigationExtras = {
-      queryParams: {
-        "psuID": this.psuID
-      }
-    };
-    this.router.navigate(['/inbox-FacultyHome'], navigationExtras);
-  }*/
-
   facultyClickInbox(){
     let userCred: UserCred = {
       username: 'nii1',
       password: 'nii1'
     }
 
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        "psuID": this.psuID
+      }
+    };
+
     this.authService.clickInbox(userCred).subscribe({
       next: () => {
-        this.router.navigateByUrl('/inbox-FacultyHome')
+        this.router.navigateByUrl('/inbox-FacultyHome', navigationExtras)
       },
     });
   }

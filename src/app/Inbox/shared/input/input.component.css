@@ -1,0 +1,7 @@
+@import 'semantic-ui-css/semantic.css';
+
+:host {
+    display: block;
+    margin-bottom: 1em;
+  }
+  

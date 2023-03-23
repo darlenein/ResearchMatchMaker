@@ -7,7 +7,7 @@ a.active{
 }
 
 .item{
-    width: 500px;
+    width: 400px;
     height: auto;
     display: flex;
    
@@ -28,4 +28,9 @@ a.active:before{
     white-space:nowrap;
     text-overflow:ellipsis;
     width:100%;
+}
+
+.boxMargin{
+    margin-right: 40px;
+    padding-right: 40px;
 }

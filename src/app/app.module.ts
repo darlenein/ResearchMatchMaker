@@ -59,7 +59,7 @@ import { EmailCreateComponent } from './Inbox/email-create/email-create.componen
 import { EmailReplyComponent } from './Inbox/email-reply/email-reply.component';
 import { EmailIndexComponent } from './Inbox/email-index/email-index.component';
 import { EmailShowComponent } from './Inbox/email-show/email-show.component';
-import { StudentHomeComponent } from './Inbox/inbox-StudentHome/student-home.component';
+import { StudentHomeComponent } from './Inbox/inbox-StudentHome/inbox-StudentHome.component';
 import { PlaceholderComponent } from './Inbox/placeholder/placeholder.component';
 import { ModalComponent } from './Inbox/shared/modal/modal.component';
 import { InputComponent } from './Inbox/shared/input/input.component';

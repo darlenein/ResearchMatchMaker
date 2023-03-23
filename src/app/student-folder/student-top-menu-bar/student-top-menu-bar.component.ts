@@ -2,6 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AuthenticatorComponent } from 'src/app/authenticator/authenticator.component';
+import { AuthService } from 'src/app/Inbox/auth.service';
+
+interface UserCred {
+  username: string;
+  password: string;
+}
 
 @Component({
   selector: 'app-student-top-menu-bar',
@@ -10,8 +16,9 @@ import { AuthenticatorComponent } from 'src/app/authenticator/authenticator.comp
 })
 export class TopMenuBarComponent implements OnInit {
   psuID: string;
+  //userName: string;
 
-  constructor(private router: Router, private route: ActivatedRoute, private authenticator: AuthenticatorComponent) {
+  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute, private authenticator: AuthenticatorComponent) {
     this.route.queryParams.subscribe(params => {
       this.psuID = params["psuID"];
     });
@@ -94,6 +101,25 @@ export class TopMenuBarComponent implements OnInit {
 
   signOut() {
     this.authenticator.logout();
+  }
+
+  studentClickInbox(){
+    let userCred: UserCred = {
+      username: 'jpc6034',
+      password: 'jpc6034'
+    }
+
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        "psuID": this.psuID
+      }
+    };
+
+    this.authService.clickInbox(userCred).subscribe({
+      next: () => {
+        this.router.navigateByUrl('/inbox-StudentHome', navigationExtras)
+      },
+    });
   }
 
 }

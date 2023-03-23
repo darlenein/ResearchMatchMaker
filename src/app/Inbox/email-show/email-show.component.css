@@ -2,10 +2,13 @@
 
 .header{
     width: 800px;
-    height: 100px;
     float: right;
     padding-right: 500px;
     display: flex;
+    padding-left: 50px;
+    padding-bottom: 20px;
+    justify-content: space-between;
+    flex-wrap: wrap;
 
 }
 
@@ -13,12 +16,16 @@
     width: 800px;
     float: right;
     padding-right: 500px;
-    display: flex;
+    display: right;
+    padding-left: 50px;
+    
 }
 
 .ui.divider{
     width: 800px;
     display: flex;
-    float: right;
     padding-right: 500px;
+    padding-left: 50px;
+    
 }
+
