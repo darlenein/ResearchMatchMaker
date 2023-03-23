@@ -6,6 +6,8 @@ import { ParseService } from 'src/app/parse.service';
 import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
+import {createReadStream} from 'fs'
+
 @Component({
   selector: 'app-create-student-page',
   templateUrl: './create-student-page.component.html',
@@ -88,37 +90,42 @@ export class CreateStudentPageComponent implements OnInit {
   handle(e: any){
    let target = e.target
    let selectedFile = target.files[0];
-   let fileReader = new FileReader();
-   fileReader.readAsDataURL(selectedFile);
-   fileReader.onload=()=>{
-    let fileresult = fileReader.result;
-    this.filePath = fileresult;
 
-   }
    this.result = this.parseResume(selectedFile);
-   // let obj = JSON.parse(JSON.stringify(this.result));
-   // console.log(obj.data.profession);
-   // console.log(obj.data.name.first);
-   // console.dir(json["location"])
   }
   parseResume(selectedfile: any){
     const {AffindaCredential, AffindaAPI} = require("@affinda/affinda");
     const fs = require("fs");
     
     console.log(selectedfile);
+    let fileReader = new FileReader();
+    fileReader.readAsDataURL(selectedfile);
+    fileReader.onload=()=>{
+     let fileresult = fileReader.result;
+     this.filePath = fileresult;
     
+    }
     const credential = new AffindaCredential("fbbf9b7adef358bace64bba12937759c468db3a6")
     const client = new AffindaAPI(credential)
-    const readStream = fs.createReadStream('sampleResume.pdf')
+   
     
-    client.createResume({file: readStream}).then((result: any) => {
+    client.createResume({file:selectedfile}).then((result: any) => {
     console.log("Returned data:");
     console.dir(result)
+    var json = JSON.parse(JSON.stringify(result));
+    //this.studentForm.get('firstName')?.setValue(json["first"]);
+    let rfirstname = json.data.name.first;
+    let rlastname = json.data.name.last;
+    let remail = json.data.emails[0];
+
+    this.firstName = new FormControl(rfirstname);
+    this.lastName = new FormControl(rlastname);
+    this.email = new FormControl(remail);
 }).catch((err: any) => {
     console.log("An error occurred:");
-    console.error(err);
+    console.error(err); 
 }); 
-  /*  client.createResume({url:  "https://api.affinda.com/static/sample_resumes/example.pdf"}).then((result: any) => {
+   /* client.createResume({url:  "https://api.affinda.com/static/sample_resumes/example.pdf"}).then((result: any) => {
         console.log("Returned data:");
         console.dir(result)
         var json = JSON.parse(JSON.stringify(result));
