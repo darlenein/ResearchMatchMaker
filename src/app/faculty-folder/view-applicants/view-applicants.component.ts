@@ -24,6 +24,7 @@ export class ViewApplicantsComponent implements OnInit {
   student: StudentModel[]; 
   splitSkills: any;
   research_id: any;
+  research_name: String;
   reject = 4;
   accept = 3;
 
@@ -35,9 +36,10 @@ export class ViewApplicantsComponent implements OnInit {
     this.route.queryParams.subscribe((params: any) => { 
       this.research_id = params['research_id'];
     })
-    this.serviceDispatcher.getAllStudentsByResearch(this.research_id).subscribe(response => {
+    this.serviceDispatcher.getAllRankedStudentsByResearch(this.research_id).subscribe(response => {
       this.student = response
       this.replaceStudentsInformationBySemicolon(this.student);
+      this.research_name = this.student[0].name;
     });
   }
 

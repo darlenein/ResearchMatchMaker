@@ -102,7 +102,7 @@ import { PlaceholderComponent } from './Inbox/placeholder/placeholder.component'
     EmailIndexComponent,
     EmailShowComponent,
     StudentHomeComponent,
-    PlaceholderComponent
+    PlaceholderComponent,
     
   ],
   imports: [

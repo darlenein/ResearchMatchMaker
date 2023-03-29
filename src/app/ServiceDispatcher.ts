@@ -200,8 +200,25 @@ export class ServiceDispatcher{
     return this.http.post<any>(url, f);
   }
 
+  public insertIntoResearchExclusions(student_id: string, research_id: number): Observable<any> {
+    const url = 'https://localhost:44390/api/Student/insertIntoStudentHiddenResearch?student_id=' + student_id + '&research_id=' + research_id;
+    return this.http.post<any>(url, null);
+  }
 
-  
+  public deleteHiddenResearch(research_id : number, student_id: string): Observable<any> {
+    const url = 'https://localhost:44390/api/Research/deleteHiddenResearch?research_id=' + research_id + '&student_id=' + student_id;
+    return this.http.delete<any>(url);
+  }
+
+  public getHiddenResearchByStudentId(student_id: string): Observable<any> {
+    const url = 'https://localhost:44390/api/Research/getHiddenResearchByStudentId/' + student_id;
+    return this.http.get<any>(url);
+  }
+
+  public getAllRankedStudentsByResearch(research_id: string): Observable<any> {
+    const url = 'https://localhost:44390/api/Student/getAllRankedStudentsByResearch/' + research_id;
+    return this.http.get<any>(url);
+  }
 }
 
 
