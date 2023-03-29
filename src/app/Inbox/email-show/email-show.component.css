@@ -1,0 +1,31 @@
+@import 'semantic-ui-css/semantic.css';
+
+.header{
+    width: 800px;
+    float: right;
+    padding-right: 500px;
+    display: flex;
+    padding-left: 50px;
+    padding-bottom: 20px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+}
+
+.body {
+    width: 800px;
+    float: right;
+    padding-right: 500px;
+    display: right;
+    padding-left: 50px;
+    
+}
+
+.ui.divider{
+    width: 800px;
+    display: flex;
+    padding-right: 500px;
+    padding-left: 50px;
+    
+}
+

@@ -10,9 +10,13 @@
             <input type="file" style="display:none" (change)="handle($event)">
         </button>
         <button class="btns" mat-stroked-button style="font-size: large;"  (click)="openFile()">Add Profile Picture
-            <input type="file" style="display:none" (change)="handle($event)">
+            <input type="file" style="display:none" (change)="handlePicture($event)">
+            
         </button>
         <br><br>
+
+        <input type="file" (change)="onFileSelected($event)">
+        <img width="100" [src] = "imgPath" />
 
         <label type="text" for = "first_name">First Name*</label>
         <input type="text" id="first_name" placeholder="Enter First Name" size="50" [formControl]="firstName">

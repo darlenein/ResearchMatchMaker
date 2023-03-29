@@ -2,7 +2,11 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { StudentModel } from 'src/app/models/student.model';
+import { ParseService } from 'src/app/parse.service';
 import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+
+import {createReadStream} from 'fs'
 
 @Component({
   selector: 'app-create-student-page',
@@ -42,8 +46,12 @@ export class CreateStudentPageComponent implements OnInit {
   psuID: string;
   fileName = '';
   pfp: any;
-  
-  constructor(private router: Router, public serviceDispatcher: ServiceDispatcher, private route: ActivatedRoute, private fb: FormBuilder) {
+  result: any;
+  filePath: any;
+  imgPath: any;
+  imgPath2: any;
+
+  constructor(private router: Router, public serviceDispatcher: ServiceDispatcher, private route: ActivatedRoute, private fb: FormBuilder, public parseService: ParseService, private http: HttpClient) {
     this.route.queryParams.subscribe(params => {
       this.psuID = params["psuID"];
     });
@@ -77,10 +85,108 @@ export class CreateStudentPageComponent implements OnInit {
     document.querySelector('input')?.click();
   }
 
+  
+
   handle(e: any){
-    console.log (e.value);
-    // need to upload image to somewhere then
-    // need to save into database
+   let target = e.target
+   let selectedFile = target.files[0];
+
+   this.result = this.parseResume(selectedFile);
+  }
+  parseResume(selectedfile: any){
+    const {AffindaCredential, AffindaAPI} = require("@affinda/affinda");
+    const fs = require("fs");
+    
+    console.log(selectedfile);
+    let fileReader = new FileReader();
+    fileReader.readAsDataURL(selectedfile);
+    fileReader.onload=()=>{
+     let fileresult = fileReader.result;
+     this.filePath = fileresult;
+    
+    }
+    const credential = new AffindaCredential("fbbf9b7adef358bace64bba12937759c468db3a6")
+    const client = new AffindaAPI(credential)
+   
+    
+    client.createResume({file:selectedfile}).then((result: any) => {
+    console.log("Returned data:");
+    console.dir(result)
+    var json = JSON.parse(JSON.stringify(result));
+    //this.studentForm.get('firstName')?.setValue(json["first"]);
+    let rfirstname = json.data.name.first;
+    let rlastname = json.data.name.last;
+    let remail = json.data.emails[0];
+
+    this.firstName = new FormControl(rfirstname);
+    this.lastName = new FormControl(rlastname);
+    this.email = new FormControl(remail);
+}).catch((err: any) => {
+    console.log("An error occurred:");
+    console.error(err); 
+}); 
+   /* client.createResume({url:  "https://api.affinda.com/static/sample_resumes/example.pdf"}).then((result: any) => {
+        console.log("Returned data:");
+        console.dir(result)
+        var json = JSON.parse(JSON.stringify(result));
+        //this.studentForm.get('firstName')?.setValue(json["first"]);
+        console.log(json.data.profession);
+        console.log(json.data.name.first);
+        console.log(json.data.emails[0]);
+        let rfirstname = json.data.name.first;
+        let rlastname = json.data.name.last;
+        let remail = json.data.emails[0];
+
+        this.firstName = new FormControl(rfirstname);
+        this.lastName = new FormControl(rlastname);
+        this.email = new FormControl(remail);
+       
+        return result;
+        
+    }).catch((err: any) => {
+        console.log("An error occurred:");
+        console.error(err);
+    }); */
+    
+    }
+    
+  handlePicture(eve: any){
+    let targetPic = eve.target
+    let selectedPic = targetPic.files[0];
+    let fileReader2 = new FileReader();
+    fileReader2.readAsDataURL(selectedPic);
+    fileReader2.onload=()=>{
+     let picresult = fileReader2.result;
+     this.imgPath = picresult;
+    }
+
+   }
+   
+   onFileSelected(event: any){
+    
+    let targetImg = event.target
+    let selectedImg = targetImg.files[0]
+    let type = selectedImg.type.split('/')[0]
+   // if(type!='image'){
+    //  alert('Please select image')
+    //  return;
+  //  }
+    let fileReader3 = new FileReader();
+    fileReader3.readAsDataURL(selectedImg);
+    fileReader3.onload=(event)=>{
+    console.log(fileReader3.result);
+     let imgresult = fileReader3.result;
+     this.imgPath2 = imgresult;
+     console.log(selectedImg.name); 
+     this.result = this.parseResume(selectedImg); 
+    }
+    fileReader3.readAsText(selectedImg)
+   }
+   
+
+
+  uploadResume(){
+  
   }
 
   goToStudentHomePage() {

@@ -59,8 +59,11 @@ import { EmailCreateComponent } from './Inbox/email-create/email-create.componen
 import { EmailReplyComponent } from './Inbox/email-reply/email-reply.component';
 import { EmailIndexComponent } from './Inbox/email-index/email-index.component';
 import { EmailShowComponent } from './Inbox/email-show/email-show.component';
-import { StudentHomeComponent } from './Inbox/inbox-StudentHome/student-home.component';
+import { StudentHomeComponent } from './Inbox/inbox-StudentHome/inbox-StudentHome.component';
 import { PlaceholderComponent } from './Inbox/placeholder/placeholder.component';
+import { ModalComponent } from './Inbox/shared/modal/modal.component';
+import { InputComponent } from './Inbox/shared/input/input.component';
+import { EmailFormComponent } from './Inbox/email-form/email-form.component';
 
 
 @NgModule({
@@ -103,6 +106,9 @@ import { PlaceholderComponent } from './Inbox/placeholder/placeholder.component'
     EmailShowComponent,
     StudentHomeComponent,
     PlaceholderComponent,
+    ModalComponent,
+    InputComponent,
+    EmailFormComponent
     
   ],
   imports: [
@@ -134,7 +140,8 @@ import { PlaceholderComponent } from './Inbox/placeholder/placeholder.component'
     LandingPageComponent,
     AuthenticatorComponent
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent], 
+  exports: [ModalComponent, InputComponent]
 })
 export class AppModule {
   constructor(private readonly eventService: PublicEventsService) {

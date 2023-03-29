@@ -60,6 +60,7 @@ export class EditStudentProfilePageComponent implements OnInit {
       });
   
       this.studentForm.setErrors({required: true});
+      
     });
   }
 
