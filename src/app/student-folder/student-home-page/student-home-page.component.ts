@@ -54,16 +54,6 @@ export class StudentHomePageComponent implements OnInit {
     return this.second;
   }
 
-  goToViewResearchPage(n: number){
-    let navigationExtras: NavigationExtras = {
-      queryParams: {
-        "psuID": this.psuID,
-        "researchPage": n
-      }
-    };
-    this.router.navigate(['./student-view-research-homepage'], navigationExtras)
-  }
-
 }
 
 

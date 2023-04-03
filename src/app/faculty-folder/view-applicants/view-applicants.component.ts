@@ -6,6 +6,8 @@ import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { MatStepper } from '@angular/material/stepper';
 import { ProgressModel } from 'src/app/models/progress.model';
 import { FormControl } from '@angular/forms';
+import { Email } from 'src/app/Inbox/email';
+import { EmailCreateComponent } from 'src/app/Inbox/email-create/email-create.component';
 
 @Component({
   selector: 'app-view-applicants',
@@ -27,8 +29,15 @@ export class ViewApplicantsComponent implements OnInit {
   reject = 4;
   accept = 3;
 
+  //Inbox stuff
+  updateEmailSendForm: Email;
+  studentPSUID: string;
+
   constructor(private router: Router, private route: ActivatedRoute, public serviceDispatcher: ServiceDispatcher) { 
     this.student = [];
+    this.route.queryParams.subscribe(params => {
+      this.studentPSUID = params["psuID"];
+    });
   }
 
   ngOnInit(): void {

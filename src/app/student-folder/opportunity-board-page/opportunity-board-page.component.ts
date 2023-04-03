@@ -223,16 +223,4 @@ export class OpportunityBoardPageComponent implements OnInit {
     });
   }
 
-
-  // --------------------------view research page------------------------
-  goToViewResearchPage(index: number){
-    let navigationExtras: NavigationExtras = {
-      queryParams: {
-        "psuID": this.psuID,
-        "researchPage": index,
-        "fResearch": this.filteredResearch,
-      }
-    };
-    this.router.navigate(['/student-view-research-page'], navigationExtras)
-  }
 }

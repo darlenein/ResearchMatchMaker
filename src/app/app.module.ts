@@ -29,7 +29,6 @@ import { EditFacultyProfilePageComponent } from './faculty-folder/edit-faculty-p
 import { EditStudentProfilePageComponent } from './student-folder/edit-student-profile-page/edit-student-profile-page.component';
 import { AddResearchPageComponent } from './faculty-folder/add-research-page/add-research-page.component';
 import { ManageResearchPageComponent } from './faculty-folder/manage-research-page/manage-research-page.component';
-import { ViewResearchPageComponent } from './faculty-folder/view-research-page/view-research-page.component';
 import { EditResearchPageComponent } from './faculty-folder/edit-research-page/edit-research-page.component';
 import { StudentHomePageComponent } from './student-folder/student-home-page/student-home-page.component';
 import { FacultyHomePageComponent } from './faculty-folder/faculty-home-page/faculty-home-page.component';
@@ -44,9 +43,6 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { CancelResearchDialogComponent } from './student-folder/cancel-research-dialog/cancel-research-dialog.component';
-import { ViewStudentResearchPageComponent } from './student-folder/student-view-research-page/student-view-research-page.component';
-import { ViewResearchHomepageFacultyComponent } from './faculty-folder/view-research-homepage/view-research-homepage.component';
-import { ViewResearchHomepageStudentComponent } from './student-folder/student-view-research-homepage/student-view-research-homepage.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { AuthConfigModule } from './auth-config/auth-config.module';
 import { EventTypes, PublicEventsService } from 'angular-auth-oidc-client';
@@ -82,7 +78,6 @@ import { EmailFormComponent } from './Inbox/email-form/email-form.component';
     EditStudentProfilePageComponent,
     AddResearchPageComponent,
     ManageResearchPageComponent,
-    ViewResearchPageComponent,
     EditResearchPageComponent,
     StudentHomePageComponent,
     FacultyHomePageComponent,
@@ -94,9 +89,6 @@ import { EmailFormComponent } from './Inbox/email-form/email-form.component';
     StudentListComponent,
     FacultyListComponent,
     CancelResearchDialogComponent,
-    ViewStudentResearchPageComponent,
-    ViewResearchHomepageFacultyComponent,
-    ViewResearchHomepageStudentComponent,
     LandingPageComponent,
     AuthenticatorComponent,
     InboxHomeComponent,
