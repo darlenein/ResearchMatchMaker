@@ -17,6 +17,7 @@ export class MatchResearchToStudentPageComponent implements OnInit {
   state: string;
   
   research: ResearchModel[]; 
+  hiddenResearch: ResearchModel[];
   splitRequiredSkills: any;
   splitEncouragedSkills: any;
   psuID: string;
@@ -97,5 +98,52 @@ goToProfile(id:string){
       }
     });
   }
+
+  refreshSearch(){
+    this.serviceDispatcher.getMatchedResearches(this.psuID).subscribe(response => {
+      this.research = response
+      this.replaceInfoBySemicolon(this.research);
+    });
+
+    this.onHiddenClick();
+  }
+
+  // Not interested logic
+  onHideClick(research_id: number) {
+    // insert into excluded_research table
+    this.serviceDispatcher.insertIntoResearchExclusions(this.psuID,research_id).subscribe(response => {
+    });
+
+    // refresh searches
+    setTimeout(()=>{
+      this.refreshSearch();;
+    },200);
+  }
+
+  onUnhideClick(research_id: number) {
+    this.serviceDispatcher.deleteHiddenResearch(research_id, this.psuID).subscribe(response => {
+    });
+
+    setTimeout(()=>{
+      this.refreshSearch();;
+    },200);
+    
+  }
+
+  //On Hidden Click logic
+  onHiddenClick() {
+    let checkBox = <HTMLInputElement> document.getElementById("isHidden");
+    
+    if(checkBox.checked == true) {
+      this.serviceDispatcher.getHiddenResearchByStudentId(this.psuID).subscribe(response => {
+        this.hiddenResearch = response
+        this.replaceInfoBySemicolon(this.hiddenResearch);
+      });
+    } else {
+      this.hiddenResearch = [];
+    }
+  }
+
+
 
 }

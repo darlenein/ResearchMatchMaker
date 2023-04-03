@@ -73,6 +73,11 @@ export class CreateStudentPageComponent implements OnInit {
       this.studentForm.setErrors({required: true});
     }
     });
+    // this.studentForm = this.fb.group({
+    //   skills: this.fb.array([
+    //     this.addSkillFormGroup()
+    //   ])
+    // })
   }
 
   engineeringItems: string[] = [ "Computer", "Chemical", "Electrical", "Mechanical", "Software"];
@@ -85,7 +90,12 @@ export class CreateStudentPageComponent implements OnInit {
     document.querySelector('input')?.click();
   }
 
-  
+  addSkillFormGroup():FormGroup{
+    return this.fb.group({
+      skillSet: [''],
+      skillSetLevel: ['']
+    })
+  }
 
   handle(e: any){
    let target = e.target
@@ -108,7 +118,7 @@ export class CreateStudentPageComponent implements OnInit {
     const credential = new AffindaCredential("fbbf9b7adef358bace64bba12937759c468db3a6")
     const client = new AffindaAPI(credential)
    
-    
+   
     client.createResume({file:selectedfile}).then((result: any) => {
     console.log("Returned data:");
     console.dir(result)
@@ -121,6 +131,13 @@ export class CreateStudentPageComponent implements OnInit {
     this.firstName = new FormControl(rfirstname);
     this.lastName = new FormControl(rlastname);
     this.email = new FormControl(remail);
+      for(var key in json.data.skills){
+        console.log( json.data.skills[key].name)
+        this.addResumeSkillField(json.data.skills[key].name)
+        
+      }
+      this.removeSkillField(0)
+    console.log(json.data.skills[0].name)
 }).catch((err: any) => {
     console.log("An error occurred:");
     console.error(err); 
@@ -188,6 +205,7 @@ export class CreateStudentPageComponent implements OnInit {
   uploadResume(){
   
   }
+
 
   goToStudentHomePage() {
     let sd = new StudentModel();
@@ -351,6 +369,13 @@ export class CreateStudentPageComponent implements OnInit {
 
   removeSkillField(index: number) {
     this.skillForm.splice(index,1);
+  }
+
+  addResumeSkillField(skillName: string) {
+    this.skillForm.push({
+      skill: skillName,
+      skillLevel: ''
+    });
   }
 
 }

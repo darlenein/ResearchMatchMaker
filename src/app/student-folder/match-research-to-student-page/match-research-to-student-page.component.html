@@ -2,10 +2,15 @@
 <!-- This page is for students to view their matches (which are ranked from best match to least).
 This page should only show researches that pertain to the student's needs! -->
 
-<h1 class="header">MATCHED RESEARCHES</h1>
-
+<h1 
+  class="header">MATCHED RESEARCHES
+</h1>
+<div style="margin-left: 185px;">
+<input type="checkbox" name="isHidden" id="isHidden" value="isHidden" (click)="onHiddenClick()"> 
+<label for="isHidden">Show Hidden</label>
+</div>
 <ul style="list-style: none;">
-    <li *ngFor="let r of research">
+    <li *ngFor="let r of research;">
         <div class="container">
           <!-- <div class="top-container"></div> -->
 
@@ -17,7 +22,7 @@ This page should only show researches that pertain to the student's needs! -->
               <b>Required Skills: </b>{{r.splitRequiredSkills}}<br>
               <b>Encouraged Skills: </b>{{r.splitEncouragedSkills}}<br><br>
               <button class="button" (click)="applyToResearch(r.research_Id);"> Apply to Research </button>
-              <button class="button"> Not Interested </button>
+              <button class="button" (click)="onHideClick(r.research_Id);"> Hide </button>
           </div>
 
           <div class="right-container">
@@ -30,9 +35,37 @@ This page should only show researches that pertain to the student's needs! -->
               <div *ngIf="r.isCredit==true"> Credit</div>
           </div>
           <div style="clear:both;"></div>
-      </div>
-
-            
+      </div>      
     </li>
 </ul>   
+
+<ul style="list-style: none;" *ngIf="hiddenResearch">
+  <li *ngFor="let r of hiddenResearch;">
+      <div class="container">
+        <!-- <div class="top-container"></div> -->
+
+          <div class="left-container">
+            <p><a class="link" (click)="goToViewResearchPage(r.research_Id)">{{r.name}}</a><br>
+            <span class="link" (click)="goToProfile(r.faculty_Id);">{{r.first_Name}} {{r.last_Name}}</span><br>
+            {{r.address}} <br><br>
+            <b>Description:</b> {{r.description}}<br><br>
+            <b>Required Skills: </b>{{r.splitRequiredSkills}}<br>
+            <b>Encouraged Skills: </b>{{r.splitEncouragedSkills}}<br><br>
+            <button class="button" (click)="applyToResearch(r.research_Id);"> Apply to Research </button>
+            <button class="button" (click)="onUnhideClick(r.research_Id);"> Unhide </button>
+        </div>
+
+        <div class="right-container">
+            <div *ngIf="r.active==false"> Complete </div>
+            <div *ngIf="r.active==true"> Ongoing </div>
+            {{r.start_Date}} - {{r.end_Date}}<br>
+            {{r.location}}<br>
+            <div *ngIf="r.isPaid==true"> Paid</div>
+            <div *ngIf="r.isNonpaid==true"> Nonpaid</div>
+            <div *ngIf="r.isCredit==true"> Credit</div>
+        </div>
+        <div style="clear:both;"></div>
+    </div>      
+  </li>
+</ul>
 

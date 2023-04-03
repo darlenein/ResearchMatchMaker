@@ -2,12 +2,12 @@
 <!-- /view-matches page -->
 <span class="noAppheader" *ngIf="student.length === 0">NO APPLICANTS YET!</span> 
 <span *ngIf="student.length > 0">
-  <h1 class="header">APPLICANTS FOR: {{student[0].research_name}}</h1>
+  <h1 class="header">APPLICANTS FOR: {{research_name}}</h1>
   <ul style="list-style: none;">
     <li *ngFor="let s of student">
         <div class="container">
 
-          Current Progress of Applicant: 
+          Current Progress for Applicant: 
           <span class="link" (click)="goToProfile(s.student_Id);">{{s.first_Name}} {{s.last_Name}}</span><br><br>
           <b>Graduation Date:</b> {{s.graduation_Month}} {{s.graduation_Year}}<br>
           <b>Major:</b> {{s.major}}<br>

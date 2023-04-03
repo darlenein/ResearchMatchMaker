@@ -17,7 +17,7 @@ test('get started link', async ({ page }) => {
   await expect(page).toHaveURL(/.*intro/);
 });
 
-test('test', async ({ page }) => {
+test('apply to research button', async ({ page }) => {
   // go to opp page, and add ranking of things research 
   await page.goto('http://localhost:4200/opp-board?psuID=dxi5017');
   await page.getByRole('listitem').filter({ hasText: 'Ranking Things in the Internet of ThingsNaseem Ibrahim Erie, PA Description: The' }).getByRole('button', { name: 'Apply to Research' }).click();

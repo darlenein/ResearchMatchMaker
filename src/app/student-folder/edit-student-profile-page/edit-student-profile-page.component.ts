@@ -15,12 +15,14 @@ import { FormGroup } from '@angular/forms';
 })
 export class EditStudentProfilePageComponent implements OnInit {
   
-  skillForm = [
-    {
+   skillForm = [
+     {
       skill: '',
       skillLevel: ''
     }
   ];
+
+ 
 
   studentForm: FormGroup = new FormGroup('');
   firstName = new FormControl('', [Validators.required, Validators.pattern("[a-zA-Z -]*")]);
@@ -48,6 +50,9 @@ export class EditStudentProfilePageComponent implements OnInit {
   fileName = '';
   pfp: any;
   student: any;
+  sepSkills: string[]
+  sepSkillLevel: string[]
+
 
   constructor(private router: Router, public serviceDispatcher: ServiceDispatcher, private route: ActivatedRoute,private fb: FormBuilder) { 
     this.route.queryParams.subscribe(params => {
@@ -60,11 +65,12 @@ export class EditStudentProfilePageComponent implements OnInit {
       });
   
       this.studentForm.setErrors({required: true});
-      
+     
     });
   }
 
   ngOnInit(): void {
+    
     this.serviceDispatcher.getStudent(this.psuID).subscribe(response => {
       this.student = response
       this.firstName = new FormControl(this.student.first_Name);
@@ -87,6 +93,19 @@ export class EditStudentProfilePageComponent implements OnInit {
       this.credit = new FormControl(this.student.preferCredit);
       this.interest = new FormControl(this.student.research_Interest);
       this.projects = new FormControl(this.student.research_Project);
+      this.sepSkills = this.student.skills.split(';');
+      this.sepSkillLevel = this.student.skillLevel.split(';');
+      for(var key in this.sepSkills){
+       // console.log( this.sepSkills[key])
+        console.log( this.sepSkillLevel[key])
+        this.addExistingSkillField(this.sepSkills[key], this.sepSkillLevel[key])
+        
+      }
+      this.removeSkillField(0)
+      // this.skillForm.forEach(element => {
+      // this.skillSet = new FormControl(student.skills);
+      // this.skillSetLevel = new FormControl(this.student.skillLevel);
+      // })
     });
 
     this.studentForm.valueChanges.subscribe(newValue => {
@@ -166,7 +185,7 @@ export class EditStudentProfilePageComponent implements OnInit {
       }
     };
     if(!this.validate()){
-    this.serviceDispatcher.editStudentProfile(sd).subscribe(response => { }); // comment out when testing 
+  // this.serviceDispatcher.editStudentProfile(sd).subscribe(response => { }); // comment out when testing 
     setTimeout(()=>{
       location.reload();
     },500);
@@ -277,5 +296,17 @@ addSkillField() {
 removeSkillField(index: number) {
   this.skillForm.splice(index,1);
 }
+addExistingSkillField(existingSkills:string, existingSkillLevel:string) {
+  
+
+  this.skillForm.push({
+
+    skill: existingSkills,
+    skillLevel: existingSkillLevel
+  });
 
 }
+  
+}
+
+
