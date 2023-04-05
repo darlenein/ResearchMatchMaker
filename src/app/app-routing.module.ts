@@ -20,10 +20,6 @@ import { ViewApplicantsComponent } from './faculty-folder/view-applicants/view-a
 import { StudentListComponent } from './faculty-folder/student-list/student-list.component';
 import { FacultyListComponent } from './student-folder/faculty-list/faculty-list.component';
 import { StudentViewFacultyPageComponent } from './student-folder/student-view-faculty-page/student-view-faculty-page.component';
-import { ViewResearchPageComponent } from './faculty-folder/view-research-page/view-research-page.component';
-import { ViewStudentResearchPageComponent } from './student-folder/student-view-research-page/student-view-research-page.component';
-import { ViewResearchHomepageFacultyComponent } from './faculty-folder/view-research-homepage/view-research-homepage.component';
-import { ViewResearchHomepageStudentComponent } from './student-folder/student-view-research-homepage/student-view-research-homepage.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { AuthenticatorComponent } from './authenticator/authenticator.component';
 import { InboxHomeComponent } from './Inbox/inbox-FacultyHome/inbox-FacultyHome.component';
@@ -56,10 +52,6 @@ export const routes: Routes = [
   { path: 'student-view-faculty', component: StudentViewFacultyPageComponent},
   { path: 'faculty-list', component: FacultyListComponent},
   { path: 'auth-callback', component: AuthenticatorComponent },
-  { path: 'view-research-page', component: ViewResearchPageComponent},
-  { path: 'student-view-research-page', component: ViewStudentResearchPageComponent},
-  { path: 'view-research-homepage', component: ViewResearchHomepageFacultyComponent},
-  { path: 'student-view-research-homepage', component: ViewResearchHomepageStudentComponent},
   { path: 'inbox-FacultyHome', component: InboxHomeComponent, 
     children: [
       {

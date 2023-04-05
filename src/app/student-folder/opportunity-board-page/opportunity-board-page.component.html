@@ -156,7 +156,7 @@
         <ul style="list-style: none;">
             <li *ngFor="let r of filteredResearch, let researchPage=index">
                     <br><div class="left-sub-container">
-                        <b><a class="link" style="font-size: 24px !important;" (click)="goToViewResearchPage(researchPage);">{{r.name}}</a><br></b>
+                        <b><a class="link" style="font-size: 24px !important;">{{r.name}}</a><br></b>
                         <a class="link" (click)="goToProfile(r.faculty_Id);">{{r.first_Name}} {{r.last_Name}}</a><br>
                         {{r.address}} <br><br>
                         <b>Description:</b> {{r.description}}<br><br>

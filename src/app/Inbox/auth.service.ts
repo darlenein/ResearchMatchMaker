@@ -12,6 +12,16 @@ interface Response {
   username: string;
 }
 
+interface AccountCreate {
+  username: string;
+  password: string;
+  passwordConfirmation: string;
+}
+
+interface SignupResponse {
+  username: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -21,6 +31,16 @@ export class AuthService {
   rootUrl = 'https://api.angular-email.com';
   signedin$ = new BehaviorSubject(true);
   username = '';
+
+  createEmailAcc(accountCreate: AccountCreate){
+    return this.http.post(`${this.rootUrl}/auth/signup`, accountCreate, {withCredentials: true})
+    .pipe(
+      tap(({ }) => {
+        this.signedin$.next(true);
+        this.username = accountCreate.username;
+      })
+    );
+  }
 
   checkAuth() {
     return this.http.get<Response>(`${this.rootUrl}/auth/signedin`)

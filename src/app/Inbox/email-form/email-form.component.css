@@ -1,1 +1,12 @@
 @import 'semantic-ui-css/semantic.css';
+
+.studentBox {
+    width: 380px;
+    display: flex;
+}
+
+.facultyBox {
+    width: 380px;
+    padding-bottom: 20px;
+    display: flex;
+}

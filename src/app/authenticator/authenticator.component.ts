@@ -3,7 +3,14 @@ import { NavigationExtras, Router } from '@angular/router';
 import { OidcClientNotification, OidcSecurityService, OpenIdConfiguration, UserDataResult } from 'angular-auth-oidc-client';
 import { Observable, map } from 'rxjs';
 import { ServiceDispatcher } from '../ServiceDispatcher';
+import { AuthService } from '../Inbox/auth.service';
 
+//For inbox stuff
+interface AccountCreate {
+  username: string;
+  password: string;
+  passwordConfirmation: string;
+}
 
 @Component({
   selector: 'app-authenticator',
@@ -21,7 +28,7 @@ export class AuthenticatorComponent implements OnInit {
   psuID: string;
   psuEmail: string;
   //Checks user data and navigates to corresponding page after authentication
-  constructor(private router: Router, private oidcSecurityService: OidcSecurityService, public serviceDispatcher: ServiceDispatcher) {
+  constructor(private router: Router, private oidcSecurityService: OidcSecurityService, public serviceDispatcher: ServiceDispatcher, private authService: AuthService) {
       this.oidcSecurityService = oidcSecurityService;
       
    }
@@ -76,6 +83,15 @@ export class AuthenticatorComponent implements OnInit {
             console.log("User profile found in STUDENT table!");
           }
           else {
+            //Inbox stuff 
+            let accountCreate: AccountCreate = {
+              username: this.psuID,
+              password: this.psuID,
+              passwordConfirmation: this.psuID
+            }
+            this.authService.createEmailAcc(accountCreate);
+            //Inbox stuff end
+
             this.profileExists = false;
             console.log("No profile found in STUDENT table");
           }
@@ -92,6 +108,15 @@ export class AuthenticatorComponent implements OnInit {
             console.log("User profile found in FACULTY table!");
           }
           else {
+            //Inbox stuff 
+            let accountCreate: AccountCreate = {
+              username: this.psuID,
+              password: this.psuID,
+              passwordConfirmation: this.psuID
+            }
+            this.authService.createEmailAcc(accountCreate);
+            //Inbox stuff end
+
             this.profileExists = false;
             console.log("No profile found in FACULTY table");
           }

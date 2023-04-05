@@ -105,8 +105,8 @@ export class TopMenuBarComponent implements OnInit {
 
   studentClickInbox(){
     let userCred: UserCred = {
-      username: 'jpc6034',
-      password: 'jpc6034'
+      username: this.psuID,
+      password: this.psuID
     }
 
     let navigationExtras: NavigationExtras = {

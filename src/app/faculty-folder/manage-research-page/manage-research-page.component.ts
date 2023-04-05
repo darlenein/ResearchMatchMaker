@@ -2,6 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { ResearchModel } from 'src/app/models/research.model';
 import { ServiceDispatcher } from '../../ServiceDispatcher';
+import { AuthService } from 'src/app/Inbox/auth.service';
+
+interface UserCred {
+  username: string;
+  password: string;
+}
 
 @Component({
   selector: 'app-manage-research-page',
@@ -14,7 +20,7 @@ export class ManageResearchPageComponent implements OnInit {
   researchPage: number;
 
 
-  constructor(private router: Router, private route: ActivatedRoute,public serviceDispatcher: ServiceDispatcher) { 
+  constructor(private authService: AuthService,private router: Router, private route: ActivatedRoute,public serviceDispatcher: ServiceDispatcher) { 
     this.route.queryParams.subscribe(params => {
       this.psuID = params["psuID"];
     });
@@ -53,17 +59,19 @@ export class ManageResearchPageComponent implements OnInit {
   }
 
   viewApplicantsPage(research_id: number) {
-    this.router.navigate(['/view-applicants'], {queryParams: {research_id: research_id, psuID: this.psuID}});
-  }
+    let userCred: UserCred = {
+      username: this.psuID,
+      password: this.psuID
+    }
 
-  goToViewResearchPage(index: number){
-    let navigationExtras: NavigationExtras = {
-      queryParams: {
-        "psuID": this.psuID,
-        "researchPage": index,
-      }
-    };
-    this.router.navigate(['./view-research-page'], navigationExtras)
+    this.authService.clickInbox(userCred).subscribe({
+      next: () => {
+      },
+    });
+
+    this.router.navigate(['/view-applicants'], {queryParams: {research_id: research_id, psuID: this.psuID}});
+
+    
   }
 
 }

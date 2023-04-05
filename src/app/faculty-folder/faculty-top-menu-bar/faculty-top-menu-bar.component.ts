@@ -87,13 +87,14 @@ export class FacultyTopMenuBarComponent implements OnInit {
 
   facultyClickInbox(){
     let userCred: UserCred = {
-      username: 'nii1',
-      password: 'nii1'
+      username: this.psuID,
+      password: this.psuID
     }
 
     let navigationExtras: NavigationExtras = {
       queryParams: {
-        "psuID": this.psuID
+        "psuID": this.psuID, 
+        "username": this.psuID
       }
     };
 
