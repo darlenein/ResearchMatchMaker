@@ -102,10 +102,7 @@ export class EditStudentProfilePageComponent implements OnInit {
         
       }
       this.removeSkillField(0)
-      // this.skillForm.forEach(element => {
-      // this.skillSet = new FormControl(student.skills);
-      // this.skillSetLevel = new FormControl(this.student.skillLevel);
-      // })
+
     });
 
     this.studentForm.valueChanges.subscribe(newValue => {
