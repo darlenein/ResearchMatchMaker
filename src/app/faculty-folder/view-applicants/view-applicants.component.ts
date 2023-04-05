@@ -1,13 +1,23 @@
-import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { Component, OnInit, QueryList, ViewChildren, Input, Output, EventEmitter } from '@angular/core';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
 import { StudentModel } from 'src/app/models/student.model';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { MatStepper } from '@angular/material/stepper';
 import { ProgressModel } from 'src/app/models/progress.model';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { EmailService } from 'src/app/Inbox/email.service';
 import { Email } from 'src/app/Inbox/email';
-import { EmailCreateComponent } from 'src/app/Inbox/email-create/email-create.component';
+
+
+interface UpdateEmail {
+  id: string;
+  subject: string;
+  text: string;
+  to: string;
+  from: string;
+  html: string;
+}
 
 @Component({
   selector: 'app-view-applicants',
@@ -31,14 +41,20 @@ export class ViewApplicantsComponent implements OnInit {
   accept = 3;
 
   //Inbox stuff
-  updateEmailSendForm: Email;
   studentPSUID: string;
+  showModal = false;
+  updateEmail: Email;
+  psuID: string;
 
-  constructor(private router: Router, private route: ActivatedRoute, public serviceDispatcher: ServiceDispatcher) { 
-    this.student = [];
+
+
+  constructor(private emailService: EmailService,private router: Router, private route: ActivatedRoute, public serviceDispatcher: ServiceDispatcher) { 
     this.route.queryParams.subscribe(params => {
-      this.studentPSUID = params["psuID"];
+      this.psuID = params["psuID"];
     });
+
+    this.student = [];
+
   }
 
   ngOnInit(): void {
@@ -49,7 +65,20 @@ export class ViewApplicantsComponent implements OnInit {
       this.student = response
       this.replaceStudentsInformationBySemicolon(this.student);
       this.research_name = this.student[0].name;
+      this.studentPSUID = this.student[0].student_Id;
+
+      //Notif
+      this.updateEmail = {
+        id: '',
+        to: `${this.studentPSUID}@psu.edu`,
+        subject: 'ResearchConnect Application',
+        html: '',
+        text: 'Your application has been updated! Please go check the status of your application on ResearchConnect!',      
+        from: `${this.psuID}@angular-email.com`
+      }
     });
+
+
   }
 
   ngAfterViewInit(): void {
@@ -80,6 +109,7 @@ export class ViewApplicantsComponent implements OnInit {
     this.steppers.forEach(stepper => {
       if (students[num].progress_Bar >= 4) {
         stepAmt = 3;
+        //this.sendUpdateEmail();
       }
       else {
         stepAmt = students[num].progress_Bar;
@@ -114,6 +144,7 @@ export class ViewApplicantsComponent implements OnInit {
     pm.progress_Bar = Number(p);
     pm.research_id = Number(this.research_id);
     pm.student_id = sID;
+    this.studentPSUID = pm.student_id;
 
     this.serviceDispatcher.updateAppProgressBar(pm).subscribe(response => {
     });
@@ -121,6 +152,7 @@ export class ViewApplicantsComponent implements OnInit {
     setTimeout(()=>{
       location.reload();
     },1000);
+
   }
 
   // ------------- router methods -------------
@@ -129,6 +161,7 @@ export class ViewApplicantsComponent implements OnInit {
   }
 
   goToProfile(id:string){
+    this.studentPSUID = id;
     let navigationExtras: NavigationExtras = {
       queryParams: {
         "psuID": id
@@ -136,5 +169,13 @@ export class ViewApplicantsComponent implements OnInit {
     };
     this.router.navigate(['/view-student-profile'], navigationExtras);
   }
+
+  onSubmit(updateEmail: Email) {
+    //send email
+    this.emailService.sendEmail(updateEmail).subscribe(() => {
+      this.showModal = false;
+    });
+  }
+
 
 }
