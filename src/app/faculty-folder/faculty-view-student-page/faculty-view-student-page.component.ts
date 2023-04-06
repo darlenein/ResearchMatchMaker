@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StudentModel } from 'src/app/models/student.model';
 import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
+import { Email } from 'src/app/Inbox/email';
+import { EmailService } from 'src/app/Inbox/email.service';
 
 @Component({
   selector: 'app-faculty-view-student-page',
@@ -15,10 +17,14 @@ export class FacultyViewStudentPageComponent implements OnInit {
   splitResearchInterest: any;
   psuID: string;
 
-  constructor(private router: Router, public serviceDispatcher: ServiceDispatcher, private route: ActivatedRoute) { 
+  //Inbox Stuff
+  showModal = false;
+  email: Email;
+
+  constructor(private emailService: EmailService, private router: Router, public serviceDispatcher: ServiceDispatcher, private route: ActivatedRoute) { 
     this.route.queryParams.subscribe(params => {
       this.psuID = params["studentID"];
-    });
+    }); 
   }
 
   ngOnInit(): void {
@@ -26,6 +32,16 @@ export class FacultyViewStudentPageComponent implements OnInit {
       this.student = response
       this.splitSkills = this.separateByComma(this.student.skills);
       this.splitResearchInterest = this.separateByComma(this.student.researchInterest);
+
+      //email template
+      this.email = {
+        id: '',
+        to: `${this.student.studentID}@psu.edu`,
+        subject: '',
+        html: '',
+        text: '',      
+        from: `${this.psuID}@angular-email.com`
+      }
     });
 
     // this.serviceDispatcher.getStudent('dxi5017').subscribe(response => {
@@ -33,6 +49,7 @@ export class FacultyViewStudentPageComponent implements OnInit {
     //   this.splitSkills = this.separateByComma(this.student.skills);
     //   this.splitResearchInterest = this.separateByComma(this.student.researchInterest);
     // });
+ 
   }
 
   separateByComma(rawText: String) {
@@ -42,6 +59,14 @@ export class FacultyViewStudentPageComponent implements OnInit {
 
   goToStudentProfile(){
     this.router.navigate(['/faculty-view-student']);
+  }
+
+  //Inbox Stuff
+  onSubmit(email: Email) {
+    //send email
+    this.emailService.sendEmail(email).subscribe(() => {
+      this.showModal = false;
+    });
   }
 
 }

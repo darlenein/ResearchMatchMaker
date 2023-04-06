@@ -3,6 +3,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { StudentModel } from 'src/app/models/student.model';
 import { ServiceDispatcher } from '../../ServiceDispatcher';
+import { Email } from 'src/app/Inbox/email';
+import { EmailService } from 'src/app/Inbox/email.service';
 
 @Component({
   selector: 'app-view-student-page',
@@ -16,10 +18,17 @@ export class ViewStudentPageComponent implements OnInit {
   splitResearchInterest: any;
   psuID: string;
 
-  constructor(private router: Router, public serviceDispatcher: ServiceDispatcher, private route: ActivatedRoute) {
+  //Inbox Stuff
+  showModal = false;
+  email: Email;
+
+  constructor(private emailService: EmailService, private router: Router, public serviceDispatcher: ServiceDispatcher, private route: ActivatedRoute) {
     this.route.queryParams.subscribe(params => {
       this.psuID = params["psuID"];
     });
+
+
+    
   }
 
   ngOnInit(): void {
@@ -51,5 +60,12 @@ export class ViewStudentPageComponent implements OnInit {
     this.router.navigate(['/edit-student-profile'], navigationExtras);
   }
 
+  //Inbox Stuff
+  onSubmit(email: Email) {
+    //send email
+    this.emailService.sendEmail(email).subscribe(() => {
+      this.showModal = false;
+    });
+  }
 
 }

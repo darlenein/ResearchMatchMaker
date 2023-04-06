@@ -7,6 +7,7 @@
         <img src="{{faculty.profile_Url}}" class="profile-logo">
     </div>
     <div class="top-right-container">
+        <button (click)="showModal = true" class="button">Send Message</button>
         <span class="profile-text-title"><div *ngFor="let item of splitTitle">{{item}}</div></span><br>
         <span class="profile-text">Email: {{faculty.email}}</span><br>
         <span class="profile-text">Phone: {{faculty.phone}}</span><br>
@@ -23,4 +24,9 @@
         <mat-tab label="Afflicated Links"> <span class="tab-text"><br><a href="{{faculty.link1}}">{{faculty.link1}}</a></span> </mat-tab>
       </mat-tab-group>
 </div>
+
+<app-modal (dismis)="showModal=false" *ngIf="showModal">
+    <h3 modalTitle>Compose Email</h3>
+    <app-email-form (emailSubmit)="onSubmit($event)" [email]="email"></app-email-form>
+</app-modal>
 

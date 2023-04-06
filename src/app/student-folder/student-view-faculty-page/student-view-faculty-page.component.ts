@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
+import { Email } from 'src/app/Inbox/email';
+import { EmailService } from 'src/app/Inbox/email.service';
 
 @Component({
   selector: 'app-student-view-faculty-page',
@@ -16,11 +18,25 @@ export class StudentViewFacultyPageComponent implements OnInit {
   facultyID: string;
   psuID: string;
 
-  constructor(private router: Router, public serviceDispatcher: ServiceDispatcher, private route: ActivatedRoute) {
+  //Inbox Stuff
+  showModal = false;
+  email: Email;
+
+  constructor(private emailService: EmailService, private router: Router, public serviceDispatcher: ServiceDispatcher, private route: ActivatedRoute) {
     this.route.queryParams.subscribe(params => {
       this.facultyID = params["facultyID"];
       this.psuID = params["psuID"];
     });
+
+    //email template
+    this.email = {
+      id: '',
+      to: `${this.facultyID}@psu.edu`,
+      subject: '',
+      html: '',
+      text: '',      
+      from: `${this.psuID}@angular-email.com`
+    }
    }
 
   ngOnInit(): void {
@@ -44,6 +60,14 @@ export class StudentViewFacultyPageComponent implements OnInit {
   separateByComma(rawText: String) {
     let text = rawText.split(';');
     return text;
+  }
+
+  //Inbox Stuff
+  onSubmit(email: Email) {
+    //send email
+    this.emailService.sendEmail(email).subscribe(() => {
+      this.showModal = false;
+    });
   }
 
 }
