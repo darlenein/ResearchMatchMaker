@@ -56,6 +56,11 @@ export class EditResearchPageComponent implements OnInit {
   businessItems: any[];
   scienceItems: any[];
   nursingItems: any[];
+  sepReqSkills: string[]
+  sepEncSkills: string[]
+  sepReqSkillLevel: string[]
+  sepEncSkillLevel: string[]
+  sdate: any
 
   
   constructor(public serviceDispatcher: ServiceDispatcher, private router: Router, private route: ActivatedRoute, private fb: FormBuilder) {
@@ -91,8 +96,36 @@ export class EditResearchPageComponent implements OnInit {
       this.credit = new FormControl(this.research.isCredit);
       this.paid = new FormControl(this.research.isPaid);
       this.nonpaid = new FormControl(this.research.isNonpaid);
+      this.engineeringValue = new FormControl('', [Validators.required]);
+      this.humanitiesValue = new FormControl('', [Validators.required]);
+      this.politicalValue = new FormControl('', [Validators.required]);
+      this.scienceValue = new FormControl('', [Validators.required]);
+      this.nursingValue = new FormControl('', [Validators.required]);
+      this.businessValue = new FormControl('', [Validators.required]);
       this.psuID = this.research.faculty_Id;
-    });
+      this.sepReqSkills = this.research.required_Skills.split(';');
+      this.sepReqSkillLevel = this.research.requiredSkillLevel.split(';');
+      this.sepEncSkills = this.research.encouraged_Skills.split(';');
+      this.sepEncSkillLevel = this.research.encouragedSkillLevel.split(';');
+     
+      for(var key1 in this.sepReqSkills){
+
+         console.log( this.sepReqSkillLevel[key1])
+         this.addExistingReqSkillField(this.sepReqSkills[key1], this.sepReqSkillLevel[key1])
+         
+       }
+       this.removeRequiredSkillField(0)
+
+       for(var key in this.sepEncSkills){
+
+        console.log( this.sepEncSkillLevel[key])
+        this.addExistingEncSkillField(this.sepEncSkills[key], this.sepEncSkillLevel[key])
+        
+      }
+      this.removeEncouragedSkillField(0)
+   });
+  
+ 
     this.serviceDispatcher.getAllDepartments().subscribe(response => { 
       this.departments = response;
       this.engineeringItems = this.getSubDepts(this.departments[0].department_id);
@@ -128,6 +161,7 @@ export class EditResearchPageComponent implements OnInit {
       "psuID": this.psuID
     }
   };
+
   debugger;
     this.researchDeptList = [...this.engineeringValue.value!, ...this.politicalValue.value!, ...this.businessValue.value!, 
       ...this.humanitiesValue.value!, ...this.scienceValue.value!, ...this.nursingValue.value!];
@@ -293,5 +327,28 @@ export class EditResearchPageComponent implements OnInit {
   removeRequiredSkillField(index: number) {
     this.requiredSkillList.splice(index,1);
   }
+  addExistingReqSkillField(existingReqSkills:string, existingReqSkillLevel:string) {
+  
+
+    this.requiredSkillList.push({
+  
+      skill: existingReqSkills,
+      skillLevel: existingReqSkillLevel
+    });
+  
+  }
+
+  addExistingEncSkillField(existingEncSkills:string, existingEncSkillLevel:string) {
+  
+
+    this.encouragedSkillList.push({
+  
+      skill: existingEncSkills,
+      skillLevel: existingEncSkillLevel
+    });
+  
+  }
 
 }
+
+
