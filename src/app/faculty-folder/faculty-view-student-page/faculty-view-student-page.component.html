@@ -6,6 +6,7 @@
         <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" class="profile-logo">
     </div>
     <div class="top-right-container">
+        <button (click)="showModal = true" class="button">Send Message</button><br>
         <span class="profile-text">Major: {{student.major}}</span><br>
         <span class="profile-text">Graduation Date: {{student.graduationMonth}} {{student.graduationYear}}</span><br>
         <span class="profile-text">Contact: {{student.email}}</span><br>
@@ -22,3 +23,8 @@
         <mat-tab label="Afflicated Links"> <br><span class="tab-text"><a href="{{student.link1}}">{{student.link1}}</a></span> </mat-tab>
       </mat-tab-group>
 </div>
+
+<app-modal (dismis)="showModal=false" *ngIf="showModal">
+    <h3 modalTitle>Compose Email</h3>
+    <app-email-form (emailSubmit)="onSubmit($event)" [email]="email"></app-email-form>
+</app-modal>

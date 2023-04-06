@@ -48,3 +48,10 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     line-height: 1.6;
 }
+
+.button {
+    background-color: blue;
+    color: aliceblue;
+    width: 150px;
+    height: 30px;
+}
