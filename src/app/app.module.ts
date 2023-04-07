@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import {APP_BASE_HREF} from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -131,6 +132,7 @@ import { PlaceholderComponent } from './Inbox/placeholder/placeholder.component'
   ],
   providers: 
   [ 
+    {provide: APP_BASE_HREF, useValue: '/ResearchConnect'},
     AuthenticatorComponent
   ],
   bootstrap: [AppComponent]
