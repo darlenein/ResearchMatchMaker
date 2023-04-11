@@ -62,7 +62,6 @@ export class StudentListComponent implements OnInit {
   }
 
   goToStudentProfile(id:String) {
-    debugger;
     let navigationExtras: NavigationExtras = {
       queryParams: {
         "studentID": id

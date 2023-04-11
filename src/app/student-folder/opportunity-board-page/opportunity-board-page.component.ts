@@ -142,7 +142,6 @@ export class OpportunityBoardPageComponent implements OnInit {
 
   FilterOnClick(category:string, change:any){
     let fvm = new FilterValueModel();
-    debugger;
     this.fm.research = this.filteredResearch;
 
     // add checked option to filtered value array
@@ -197,7 +196,6 @@ export class OpportunityBoardPageComponent implements OnInit {
   // ---------------Filter and Search Function-------------------------
   FilterAndSearch(category:string, change:any){
     let fvm = new FilterValueModel();
-    debugger;
     this.fm.research = this.research;
     this.fm.keyword = this.searchTerm.value!;
 

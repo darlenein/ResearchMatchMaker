@@ -162,7 +162,6 @@ export class EditResearchPageComponent implements OnInit {
     }
   };
 
-  debugger;
     this.researchDeptList = [...this.engineeringValue.value!, ...this.politicalValue.value!, ...this.businessValue.value!, 
       ...this.humanitiesValue.value!, ...this.scienceValue.value!, ...this.nursingValue.value!];
   

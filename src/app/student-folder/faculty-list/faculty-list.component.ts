@@ -97,7 +97,6 @@ export class FacultyListComponent implements OnInit {
 
     // get filtered research list
     this.serviceDispatcher.getFilteredAndSearchFacultyList(this.fm).subscribe(response => {
-      debugger;
       this.faculty = response;
       console.log(response);
       this.splitInformationBySemicolon(this.faculty);
