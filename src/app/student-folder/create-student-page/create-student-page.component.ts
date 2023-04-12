@@ -100,6 +100,12 @@ export class CreateStudentPageComponent implements OnInit {
   handle(e: any){
    let target = e.target
    let selectedFile = target.files[0];
+   let fileType = selectedFile.type.split('/')[0]
+   if(fileType != 'application'){
+    if(fileType!='text'){
+      alert("File type must be pdf, doc, or txt.")
+    }
+   }
 
    this.result = this.parseResume(selectedFile);
   }
