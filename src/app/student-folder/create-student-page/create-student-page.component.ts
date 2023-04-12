@@ -104,6 +104,7 @@ export class CreateStudentPageComponent implements OnInit {
    if(fileType != 'application'){
     if(fileType!='text'){
       alert("File type must be pdf, doc, or txt.")
+      return;
     }
    }
 
