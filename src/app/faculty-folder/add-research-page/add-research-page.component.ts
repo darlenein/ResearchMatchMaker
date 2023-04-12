@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { DepartmentModel } from 'src/app/models/department.model';
 import { ResearchModel } from 'src/app/models/research.model';
 import { SubDepartmentModel } from 'src/app/models/subdepartment.model';
@@ -157,7 +157,12 @@ goToFacultyManageResearch() {
 
   if(!this.validate()){
     this.serviceDispatcher.createResearch(rm).subscribe(response => { });
-    this.router.navigate(['/faculty-research']);
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        "psuID": this.psuID
+      }
+    };
+    this.router.navigate(['/faculty-research'], navigationExtras);
   }
 
 }
@@ -200,15 +205,15 @@ validate(): any {
     hasError = true;
   }
 
-  if (this.rskills.invalid) {
-    this.rskills.markAsDirty();
-    hasError = true;
-  }
+  // if (this.rskills.invalid) {
+  //   this.rskills.markAsDirty();
+  //   hasError = true;
+  // }
 
-  if (this.eskills.invalid) {
-    this.eskills.markAsDirty();
-    hasError = true;
-  }
+  // if (this.eskills.invalid) {
+  //   this.eskills.markAsDirty();
+  //   hasError = true;
+  // }
 
   if (this.paid.value || this.nonpaid.value || this.credit.value) {
     this.researchForm.setErrors(null);
@@ -257,7 +262,7 @@ addEncouragedSkillField() {
   this.encouragedSkillList.push({
     skill: '',
     skillLevel: ''
-  });
+    });
 }
 
 addRequiredSkillField() {

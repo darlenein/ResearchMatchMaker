@@ -28,11 +28,19 @@ export class ManageResearchPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.serviceDispatcher.getResearchByFaculty(this.psuID).subscribe(response => {
-      this.research = response
+      this.research = response;
+      this.replaceInfoBySemicolon(this.research);
     });
   }
 
-  
+  replaceInfoBySemicolon(researchArray: ResearchModel[]) {
+    researchArray.forEach(research => {
+      research.splitRequiredSkills = research.required_Skills.replace(/;/g, ',');
+      research.splitEncouragedSkills = research.encouraged_Skills.replace(/;/g, ',');
+      research.splitRequiredSkills = research.splitRequiredSkills.replace(/,\s*$/, "");
+      research.splitEncouragedSkills = research.splitEncouragedSkills.replace(/,\s*$/, "");
+    });
+  }
 
   separateByComma(rawText: String) {
     let text = rawText.split(';');

@@ -139,7 +139,6 @@ export class ViewApplicantsComponent implements OnInit {
 
    // save progress to database 
   saveAppProgress(p : any, sID : string) {
-    debugger;
     let pm = new ProgressModel();
     pm.progress_Bar = Number(p);
     pm.research_id = Number(this.research_id);

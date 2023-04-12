@@ -42,7 +42,6 @@ export class StudentViewFacultyPageComponent implements OnInit {
   ngOnInit(): void {
     this.serviceDispatcher.getFaculty(this.facultyID).subscribe(response => {
       this.faculty = response
-      debugger;
       this.splitResearchInterest = this.separateByComma(this.faculty.research_Interest);
       this.splitAboutMe = this.separateByComma(this.faculty.about_Me);
       this.splitTitle = this.separateByComma(this.faculty.title);
