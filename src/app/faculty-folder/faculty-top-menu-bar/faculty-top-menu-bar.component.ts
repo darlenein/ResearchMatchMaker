@@ -91,16 +91,9 @@ export class FacultyTopMenuBarComponent implements OnInit {
       password: this.psuID
     }
 
-    let navigationExtras: NavigationExtras = {
-      queryParams: {
-        "psuID": this.psuID, 
-        "username": this.psuID
-      }
-    };
-
     this.authService.clickInbox(userCred).subscribe({
       next: () => {
-        this.router.navigateByUrl('/inbox-FacultyHome', navigationExtras)
+        this.router.navigateByUrl('/inbox-FacultyHome')
       },
     });
   }

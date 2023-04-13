@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../auth.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 
 
 @Component({
@@ -10,12 +10,8 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./inbox-FacultyHome.component.css']
 })
 export class InboxHomeComponent implements OnInit {
-  psuID: string;
 
-  constructor(private route: ActivatedRoute) {
-    this.route.queryParams.subscribe(params => {
-      this.psuID = params["psuID"];
-    });
+  constructor() {
    }
 
   ngOnInit(): void {

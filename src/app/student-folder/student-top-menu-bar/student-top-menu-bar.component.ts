@@ -16,7 +16,7 @@ interface UserCred {
 })
 export class TopMenuBarComponent implements OnInit {
   psuID: string;
-  //userName: string;
+  userName: string;
 
   constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute, private authenticator: AuthenticatorComponent) {
     this.route.queryParams.subscribe(params => {
@@ -109,15 +109,9 @@ export class TopMenuBarComponent implements OnInit {
       password: this.psuID
     }
 
-    let navigationExtras: NavigationExtras = {
-      queryParams: {
-        "psuID": this.psuID
-      }
-    };
-
     this.authService.clickInbox(userCred).subscribe({
       next: () => {
-        this.router.navigateByUrl('/inbox-StudentHome', navigationExtras)
+        this.router.navigateByUrl('/inbox-StudentHome')
       },
     });
   }

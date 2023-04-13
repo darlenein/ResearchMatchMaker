@@ -18,16 +18,17 @@ export class EmailCreateComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.psuID = params["psuID"];
 
+      this.email = {
+        id: '',
+        to: '',
+        subject: '',
+        html: '',
+        text: '',
+        from: `@angular-email.com`
+      }
+
     });
 
-    this.email = {
-      id: '',
-      to: '',
-      subject: '',
-      html: '',
-      text: '',
-      from: `@angular-email.com`
-    }
 
    }
 
