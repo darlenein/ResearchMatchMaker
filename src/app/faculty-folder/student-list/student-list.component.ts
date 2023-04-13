@@ -64,7 +64,8 @@ export class StudentListComponent implements OnInit {
   goToStudentProfile(id:String) {
     let navigationExtras: NavigationExtras = {
       queryParams: {
-        "studentID": id
+        "studentID": id,
+        "facultyID": this.psuID
       }
     };
     this.router.navigate(['/faculty-view-student'], navigationExtras);

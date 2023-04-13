@@ -20,11 +20,23 @@ export class FacultyViewStudentPageComponent implements OnInit {
   //Inbox Stuff
   showModal = false;
   email: Email;
+  facultyID: string;
 
   constructor(private emailService: EmailService, private router: Router, public serviceDispatcher: ServiceDispatcher, private route: ActivatedRoute) { 
     this.route.queryParams.subscribe(params => {
       this.psuID = params["studentID"];
+      this.facultyID = params["facultyID"];
     }); 
+
+    //email template
+      this.email = {
+      id: '',
+      to: `${this.psuID}@psu.edu`,
+      subject: '',
+      html: '',
+      text: '',      
+      from: `${this.facultyID}@angular-email.com`
+    }
   }
 
   ngOnInit(): void {
@@ -33,16 +45,9 @@ export class FacultyViewStudentPageComponent implements OnInit {
       this.splitSkills = this.separateByComma(this.student.skills);
       this.splitResearchInterest = this.separateByComma(this.student.researchInterest);
 
-      //email template
-      this.email = {
-        id: '',
-        to: `${this.student.studentID}@psu.edu`,
-        subject: '',
-        html: '',
-        text: '',      
-        from: `${this.psuID}@angular-email.com`
-      }
     });
+
+
 
     // this.serviceDispatcher.getStudent('dxi5017').subscribe(response => {
     //   this.student = response

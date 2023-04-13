@@ -13,31 +13,28 @@ h1 {
     margin-left: 100px;
     background-image: url('src\images\business.jpg');
     animation: homePageImage;
-    animation-delay: 5s;
-    animation-duration: 8s;
+    animation-delay: 4s;
+    animation-duration:20s;
     animation-iteration-count: infinite;
-    transition-delay: 5s;
-    transition-duration: 6s;
+    transition-delay: 4s;
+    transition-duration: 4s;
 }
 
 @keyframes homePageImage {
     0% {
         background-image: url('src\images\business.jpg');
     }
-    20% {
+    25% {
         background-image: url('src\images\nursing.jpg');
     }
-    40% {
+    50% {
         background-image: url('src\images\engineering.jpg');
     }
-    60% {
+    75% {
         background-image: url('src\images\humanities.jpg');
     }
-    80% {
-        background-image: url('src\images\science.jpg');
-    }
     100% {
-        background-image: url('src\images\visualArts.jpg');
+        background-image: url('src\images\science.jpg');
     }
 }
 
@@ -50,31 +47,28 @@ h1 {
     margin-left: 100px;
     background-image: url('src\images\visualArts2.jpg');
     animation: homePageImage2;
-    animation-delay: 5s;
-    animation-duration: 8s;
+    animation-delay: 4s;
+    animation-duration: 20s;
     animation-iteration-count: infinite;
-    transition-delay: 5s;
-    transition-duration: 6s;
+    transition-delay: 4s;
+    transition-duration: 4s;
 }
 
 @keyframes homePageImage2 {
     0% {
         background-image: url('src\images\science2.jpg');
     }
-    20% {
+    25% {
         background-image: url('src\images\humanities2.jpg');
     }
-    40% {
+    50% {
         background-image: url('src\images\engineering2.jpg');
     }
-    60% {
+    75% {
         background-image: url('src\images\nursing2.jpg');
     }
-    80% {
-        background-image: url('src\images\science2.jpg');
-    }
     100% {
-        background-image: url('src\images\business2.png');
+        background-image: url('src\images\science2.jpg');
     }
 }
 
