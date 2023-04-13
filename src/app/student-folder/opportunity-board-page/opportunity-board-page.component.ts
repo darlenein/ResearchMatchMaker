@@ -91,6 +91,8 @@ export class OpportunityBoardPageComponent implements OnInit {
     researchArray.forEach(research => {
       research.splitRequiredSkills = research.required_Skills.replace(/;/g, ',');
       research.splitEncouragedSkills = research.encouraged_Skills.replace(/;/g, ',');
+      research.splitRequiredSkills = research.splitRequiredSkills.replace(/,\s*$/, "");
+      research.splitEncouragedSkills = research.splitEncouragedSkills.replace(/,\s*$/, "");
     });
   }
 
