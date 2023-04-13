@@ -1,8 +1,16 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { AuthService } from 'src/app/Inbox/auth.service';
 import { FacultyModel } from 'src/app/models/faculty.model';
 import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
+
+//For inbox stuff
+interface AccountCreate {
+  username: string;
+  password: string;
+  passwordConfirmation: string;
+}
 
 @Component({
   selector: 'app-create-faculty-page',
@@ -25,13 +33,24 @@ export class CreateFacultyPageComponent implements OnInit {
   psuID: string;
 
 
-  constructor(public serviceDispatcher: ServiceDispatcher, private router: Router, private route: ActivatedRoute) { 
+  constructor(private authService: AuthService, public serviceDispatcher: ServiceDispatcher, private router: Router, private route: ActivatedRoute) { 
     this.route.queryParams.subscribe(params => {
       this.psuID = params["psuID"];
     });
   }
 
   ngOnInit(): void {
+    //Inbox stuff 
+    let accountCreate: AccountCreate = {
+      username: this.psuID,
+      password: this.psuID,
+      passwordConfirmation: this.psuID
+    }
+    this.authService.createEmailAcc(accountCreate)
+      .subscribe((response) => {
+        console.log(response);
+    });
+    //Inbox stuff end
   }
 
   openFile() {

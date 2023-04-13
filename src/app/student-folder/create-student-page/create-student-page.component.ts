@@ -7,6 +7,14 @@ import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 import {createReadStream} from 'fs'
+import { AuthService } from 'src/app/Inbox/auth.service';
+
+//For inbox stuff
+interface AccountCreate {
+  username: string;
+  password: string;
+  passwordConfirmation: string;
+}
 
 @Component({
   selector: 'app-create-student-page',
@@ -51,7 +59,7 @@ export class CreateStudentPageComponent implements OnInit {
   imgPath: any;
   imgPath2: any;
 
-  constructor(private router: Router, public serviceDispatcher: ServiceDispatcher, private route: ActivatedRoute, private fb: FormBuilder, public parseService: ParseService, private http: HttpClient) {
+  constructor(private authService: AuthService, private router: Router, public serviceDispatcher: ServiceDispatcher, private route: ActivatedRoute, private fb: FormBuilder, public parseService: ParseService, private http: HttpClient) {
     this.route.queryParams.subscribe(params => {
       this.psuID = params["psuID"];
     });
@@ -63,9 +71,22 @@ export class CreateStudentPageComponent implements OnInit {
     });
 
     this.studentForm.setErrors({required: true});
+    
    }
 
   ngOnInit(): void {
+    //Inbox stuff 
+    let accountCreate: AccountCreate = {
+      username: this.psuID,
+      password: this.psuID,
+      passwordConfirmation: this.psuID
+    }
+    this.authService.createEmailAcc(accountCreate)
+      .subscribe((response) => {
+        console.log(response);
+      });
+    //Inbox stuff end
+
     this.studentForm.valueChanges.subscribe(newValue => {
     if (newValue.paid === true || newValue.nonpaid === true || newValue.credit === true) {
       this.studentForm.setErrors(null);
