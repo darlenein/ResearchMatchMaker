@@ -138,11 +138,16 @@
         <br><br>
 
 
+        <div>
         <label type="date" for = "start date">Start Date for Research</label>
         <input type="date" id="start date" name="research start" [formControl]="startDate"><br>
-        
+        </div>
+        <mat-error *ngIf="startDate.invalid && startDate.dirty">{{getStartDateError()}}</mat-error>
+        <div>
         <label type="date" for = "end date">End Date for Research</label>
         <input type="date" id="end date" name="research end" [formControl]="endDate">
+        </div>
+        <mat-error *ngIf="endDate.invalid && endDate.dirty">{{getEndDateError()}}</mat-error>
 
         <br><br>
         <label type="text" for = "research description">Research Description*</label>

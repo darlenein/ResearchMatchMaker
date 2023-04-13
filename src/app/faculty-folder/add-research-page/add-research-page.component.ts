@@ -32,8 +32,8 @@ export class AddResearchPageComponent implements OnInit {
   rskills = new FormControl('', [Validators.required]);
   eskills = new FormControl('', [Validators.required]);
   address = new FormControl('');
-  startDate = new FormControl('');
-  endDate = new FormControl('');
+  startDate = new FormControl('', [Validators.required]);
+  endDate = new FormControl('', [Validators.required]);
   active = new FormControl('', [Validators.required]);
   credit = new FormControl('');
   paid = new FormControl('');
@@ -205,6 +205,16 @@ validate(): any {
     hasError = true;
   }
 
+  if (this.startDate.invalid) {
+    this.startDate.markAsDirty();
+    hasError = true;
+  }
+
+  if (this.endDate.invalid) {
+    this.endDate.markAsDirty();
+    hasError = true;
+  }
+
   // if (this.rskills.invalid) {
   //   this.rskills.markAsDirty();
   //   hasError = true;
@@ -244,6 +254,20 @@ getEmptyFieldError() {
 getResearchNameError() {
   if (this.name.hasError('required')) {
     return 'You must enter a Research Name';
+  }
+  return '';
+}
+
+getStartDateError() {
+  if (this.startDate.hasError('required')) {
+    return 'You must enter a start date';
+  }
+  return '';
+}
+
+getEndDateError() {
+  if (this.endDate.hasError('required')) {
+    return 'You must enter an end date';
   }
   return '';
 }
