@@ -6,11 +6,11 @@
             <span class="toolbar-title">Research Match Maker</span>
         </div>
         <div class="gradient-button-container">
-            <button mat-raised-button class="gradient-button" (click)="goToHomePage();">Home</button>
-            <button mat-raised-button class="gradient-button" (click)="goToResearchPage();">Manage Research</button>
-            <button mat-raised-button class="gradient-button" (click)="goToStudentListPage();">Student List</button>
-            <button mat-raised-button class="gradient-button" (click)="goToResearchListPage();">Other Researches</button>
-            </div>
+            <button [ngClass]="this.pageName == 'home' ? 'mat-raised-button selected-button' : 'mat-raised-button gradient-button'" (click)="goToHomePage();">Home</button>
+            <button [ngClass]="this.pageName == 'manage research' ? 'mat-raised-button selected-button' : 'mat-raised-button gradient-button'" (click)="goToResearchPage();">Manage Research</button>
+            <button [ngClass]="this.pageName == 'student list' ? 'mat-raised-button selected-button' : 'mat-raised-button gradient-button'" (click)="goToStudentListPage();">Student List</button>
+            <button [ngClass]="this.pageName == 'other researches' ? 'mat-raised-button selected-button' : 'mat-raised-button gradient-button'" (click)="goToResearchListPage();">Other Researches</button>
+        </div>
 
     </div>
 

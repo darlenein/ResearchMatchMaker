@@ -39,6 +39,19 @@
     margin-right: 30px;
 }
 
+.selected-button {
+    background: linear-gradient(to bottom,#1e407c,#009cde);
+    border: none;
+    color: white;
+    width: 150px;
+    height: 35px;
+    margin-right: 30px;
+}
+
+.gradient-button:hover {
+    background:lightsteelblue !important;
+}
+
 .profile-btn-container {
     /* position: relative; */
     margin-left: auto; 

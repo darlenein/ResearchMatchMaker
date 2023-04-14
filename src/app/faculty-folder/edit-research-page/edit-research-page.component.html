@@ -8,9 +8,9 @@
      <form>
 
         <label type="text" for = "active">Select whether the research opportunity is currently active or non-active. Whenever the research is no longer active, please change it to non-active. </label>
-        <mat-radio-group class="radio-btns" [formControl]="active">
-            <mat-radio-button value="active" style="font-family: Arial;" class="radio-style">Active</mat-radio-button>
-            <mat-radio-button value="non-active" style="font-family: Arial;" class="radio-style">Non-active</mat-radio-button>
+        <mat-radio-group class="radio-btns" [formControl]="active" (change)="setMinDate($event)">
+            <mat-radio-button id="active button" value="active" style="font-family: Arial;" class="radio-style">Active</mat-radio-button>
+            <mat-radio-button id="inactive button"value="non-active" style="font-family: Arial;" class="radio-style">Non-active</mat-radio-button>
           </mat-radio-group>
         <br><br>
 
@@ -136,11 +136,15 @@
         <br><br>
 
 
-        <label type="date" for = "start date">Start Date for Research</label>
-        <input type="date" id="start date" name="research start" [formControl]="startDate"><br>
+        <label type="date" for = "start date">Start Date for Research*</label>
+        <input type="date" id="start date" name="research start" (change)="validateDate()" [formControl]="startDate"><br>
+        <mat-error *ngIf="startDate.invalid && startDate.dirty">{{getStartDateError()}}</mat-error>
+        <mat-error *ngIf="!this.validStartDate && startDate.dirty && this.hasSubmitted">Active Research must have a start date prior to today</mat-error>
         
-        <label type="date" for = "end date">End Date for Research</label>
-        <input type="date" id="end date" name="research end" [formControl]="endDate">
+        <label type="date" for = "end date">End Date for Research*</label>
+        <input type="date" id="end date" name="research end" (change)="validateDate()" [formControl]="endDate">
+        <mat-error *ngIf="endDate.invalid && endDate.dirty">{{getEndDateError()}}</mat-error>
+        <mat-error *ngIf="!this.validEndDate && endDate.dirty && this.hasSubmitted">Active Research must have an end date prior to today</mat-error>
 
         <br><br>
         <label type="text" for = "research description">Research Description</label>
@@ -149,8 +153,9 @@
 
         <label type="text" for = "required skills">Required Skills</label>
         <div *ngFor="let item of requiredSkillList; index as i">
-            <input style="width: 325px" placeholder="required skill" [(ngModel)]="item.skill" [ngModelOptions]="{standalone: true}">
+            <input style="width: 275px" placeholder="required skill" [(ngModel)]="item.skill" [ngModelOptions]="{standalone: true}">
             <select [(ngModel)]="item.skillLevel" [ngModelOptions]="{standalone: true}">
+            <option value="" selected hidden>select skill level</option>
             <option value="Basic">Basic Knowledge</option>
             <option value="Novice">Novice</option>
             <option value="Intermediate">Intermediate</option>
@@ -163,8 +168,9 @@
 
         <label type="text" for = "encouraged skills">Encouraged Skills</label>
         <div *ngFor="let item of encouragedSkillList; index as i">
-            <input style="width: 325px" placeholder="encouraged skill" [(ngModel)]="item.skill" [ngModelOptions]="{standalone: true}">
+            <input style="width: 275px" placeholder="encouraged skill" [(ngModel)]="item.skill" [ngModelOptions]="{standalone: true}">
             <select [(ngModel)]="item.skillLevel" [ngModelOptions]="{standalone: true}">
+            <option value="" selected hidden>select skill level</option>
             <option value="Basic">Basic Knowledge</option>
             <option value="Novice">Novice</option>
             <option value="Intermediate">Intermediate</option>

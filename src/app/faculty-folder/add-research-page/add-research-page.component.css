@@ -142,3 +142,11 @@ label[type = options]{
     font-family: Arial, Helvetica, sans-serif;
     
 }
+
+.dates{
+    display: block !important;
+}
+
+mat-form-field {
+    width: 100%;
+}

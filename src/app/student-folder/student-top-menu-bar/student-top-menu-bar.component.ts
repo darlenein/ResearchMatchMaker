@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AuthenticatorComponent } from 'src/app/authenticator/authenticator.component';
@@ -15,6 +15,7 @@ interface UserCred {
   styleUrls: ['./student-top-menu-bar.component.css']
 })
 export class TopMenuBarComponent implements OnInit {
+  @Input() pageName: string;
   psuID: string;
   userName: string;
 

@@ -32,8 +32,8 @@ export class EditResearchPageComponent implements OnInit {
   rskills = new FormControl('', [Validators.required]);
   eskills = new FormControl('', [Validators.required]);
   address = new FormControl('');
-  startDate = new FormControl('');
-  endDate = new FormControl('');
+  startDate = new FormControl('', [Validators.required]);
+  endDate = new FormControl('', [Validators.required]);
   active = new FormControl('', [Validators.required]);
   credit = new FormControl('');
   paid = new FormControl('');
@@ -61,6 +61,9 @@ export class EditResearchPageComponent implements OnInit {
   sepReqSkillLevel: string[]
   sepEncSkillLevel: string[]
   sdate: any
+  validStartDate = true;
+  validEndDate = true;
+  hasSubmitted = false;
 
   
   constructor(public serviceDispatcher: ServiceDispatcher, private router: Router, private route: ActivatedRoute, private fb: FormBuilder) {
@@ -83,16 +86,17 @@ export class EditResearchPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.serviceDispatcher.getResearchByID(this.researchID).subscribe(response => {
+      debugger;
       this.research = response
       this.name = new FormControl(this.research.name);
       this.description = new FormControl(this.research.description);
       this.location = new FormControl(this.research.location);
-      this.rskills = new FormControl(this.research.required_skills);
+      this.rskills = new FormControl(this.research.required_Skills);
       this.eskills = new FormControl(this.research.encouraged_Skills);
       this.address = new FormControl(this.research.address);
       this.startDate = new FormControl(this.research.start_Date);
       this.endDate = new FormControl(this.research.end_Date);
-      this.active = new FormControl(this.research.active);
+      this.active = this.research.active ? new FormControl("active") : new FormControl("non-active");
       this.credit = new FormControl(this.research.isCredit);
       this.paid = new FormControl(this.research.isPaid);
       this.nonpaid = new FormControl(this.research.isNonpaid);
@@ -104,23 +108,28 @@ export class EditResearchPageComponent implements OnInit {
       this.businessValue = new FormControl('', [Validators.required]);
       this.psuID = this.research.faculty_Id;
       this.sepReqSkills = this.research.required_Skills.split(';');
-      this.sepReqSkillLevel = this.research.requiredSkillLevel.split(';');
+      this.sepReqSkillLevel = this.research.requiredSkillLevel ? this.research.requiredSkillLevel.split(';') : null;
       this.sepEncSkills = this.research.encouraged_Skills.split(';');
-      this.sepEncSkillLevel = this.research.encouragedSkillLevel.split(';');
+      this.sepEncSkillLevel = this.research.requiredSkillLevel ? this.research.encouragedSkillLevel.split(';') : null;
      
       for(var key1 in this.sepReqSkills){
-
-         console.log( this.sepReqSkillLevel[key1])
-         this.addExistingReqSkillField(this.sepReqSkills[key1], this.sepReqSkillLevel[key1])
+        if(this.sepReqSkillLevel)
+        {
+          this.addExistingReqSkillField(this.sepReqSkills[key1], this.sepReqSkillLevel[key1])
+        } else {
+          this.addExistingReqSkillField(this.sepReqSkills[key1], "")
+        }
+         
          
        }
        this.removeRequiredSkillField(0)
 
        for(var key in this.sepEncSkills){
-
-        console.log( this.sepEncSkillLevel[key])
-        this.addExistingEncSkillField(this.sepEncSkills[key], this.sepEncSkillLevel[key])
-        
+        if(this.sepEncSkillLevel) {
+          this.addExistingEncSkillField(this.sepEncSkills[key], this.sepEncSkillLevel[key])
+        } else {
+          this.addExistingEncSkillField(this.sepEncSkills[key], "")
+        }
       }
       this.removeEncouragedSkillField(0)
    });
@@ -195,6 +204,7 @@ export class EditResearchPageComponent implements OnInit {
     if (this.active.value === "active") {
       rm.active = true;
     }
+    
     else rm.active = false;
     rm.address = this.address.value!;
     if (this.paid.value) {
@@ -261,6 +271,10 @@ export class EditResearchPageComponent implements OnInit {
       this.eskills.markAsDirty();
       hasError = true;
     }
+
+    if(!this.validStartDate || !this.validEndDate) {
+      hasError = true;
+    }
   
     if (this.paid.value || this.nonpaid.value || this.credit.value) {
       this.researchForm.setErrors(null);
@@ -269,6 +283,30 @@ export class EditResearchPageComponent implements OnInit {
       hasError = true;
     }
     return hasError;
+  }
+
+  validateDate() {
+    if(this.active.value == "active")
+    {
+      let startDate = new Date(this.startDate.value!);
+      let endDate = new Date(this.endDate.value!);
+      let currentDate = new Date(this.getCurrentDayAsString());
+  
+      if(startDate < currentDate) {
+        this.validStartDate = false;
+      } else {
+        this.validStartDate = true;
+      }
+  
+      if(endDate < currentDate) {
+        this.validEndDate = false;
+      } else {
+        this.validEndDate = true;
+      }
+    } else {
+      this.validStartDate = true;
+      this.validEndDate = true;
+    }
   }
   
   //----------------- validation error msgs -------------------------------
@@ -301,6 +339,20 @@ export class EditResearchPageComponent implements OnInit {
     }
     return '';
   }
+
+  getStartDateError() {
+    if (this.startDate.hasError('required')) {
+      return 'You must enter a valid start date';
+    }
+    return '';
+  }
+  
+  getEndDateError() {
+    if (this.endDate.hasError('required')) {
+      return 'You must enter a valid end date';
+    }
+    return '';
+  }
   
   //----------------- end validation error msgs -------------------------------
   
@@ -327,26 +379,63 @@ export class EditResearchPageComponent implements OnInit {
     this.requiredSkillList.splice(index,1);
   }
   addExistingReqSkillField(existingReqSkills:string, existingReqSkillLevel:string) {
-  
-
-    this.requiredSkillList.push({
-  
-      skill: existingReqSkills,
-      skillLevel: existingReqSkillLevel
-    });
-  
+      this.requiredSkillList.push({
+        skill: existingReqSkills,
+        skillLevel: existingReqSkillLevel
+      });
   }
 
   addExistingEncSkillField(existingEncSkills:string, existingEncSkillLevel:string) {
-  
-
-    this.encouragedSkillList.push({
-  
-      skill: existingEncSkills,
-      skillLevel: existingEncSkillLevel
-    });
-  
+      this.encouragedSkillList.push({
+        skill: existingEncSkills,
+        skillLevel: existingEncSkillLevel
+      });  
   }
+
+  getCurrentDayAsString() : string
+{
+  let today = new Date();
+  let yyyy = today.getFullYear();
+  let stringMM;
+  let stringDD;
+
+  if(today.getDate() < 10)
+  {
+    stringDD = '0' + today.getDate();
+  } else
+  {
+    stringDD = today.getDate(); 
+  }
+
+  if((today.getMonth() + 1) < 10)
+  {
+    stringMM = '0' + (today.getMonth() + 1);
+  }
+  else {
+    stringMM = today.getMonth() + 1
+  }
+  let minDate = yyyy + '-' + stringMM + '-' + stringDD;
+  return minDate;
+}
+
+setMinDate(event :any) {
+  if(event.value == "active")
+  {
+    let minDate = this.getCurrentDayAsString();
+    let startDateElement = document.getElementById("start date");
+    let endDateElement = document.getElementById("end date");
+    startDateElement?.setAttribute("min", minDate);
+    endDateElement?.setAttribute("min", minDate);
+  } else {
+    let startDateElement = document.getElementById("start date");
+    let endDateElement = document.getElementById("end date");
+    startDateElement?.setAttribute("min", "");
+    endDateElement?.setAttribute("min", "");
+  }
+  this.validateDate();
+ }
+
+
 
 }
 

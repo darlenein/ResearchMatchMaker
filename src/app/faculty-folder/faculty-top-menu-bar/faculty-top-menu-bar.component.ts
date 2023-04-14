@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { AuthenticatorComponent } from 'src/app/authenticator/authenticator.component';
 import { AuthService } from 'src/app/Inbox/auth.service';
@@ -15,6 +15,7 @@ interface UserCred {
   styleUrls: ['./faculty-top-menu-bar.component.css']
 })
 export class FacultyTopMenuBarComponent implements OnInit {
+  @Input() pageName: string;
   psuID: string;
   //userName: string;
 
@@ -26,6 +27,7 @@ export class FacultyTopMenuBarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.pageName);
   }
 
   goToProfileViewPage() {

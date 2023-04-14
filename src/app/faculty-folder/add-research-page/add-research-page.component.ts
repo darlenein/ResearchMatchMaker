@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { min } from 'rxjs';
 import { DepartmentModel } from 'src/app/models/department.model';
 import { ResearchModel } from 'src/app/models/research.model';
 import { SubDepartmentModel } from 'src/app/models/subdepartment.model';
@@ -55,6 +56,9 @@ export class AddResearchPageComponent implements OnInit {
   businessItems: any[];
   scienceItems: any[];
   nursingItems: any[];
+  validStartDate = true;
+  validEndDate = true;
+  hasSubmitted = false;
 
   constructor(public serviceDispatcher: ServiceDispatcher, private router: Router, private route: ActivatedRoute, private fb: FormBuilder) { 
     this.route.queryParams.subscribe(params => {
@@ -82,7 +86,6 @@ export class AddResearchPageComponent implements OnInit {
       this.scienceItems = this.getSubDepts(this.departments[4].department_id);
       this.nursingItems = this.getSubDepts(this.departments[5].department_id);
     });
-
     this.researchForm.valueChanges.subscribe(newValue => {
       if (newValue.paid === true || newValue.nonpaid === true || newValue.credit === true) {
         this.researchForm.setErrors(null);
@@ -90,6 +93,8 @@ export class AddResearchPageComponent implements OnInit {
         this.researchForm.setErrors({required: true});
       }
       });
+
+
 
   }
 
@@ -105,6 +110,7 @@ export class AddResearchPageComponent implements OnInit {
   }
 
 goToFacultyManageResearch() {
+  this.hasSubmitted = true;
   this.researchDeptList = [...this.engineeringValue.value!, ...this.politicalValue.value!, ...this.businessValue.value!, 
     ...this.humanitiesValue.value!, ...this.scienceValue.value!, ...this.nursingValue.value!];
 
@@ -215,6 +221,10 @@ validate(): any {
     hasError = true;
   }
 
+  if(!this.validStartDate || !this.validEndDate) {
+    hasError = true;
+  }
+
   // if (this.rskills.invalid) {
   //   this.rskills.markAsDirty();
   //   hasError = true;
@@ -233,6 +243,32 @@ validate(): any {
   }
   return hasError;
 }
+
+validateDate() {
+  if(this.active.value == "active")
+  {
+    let startDate = new Date(this.startDate.value!);
+    let endDate = new Date(this.endDate.value!);
+    let currentDate = new Date(this.getCurrentDayAsString());
+
+    if(startDate < currentDate) {
+      this.validStartDate = false;
+    } else {
+      this.validStartDate = true;
+    }
+
+    if(endDate < currentDate) {
+      this.validEndDate = false;
+    } else {
+      this.validEndDate = true;
+    }
+  } else {
+    this.validStartDate = true;
+    this.validEndDate = true;
+  }
+}
+
+
 
 //----------------- validation error msgs -------------------------------
 getSelectAtLeastOneError() {
@@ -260,14 +296,14 @@ getResearchNameError() {
 
 getStartDateError() {
   if (this.startDate.hasError('required')) {
-    return 'You must enter a start date';
+    return 'You must enter a valid start date';
   }
   return '';
 }
 
 getEndDateError() {
   if (this.endDate.hasError('required')) {
-    return 'You must enter an end date';
+    return 'You must enter a valid end date';
   }
   return '';
 }
@@ -304,4 +340,46 @@ removeRequiredSkillField(index: number) {
   this.requiredSkillList.splice(index,1);
 }
 
+getCurrentDayAsString() : string
+{
+  let today = new Date();
+  let yyyy = today.getFullYear();
+  let stringMM;
+  let stringDD;
+
+  if(today.getDate() < 10)
+  {
+    stringDD = '0' + today.getDate();
+  } else
+  {
+    stringDD = today.getDate(); 
+  }
+
+  if((today.getMonth() + 1) < 10)
+  {
+    stringMM = '0' + (today.getMonth() + 1);
+  }
+  else {
+    stringMM = today.getMonth() + 1
+  }
+  let minDate = yyyy + '-' + stringMM + '-' + stringDD;
+  return minDate;
+}
+
+setMinDate(event :any) {
+  if(event.value == "active")
+  {
+    let minDate = this.getCurrentDayAsString();
+    let startDateElement = document.getElementById("start date");
+    let endDateElement = document.getElementById("end date");
+    startDateElement?.setAttribute("min", minDate);
+    endDateElement?.setAttribute("min", minDate);
+  } else {
+    let startDateElement = document.getElementById("start date");
+    let endDateElement = document.getElementById("end date");
+    startDateElement?.setAttribute("min", "");
+    endDateElement?.setAttribute("min", "");
+  }
+  this.validateDate();
+ }
 }
