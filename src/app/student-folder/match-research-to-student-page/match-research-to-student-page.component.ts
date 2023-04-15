@@ -21,6 +21,7 @@ export class MatchResearchToStudentPageComponent implements OnInit {
   splitRequiredSkills: any;
   splitEncouragedSkills: any;
   psuID: string;
+  facultyID: string;
 
   constructor(private router: Router, public serviceDispatcher: ServiceDispatcher, private route: ActivatedRoute, private dialog: MatDialog) {
     this.route.queryParams.subscribe(params => {
@@ -66,10 +67,12 @@ export class MatchResearchToStudentPageComponent implements OnInit {
 goToProfile(id:string){
   let navigationExtras: NavigationExtras = {
     queryParams: {
-      "psuID": id
+      "psuID": this.psuID,
+      "facultyID": id
     }
   };
-  this.router.navigate(['/view-faculty-profile'], navigationExtras);
+  //this.router.navigate(['/view-faculty-profile'], navigationExtras);
+  this.router.navigate(['/student-view-faculty'], navigationExtras);
 }
 
   // --------------------------view research page------------------------
