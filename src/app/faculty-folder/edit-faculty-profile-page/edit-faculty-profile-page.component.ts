@@ -83,7 +83,7 @@ export class EditFacultyProfilePageComponent implements OnInit {
   fd.link3 = this.link3.value!;
 
   if(!this.validate()){
-  //this.serviceDispatcher.editFacultyProfile(fd).subscribe(response => { });
+  this.serviceDispatcher.editFacultyProfile(fd).subscribe(response => { });
   this.router.navigate(['/view-faculty-profile'], navigationExtras);
   }
 }

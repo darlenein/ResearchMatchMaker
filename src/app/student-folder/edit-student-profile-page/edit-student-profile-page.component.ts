@@ -182,11 +182,11 @@ export class EditStudentProfilePageComponent implements OnInit {
       }
     };
     if(!this.validate()){
-  // this.serviceDispatcher.editStudentProfile(sd).subscribe(response => { }); // comment out when testing 
+   this.serviceDispatcher.editStudentProfile(sd).subscribe(response => { }); // comment out when testing 
     setTimeout(()=>{
       location.reload();
     },500);
-    //this.router.navigate(['/view-student-profile'], navigationExtras);
+    this.router.navigate(['/view-student-profile'], navigationExtras);
   }
 }
 
