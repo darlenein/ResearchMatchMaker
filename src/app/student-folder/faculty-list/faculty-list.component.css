@@ -14,7 +14,7 @@
 }
 
 .search-container {
-    padding: 20px;
+    padding-left: 158px;
 }
 
 .search-title {
@@ -26,7 +26,6 @@
 
 .search-bar {
     width: 500px;
-    padding-left: 20px;
 }
 
 .stepper {

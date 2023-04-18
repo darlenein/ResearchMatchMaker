@@ -1,19 +1,14 @@
 <app-student-top-menu-bar pageName="faculty page"></app-student-top-menu-bar>
 
-
-
-
 <div class="container">
     <div class="search-container">
-        
-        <span class="search-title">Faculty List</span>
-        <br>
+        <span class="search-title">Faculty List</span><br>
         <mat-form-field class="search-bar" appearance="fill">
             <mat-label>Search Faculty By: Name, Title, or Research Interests</mat-label>
             <input matInput class="search-bar" [formControl]="searchTerm" (keydown.enter)="FilterAndSearch('', null);"><mat-icon matPrefix>search</mat-icon>
         </mat-form-field>
-        
     </div>
+
     <div class="list-container">
         <!-- ../faculty-list -->  
         <ul style="list-style: none;">
