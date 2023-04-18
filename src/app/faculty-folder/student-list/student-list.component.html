@@ -3,8 +3,7 @@
 <!-- filters -->
 
 <div class="studentFilterContainer">
-     <div class="Lcontainer"> 
-        <span class="studentFilterTitle">Filter Student List</span><br><br>
+     <div class="Lcontainer">  
         <button type="button" class="btn" (click)="resetFilters();">Reset Filters</button><br>
 
         <mat-nav-list>
@@ -66,17 +65,11 @@
                     <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="Nonpaid">Nonpaid</mat-list-option>
                     <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="Credit">Credit</mat-list-option>
                 </mat-selection-list>
-            </div>
-            
-            
+            </div> 
         </mat-nav-list>
    </div> 
 </div>
         
-
-
-
-
 
 <div class="C">
     <span class="result-title">Student List</span><br>
@@ -90,8 +83,7 @@
     <ul style="list-style: none;">
         <li *ngFor="let fs of filteredStudents">
             <div class="container">
-
-                <div class="left-container">
+                <div class="left-container" style="display:inline-block">
                     <div class="link" (click)="goToStudentProfile(fs.student_Id);">{{fs.first_Name}} {{fs.last_Name}}</div>
                     <b>Graduation Date:</b> {{fs.graduation_Month}} {{fs.graduation_Year}}<br>
                     <b>Major:</b> {{fs.major}}<br>

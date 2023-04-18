@@ -8,7 +8,7 @@
         <div class="container">
 
           Current Progress for Applicant: 
-          <span class="link" (click)="goToProfile(s.student_Id);">{{s.first_Name}} {{s.last_Name}}</span><br><br>
+          <span class="link" (click)="goToStudentProfile(s.student_Id);">{{s.first_Name}} {{s.last_Name}}</span><br><br>
           <b>Graduation Date:</b> {{s.graduation_Month}} {{s.graduation_Year}}<br>
           <b>Major:</b> {{s.major}}<br>
           <b>GPA:</b> {{s.gpa}} <br>
@@ -19,18 +19,21 @@
           <mat-step label="Applied"><div>
           <button mat-button matStepperNext class="button">Next Step: Recieved</button>
           <button mat-button class="button" (click)="saveAppProgress(0, s.student_Id)">Save</button>
+          <button (click)="viewNotif(s.student_Id)" (click)="showModal = true" class="button">Send Notification</button>
           </div></mat-step>
 
           <mat-step label="Received"><div>
           <button (click)="goBack(stepper)" mat-button matStepperPrevious class="button">Back</button>
           <button mat-button matStepperNext class="button">Next Step: Review</button>
           <button mat-button class="button" (click)="saveAppProgress(1, s.student_Id)">Save</button>
+          <button (click)="viewNotif(s.student_Id)" (click)="showModal = true" class="button">Send Notification</button>
           </div></mat-step>
       
           <mat-step label="In Review"><div>
           <button (click)="goBack(stepper)" mat-button matStepperPrevious class="button">Back</button>
           <button mat-button matStepperNext class="button">Next Step: Verdict</button>
           <button mat-button class="button" (click)="saveAppProgress(2, s.student_Id);">Save</button>
+          <button (click)="viewNotif(s.student_Id)" (click)="showModal = true" class="button">Send Notification</button>
           </div></mat-step>
       
       <!-- <mat-step [completed]="completed" [state]="state" label="Verdict"> -->
@@ -42,6 +45,7 @@
               <option [value]=4>Reject</option>
           </select>
             <button mat-button class="button" (click)="saveAppProgress(verdict.value!, s.student_Id);">Save</button></div>
+            <button (click)="viewNotif(s.student_Id)" (click)="showModal = true" class="button">Send Notification</button>
           </mat-step>
 
           <mat-step *ngIf="s.progress_Bar === 3" label="Accepted!">
@@ -53,7 +57,8 @@
                 <option [value]=4>Reject</option>
             </select>
               <button mat-button class="button" (click)="saveAppProgress(verdict.value!, s.student_Id);" >Save</button>
-              <button (click)="showModal = true" class="button">Send Notification</button></div>
+              <button (click)="viewNotif(s.student_Id)" (click)="showModal = true" class="button">Send Notification</button>
+              </div>
           </mat-step>
 
 
@@ -66,8 +71,9 @@
                 <option [value]=3>Accept</option>
                 <option [value]=4>Reject</option>
             </select>
-              <button mat-button class="button" (click)="saveAppProgress(verdict.value!, s.student_Id);">Save</button></div>
+              <button mat-button class="button" (click)="saveAppProgress(verdict.value!, s.student_Id);">Save</button>
               <button (click)="showModal = true" class="button">Send Notification</button>
+            </div>
           </mat-step>
 
       </mat-horizontal-stepper>   

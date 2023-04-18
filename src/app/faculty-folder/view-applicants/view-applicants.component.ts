@@ -27,7 +27,7 @@ interface UpdateEmail {
     provide: STEPPER_GLOBAL_OPTIONS, useValue: {displayDefaultIndicatorType: false}
   }]
 })
-export class ViewApplicantsComponent implements OnInit {
+export class ViewApplicantsComponent implements OnInit{
   @ViewChildren('stepper') steppers:QueryList<MatStepper>;
   completed: boolean = false;
   state: string;
@@ -65,26 +65,15 @@ export class ViewApplicantsComponent implements OnInit {
       this.student = response
       this.replaceStudentsInformationBySemicolon(this.student);
       this.research_name = this.student[0].name;
-      this.studentPSUID = this.student[0].student_Id;
-
-      //Notif
-      this.updateEmail = {
-        id: '',
-        to: `${this.studentPSUID}@psu.edu`,
-        subject: 'ResearchConnect Application',
-        html: '',
-        text: 'Your application has been updated! Please go check the status of your application on ResearchConnect!',      
-        from: `${this.psuID}@angular-email.com`
-      }
-    });
-
-
+      //this.studentPSUID = this.student[0].student_Id;
+    });  
   }
 
   ngAfterViewInit(): void {
     setTimeout(()=>{
       this.updateProgress(this.student);
     },1000);
+ 
   }
 
   // ------------ display info functions ---------------
@@ -155,18 +144,14 @@ export class ViewApplicantsComponent implements OnInit {
   }
 
   // ------------- router methods -------------
-  goToStudentProfile(){
-    this.router.navigate(['/goToStudentProfile']);
-  }
-
-  goToProfile(id:string){
-    this.studentPSUID = id;
+  goToStudentProfile(id:String) {
     let navigationExtras: NavigationExtras = {
       queryParams: {
-        "psuID": id
+        "studentID": id,
+        "facultyID": this.psuID
       }
     };
-    this.router.navigate(['/view-student-profile'], navigationExtras);
+    this.router.navigate(['/faculty-view-student'], navigationExtras);
   }
 
   onSubmit(updateEmail: Email) {
@@ -174,6 +159,20 @@ export class ViewApplicantsComponent implements OnInit {
     this.emailService.sendEmail(updateEmail).subscribe(() => {
       this.showModal = false;
     });
+  }
+
+  //view notif form
+  viewNotif(id: string){
+      //this.studentPSUID = student.student_Id;
+      //Notif
+      this.updateEmail = {
+      id: '',
+      to: `${id}@psu.edu`,
+      subject: 'ResearchConnect Application',
+      html: '',
+      text: 'Your application has been updated! Please go check the status of your application on ResearchConnect!',      
+      from: `${this.psuID}@angular-email.com`
+      };
   }
 
 
