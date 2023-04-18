@@ -12,14 +12,16 @@
     margin: 1rem auto;
     /*border: 2px solid #92a8d1;*/
     padding: 2rem;
-    background-color: #e4f2fe;
+    /*background-color: #e4f2fe;*/
     font-family: sans-serif;
     display: flex;
     padding-bottom: 50px;
+    /*
     border-top: 1px solid gray;
     border-bottom:  1px solid gray;
     border-right:  1px solid gray;
-    border-left:  1px solid gray;
+    border-left:  1px solid gray;*/
+    border: 2px solid #000000;
 }
 
 .left-container{
