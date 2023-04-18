@@ -52,6 +52,8 @@ export class EditStudentProfilePageComponent implements OnInit {
   student: any;
   sepSkills: string[]
   sepSkillLevel: string[]
+  result: any;
+  filePath: any;
 
 
   constructor(private router: Router, public serviceDispatcher: ServiceDispatcher, private route: ActivatedRoute,private fb: FormBuilder) { 
@@ -124,11 +126,81 @@ export class EditStudentProfilePageComponent implements OnInit {
   }
 
   handle(e: any){
-    console.log (e.value);
-    // need to upload image to somewhere then
-    // need to save into database
-  }
-
+    let target = e.target
+    let selectedFile = target.files[0];
+    let fileType = selectedFile.type.split('/')[0]
+    if(fileType != 'application'){
+     if(fileType!='text'){
+       alert("File type must be pdf, doc, or txt.")
+       return;
+     }
+    }
+ 
+    this.result = this.parseResume(selectedFile);
+   }
+   parseResume(selectedfile: any){
+     const {AffindaCredential, AffindaAPI} = require("@affinda/affinda");
+     const fs = require("fs");
+     
+     console.log(selectedfile);
+     let fileReader = new FileReader();
+     fileReader.readAsDataURL(selectedfile);
+     fileReader.onload=()=>{
+      let fileresult = fileReader.result;
+      this.filePath = fileresult;
+     
+     }
+     const credential = new AffindaCredential("fbbf9b7adef358bace64bba12937759c468db3a6")
+     const client = new AffindaAPI(credential)
+    
+    
+     client.createResume({file:selectedfile}).then((result: any) => {
+     console.log("Returned data:");
+     console.dir(result)
+     var json = JSON.parse(JSON.stringify(result));
+     //this.studentForm.get('firstName')?.setValue(json["first"]);
+     let rfirstname = json.data.name.first;
+     let rlastname = json.data.name.last;
+     let remail = json.data.emails[0];
+ 
+     this.firstName = new FormControl(rfirstname);
+     this.lastName = new FormControl(rlastname);
+     this.email = new FormControl(remail);
+       for(var key in json.data.skills){
+         console.log( json.data.skills[key].name)
+         this.addResumeSkillField(json.data.skills[key].name)
+         
+       }
+       this.removeSkillField(0)
+     console.log(json.data.skills[0].name)
+ }).catch((err: any) => {
+     console.log("An error occurred:");
+     console.error(err); 
+ }); 
+    /* client.createResume({url:  "https://api.affinda.com/static/sample_resumes/example.pdf"}).then((result: any) => {
+         console.log("Returned data:");
+         console.dir(result)
+         var json = JSON.parse(JSON.stringify(result));
+         //this.studentForm.get('firstName')?.setValue(json["first"]);
+         console.log(json.data.profession);
+         console.log(json.data.name.first);
+         console.log(json.data.emails[0]);
+         let rfirstname = json.data.name.first;
+         let rlastname = json.data.name.last;
+         let remail = json.data.emails[0];
+ 
+         this.firstName = new FormControl(rfirstname);
+         this.lastName = new FormControl(rlastname);
+         this.email = new FormControl(remail);
+        
+         return result;
+         
+     }).catch((err: any) => {
+         console.log("An error occurred:");
+         console.error(err);
+     }); */
+     
+     }
   goToProfileViewPage() {
     let sd = new StudentModel();
     let skillString = "";
@@ -302,6 +374,14 @@ addExistingSkillField(existingSkills:string, existingSkillLevel:string) {
     skillLevel: existingSkillLevel
   });
 
+
+}
+
+addResumeSkillField(skillName: string) {
+  this.skillForm.push({
+    skill: skillName,
+    skillLevel: ''
+  });
 }
   
 }

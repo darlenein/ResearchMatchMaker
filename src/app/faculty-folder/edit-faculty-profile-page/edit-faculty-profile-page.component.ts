@@ -24,10 +24,12 @@ export class EditFacultyProfilePageComponent implements OnInit {
   link2 = new FormControl('');
   link3 = new FormControl('');
   psuID: string;
+  fpsuID: string;
   faculty: any;
   constructor(public serviceDispatcher: ServiceDispatcher, private router: Router, private route: ActivatedRoute) { 
     this.route.queryParams.subscribe(params => {
       this.psuID = params["psuID"];
+    //  this.psuID = params["facultyPSUID"]
     });
   }
 
@@ -62,7 +64,9 @@ export class EditFacultyProfilePageComponent implements OnInit {
   goToProfileViewPage() {
     let navigationExtras: NavigationExtras = {
       queryParams: {
-        "psuID": this.psuID
+        "psuID": this.psuID,
+      //  "facultyPSUID" : this.fpsuID
+        
       }
     };
 
@@ -82,8 +86,13 @@ export class EditFacultyProfilePageComponent implements OnInit {
   fd.link2 = this.link2.value!;
   fd.link3 = this.link3.value!;
 
+
+
   if(!this.validate()){
   this.serviceDispatcher.editFacultyProfile(fd).subscribe(response => { });
+  setTimeout(()=>{
+    location.reload();
+  },500);
   this.router.navigate(['/view-faculty-profile'], navigationExtras);
   }
 }
