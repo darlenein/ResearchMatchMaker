@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Email } from '../email';
 import { EmailService } from '../email.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-email-reply',
@@ -10,8 +11,13 @@ import { EmailService } from '../email.service';
 export class EmailReplyComponent {
   showModal = false;
   @Input() email: Email;
+  psuID: string;
 
-  constructor(private emailService: EmailService) { }
+  constructor(private route: ActivatedRoute, private emailService: EmailService) {
+    this.route.queryParams.subscribe(params => {
+      this.psuID = params["psuID"];
+    });
+   }
 
   ngOnChanges(): void {
     const text = this.email.text.replace(/\n/gi, `\n> `);

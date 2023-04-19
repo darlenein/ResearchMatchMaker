@@ -68,11 +68,11 @@ export class OpportunityBoardPageComponent implements OnInit {
     this.serviceDispatcher.getAllDepartments().subscribe(response => { 
       this.departments = response;
       this.engineeringItems = this.getSubDepts(this.departments[0].department_id);
-      this.politicalScienceItems = this.getSubDepts(this.departments[1].department_id);
+      //this.politicalScienceItems = this.getSubDepts(this.departments[1].department_id);
+      this.businessItems = this.getSubDepts(this.departments[1].department_id);
       this.humanitiesSocialScienceItems = this.getSubDepts(this.departments[2].department_id);
-      this.businessItems = this.getSubDepts(this.departments[3].department_id);
-      this.scienceItems = this.getSubDepts(this.departments[4].department_id);
-      this.nursingItems = this.getSubDepts(this.departments[5].department_id);
+      this.scienceItems = this.getSubDepts(this.departments[3].department_id);
+      this.nursingItems = this.getSubDepts(this.departments[4].department_id);
     });
 
     this.serviceDispatcher.getAllSortedResearchByStudent(this.psuID).subscribe(response => {

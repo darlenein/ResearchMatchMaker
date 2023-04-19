@@ -7,6 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormArray } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-edit-student-profile-page',
@@ -46,17 +47,23 @@ export class EditStudentProfilePageComponent implements OnInit {
   credit = new FormControl('');
   interest = new FormControl('');
   projects = new FormControl('');
+  incentive = new FormControl('', [Validators.required]);
   psuID: string;
   fileName = '';
   pfp: any;
   student: any;
   sepSkills: string[]
   sepSkillLevel: string[]
+  result: any;
+  filePath: any;
+  
 
 
-  constructor(private router: Router, public serviceDispatcher: ServiceDispatcher, private route: ActivatedRoute,private fb: FormBuilder) { 
+  constructor(private router: Router, public serviceDispatcher: ServiceDispatcher, private route: ActivatedRoute,private fb: FormBuilder,private http: HttpClient) { 
     this.route.queryParams.subscribe(params => {
+    
       this.psuID = params["psuID"];
+      
 
       this.studentForm = this.fb.group({
         paid: this.paid,
@@ -73,14 +80,14 @@ export class EditStudentProfilePageComponent implements OnInit {
     
     this.serviceDispatcher.getStudent(this.psuID).subscribe(response => {
       this.student = response
-      this.firstName = new FormControl(this.student.first_Name);
-      this.lastName = new FormControl(this.student.last_Name);
-      this.email = new FormControl(this.student.email); 
-      this.gpa = new FormControl(this.student.gpa);
-      this.major = new FormControl(this.student.major);
+      this.firstName = new FormControl(this.student.first_Name, [Validators.required, Validators.pattern("[a-zA-Z -]*")]);
+      this.lastName = new FormControl(this.student.last_Name,  [Validators.required, Validators.pattern("[a-zA-Z -]*")]);
+      this.email = new FormControl(this.student.email, [Validators.required, Validators.email]); 
+      this.gpa = new FormControl(this.student.gpa, [Validators.required, Validators.pattern('\\-?\\d*\\.?\\d{1,2}')]);
+      this.major = new FormControl(this.student.major, [Validators.required]);
       this.doubleMajor = new FormControl(this.student.major2)
       this.minor = new FormControl(this.student.minor);
-      this.location = new FormControl(this.student.preferLocation);
+      this.location = new FormControl(this.student.preferLocation, [Validators.required]);
       this.gradMonth = new FormControl(this.student.graduation_Month);
       this.gradYear = new FormControl(this.student.graduation_Year);
       this.skillSet = new FormControl(this.student.skills);
@@ -95,6 +102,7 @@ export class EditStudentProfilePageComponent implements OnInit {
       this.projects = new FormControl(this.student.research_Project);
       this.sepSkills = this.student.skills.split(';');
       this.sepSkillLevel = this.student.skillLevel.split(';');
+     
       for(var key in this.sepSkills){
        // console.log( this.sepSkills[key])
         console.log( this.sepSkillLevel[key])
@@ -124,11 +132,81 @@ export class EditStudentProfilePageComponent implements OnInit {
   }
 
   handle(e: any){
-    console.log (e.value);
-    // need to upload image to somewhere then
-    // need to save into database
-  }
-
+    let target = e.target
+    let selectedFile = target.files[0];
+    let fileType = selectedFile.type.split('/')[0]
+    if(fileType != 'application'){
+     if(fileType!='text'){
+       alert("File type must be pdf, doc, or txt.")
+       return;
+     }
+    }
+ 
+    this.result = this.parseResume(selectedFile);
+   }
+   parseResume(selectedfile: any){
+     const {AffindaCredential, AffindaAPI} = require("@affinda/affinda");
+     const fs = require("fs");
+     
+     console.log(selectedfile);
+     let fileReader = new FileReader();
+     fileReader.readAsDataURL(selectedfile);
+     fileReader.onload=()=>{
+      let fileresult = fileReader.result;
+      this.filePath = fileresult;
+     
+     }
+     const credential = new AffindaCredential("fbbf9b7adef358bace64bba12937759c468db3a6")
+     const client = new AffindaAPI(credential)
+    
+    
+     client.createResume({file:selectedfile}).then((result: any) => {
+     console.log("Returned data:");
+     console.dir(result)
+     var json = JSON.parse(JSON.stringify(result));
+     //this.studentForm.get('firstName')?.setValue(json["first"]);
+     let rfirstname = json.data.name.first;
+     let rlastname = json.data.name.last;
+     let remail = json.data.emails[0];
+ 
+     this.firstName = new FormControl(rfirstname);
+     this.lastName = new FormControl(rlastname);
+     this.email = new FormControl(remail);
+       for(var key in json.data.skills){
+         console.log( json.data.skills[key].name)
+         this.addResumeSkillField(json.data.skills[key].name)
+         
+       }
+       this.removeSkillField(0)
+     console.log(json.data.skills[0].name)
+ }).catch((err: any) => {
+     console.log("An error occurred:");
+     console.error(err); 
+ }); 
+    /* client.createResume({url:  "https://api.affinda.com/static/sample_resumes/example.pdf"}).then((result: any) => {
+         console.log("Returned data:");
+         console.dir(result)
+         var json = JSON.parse(JSON.stringify(result));
+         //this.studentForm.get('firstName')?.setValue(json["first"]);
+         console.log(json.data.profession);
+         console.log(json.data.name.first);
+         console.log(json.data.emails[0]);
+         let rfirstname = json.data.name.first;
+         let rlastname = json.data.name.last;
+         let remail = json.data.emails[0];
+ 
+         this.firstName = new FormControl(rfirstname);
+         this.lastName = new FormControl(rlastname);
+         this.email = new FormControl(remail);
+        
+         return result;
+         
+     }).catch((err: any) => {
+         console.log("An error occurred:");
+         console.error(err);
+     }); */
+     
+     }
   goToProfileViewPage() {
     let sd = new StudentModel();
     let skillString = "";
@@ -179,9 +257,12 @@ export class EditStudentProfilePageComponent implements OnInit {
     let navigationExtras: NavigationExtras = {
       queryParams: {
         "psuID": this.psuID
+       
       }
     };
+    
     if(!this.validate()){
+      
    this.serviceDispatcher.editStudentProfile(sd).subscribe(response => { }); // comment out when testing 
     setTimeout(()=>{
       location.reload();
@@ -302,6 +383,14 @@ addExistingSkillField(existingSkills:string, existingSkillLevel:string) {
     skillLevel: existingSkillLevel
   });
 
+
+}
+
+addResumeSkillField(skillName: string) {
+  this.skillForm.push({
+    skill: skillName,
+    skillLevel: ''
+  });
 }
   
 }

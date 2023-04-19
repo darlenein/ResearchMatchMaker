@@ -24,19 +24,22 @@ export class EditFacultyProfilePageComponent implements OnInit {
   link2 = new FormControl('');
   link3 = new FormControl('');
   psuID: string;
+  fpsuID: string;
   faculty: any;
   constructor(public serviceDispatcher: ServiceDispatcher, private router: Router, private route: ActivatedRoute) { 
     this.route.queryParams.subscribe(params => {
+      this.psuID = params["facultyPSUID"];
       this.psuID = params["psuID"];
+     
     });
   }
 
   ngOnInit(): void {
     this.serviceDispatcher.getFaculty(this.psuID).subscribe(response => {
       this.faculty = response
-      this.firstName = new FormControl(this.faculty.first_Name);
-      this.lastName = new FormControl(this.faculty.last_Name);
-      this.email = new FormControl(this.faculty.email); 
+      this.firstName = new FormControl(this.faculty.first_Name,[Validators.required, Validators.pattern("[a-zA-Z -]*")]);
+      this.lastName = new FormControl(this.faculty.last_Name,[Validators.required, Validators.pattern("[a-zA-Z -]*")]);
+      this.email = new FormControl(this.faculty.email,[Validators.required, Validators.email]); 
       this.title = new FormControl(this.faculty.title);
       this.dept = new FormControl(this.faculty.dept);
       this.office = new FormControl(this.faculty.office);
@@ -62,7 +65,9 @@ export class EditFacultyProfilePageComponent implements OnInit {
   goToProfileViewPage() {
     let navigationExtras: NavigationExtras = {
       queryParams: {
-        "psuID": this.psuID
+        "psuID": this.psuID,
+        "facultyPSUID" : this.psuID
+        
       }
     };
 
@@ -82,8 +87,13 @@ export class EditFacultyProfilePageComponent implements OnInit {
   fd.link2 = this.link2.value!;
   fd.link3 = this.link3.value!;
 
+
+
   if(!this.validate()){
   this.serviceDispatcher.editFacultyProfile(fd).subscribe(response => { });
+  setTimeout(()=>{
+    location.reload();
+  },500);
   this.router.navigate(['/view-faculty-profile'], navigationExtras);
   }
 }

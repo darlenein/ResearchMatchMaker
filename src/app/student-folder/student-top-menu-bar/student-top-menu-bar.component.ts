@@ -91,15 +91,6 @@ export class TopMenuBarComponent implements OnInit {
     this.router.navigate(['/faculty-list'], navigationExtras);
   }
 
-  goToInboxStudentHomePage(){
-    let navigationExtras: NavigationExtras = {
-      queryParams: {
-        "psuID": this.psuID
-      }
-    };
-    this.router.navigate(['/inbox-StudentHome'], navigationExtras);
-  }
-
   signOut() {
     this.authenticator.logout();
   }
@@ -110,9 +101,15 @@ export class TopMenuBarComponent implements OnInit {
       password: this.psuID
     }
 
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        "psuID": this.psuID
+      }
+    };
+
     this.authService.clickInbox(userCred).subscribe({
       next: () => {
-        this.router.navigateByUrl('/inbox-StudentHome')
+        this.router.navigate(['/inbox-StudentHome'], navigationExtras)
       },
     });
   }

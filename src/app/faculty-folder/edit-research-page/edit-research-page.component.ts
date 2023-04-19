@@ -86,16 +86,16 @@ export class EditResearchPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.serviceDispatcher.getResearchByID(this.researchID).subscribe(response => {
-      debugger;
+      //debugger;
       this.research = response
-      this.name = new FormControl(this.research.name);
-      this.description = new FormControl(this.research.description);
-      this.location = new FormControl(this.research.location);
-      this.rskills = new FormControl(this.research.required_Skills);
-      this.eskills = new FormControl(this.research.encouraged_Skills);
+      this.name = new FormControl(this.research.name,[Validators.required]);
+      this.description = new FormControl(this.research.description,[Validators.required]);
+      this.location = new FormControl(this.research.location,[Validators.required]);
+      this.rskills = new FormControl(this.research.required_Skills,[Validators.required]);
+      this.eskills = new FormControl(this.research.encouraged_Skills,[Validators.required]);
       this.address = new FormControl(this.research.address);
-      this.startDate = new FormControl(this.research.start_Date);
-      this.endDate = new FormControl(this.research.end_Date);
+      this.startDate = new FormControl(this.research.start_Date,[Validators.required]);
+      this.endDate = new FormControl(this.research.end_Date,[Validators.required]);
       this.active = this.research.active ? new FormControl("active") : new FormControl("non-active");
       this.credit = new FormControl(this.research.isCredit);
       this.paid = new FormControl(this.research.isPaid);
@@ -138,11 +138,12 @@ export class EditResearchPageComponent implements OnInit {
     this.serviceDispatcher.getAllDepartments().subscribe(response => { 
       this.departments = response;
       this.engineeringItems = this.getSubDepts(this.departments[0].department_id);
-      this.politicalScienceItems = this.getSubDepts(this.departments[1].department_id);
+      //this.politicalScienceItems = this.getSubDepts(this.departments[1].department_id);
+      this.businessItems = this.getSubDepts(this.departments[1].department_id);
       this.humanitiesSocialScienceItems = this.getSubDepts(this.departments[2].department_id);
-      this.businessItems = this.getSubDepts(this.departments[3].department_id);
-      this.scienceItems = this.getSubDepts(this.departments[4].department_id);
-      this.nursingItems = this.getSubDepts(this.departments[5].department_id);
+
+      this.scienceItems = this.getSubDepts(this.departments[3].department_id);
+      this.nursingItems = this.getSubDepts(this.departments[4].department_id);
     });
 
     this.researchForm.valueChanges.subscribe(newValue => {

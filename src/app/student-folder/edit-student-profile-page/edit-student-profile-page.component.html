@@ -5,7 +5,7 @@
     <h1>
         Edit Student Profile
      </h1>
-     <form>
+     <form [formGroup]="studentForm">
         <button class="btns" mat-stroked-button style="font-size: large;" (click)="openFile()">Add Resume</button>
         <button class="btns" mat-stroked-button style="font-size: large;" (click)="openFile()">Add Profile Picture
             <input type="file" style="display:none" (change)="handle($event)">
@@ -13,12 +13,12 @@
         <br><br>
 
         <label type="text"  for = "first_name">First Name</label>
-        <input type="text" id="first_name"  size="50" value = {{student.first_Name}} [formControl]="firstName" />
+        <input type="text" id="first_name"  size="50"  [formControl]="firstName" />
         <mat-error *ngIf="firstName.invalid && firstName.dirty">{{getFirstNameErrorMessage()}}</mat-error>
         <br> <br>
 
         <label type="text" for = "last_name">Last Name</label>
-        <input type="text" id="last_name"  value = {{student.last_Name}} autocomplete="off" size="50" [formControl]="lastName"/>
+        <input type="text" id="last_name"  autocomplete="off" size="50" [formControl]="lastName"/>
         <mat-error *ngIf="lastName.invalid && lastName.dirty">{{getLastNameErrorMessage()}}</mat-error> 
         <br> <br>
 

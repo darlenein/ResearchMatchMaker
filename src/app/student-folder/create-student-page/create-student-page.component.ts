@@ -290,6 +290,7 @@ export class CreateStudentPageComponent implements OnInit {
     };
     
     if(!this.validate()){
+      
       this.serviceDispatcher.createStudentProfile(sd).subscribe(response => { }); // comment out, else profile will save to database 
       this.router.navigate(['/student-home'], navigationExtras);
     }

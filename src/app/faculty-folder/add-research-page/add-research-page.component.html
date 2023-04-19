@@ -46,7 +46,7 @@
                     </div>
                 
                     <!-- Political Science Options -->
-                    <mat-list-item (click)="toggle[2] = !toggle[2]">
+                    <!-- <mat-list-item (click)="toggle[2] = !toggle[2]">
                         <a *ngIf="!toggle[2]"><mat-icon>keyboard_arrow_right</mat-icon></a>
                         <a *ngIf="toggle[2]"><mat-icon>keyboard_arrow_down</mat-icon></a>
                         <a [ngClass]="!toggle[2] ? 'parent-filter' : 'parent-filter-bold'">{{departments[1].name}}</a>
@@ -57,15 +57,15 @@
                                 {{ item.name }}
                             </mat-list-option>
                         </mat-selection-list>
-                    </div>
+                    </div> -->
         
                     <!-- Business Options -->
-                    <mat-list-item (click)="toggle[3] = !toggle[3]">
-                        <a *ngIf="!toggle[3]"><mat-icon>keyboard_arrow_right</mat-icon></a>
-                        <a *ngIf="toggle[3]"><mat-icon>keyboard_arrow_down</mat-icon></a>
-                        <a [ngClass]="!toggle[3] ? 'parent-filter' : 'parent-filter-bold'">{{departments[2].name}}</a>
+                    <mat-list-item (click)="toggle[2] = !toggle[2]">
+                        <a *ngIf="!toggle[2]"><mat-icon>keyboard_arrow_right</mat-icon></a>
+                        <a *ngIf="toggle[2]"><mat-icon>keyboard_arrow_down</mat-icon></a>
+                        <a [ngClass]="!toggle[2] ? 'parent-filter' : 'parent-filter-bold'">{{departments[1].name}}</a>
                     </mat-list-item>
-                    <div [hidden]="!toggle[3]">
+                    <div [hidden]="!toggle[2]">
                         <mat-selection-list [formControl]="businessValue">
                             <mat-list-option style="margin-left: 25px;" *ngFor="let item of businessItems" checkboxPosition="before" value={{item.name}}>
                                 {{ item.name }}
@@ -74,12 +74,12 @@
                     </div>
         
                     <!-- Humanities Options -->
-                    <mat-list-item (click)="toggle[4] = !toggle[4]">
-                        <a *ngIf="!toggle[4]"><mat-icon>keyboard_arrow_right</mat-icon></a>
-                        <a *ngIf="toggle[4]"><mat-icon>keyboard_arrow_down</mat-icon></a>
-                        <a [ngClass]="!toggle[4] ? 'parent-filter' : 'parent-filter-bold'">{{departments[3].name}}</a>
+                    <mat-list-item (click)="toggle[3] = !toggle[3]">
+                        <a *ngIf="!toggle[3]"><mat-icon>keyboard_arrow_right</mat-icon></a>
+                        <a *ngIf="toggle[3]"><mat-icon>keyboard_arrow_down</mat-icon></a>
+                        <a [ngClass]="!toggle[3] ? 'parent-filter' : 'parent-filter-bold'">{{departments[2].name}}</a>
                     </mat-list-item>
-                    <div [hidden]="!toggle[4]">
+                    <div [hidden]="!toggle[3]">
                         <mat-selection-list [formControl]="humanitiesValue">
                             <mat-list-option style="margin-left: 25px;" *ngFor="let item of humanitiesSocialScienceItems" checkboxPosition="before" value={{item.name}}>
                                 {{ item.name }}
@@ -88,12 +88,12 @@
                     </div>
         
                     <!-- Sciences Options -->
-                    <mat-list-item (click)="toggle[5] = !toggle[5]">
-                        <a *ngIf="!toggle[5]"><mat-icon>keyboard_arrow_right</mat-icon></a>
-                        <a *ngIf="toggle[5]"><mat-icon>keyboard_arrow_down</mat-icon></a>
-                        <a [ngClass]="!toggle[5] ? 'parent-filter' : 'parent-filter-bold'">{{departments[4].name}}</a>
+                    <mat-list-item (click)="toggle[4] = !toggle[4]">
+                        <a *ngIf="!toggle[4]"><mat-icon>keyboard_arrow_right</mat-icon></a>
+                        <a *ngIf="toggle[4]"><mat-icon>keyboard_arrow_down</mat-icon></a>
+                        <a [ngClass]="!toggle[4] ? 'parent-filter' : 'parent-filter-bold'">{{departments[3].name}}</a>
                     </mat-list-item>
-                    <div [hidden]="!toggle[5]">
+                    <div [hidden]="!toggle[4]">
                         <mat-selection-list [formControl]="scienceValue">
                             <mat-list-option style="margin-left: 25px;" *ngFor="let item of scienceItems" checkboxPosition="before" value={{item.name}}>
                                 {{ item.name }}
@@ -102,12 +102,12 @@
                     </div>
         
                     <!-- Nursing Options -->
-                    <mat-list-item (click)="toggle[6] = !toggle[6]">
-                        <a *ngIf="!toggle[6]"><mat-icon>keyboard_arrow_right</mat-icon></a>
-                        <a *ngIf="toggle[6]"><mat-icon>keyboard_arrow_down</mat-icon></a>
-                        <a [ngClass]="!toggle[6] ? 'parent-filter' : 'parent-filter-bold'">{{departments[5].name}}</a>
+                    <mat-list-item (click)="toggle[5] = !toggle[5]">
+                        <a *ngIf="!toggle[5]"><mat-icon>keyboard_arrow_right</mat-icon></a>
+                        <a *ngIf="toggle[5]"><mat-icon>keyboard_arrow_down</mat-icon></a>
+                        <a [ngClass]="!toggle[5] ? 'parent-filter' : 'parent-filter-bold'">{{departments[4].name}}</a>
                     </mat-list-item>
-                    <div [hidden]="!toggle[6]">
+                    <div [hidden]="!toggle[5]">
                         <mat-selection-list [formControl]="nursingValue">
                             <mat-list-option style="margin-left: 25px;" *ngFor="let item of nursingItems" checkboxPosition="before" value={{item.name}}>
                                 {{ item.name }}

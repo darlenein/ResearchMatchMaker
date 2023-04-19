@@ -12,10 +12,12 @@
             <mat-radio-button id="active button" value="active" style="font-family: Arial;" class="radio-style">Active</mat-radio-button>
             <mat-radio-button id="inactive button"value="non-active" style="font-family: Arial;" class="radio-style">Non-active</mat-radio-button>
           </mat-radio-group>
+          <mat-error *ngIf="active.invalid && active.dirty">{{getSelectAtLeastOneError()}}</mat-error>
         <br><br>
 
         <label type="text" for = "research name">Research Name</label>
         <input type="text" id="research name" placeholder="Enter Research Name" size="50" [formControl]="name">
+        <mat-error *ngIf="name.invalid && name.dirty">{{getResearchNameError()}}</mat-error>
         <br><br>
 
         <label type="text" for = "researchlocation">Address of Research Location</label>
@@ -24,6 +26,9 @@
 
         <div class="left-container">
             <br><span class="filter-title" type="text">Majors Associated with the Research</span>
+            <mat-error style="display: block; margin-left: 10px;" *ngIf="engineeringValue.invalid && humanitiesValue.invalid && politicalValue.invalid && scienceValue.invalid &&
+            nursingValue.invalid && businessValue.invalid && engineeringValue.dirty && humanitiesValue.dirty && politicalValue.dirty && scienceValue.dirty &&
+            nursingValue.dirty && businessValue.dirty">{{getSelectAtLeastOneError()}}</mat-error>
             <mat-nav-list>
                 <!-- Engineering Options -->
                 <mat-list-item (click)="toggle[1] = !toggle[1]">
@@ -41,7 +46,7 @@
                 </div>
             
                 <!-- Political Science Options -->
-                <mat-list-item (click)="toggle[2] = !toggle[2]">
+                <!-- <mat-list-item (click)="toggle[2] = !toggle[2]">
                     <a matLine *ngIf="!toggle[2]"><mat-icon>keyboard_arrow_right</mat-icon></a>
                     <a matLine *ngIf="toggle[2]"><mat-icon>keyboard_arrow_down</mat-icon></a>
                     <a style="padding-bottom: 2.5px; margin-right: 400px;">{{departments[1].name}}</a>
@@ -53,13 +58,13 @@
                             {{ item.name }}
                         </mat-list-option>
                     </mat-selection-list>
-                </div>
+                </div> -->
     
                 <!-- Business Options -->
                 <mat-list-item (click)="toggle[3] = !toggle[3]">
                     <a matLine *ngIf="!toggle[3]"><mat-icon>keyboard_arrow_right</mat-icon></a>
                     <a matLine *ngIf="toggle[3]"><mat-icon>keyboard_arrow_down</mat-icon></a>
-                    <a style="padding-bottom: 2.5px; margin-right: 400px;">{{departments[2].name}}</a>
+                    <a style="padding-bottom: 2.5px; margin-right: 400px;">{{departments[1].name}}</a>
                     <span><mat-icon *ngIf="!toggle[3]"></mat-icon><mat-icon *ngIf="toggle[3]"></mat-icon></span>
                 </mat-list-item>
                 <div [hidden]="!toggle[3]">
@@ -74,7 +79,7 @@
                 <mat-list-item (click)="toggle[4] = !toggle[4]">
                     <a matLine *ngIf="!toggle[4]"><mat-icon>keyboard_arrow_right</mat-icon></a>
                     <a matLine *ngIf="toggle[4]"><mat-icon>keyboard_arrow_down</mat-icon></a>
-                    <a style="padding-bottom: 2.5px; margin-right: 400px;">{{departments[3].name}}</a>
+                    <a style="padding-bottom: 2.5px; margin-right: 400px;">{{departments[2].name}}</a>
                     <span><mat-icon *ngIf="!toggle[4]"></mat-icon><mat-icon *ngIf="toggle[4]"></mat-icon></span>
                 </mat-list-item>
                 <div [hidden]="!toggle[4]">
@@ -89,7 +94,7 @@
                 <mat-list-item (click)="toggle[5] = !toggle[5]">
                     <a matLine *ngIf="!toggle[5]"><mat-icon>keyboard_arrow_right</mat-icon></a>
                     <a matLine *ngIf="toggle[5]"><mat-icon>keyboard_arrow_down</mat-icon></a>
-                    <a style="padding-bottom: 2.5px; margin-right: 400px;">{{departments[4].name}}</a>
+                    <a style="padding-bottom: 2.5px; margin-right: 400px;">{{departments[3].name}}</a>
                     <span><mat-icon *ngIf="!toggle[5]"></mat-icon><mat-icon *ngIf="toggle[5]"></mat-icon></span>
                 </mat-list-item>
                 <div [hidden]="!toggle[5]">
@@ -104,7 +109,7 @@
                 <mat-list-item (click)="toggle[6] = !toggle[6]">
                     <a matLine *ngIf="!toggle[6]"><mat-icon>keyboard_arrow_right</mat-icon></a>
                     <a matLine *ngIf="toggle[6]"><mat-icon>keyboard_arrow_down</mat-icon></a>
-                    <a style="padding-bottom: 2.5px; margin-right: 400px;">{{departments[5].name}}</a>
+                    <a style="padding-bottom: 2.5px; margin-right: 400px;">{{departments[4].name}}</a>
                     <span><mat-icon *ngIf="!toggle[6]"></mat-icon><mat-icon *ngIf="toggle[6]"></mat-icon></span>
                 </mat-list-item>
                 <div [hidden]="!toggle[6]">
@@ -123,6 +128,7 @@
             <mat-radio-button value="On-Campus" style="font-family: Arial;" class="radio-style">On-Campus</mat-radio-button>
             <mat-radio-button value="Online" style="font-family: Arial;" class="radio-style">Online</mat-radio-button>
             <mat-radio-button value="On-Campus/Online" style="font-family: Arial;" class="radio-style">Both</mat-radio-button>
+            <mat-error *ngIf="location.invalid && location.dirty">{{getSelectAtLeastOneError()}}</mat-error>
           </mat-radio-group>
 
         <br><br>
@@ -133,6 +139,7 @@
         <label type="options" for="nonpaid">Non-paid </label>
         <input type="checkbox" name="money" id="credit" value=true [formControl]="credit">
         <label type="options" for="nonpaid">Research Credit </label>
+        <mat-error *ngIf="researchForm.invalid">{{getPaidErrorMessage()}}</mat-error>
         <br><br>
 
 
@@ -149,11 +156,12 @@
         <br><br>
         <label type="text" for = "research description">Research Description</label>
         <textarea rows="15" cols="75" name="research description" id="research description" placeholder="Please describe the research in detail here" [formControl]="description"></textarea>
+        <mat-error *ngIf="description.invalid && description.dirty">{{getEmptyFieldError()}}</mat-error>
         <br><br>
 
         <label type="text" for = "required skills">Required Skills</label>
         <div *ngFor="let item of requiredSkillList; index as i">
-            <input style="width: 275px" placeholder="required skill" [(ngModel)]="item.skill" [ngModelOptions]="{standalone: true}">
+            <input style="width: 275px" (keydown.enter)="addRequiredSkillField()" placeholder="required skill" [(ngModel)]="item.skill" [ngModelOptions]="{standalone: true}">
             <select [(ngModel)]="item.skillLevel" [ngModelOptions]="{standalone: true}">
             <option value="" selected hidden>select skill level</option>
             <option value="Basic">Basic Knowledge</option>
@@ -168,7 +176,7 @@
 
         <label type="text" for = "encouraged skills">Encouraged Skills</label>
         <div *ngFor="let item of encouragedSkillList; index as i">
-            <input style="width: 275px" placeholder="encouraged skill" [(ngModel)]="item.skill" [ngModelOptions]="{standalone: true}">
+            <input style="width: 275px"(keydown.enter)="addEncouragedSkillField()"  placeholder="encouraged skill" [(ngModel)]="item.skill" [ngModelOptions]="{standalone: true}">
             <select [(ngModel)]="item.skillLevel" [ngModelOptions]="{standalone: true}">
             <option value="" selected hidden>select skill level</option>
             <option value="Basic">Basic Knowledge</option>

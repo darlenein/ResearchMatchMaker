@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { StudentModel } from 'src/app/models/student.model';
 import { FacultyModel } from 'src/app/models/faculty.model';
 import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-email-form',
@@ -18,8 +19,13 @@ export class EmailFormComponent implements OnInit {
   @Output() emailSubmit = new EventEmitter();
 
   selected = ''
+  psuID: string;
 
-  constructor(public serviceDispatcher: ServiceDispatcher) { }
+  constructor(private route: ActivatedRoute, public serviceDispatcher: ServiceDispatcher) {
+    this.route.queryParams.subscribe(params => {
+      this.psuID = params["psuID"];
+    });
+   }
 
   ngOnInit(): void {
     this.serviceDispatcher.getAllFaculty().subscribe(response => {

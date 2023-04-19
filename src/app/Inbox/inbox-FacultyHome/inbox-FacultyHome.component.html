@@ -1,31 +1,4 @@
-<mat-toolbar class="toolbar" color="primary">
-    <img src="https://behrend.psu.edu/sites/behrend/files/logos/PSU_EBO_RGB_2C.svg" class="PSUlogo">
-    
-    <div class="container">
-        <div class="title-container">
-            <span class="toolbar-title">Research Match Maker</span>
-        </div>
-        <div class="gradient-button-container">
-            <button class="mat-raised-button gradient-button" (click)="goToHomePage();">Home</button>
-            <button class="mat-raised-button gradient-button" (click)="goToResearchPage();">Manage Research</button>
-            <button class="mat-raised-button gradient-button" (click)="goToStudentListPage();">Student List</button>
-            <button class="mat-raised-button gradient-button" (click)="goToResearchListPage();">Other Researches</button>
-        </div>
-
-    </div>
-
-    <div class="profile-btn-container">
-            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" class="profile-logo" [matMenuTriggerFor]="menu">
-        <div [matMenuTriggerFor]="menu">Profile</div>
-        
-        <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="goToProfileViewPage();">View Profile</button>
-            <button mat-menu-item (click)="goToEditProfilePage();">Edit Profile</button>
-            <button mat-menu-item (click)="facultyClickInbox();">Inbox</button>
-            <button mat-menu-item (click)="signOut();">Sign Out</button>
-        </mat-menu>
-    </div>
- </mat-toolbar>
+<app-faculty-top-menu-bar pageName="home"></app-faculty-top-menu-bar>
 
 <div class="containerInbox">
     <div class="ui grid stackable">
