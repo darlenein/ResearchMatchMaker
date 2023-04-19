@@ -7,6 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormArray } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-edit-student-profile-page',
@@ -54,9 +55,10 @@ export class EditStudentProfilePageComponent implements OnInit {
   sepSkillLevel: string[]
   result: any;
   filePath: any;
+  
 
 
-  constructor(private router: Router, public serviceDispatcher: ServiceDispatcher, private route: ActivatedRoute,private fb: FormBuilder) { 
+  constructor(private router: Router, public serviceDispatcher: ServiceDispatcher, private route: ActivatedRoute,private fb: FormBuilder,private http: HttpClient) { 
     this.route.queryParams.subscribe(params => {
       this.psuID = params["psuID"];
       
@@ -255,6 +257,7 @@ export class EditStudentProfilePageComponent implements OnInit {
        
       }
     };
+    
     if(!this.validate()){
    this.serviceDispatcher.editStudentProfile(sd).subscribe(response => { }); // comment out when testing 
     setTimeout(()=>{
