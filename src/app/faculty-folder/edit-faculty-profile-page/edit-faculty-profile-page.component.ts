@@ -37,9 +37,9 @@ export class EditFacultyProfilePageComponent implements OnInit {
   ngOnInit(): void {
     this.serviceDispatcher.getFaculty(this.psuID).subscribe(response => {
       this.faculty = response
-      this.firstName = new FormControl(this.faculty.first_Name);
-      this.lastName = new FormControl(this.faculty.last_Name);
-      this.email = new FormControl(this.faculty.email); 
+      this.firstName = new FormControl(this.faculty.first_Name,[Validators.required, Validators.pattern("[a-zA-Z -]*")]);
+      this.lastName = new FormControl(this.faculty.last_Name,[Validators.required, Validators.pattern("[a-zA-Z -]*")]);
+      this.email = new FormControl(this.faculty.email,[Validators.required, Validators.email]); 
       this.title = new FormControl(this.faculty.title);
       this.dept = new FormControl(this.faculty.dept);
       this.office = new FormControl(this.faculty.office);

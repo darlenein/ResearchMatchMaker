@@ -47,6 +47,7 @@ export class EditStudentProfilePageComponent implements OnInit {
   credit = new FormControl('');
   interest = new FormControl('');
   projects = new FormControl('');
+  incentive = new FormControl('', [Validators.required]);
   psuID: string;
   fileName = '';
   pfp: any;
@@ -60,6 +61,7 @@ export class EditStudentProfilePageComponent implements OnInit {
 
   constructor(private router: Router, public serviceDispatcher: ServiceDispatcher, private route: ActivatedRoute,private fb: FormBuilder,private http: HttpClient) { 
     this.route.queryParams.subscribe(params => {
+    
       this.psuID = params["psuID"];
       
 
@@ -78,14 +80,14 @@ export class EditStudentProfilePageComponent implements OnInit {
     
     this.serviceDispatcher.getStudent(this.psuID).subscribe(response => {
       this.student = response
-      this.firstName = new FormControl(this.student.first_Name);
-      this.lastName = new FormControl(this.student.last_Name);
-      this.email = new FormControl(this.student.email); 
-      this.gpa = new FormControl(this.student.gpa);
-      this.major = new FormControl(this.student.major);
+      this.firstName = new FormControl(this.student.first_Name, [Validators.required, Validators.pattern("[a-zA-Z -]*")]);
+      this.lastName = new FormControl(this.student.last_Name,  [Validators.required, Validators.pattern("[a-zA-Z -]*")]);
+      this.email = new FormControl(this.student.email, [Validators.required, Validators.email]); 
+      this.gpa = new FormControl(this.student.gpa, [Validators.required, Validators.pattern('\\-?\\d*\\.?\\d{1,2}')]);
+      this.major = new FormControl(this.student.major, [Validators.required]);
       this.doubleMajor = new FormControl(this.student.major2)
       this.minor = new FormControl(this.student.minor);
-      this.location = new FormControl(this.student.preferLocation);
+      this.location = new FormControl(this.student.preferLocation, [Validators.required]);
       this.gradMonth = new FormControl(this.student.graduation_Month);
       this.gradYear = new FormControl(this.student.graduation_Year);
       this.skillSet = new FormControl(this.student.skills);
@@ -100,6 +102,7 @@ export class EditStudentProfilePageComponent implements OnInit {
       this.projects = new FormControl(this.student.research_Project);
       this.sepSkills = this.student.skills.split(';');
       this.sepSkillLevel = this.student.skillLevel.split(';');
+     
       for(var key in this.sepSkills){
        // console.log( this.sepSkills[key])
         console.log( this.sepSkillLevel[key])
@@ -259,6 +262,7 @@ export class EditStudentProfilePageComponent implements OnInit {
     };
     
     if(!this.validate()){
+      
    this.serviceDispatcher.editStudentProfile(sd).subscribe(response => { }); // comment out when testing 
     setTimeout(()=>{
       location.reload();
