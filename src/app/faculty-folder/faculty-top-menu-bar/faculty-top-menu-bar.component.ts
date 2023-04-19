@@ -17,8 +17,6 @@ interface UserCred {
 export class FacultyTopMenuBarComponent implements OnInit {
   @Input() pageName: string;
   psuID: string;
-  //userName: string;
-
 
   constructor(private router: Router, private http: HttpClient, private route: ActivatedRoute, private authService: AuthService, private authenticator: AuthenticatorComponent) { 
     this.route.queryParams.subscribe(params => {
@@ -92,18 +90,18 @@ export class FacultyTopMenuBarComponent implements OnInit {
       username: this.psuID,
       password: this.psuID
     }
-    
+
+    this.authService.clickInbox(userCred).subscribe({
+      next: () => {
+      },
+    });
+
     let navigationExtras: NavigationExtras = {
       queryParams: {
         "psuID": this.psuID
       }
     };
-
-    this.authService.clickInbox(userCred).subscribe({
-      next: () => {
-        this.router.navigateByUrl('/inbox-FacultyHome', navigationExtras)
-      },
-    });
+    this.router.navigate(['/inbox-FacultyHome'], navigationExtras);
   }
 
   signOut() {

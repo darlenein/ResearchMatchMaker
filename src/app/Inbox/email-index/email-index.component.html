@@ -1,6 +1,6 @@
 <div class="ui celled list">
     <div class="item" *ngFor="let e of emails">
-        <a [routerLink]="e.id" routerLinkActive="active">
+        <a [routerLink]="e.id" [queryParams]="{psuID}" routerLinkActive="active">
             <div class="content">
                 <div class="header">
                     {{e.subject}}

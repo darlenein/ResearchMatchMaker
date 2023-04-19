@@ -10,12 +10,17 @@ import { Email } from '../email';
 export class EmailShowComponent implements OnInit {
   showModal = false;
   email: Email;
+  psuID: string;
 
   constructor(private route: ActivatedRoute) {
     this.email = route.snapshot.data['email'];
     this.route.data.subscribe(({ email }) => {
       this.email = email;
     })
+
+    this.route.queryParams.subscribe(params => {
+      this.psuID = params["psuID"];
+    });
    }
 
 

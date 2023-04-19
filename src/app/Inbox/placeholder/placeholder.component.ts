@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-placeholder',
@@ -6,8 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./placeholder.component.css']
 })
 export class PlaceholderComponent implements OnInit {
+  psuID: string;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) {
+    this.route.queryParams.subscribe(params => {
+      this.psuID = params["psuID"];
+    });
+
+   }
 
   ngOnInit(): void {
   }
