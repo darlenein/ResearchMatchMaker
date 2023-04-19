@@ -28,8 +28,9 @@ export class EditFacultyProfilePageComponent implements OnInit {
   faculty: any;
   constructor(public serviceDispatcher: ServiceDispatcher, private router: Router, private route: ActivatedRoute) { 
     this.route.queryParams.subscribe(params => {
+      this.psuID = params["facultyPSUID"];
       this.psuID = params["psuID"];
-    //  this.psuID = params["facultyPSUID"]
+     
     });
   }
 
@@ -65,7 +66,7 @@ export class EditFacultyProfilePageComponent implements OnInit {
     let navigationExtras: NavigationExtras = {
       queryParams: {
         "psuID": this.psuID,
-      //  "facultyPSUID" : this.fpsuID
+        "facultyPSUID" : this.psuID
         
       }
     };

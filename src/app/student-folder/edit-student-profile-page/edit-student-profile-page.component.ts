@@ -59,6 +59,7 @@ export class EditStudentProfilePageComponent implements OnInit {
   constructor(private router: Router, public serviceDispatcher: ServiceDispatcher, private route: ActivatedRoute,private fb: FormBuilder) { 
     this.route.queryParams.subscribe(params => {
       this.psuID = params["psuID"];
+      
 
       this.studentForm = this.fb.group({
         paid: this.paid,
@@ -251,6 +252,7 @@ export class EditStudentProfilePageComponent implements OnInit {
     let navigationExtras: NavigationExtras = {
       queryParams: {
         "psuID": this.psuID
+       
       }
     };
     if(!this.validate()){
