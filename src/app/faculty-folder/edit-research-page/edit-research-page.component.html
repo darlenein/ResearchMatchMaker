@@ -25,7 +25,7 @@
         <br><br>
 
         <div class="left-container">
-            <br><span class="filter-title" type="text">Majors Associated with the Research</span>
+            <br><span class="filter-title" type="text">Majors Associated with the Research*</span>
             <mat-error style="display: block; margin-left: 10px;" *ngIf="engineeringValue.invalid && humanitiesValue.invalid && politicalValue.invalid && scienceValue.invalid &&
             nursingValue.invalid && businessValue.invalid && engineeringValue.dirty && humanitiesValue.dirty && politicalValue.dirty && scienceValue.dirty &&
             nursingValue.dirty && businessValue.dirty">{{getSelectAtLeastOneError()}}</mat-error>
@@ -39,7 +39,7 @@
                 </mat-list-item>
                 <div [hidden]="!toggle[1]">
                     <mat-selection-list [formControl]="engineeringValue">
-                        <mat-list-option *ngFor="let item of engineeringItems" checkboxPosition="before" value={{item.name}}>
+                        <mat-list-option *ngFor="let item of engineeringItems" checkboxPosition="before" value={{item.name}} [selected] = "checkedSelected(item.name)">
                             {{ item.name }}
                         </mat-list-option>
                     </mat-selection-list>
@@ -139,19 +139,17 @@
         <label type="options" for="nonpaid">Non-paid </label>
         <input type="checkbox" name="money" id="credit" value=true [formControl]="credit">
         <label type="options" for="nonpaid">Research Credit </label>
-        <mat-error *ngIf="researchForm.invalid">{{getPaidErrorMessage()}}</mat-error>
+        <mat-error *ngIf="researchForm.invalid && researchForm.dirty">{{getPaidErrorMessage()}}</mat-error>
         <br><br>
 
 
         <label type="date" for = "start date">Start Date for Research*</label>
-        <input type="date" id="start date" name="research start" (change)="validateDate()" [formControl]="startDate"><br>
-        <mat-error *ngIf="startDate.invalid && startDate.dirty">{{getStartDateError()}}</mat-error>
-        <mat-error *ngIf="!this.validStartDate && startDate.dirty && this.hasSubmitted">Active Research must have a start date prior to today</mat-error>
+        <input type="date" id="start date" name="research start" [formControl]="startDate">
+        <mat-error *ngIf="startDate.invalid && startDate.dirty">{{getStartDateError()}}</mat-error><br>
         
         <label type="date" for = "end date">End Date for Research*</label>
-        <input type="date" id="end date" name="research end" (change)="validateDate()" [formControl]="endDate">
-        <mat-error *ngIf="endDate.invalid && endDate.dirty">{{getEndDateError()}}</mat-error>
-        <mat-error *ngIf="!this.validEndDate && endDate.dirty && this.hasSubmitted">Active Research must have an end date prior to today</mat-error>
+        <input type="date" id="end date" name="research end" [formControl]="endDate">
+        <mat-error *ngIf="endDate.invalid && endDate.dirty">{{getEndDateError()}}</mat-error><br>
 
         <br><br>
         <label type="text" for = "research description">Research Description</label>

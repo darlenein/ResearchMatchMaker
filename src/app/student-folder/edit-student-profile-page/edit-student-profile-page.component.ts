@@ -79,6 +79,7 @@ export class EditStudentProfilePageComponent implements OnInit {
   ngOnInit(): void {
     
     this.serviceDispatcher.getStudent(this.psuID).subscribe(response => {
+
       this.student = response
       this.firstName = new FormControl(this.student.first_Name, [Validators.required, Validators.pattern("[a-zA-Z -]*")]);
       this.lastName = new FormControl(this.student.last_Name,  [Validators.required, Validators.pattern("[a-zA-Z -]*")]);
@@ -106,10 +107,14 @@ export class EditStudentProfilePageComponent implements OnInit {
       for(var key in this.sepSkills){
        // console.log( this.sepSkills[key])
         console.log( this.sepSkillLevel[key])
-        this.addExistingSkillField(this.sepSkills[key], this.sepSkillLevel[key])
+        if(this.sepSkillLevel[key]){
+          this.sepSkillLevel[key] = this.sepSkillLevel[key].trim();
+        }
+        this.addExistingSkillField(this.sepSkills[key], this.sepSkillLevel[key]);
         
       }
-      this.removeSkillField(0)
+      this.removeSkillField(0);
+      this.removeSkillField(this.sepSkills.length - 1);
 
     });
 
@@ -376,9 +381,7 @@ removeSkillField(index: number) {
 }
 addExistingSkillField(existingSkills:string, existingSkillLevel:string) {
   
-
   this.skillForm.push({
-
     skill: existingSkills,
     skillLevel: existingSkillLevel
   });

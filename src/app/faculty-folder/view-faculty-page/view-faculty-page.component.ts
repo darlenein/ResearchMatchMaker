@@ -3,6 +3,7 @@ import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { ServiceDispatcher } from '../../ServiceDispatcher';
 import { Email } from 'src/app/Inbox/email';
 import { EmailService } from 'src/app/Inbox/email.service';
+import { ResearchModel } from 'src/app/models/research.model';
 
 @Component({
   selector: 'app-view-faculty-page',
@@ -19,6 +20,7 @@ export class ViewFacultyPageComponent implements OnInit {
   splitTitle: any;
   psuID: string;
   fpsuID: string;
+  research: any;
 
   //Inbox Stuff
   showModal = false;
@@ -48,6 +50,10 @@ export class ViewFacultyPageComponent implements OnInit {
       this.splitAboutMe = this.separateByComma(this.faculty.about_Me);
       this.splitTitle = this.separateByComma(this.faculty.title);
       
+    });
+
+    this.serviceDispatcher.getResearchByFaculty(this.fpsuID).subscribe(response => {
+      this.research = response
     });
 
     // ---test---

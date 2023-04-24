@@ -42,6 +42,7 @@ export class ServiceDispatcher{
     const url = 'https://rmm.bd.psu.edu:8083/api/Student/editStudent';
     return this.http.put<any>(url, s);
   }
+
   public createFacultyProfile(f : FacultyModel): Observable<any> {   
     const url = 'https://rmm.bd.psu.edu:8083/api/Faculty/createFaculty';
     return this.http.post<any>(url, f);

@@ -38,12 +38,12 @@ export class EditResearchPageComponent implements OnInit {
   credit = new FormControl('');
   paid = new FormControl('');
   nonpaid = new FormControl('');
-  engineeringValue = new FormControl('', [Validators.required]);
-  humanitiesValue = new FormControl('', [Validators.required]);
-  politicalValue = new FormControl('', [Validators.required]);
-  scienceValue = new FormControl('', [Validators.required]);
-  nursingValue = new FormControl('', [Validators.required]);
-  businessValue = new FormControl('', [Validators.required]);
+  engineeringValue = new FormControl('');
+  humanitiesValue = new FormControl('');
+  politicalValue = new FormControl('');
+  scienceValue = new FormControl('');
+  nursingValue = new FormControl('');
+  businessValue = new FormControl('');
   research: any;
   researchID: number;
   psuID: string;
@@ -61,11 +61,9 @@ export class EditResearchPageComponent implements OnInit {
   sepReqSkillLevel: string[]
   sepEncSkillLevel: string[]
   sdate: any
-  validStartDate = true;
-  validEndDate = true;
   hasSubmitted = false;
+  researchDepts: any;
 
-  
   constructor(public serviceDispatcher: ServiceDispatcher, private router: Router, private route: ActivatedRoute, private fb: FormBuilder) {
     this.route.queryParams.subscribe(params => {
      
@@ -86,41 +84,40 @@ export class EditResearchPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.serviceDispatcher.getResearchByID(this.researchID).subscribe(response => {
-      //debugger;
+
       this.research = response
-      this.name = new FormControl(this.research.name,[Validators.required]);
-      this.description = new FormControl(this.research.description,[Validators.required]);
-      this.location = new FormControl(this.research.location,[Validators.required]);
-      this.rskills = new FormControl(this.research.required_Skills,[Validators.required]);
-      this.eskills = new FormControl(this.research.encouraged_Skills,[Validators.required]);
-      this.address = new FormControl(this.research.address);
-      this.startDate = new FormControl(this.research.start_Date,[Validators.required]);
-      this.endDate = new FormControl(this.research.end_Date,[Validators.required]);
-      this.active = this.research.active ? new FormControl("active") : new FormControl("non-active");
-      this.credit = new FormControl(this.research.isCredit);
-      this.paid = new FormControl(this.research.isPaid);
-      this.nonpaid = new FormControl(this.research.isNonpaid);
-      this.engineeringValue = new FormControl('', [Validators.required]);
-      this.humanitiesValue = new FormControl('', [Validators.required]);
-      this.politicalValue = new FormControl('', [Validators.required]);
-      this.scienceValue = new FormControl('', [Validators.required]);
-      this.nursingValue = new FormControl('', [Validators.required]);
-      this.businessValue = new FormControl('', [Validators.required]);
+      //this.active = this.research.active ? new FormControl("active") : new FormControl("non-active");
+      this.research.active ? this.active.setValue("active") : this.active.setValue("non-active");
+      this.name.setValue(this.research.name);
+      this.description.setValue(this.research.description);
+      this.location.setValue(this.research.location);
+      this.rskills.setValue(this.research.required_Skills);
+      this.eskills.setValue(this.research.encouraged_Skills);
+      this.address.setValue(this.research.address);
+      this.startDate.setValue(this.formatDate(this.research.start_Date));
+      this.endDate.setValue(this.formatDate(this.research.end_Date));
+      this.credit.setValue(this.research.isCredit);
+      this.paid.setValue(this.research.isPaid);
+      this.nonpaid.setValue(this.research.isNonpaid);
+      
       this.psuID = this.research.faculty_Id;
       this.sepReqSkills = this.research.required_Skills.split(';');
       this.sepReqSkillLevel = this.research.requiredSkillLevel ? this.research.requiredSkillLevel.split(';') : null;
       this.sepEncSkills = this.research.encouraged_Skills.split(';');
       this.sepEncSkillLevel = this.research.requiredSkillLevel ? this.research.encouragedSkillLevel.split(';') : null;
-     
+
+      this.serviceDispatcher.getAllSubdeptByResearchId(this.researchID).subscribe(response => {
+        this.researchDepts = response;
+      });
+
       for(var key1 in this.sepReqSkills){
         if(this.sepReqSkillLevel)
         {
+          this.sepReqSkillLevel[key1] = this.sepReqSkillLevel[key1].trim();
           this.addExistingReqSkillField(this.sepReqSkills[key1], this.sepReqSkillLevel[key1])
         } else {
           this.addExistingReqSkillField(this.sepReqSkills[key1], "")
-        }
-         
-         
+        } 
        }
        this.removeRequiredSkillField(0)
 
@@ -131,7 +128,8 @@ export class EditResearchPageComponent implements OnInit {
           this.addExistingEncSkillField(this.sepEncSkills[key], "")
         }
       }
-      this.removeEncouragedSkillField(0)
+      this.removeEncouragedSkillField(0);
+      this.setMinDate(this.active);
    });
   
  
@@ -166,12 +164,14 @@ export class EditResearchPageComponent implements OnInit {
     }
   
   goToFacultyManageResearch() {  
+    this.hasSubmitted = true;
     let navigationExtras: NavigationExtras = {
     queryParams: {
       "psuID": this.psuID
     }
   };
 
+  debugger;
     this.researchDeptList = [...this.engineeringValue.value!, ...this.politicalValue.value!, ...this.businessValue.value!, 
       ...this.humanitiesValue.value!, ...this.scienceValue.value!, ...this.nursingValue.value!];
   
@@ -191,7 +191,7 @@ export class EditResearchPageComponent implements OnInit {
       });
 
     let rm = new ResearchModel();
-    rm.research_Id = this.researchID;
+    rm.research_Id = Number(this.researchID);
     rm.researchDepts = this.researchDeptList;
     rm.faculty_Id = this.psuID;
     rm.name = this.name.value!;
@@ -201,6 +201,8 @@ export class EditResearchPageComponent implements OnInit {
     rm.encouraged_Skills = this.eskills.value!;
     rm.start_Date = this.startDate.value!;
     rm.end_Date = this.endDate.value!;
+    rm.requiredSkillLevel = rSkillLevelString;
+    rm.encouragedSkillLevel = eSkillLevelString
     
     if (this.active.value === "active") {
       rm.active = true;
@@ -221,6 +223,7 @@ export class EditResearchPageComponent implements OnInit {
     }
     else rm.isCredit = false;
     if(!this.validate()){
+      debugger;
     this.serviceDispatcher.editResearch(rm).subscribe(response => { });
     this.router.navigate(['/faculty-research'], navigationExtras);
   }
@@ -272,10 +275,6 @@ export class EditResearchPageComponent implements OnInit {
       this.eskills.markAsDirty();
       hasError = true;
     }
-
-    if(!this.validStartDate || !this.validEndDate) {
-      hasError = true;
-    }
   
     if (this.paid.value || this.nonpaid.value || this.credit.value) {
       this.researchForm.setErrors(null);
@@ -284,30 +283,6 @@ export class EditResearchPageComponent implements OnInit {
       hasError = true;
     }
     return hasError;
-  }
-
-  validateDate() {
-    if(this.active.value == "active")
-    {
-      let startDate = new Date(this.startDate.value!);
-      let endDate = new Date(this.endDate.value!);
-      let currentDate = new Date(this.getCurrentDayAsString());
-  
-      if(startDate < currentDate) {
-        this.validStartDate = false;
-      } else {
-        this.validStartDate = true;
-      }
-  
-      if(endDate < currentDate) {
-        this.validEndDate = false;
-      } else {
-        this.validEndDate = true;
-      }
-    } else {
-      this.validStartDate = true;
-      this.validEndDate = true;
-    }
   }
   
   //----------------- validation error msgs -------------------------------
@@ -433,11 +408,41 @@ setMinDate(event :any) {
     startDateElement?.setAttribute("min", "");
     endDateElement?.setAttribute("min", "");
   }
-  this.validateDate();
  }
 
+ checkedSelected(deptName : string) : boolean {
+  if(this.researchDepts) {
+    if(this.researchDepts.includes(deptName)) {
+      return true;
+    }
+  }
+  return false;
+ }
 
+ formatDate(date: string): string {
+  let dateToFormat = new Date(date);
+  let yyyy = dateToFormat.getFullYear();
+  let stringMM;
+  let stringDD;
 
+  if(dateToFormat.getDate() < 10)
+  {
+    stringDD = '0' + dateToFormat.getDate();
+  } else
+  {
+    stringDD = dateToFormat.getDate(); 
+  }
+
+  if((dateToFormat.getMonth() + 1) < 10)
+  {
+    stringMM = '0' + (dateToFormat.getMonth() + 1);
+  }
+  else {
+    stringMM = dateToFormat.getMonth() + 1
+  }
+  let formattedDate = yyyy + '-' + stringMM + '-' + stringDD;
+  return formattedDate;
+ }
 }
 
 
