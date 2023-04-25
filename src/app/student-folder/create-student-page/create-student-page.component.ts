@@ -204,7 +204,7 @@ export class CreateStudentPageComponent implements OnInit {
       if (fileList.length === 0) {
         return;
       }
-      this.serviceDispatcher.uploadFacultyPicture(fileList, this.psuID).subscribe({
+      this.serviceDispatcher.uploadStudentPicture(fileList, this.psuID).subscribe({
         next: (event) => {
         if (event.type === HttpEventType.UploadProgress)
           this.progress = Math.round(100 * event.loaded / event.total);
