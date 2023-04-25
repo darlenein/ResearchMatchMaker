@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, ViewChild, ElementRef  } from '@angular/core';
+import { HttpEventType, HttpErrorResponse } from '@angular/common/http';
+import { Component, OnInit, Input, ViewChild, ElementRef, EventEmitter, Output  } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { FacultyModel } from 'src/app/models/faculty.model';
@@ -26,6 +27,10 @@ export class EditFacultyProfilePageComponent implements OnInit {
   psuID: string;
   fpsuID: string;
   faculty: any;
+  progress: number;
+  message: string;
+  uploadError = false;
+  @Output() public onUploadFinished = new EventEmitter();
   constructor(public serviceDispatcher: ServiceDispatcher, private router: Router, private route: ActivatedRoute) { 
     this.route.queryParams.subscribe(params => {
       this.psuID = params["facultyPSUID"];
@@ -56,10 +61,26 @@ export class EditFacultyProfilePageComponent implements OnInit {
     document.querySelector('input')?.click();
   }
 
-  handle(e: any){
-    console.log (e.value);
-    // need to upload image to somewhere then
-    // need to save into database
+  handlePicture(fileList: any){
+    this.uploadError = false;
+    if (fileList.length === 0) {
+      return;
+    }
+    this.serviceDispatcher.uploadFacultyPicture(fileList, this.psuID).subscribe({
+      next: (event) => {
+      if (event.type === HttpEventType.UploadProgress)
+        this.progress = Math.round(100 * event.loaded / event.total);
+      else if (event.type === HttpEventType.Response) {
+        this.message = 'Upload success.';
+        this.onUploadFinished.emit(event.body);
+      }
+    },
+    error: (err: HttpErrorResponse) => {
+      console.log(err)
+      this.message = 'Error in upload!';
+      this.uploadError = true;
+    }
+  });
   }
 
   goToProfileViewPage() {

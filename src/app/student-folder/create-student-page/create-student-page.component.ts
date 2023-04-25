@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { StudentModel } from 'src/app/models/student.model';
 import { ParseService } from 'src/app/parse.service';
 import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HttpErrorResponse, HttpEventType } from '@angular/common/http';
 
 import {createReadStream} from 'fs'
 import { AuthService } from 'src/app/Inbox/auth.service';
@@ -58,6 +58,10 @@ export class CreateStudentPageComponent implements OnInit {
   filePath: any;
   imgPath: any;
   imgPath2: any;
+  progress: number;
+  message: string;
+  @Output() public onUploadFinished = new EventEmitter();
+  uploadError = false;
 
   constructor(private authService: AuthService, private router: Router, public serviceDispatcher: ServiceDispatcher, private route: ActivatedRoute, private fb: FormBuilder, public parseService: ParseService, private http: HttpClient) {
     this.route.queryParams.subscribe(params => {
@@ -195,17 +199,27 @@ export class CreateStudentPageComponent implements OnInit {
     
     }
     
-  handlePicture(eve: any){
-    let targetPic = eve.target
-    let selectedPic = targetPic.files[0];
-    let fileReader2 = new FileReader();
-    fileReader2.readAsDataURL(selectedPic);
-    fileReader2.onload=()=>{
-     let picresult = fileReader2.result;
-     this.imgPath = picresult;
+    handlePicture(fileList: any){
+      this.uploadError = false;
+      if (fileList.length === 0) {
+        return;
+      }
+      this.serviceDispatcher.uploadFacultyPicture(fileList, this.psuID).subscribe({
+        next: (event) => {
+        if (event.type === HttpEventType.UploadProgress)
+          this.progress = Math.round(100 * event.loaded / event.total);
+        else if (event.type === HttpEventType.Response) {
+          this.message = 'Upload success.';
+          this.onUploadFinished.emit(event.body);
+        }
+      },
+      error: (err: HttpErrorResponse) => {
+        console.log(err)
+        this.message = 'Error in upload!';
+        this.uploadError = true;
+      }
+    });
     }
-
-   }
    
    onFileSelected(event: any){
     

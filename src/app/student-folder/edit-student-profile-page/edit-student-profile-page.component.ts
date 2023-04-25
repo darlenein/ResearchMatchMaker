@@ -60,6 +60,7 @@ export class EditStudentProfilePageComponent implements OnInit {
   result: any;
   filePath: any;
   imgPath: string | ArrayBuffer | null;
+  uploadError = false;
   
 
 
@@ -141,7 +142,6 @@ export class EditStudentProfilePageComponent implements OnInit {
   }
 
   handle(e: any){
-    debugger;
     let target = e.target
     let selectedFile = target.files[0];
     let fileType = selectedFile.type.split('/')[0]
@@ -156,11 +156,11 @@ export class EditStudentProfilePageComponent implements OnInit {
    }
 
    handlePicture(fileList: any){
-    debugger;
+    this.uploadError = false;
     if (fileList.length === 0) {
       return;
     }
-    this.serviceDispatcher.uploadStudentPicture(fileList, this.psuID).subscribe({
+    this.serviceDispatcher.uploadFacultyPicture(fileList, this.psuID).subscribe({
       next: (event) => {
       if (event.type === HttpEventType.UploadProgress)
         this.progress = Math.round(100 * event.loaded / event.total);
@@ -169,7 +169,11 @@ export class EditStudentProfilePageComponent implements OnInit {
         this.onUploadFinished.emit(event.body);
       }
     },
-    error: (err: HttpErrorResponse) => console.log(err)
+    error: (err: HttpErrorResponse) => {
+      console.log(err)
+      this.message = 'Error in upload!';
+      this.uploadError = true;
+    }
   });
   }
 

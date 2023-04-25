@@ -171,7 +171,6 @@ export class EditResearchPageComponent implements OnInit {
     }
   };
 
-  debugger;
     this.researchDeptList = [...this.engineeringValue.value!, ...this.politicalValue.value!, ...this.businessValue.value!, 
       ...this.humanitiesValue.value!, ...this.scienceValue.value!, ...this.nursingValue.value!];
   
@@ -223,7 +222,6 @@ export class EditResearchPageComponent implements OnInit {
     }
     else rm.isCredit = false;
     if(!this.validate()){
-      debugger;
     this.serviceDispatcher.editResearch(rm).subscribe(response => { });
     this.router.navigate(['/faculty-research'], navigationExtras);
   }

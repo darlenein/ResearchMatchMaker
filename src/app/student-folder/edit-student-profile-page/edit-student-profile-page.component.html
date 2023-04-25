@@ -13,6 +13,12 @@
         <button type="button" class="btns" mat-stroked-button style="font-size: large;" (click)="pictureUpload.click()">Add Profile Picture
             <input type="file" #pictureUpload name="pictureUpload" style="display:none" (change)="handlePicture(pictureUpload.files)">
         </button>
+            <span class="upload" *ngIf="progress > 0 && !uploadError">
+              {{progress}}%
+            </span>
+            <span class="upload" *ngIf="message">
+              {{message}}
+            </span>
         <br><br>
 
         <label type="text"  for = "first_name">First Name</label>

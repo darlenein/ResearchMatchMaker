@@ -22,7 +22,8 @@ export class TopMenuBarComponent implements OnInit {
   student: any;
   defaultImage = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png';
 
-  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute, private authenticator: AuthenticatorComponent, private serviceDispatcher: ServiceDispatcher) {
+  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute, private authenticator: AuthenticatorComponent, 
+    private serviceDispatcher: ServiceDispatcher) {
     this.route.queryParams.subscribe(params => {
       this.psuID = params["psuID"];
     });
@@ -30,7 +31,6 @@ export class TopMenuBarComponent implements OnInit {
 
   ngOnInit(): void {
     this.serviceDispatcher.getStudent(this.psuID).subscribe(response => {
-      debugger;
       this.student = response;
     })
   }

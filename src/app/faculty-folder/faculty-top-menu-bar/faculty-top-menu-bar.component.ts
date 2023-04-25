@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { AuthenticatorComponent } from 'src/app/authenticator/authenticator.component';
 import { AuthService } from 'src/app/Inbox/auth.service';
+import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
 
 interface UserCred {
   username: string;
@@ -17,15 +18,20 @@ interface UserCred {
 export class FacultyTopMenuBarComponent implements OnInit {
   @Input() pageName: string;
   psuID: string;
+  faculty: any;
+  defaultImage = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png';
 
-  constructor(private router: Router, private http: HttpClient, private route: ActivatedRoute, private authService: AuthService, private authenticator: AuthenticatorComponent) { 
+  constructor(private router: Router, private http: HttpClient, private route: ActivatedRoute, private authService: AuthService, 
+    private authenticator: AuthenticatorComponent, private serviceDispatcher: ServiceDispatcher) { 
     this.route.queryParams.subscribe(params => {
       this.psuID = params["psuID"];
     });
   }
 
   ngOnInit(): void {
-    console.log(this.pageName);
+    this.serviceDispatcher.getFaculty(this.psuID).subscribe(response => {
+      this.faculty = response;
+    })
   }
 
   goToProfileViewPage() {
