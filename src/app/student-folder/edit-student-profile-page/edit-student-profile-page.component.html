@@ -6,9 +6,12 @@
         Edit Student Profile
      </h1>
      <form [formGroup]="studentForm">
-        <button class="btns" mat-stroked-button style="font-size: large;" (click)="openFile()">Add Resume</button>
-        <button class="btns" mat-stroked-button style="font-size: large;" (click)="openFile()">Add Profile Picture
-            <input type="file" style="display:none" (change)="handle($event)">
+        <button type="button" class="btns" mat-stroked-button style="font-size: large;" (click)="openFile()">Add Resume
+            <input type="file" name="resumeUpload" style="display:none" (change)="handle($event)">
+        </button>
+
+        <button type="button" class="btns" mat-stroked-button style="font-size: large;" (click)="pictureUpload.click()">Add Profile Picture
+            <input type="file" #pictureUpload name="pictureUpload" style="display:none" (change)="handlePicture(pictureUpload.files)">
         </button>
         <br><br>
 
@@ -161,7 +164,7 @@
         <br><br>
 
 
-        <button class="submitBtn" (click)="goToProfileViewPage();">Submit</button>
+        <button type="button" class="submitBtn" (click)="goToProfileViewPage();">Submit</button>
         <br><br>
 
      </form>

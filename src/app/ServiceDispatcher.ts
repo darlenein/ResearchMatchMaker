@@ -220,6 +220,14 @@ export class ServiceDispatcher{
     const url = 'https://rmm.bd.psu.edu:8083/api/Student/getAllRankedStudentsByResearch/' + research_id;
     return this.http.get<any>(url);
   }
+
+  public uploadStudentPicture(fileList: any, student_id: string): Observable<any> {
+    let fileToUpload = <File>fileList[0];
+    const formData = new FormData();
+    formData.append('file', fileToUpload, fileToUpload.name);
+    const url = 'https://rmm.bd.psu.edu:8083/api/Student/uploadStudentPicture/' + student_id;
+    return this.http.post<any>(url, formData, {reportProgress: true, observe: 'events'})
+  }
 }
 
 

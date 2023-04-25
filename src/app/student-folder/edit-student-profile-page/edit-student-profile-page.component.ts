@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { StudentModel } from 'src/app/models/student.model';
@@ -7,7 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormArray } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HttpErrorResponse, HttpEventType } from '@angular/common/http';
 
 @Component({
   selector: 'app-edit-student-profile-page',
@@ -15,7 +15,10 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   styleUrls: ['./edit-student-profile-page.component.css']
 })
 export class EditStudentProfilePageComponent implements OnInit {
-  
+  progress: number;
+  message: string;
+  @Output() public onUploadFinished = new EventEmitter();
+
    skillForm = [
      {
       skill: '',
@@ -56,6 +59,7 @@ export class EditStudentProfilePageComponent implements OnInit {
   sepSkillLevel: string[]
   result: any;
   filePath: any;
+  imgPath: string | ArrayBuffer | null;
   
 
 
@@ -137,6 +141,7 @@ export class EditStudentProfilePageComponent implements OnInit {
   }
 
   handle(e: any){
+    debugger;
     let target = e.target
     let selectedFile = target.files[0];
     let fileType = selectedFile.type.split('/')[0]
@@ -149,6 +154,26 @@ export class EditStudentProfilePageComponent implements OnInit {
  
     this.result = this.parseResume(selectedFile);
    }
+
+   handlePicture(fileList: any){
+    debugger;
+    if (fileList.length === 0) {
+      return;
+    }
+    this.serviceDispatcher.uploadStudentPicture(fileList, this.psuID).subscribe({
+      next: (event) => {
+      if (event.type === HttpEventType.UploadProgress)
+        this.progress = Math.round(100 * event.loaded / event.total);
+      else if (event.type === HttpEventType.Response) {
+        this.message = 'Upload success.';
+        this.onUploadFinished.emit(event.body);
+      }
+    },
+    error: (err: HttpErrorResponse) => console.log(err)
+  });
+  }
+
+
    parseResume(selectedfile: any){
      const {AffindaCredential, AffindaAPI} = require("@affinda/affinda");
      const fs = require("fs");
