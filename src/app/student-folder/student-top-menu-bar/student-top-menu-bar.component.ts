@@ -17,6 +17,7 @@ interface UserCred {
 })
 export class TopMenuBarComponent implements OnInit {
   @Input() pageName: string;
+  @Input() refresh: boolean;
   psuID: string;
   userName: string;
   student: any;
@@ -33,6 +34,12 @@ export class TopMenuBarComponent implements OnInit {
     this.serviceDispatcher.getStudent(this.psuID).subscribe(response => {
       this.student = response;
     })
+  }
+
+  ngOnChanges(): void {
+    setTimeout(()=>{
+      this.ngOnInit();
+    },100);
   }
 
   goToProfileViewPage() {

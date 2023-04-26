@@ -73,7 +73,6 @@ export class ViewApplicantsComponent implements OnInit{
     setTimeout(()=>{
       this.updateProgress(this.student);
     },1000);
- 
   }
 
   // ------------ display info functions ---------------

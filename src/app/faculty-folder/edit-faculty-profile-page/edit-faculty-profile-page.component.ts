@@ -31,6 +31,7 @@ export class EditFacultyProfilePageComponent implements OnInit {
   message: string;
   uploadError = false;
   @Output() public onUploadFinished = new EventEmitter();
+  shouldRefresh = true;
   constructor(public serviceDispatcher: ServiceDispatcher, private router: Router, private route: ActivatedRoute) { 
     this.route.queryParams.subscribe(params => {
       this.psuID = params["facultyPSUID"];
@@ -81,6 +82,8 @@ export class EditFacultyProfilePageComponent implements OnInit {
       this.uploadError = true;
     }
   });
+
+  this.shouldRefresh = !this.shouldRefresh;
   }
 
   goToProfileViewPage() {
@@ -112,10 +115,12 @@ export class EditFacultyProfilePageComponent implements OnInit {
 
   if(!this.validate()){
   this.serviceDispatcher.editFacultyProfile(fd).subscribe(response => { });
+
   setTimeout(()=>{
-    location.reload();
-  },500);
-  this.router.navigate(['/view-faculty-profile'], navigationExtras);
+    this.router.navigate(['/view-faculty-profile'], navigationExtras);
+  },1000);
+  
+  
   }
 }
 
