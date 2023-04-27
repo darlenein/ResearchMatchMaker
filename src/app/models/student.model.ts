@@ -27,4 +27,5 @@ export class StudentModel {
     skillLevel: String;
     major2: String;
     name: String; // research name
+    profile_url: String;
 }

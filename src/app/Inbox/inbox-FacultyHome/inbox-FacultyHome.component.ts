@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../auth.service';
 import { AuthenticatorComponent } from 'src/app/authenticator/authenticator.component';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { FacultyModel } from 'src/app/models/faculty.model';
+import { StudentModel } from 'src/app/models/student.model';
 
 interface UserCred {
   username: string;
@@ -17,6 +19,10 @@ interface UserCred {
 export class InboxHomeComponent implements OnInit {
   psuID: string;
 
+  studentList: StudentModel[];
+  facultyList: FacultyModel[];
+  selected = '';
+
   constructor(private authService: AuthService, private authenticator: AuthenticatorComponent, private router: Router, private route: ActivatedRoute) {
     this.route.queryParams.subscribe(params => {
       this.psuID = params["psuID"];
@@ -25,6 +31,10 @@ export class InboxHomeComponent implements OnInit {
 
   ngOnInit(): void {
 
+  }
+
+  onSelected(value:string): void {
+    this.selected = value;
   }
 
 

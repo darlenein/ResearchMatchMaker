@@ -5,6 +5,7 @@ import { StudentModel } from 'src/app/models/student.model';
 import { FacultyModel } from 'src/app/models/faculty.model';
 import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
 import { ActivatedRoute } from '@angular/router';
+import { Observable, map, startWith } from 'rxjs';
 
 @Component({
   selector: 'app-email-form',
@@ -44,6 +45,7 @@ export class EmailFormComponent implements OnInit {
       subject: new FormControl(subject, [Validators.required]),
       text: new FormControl(text, [Validators.required])
     });
+
   }
 
   onSubmit() {

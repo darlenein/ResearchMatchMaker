@@ -65,7 +65,6 @@ export class ViewApplicantsComponent implements OnInit{
       this.student = response
       this.replaceStudentsInformationBySemicolon(this.student);
       this.research_name = this.student[0].name;
-      //this.studentPSUID = this.student[0].student_Id;
     });  
   }
 
@@ -147,7 +146,7 @@ export class ViewApplicantsComponent implements OnInit{
     let navigationExtras: NavigationExtras = {
       queryParams: {
         "studentID": id,
-        "facultyID": this.psuID
+        "psuID": this.psuID
       }
     };
     this.router.navigate(['/faculty-view-student'], navigationExtras);

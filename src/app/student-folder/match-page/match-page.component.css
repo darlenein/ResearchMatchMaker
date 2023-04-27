@@ -4,7 +4,7 @@
     /*border: 2px solid #92a8d1;*/
     border: 2px solid #000000;
     padding: 2rem;
-    /*background-color: #e4f2fe;*/
+    background-color: #e4f2fe;
     font-family: sans-serif;
 }
 
@@ -25,7 +25,7 @@
 }
 
 .stepper {
-    /*background-color: #e4f2fe;*/
+    background-color: #e4f2fe;
 }
 
 ::ng-deep .mat-horizontal-stepper-header{

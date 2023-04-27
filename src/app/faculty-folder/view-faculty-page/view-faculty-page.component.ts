@@ -36,7 +36,7 @@ export class ViewFacultyPageComponent implements OnInit {
     this.email = {
       id: '',
       to: `${this.fpsuID}@psu.edu`,
-      subject: '',
+      subject: 'Sent From ResearchConnect',
       html: '',
       text: '',      
       from: `${this.psuID}@angular-email.com`
