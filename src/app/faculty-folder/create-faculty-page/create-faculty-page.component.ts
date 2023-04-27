@@ -65,6 +65,7 @@ export class CreateFacultyPageComponent implements OnInit {
 
   handlePicture(fileList: any){
     this.uploadError = false;
+    if(fileList[0].type.includes("image")) {
       if (fileList.length === 0) {
         return;
       }
@@ -73,6 +74,10 @@ export class CreateFacultyPageComponent implements OnInit {
         this.progress = 100;
         this.message = "Upload success."
       });
+    } else {
+      alert("You must upload an image file (.jpg, .png, etc.).")
+      return;
+    }  
   }
 
   goToFacultyHomePage() {

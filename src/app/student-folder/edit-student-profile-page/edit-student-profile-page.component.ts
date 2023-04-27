@@ -157,25 +157,30 @@ export class EditStudentProfilePageComponent implements OnInit {
 
    handlePicture(fileList: any){
     this.uploadError = false;
-    if (fileList.length === 0) {
+    if(fileList[0].type.includes("image")) {
+      if (fileList.length === 0) {
+        return;
+      }
+      this.serviceDispatcher.uploadStudentPicture(fileList, this.psuID).subscribe({
+        next: (event) => {
+        if (event.type === HttpEventType.UploadProgress)
+          this.progress = Math.round(100 * event.loaded / event.total);
+        else if (event.type === HttpEventType.Response) {
+          this.message = 'Upload success.';
+          this.onUploadFinished.emit(event.body);
+        }
+      },
+      error: (err: HttpErrorResponse) => {
+        console.log(err)
+        this.message = 'Error in upload!';
+        this.uploadError = true;
+      }
+    });
+    this.shouldRefresh = !this.shouldRefresh;
+    } else {
+      alert("You must upload an image file (.jpg, .png, etc.).")
       return;
     }
-    this.serviceDispatcher.uploadStudentPicture(fileList, this.psuID).subscribe({
-      next: (event) => {
-      if (event.type === HttpEventType.UploadProgress)
-        this.progress = Math.round(100 * event.loaded / event.total);
-      else if (event.type === HttpEventType.Response) {
-        this.message = 'Upload success.';
-        this.onUploadFinished.emit(event.body);
-      }
-    },
-    error: (err: HttpErrorResponse) => {
-      console.log(err)
-      this.message = 'Error in upload!';
-      this.uploadError = true;
-    }
-  });
-  this.shouldRefresh = !this.shouldRefresh;
   }
 
 
