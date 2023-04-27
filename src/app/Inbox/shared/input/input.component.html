@@ -1,7 +1,16 @@
 <div class="field">
     <label>{{ label }}</label>
 
-    <input *ngIf="controlType === 'input'" [type]="inputType" [formControl]="control" />
+    <input *ngIf="controlType === 'input'" [type]="inputType" matInput [formControl]="control" [matAutocomplete]="auto"  placeholder="Enter"/>
+
+        <mat-autocomplete #auto="matAutocomplete" >
+          <mat-option *ngFor="let fs of filteredStudents" [value]="fs.email">
+            {{fs.first_Name}} {{fs.last_Name}}
+          </mat-option>
+          <mat-option *ngFor="let ff of filteredFaculty" [value]="ff.email">
+            {{ff.first_Name}} {{ff.last_Name}}
+          </mat-option>
+        </mat-autocomplete>
 
     <textarea label="Content: " *ngIf="controlType === 'textarea'" rows="10" cols="40" [formControl]="control"></textarea>
 
