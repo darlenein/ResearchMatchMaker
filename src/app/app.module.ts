@@ -61,6 +61,7 @@ import { PlaceholderComponent } from './Inbox/placeholder/placeholder.component'
 import { ModalComponent } from './Inbox/shared/modal/modal.component';
 import { InputComponent } from './Inbox/shared/input/input.component';
 import { EmailFormComponent } from './Inbox/email-form/email-form.component';
+import { MatAutocompleteModule} from "@angular/material/autocomplete";
 import { AuthGuard } from './auth/auth.guard';
 import { AuthService } from './auth/auth.service';
 
@@ -128,7 +129,8 @@ import { AuthService } from './auth/auth.service';
     MatDatepickerModule,
     MatNativeDateModule,
     MatDialogModule,
-    AuthConfigModule
+    AuthConfigModule, 
+    MatAutocompleteModule
   ],
   providers: 
   [ 

@@ -32,7 +32,7 @@ export class StudentViewFacultyPageComponent implements OnInit {
     this.email = {
       id: '',
       to: `${this.facultyID}@psu.edu`,
-      subject: '',
+      subject: 'Sent From ResearchConnect',
       html: '',
       text: '',      
       from: `${this.psuID}@angular-email.com`

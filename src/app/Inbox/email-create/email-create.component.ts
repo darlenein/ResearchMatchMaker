@@ -3,6 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ServiceDispatcher } from 'src/app/ServiceDispatcher';
 import { Email } from '../email';
 import { EmailService } from '../email.service';
+import { FacultyModel } from 'src/app/models/faculty.model';
+import { StudentModel } from 'src/app/models/student.model';
 
 @Component({
   selector: 'app-email-create',
@@ -21,10 +23,10 @@ export class EmailCreateComponent implements OnInit {
       this.email = {
         id: '',
         to: '',
-        subject: '',
+        subject: 'Sent From ResearchConnect',
         html: '',
         text: '',
-        from: `@angular-email.com`
+        from: `${this.psuID}@angular-email.com`
       }
 
     });

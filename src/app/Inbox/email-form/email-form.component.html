@@ -1,31 +1,8 @@
 <form (ngSubmit)="onSubmit()" class="ui form" [formGroup]="emailForm">
 
-    <h4>Student List</h4>
-    <div class="studentBox">
-        <select name="Student List" class="studentForm" #user (change)="onSelected(user.value)">
-            <option>--Select--</option>
-            <option *ngFor="let s of studentList">
-                {{s.first_Name}} {{s.last_Name}} 
-                <b>Email:</b>{{s.email}}
-            </option>
-        </select>
-    </div>
-
-    <h4>Faculty List</h4>
-    <div class="facultyBox">
-        <select name="Faculty List" class="facultyForm" #user (change)="onSelected(user.value)">
-            <option>--Select--</option>
-            <option *ngFor="let f of facultyList">
-               {{f.first_Name}} {{f.last_Name}} 
-               <b>Email:</b> {{f.email}}
-            </option>
-        </select>
-    </div>
-
     <app-input inputType="email" label="To: " [control]="$any(emailForm.get('to'))">
-        
     </app-input>
-
+    
     <app-input inputType="email" label="From: " [control]="$any(emailForm.get('from'))">
     </app-input>
 
@@ -36,5 +13,6 @@
     </app-input>
 
     <button class="ui button primary">Send</button>
+
 
 </form>
