@@ -202,14 +202,19 @@ export class CreateStudentPageComponent implements OnInit {
     
     handlePicture(fileList: any){
       this.uploadError = false;
-      if (fileList.length === 0) {
+      if(fileList[0].type.includes("image")) {
+        if (fileList.length === 0) {
+          return;
+        }
+        this.serviceDispatcher.uploadStudentPictureForPath(fileList).subscribe(response =>{
+          this.studentProfilePicPath = response;
+          this.progress = 100;
+          this.message = "Upload success."
+        });
+      } else {
+        alert("You must upload an image file (.jpg, .png, etc.).")
         return;
       }
-      this.serviceDispatcher.uploadStudentPictureForPath(fileList).subscribe(response =>{
-        this.studentProfilePicPath = response;
-        this.progress = 100;
-        this.message = "Upload success."
-      });
     }
    
    onFileSelected(event: any){
