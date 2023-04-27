@@ -8,9 +8,21 @@
     /* border: 1px solid gray; */
     /* border-radius: 5px; */
     /* flex: 1; */
-    border-right:  1px solid gray;
+   
     float: left;
     width: 15%
+}
+.container2{
+    width: 1200px;
+    margin: 1rem;
+    border: 2px solid #000000;
+    padding: 2rem;
+    background-color: #fefefe;
+    font-family: sans-serif;
+    position: relative;
+    left: -36px;
+    background-color: #e4f2fe;
+    
 }
 
 .right-container {

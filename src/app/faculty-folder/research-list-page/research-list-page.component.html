@@ -152,9 +152,11 @@
             <mat-label>Search Researches By: Research Name, Description, Skills, Faculty Name</mat-label>
             <input matInput class="search-bar" [formControl]="searchTerm" (keydown.enter)="FilterAndSearch('', null);"><mat-icon matPrefix>search</mat-icon>
           </mat-form-field>
+          <br>
     
-        <ul style="list-style: none;">
+     <br>   <ul style="list-style: none;">
             <li *ngFor="let r of filteredResearch, let researchPage=index">
+                <div class = "container2">
                     <br><div class="left-sub-container">
                         <b><a style="font-size: 24px !important;">{{r.name}}</a><br></b>
                         <a class="link" (click)="goToProfile(r.faculty_Id);">{{r.first_Name}} {{r.last_Name}}</a><br>
@@ -174,7 +176,8 @@
                         <div *ngIf="r.isNonpaid==true"> Nonpaid</div>
                         <div *ngIf="r.isCredit==true"> Credit</div>
                     </div>
-                    <div style="clear:both; border-bottom:1px solid gray; "></div>
+                    <div style="clear:both "></div>
+                    </div>
             </li>
         </ul>    
     </div>
