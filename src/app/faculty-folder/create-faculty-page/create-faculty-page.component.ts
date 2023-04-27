@@ -36,6 +36,7 @@ export class CreateFacultyPageComponent implements OnInit {
   message: string;
   @Output() public onUploadFinished = new EventEmitter();
   uploadError = false;
+  facultyProfilePicPath = "";
 
 
   constructor(private authService: AuthService, public serviceDispatcher: ServiceDispatcher, private router: Router, private route: ActivatedRoute) { 
@@ -64,24 +65,14 @@ export class CreateFacultyPageComponent implements OnInit {
 
   handlePicture(fileList: any){
     this.uploadError = false;
-    if (fileList.length === 0) {
-      return;
-    }
-    this.serviceDispatcher.uploadFacultyPicture(fileList, this.psuID).subscribe({
-      next: (event) => {
-      if (event.type === HttpEventType.UploadProgress)
-        this.progress = Math.round(100 * event.loaded / event.total);
-      else if (event.type === HttpEventType.Response) {
-        this.message = 'Upload success.';
-        this.onUploadFinished.emit(event.body);
+      if (fileList.length === 0) {
+        return;
       }
-    },
-    error: (err: HttpErrorResponse) => {
-      console.log(err)
-      this.message = 'Error in upload!';
-      this.uploadError = true;
-    }
-  });
+      this.serviceDispatcher.uploadFacultyPictureForPath(fileList).subscribe(response =>{
+        this.facultyProfilePicPath = response;
+        this.progress = 100;
+        this.message = "Upload success."
+      });
   }
 
   goToFacultyHomePage() {
@@ -104,10 +95,13 @@ export class CreateFacultyPageComponent implements OnInit {
     fd.link1 = this.link1.value!;
     fd.link2 = this.link2.value!;
     fd.link3 = this.link3.value!;
+    fd.profile_Url = this.facultyProfilePicPath;
     this.serviceDispatcher.createFacultyProfile(fd).subscribe(response => { });
 
     if(!this.validate()){
-      this.router.navigate(['/faculty-home'], navigationExtras);
+      setTimeout(()=>{
+        this.router.navigate(['/faculty-home'], navigationExtras);
+      },1000);
     }
   }
 

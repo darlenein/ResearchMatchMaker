@@ -62,6 +62,7 @@ export class CreateStudentPageComponent implements OnInit {
   message: string;
   @Output() public onUploadFinished = new EventEmitter();
   uploadError = false;
+  studentProfilePicPath = "";
 
   constructor(private authService: AuthService, private router: Router, public serviceDispatcher: ServiceDispatcher, private route: ActivatedRoute, private fb: FormBuilder, public parseService: ParseService, private http: HttpClient) {
     this.route.queryParams.subscribe(params => {
@@ -204,21 +205,11 @@ export class CreateStudentPageComponent implements OnInit {
       if (fileList.length === 0) {
         return;
       }
-      this.serviceDispatcher.uploadStudentPicture(fileList, this.psuID).subscribe({
-        next: (event) => {
-        if (event.type === HttpEventType.UploadProgress)
-          this.progress = Math.round(100 * event.loaded / event.total);
-        else if (event.type === HttpEventType.Response) {
-          this.message = 'Upload success.';
-          this.onUploadFinished.emit(event.body);
-        }
-      },
-      error: (err: HttpErrorResponse) => {
-        console.log(err)
-        this.message = 'Error in upload!';
-        this.uploadError = true;
-      }
-    });
+      this.serviceDispatcher.uploadStudentPictureForPath(fileList).subscribe(response =>{
+        this.studentProfilePicPath = response;
+        this.progress = 100;
+        this.message = "Upload success."
+      });
     }
    
    onFileSelected(event: any){
@@ -295,6 +286,7 @@ export class CreateStudentPageComponent implements OnInit {
     }
     sd.research_Interest = this.interest.value!;
     sd.research_Project = this.projects.value!;
+    sd.profile_url = this.studentProfilePicPath;
 
 
     let navigationExtras: NavigationExtras = {
@@ -306,7 +298,9 @@ export class CreateStudentPageComponent implements OnInit {
     if(!this.validate()){
       
       this.serviceDispatcher.createStudentProfile(sd).subscribe(response => { }); // comment out, else profile will save to database 
-      this.router.navigate(['/student-home'], navigationExtras);
+      setTimeout(()=>{
+        this.router.navigate(['/student-home'], navigationExtras);
+      },1000);
     }
   }
 
