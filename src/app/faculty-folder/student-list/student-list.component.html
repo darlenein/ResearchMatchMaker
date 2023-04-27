@@ -3,7 +3,7 @@
 <!-- filters -->
 
 <div class="studentFilterContainer">
-     <div class="Lcontainer">  
+     <div class="Lcontainer" style="width: 350px">  
         <button type="button" class="btn" (click)="resetFilters();">Reset Filters</button><br>
 
         <mat-nav-list>
@@ -27,15 +27,47 @@
                 <a [ngClass]="!toggle[1] ? 'parent-filter' : 'parent-filter-bold'">Major</a>
             </mat-list-item>
             <div [hidden]="!toggle[1]">
-                <mat-selection-list [formControl]="Major" (selectionChange)="FilterAndSearch('Major', $event)">
-                    <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="Software Engineer">Software Engineer</mat-list-option>
-                    <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="Computer Science">Computer Science</mat-list-option>
-                    <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="Chemical Engineering">Chemical Engineering</mat-list-option>
-                    <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="Electrical Engineering">Electrical Engineering</mat-list-option>
-                    <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="Marketing">Marketing</mat-list-option>
-                    <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="Political Science">Political Science</mat-list-option>
-                    <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="Journalism">Journalism</mat-list-option>
-                    <mat-list-option style="margin-left: 25px;" checkboxPosition="before" value="Biochemistry">Biochemistry</mat-list-option>
+                <mat-selection-list style="width: 250px; margin-left: 25px;" [formControl]="Major" (selectionChange)="FilterAndSearch('Major', $event)">
+                    
+                    <mat-list-option  checkboxPosition="before" value="Accounting">Accounting</mat-list-option>
+                    <mat-list-option  checkboxPosition="before" value="Biology">Biology</mat-list-option>
+                    <mat-list-option  checkboxPosition="before" value="Business Economics">Business Economics</mat-list-option>
+                    <mat-list-option  checkboxPosition="before" value="Chemistry">Chemistry</mat-list-option>
+                    <mat-list-option  checkboxPosition="before" value="Communication">Communication</mat-list-option>
+                    <mat-list-option  checkboxPosition="before" value="Computer Engineering">Computer Engineering</mat-list-option>
+                    <mat-list-option  checkboxPosition="before" value="Computer Science">Computer Science</mat-list-option>
+                    <mat-list-option  checkboxPosition="before" value="Creative Writing">Creative Writing</mat-list-option>
+                    <mat-list-option  checkboxPosition="before" value="Digital Media, Arts, and Technology">Digital Media, Arts, and Technology</mat-list-option>
+                    <mat-list-option  checkboxPosition="before" value="Economics">Economics</mat-list-option>
+                    <mat-list-option  checkboxPosition="before" value="Electrical and Computer Engineering Techonology">Electrical and Computer Engineering Techonology</mat-list-option>
+                    <mat-list-option  checkboxPosition="before" value="electrical">Electrical Engineering</mat-list-option>
+                    <mat-list-option  checkboxPosition="before" value="Electrical Engineering Technology">Electrical Engineering Technology</mat-list-option>
+                    <mat-list-option  checkboxPosition="before" value="Elementary and Early Childhood Education (PreK-4)">Elementary and Early Childhood Education (PreK-4)</mat-list-option>
+                    <mat-list-option  checkboxPosition="before" value="English">English</mat-list-option>
+                    <mat-list-option  checkboxPosition="before" value="Environmental Science">Environmental Science</mat-list-option>
+                    <mat-list-option  checkboxPosition="before" value="Finance">Finance</mat-list-option>
+                    <mat-list-option  checkboxPosition="before" value="General Arts and Sciences">General Arts and Sciences</mat-list-option>
+                    <mat-list-option  checkboxPosition="before" value="General Business">General Business</mat-list-option>
+                    <mat-list-option  checkboxPosition="before" value="History">History</mat-list-option>
+                    <mat-list-option  checkboxPosition="before" value="Industrial Engineering">Industrial Engineering</mat-list-option>
+                    <mat-list-option  checkboxPosition="before" value="Interdisciplinary Business with Engineering Studies">Interdisciplinary Business with Engineering Studies</mat-list-option>
+                    <mat-list-option  checkboxPosition="before" value="Interdisciplinary Science and Business">Interdisciplinary Science and Business</mat-list-option>
+                    <mat-list-option  checkboxPosition="before" value="International Business">International Business</mat-list-option>
+                    <mat-list-option  checkboxPosition="before" value="Management Information Systems">Management Information Systems</mat-list-option>
+                    <mat-list-option  checkboxPosition="before" value="Marketing">Marketing</mat-list-option>
+                    <mat-list-option  checkboxPosition="before" value="Mathematics">Mathematics</mat-list-option>
+                    <mat-list-option  checkboxPosition="before" value="Mechanical Engineering">Mechanical Engineering</mat-list-option>
+                    <mat-list-option  checkboxPosition="before" value="Mechanical Engineering Technology">Mechanical Engineering Technology</mat-list-option>
+                    <mat-list-option  checkboxPosition="before" value="Nursing">Nursing</mat-list-option>
+                    <mat-list-option  checkboxPosition="before" value="Physics">Physics</mat-list-option>
+                    <mat-list-option  checkboxPosition="before" value="Plastics Engineering Technology">Plastics Engineering Technology</mat-list-option>
+                    <mat-list-option  checkboxPosition="before" value="Political Science">Political Science</mat-list-option>
+                    <mat-list-option  checkboxPosition="before" value="Polymer Engineering and Science">Polymer Engineering and Science</mat-list-option>
+                    <mat-list-option  checkboxPosition="before" value="Project and Supply Chain Management">Project and Supply Chain Management</mat-list-option>
+                    <mat-list-option  checkboxPosition="before" value="Psychology">Psychology</mat-list-option>
+                    <mat-list-option  checkboxPosition="before" value="Secondary Education in Mathematics">Secondary Education in Mathematics</mat-list-option>
+                    <mat-list-option  checkboxPosition="before" value="Science">Science</mat-list-option>
+                    <mat-list-option  checkboxPosition="before" value="Software Engineering">Software Engineering</mat-list-option>
                 </mat-selection-list>
             </div>
 

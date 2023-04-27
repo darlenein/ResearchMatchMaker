@@ -28,31 +28,34 @@ import { MatchResearchToStudentPageComponent } from './student-folder/match-rese
 import { PlaceholderComponent } from './Inbox/placeholder/placeholder.component';
 import { EmailShowComponent } from './Inbox/email-show/email-show.component';
 import { EmailResolverService } from './Inbox/email-resolver.service';
+import { AuthGuard } from './auth/auth.guard';
+
+
 
 export const routes: Routes = [
   { path: '', component: LandingPageComponent},
-  { path: 'view-matches', component: MatchPageComponent},
-  { path: 'opp-board', component: OpportunityBoardPageComponent},
-  { path: 'view-faculty-profile', component: ViewFacultyPageComponent},
-  { path: 'view-student-profile', component: ViewStudentPageComponent},
-  { path: 'create-faculty-page', component: CreateFacultyPageComponent},
-  { path: 'create-student-page', component: CreateStudentPageComponent},
   { path: 'login', component: LandingPageComponent},
-  { path: 'faculty-home', component: FacultyHomePageComponent},
-  { path: 'student-home', component: StudentHomePageComponent},
-  { path: 'faculty-research', component: ManageResearchPageComponent},
-  { path: 'edit-research', component: EditResearchPageComponent},
-  { path: 'add-research', component: AddResearchPageComponent},
-  { path: 'research-list', component: ResearchListPageComponent},
-  { path: 'edit-faculty-profile', component: EditFacultyProfilePageComponent},
-  { path: 'edit-student-profile', component: EditStudentProfilePageComponent},
-  { path: 'student-list', component: StudentListComponent},
-  { path: 'view-applicants', component: ViewApplicantsComponent},
-  { path: 'faculty-view-student', component: FacultyViewStudentPageComponent},
-  { path: 'student-view-faculty', component: StudentViewFacultyPageComponent},
-  { path: 'faculty-list', component: FacultyListComponent},
-  { path: 'auth-callback', component: AuthenticatorComponent },
-  { path: 'inbox-FacultyHome', component: InboxHomeComponent, 
+  { path: 'view-matches', component: MatchPageComponent, canActivate:[AuthGuard]},
+  { path: 'opp-board', component: OpportunityBoardPageComponent, canActivate:[AuthGuard]},
+  { path: 'view-faculty-profile', component: ViewFacultyPageComponent, canActivate:[AuthGuard]},
+  { path: 'view-student-profile', component: ViewStudentPageComponent, canActivate:[AuthGuard]},
+  { path: 'create-faculty-page', component: CreateFacultyPageComponent, canActivate:[AuthGuard]},
+  { path: 'create-student-page', component: CreateStudentPageComponent, canActivate:[AuthGuard]},
+  { path: 'faculty-home', component: FacultyHomePageComponent, canActivate:[AuthGuard]},
+  { path: 'student-home', component: StudentHomePageComponent, canActivate:[AuthGuard]},
+  { path: 'faculty-research', component: ManageResearchPageComponent, canActivate:[AuthGuard]},
+  { path: 'edit-research', component: EditResearchPageComponent, canActivate:[AuthGuard]},
+  { path: 'add-research', component: AddResearchPageComponent, canActivate:[AuthGuard]},
+  { path: 'research-list', component: ResearchListPageComponent, canActivate:[AuthGuard]},
+  { path: 'edit-faculty-profile', component: EditFacultyProfilePageComponent, canActivate:[AuthGuard]},
+  { path: 'edit-student-profile', component: EditStudentProfilePageComponent, canActivate:[AuthGuard]},
+  { path: 'student-list', component: StudentListComponent, canActivate:[AuthGuard]},
+  { path: 'view-applicants', component: ViewApplicantsComponent, canActivate:[AuthGuard]},
+  { path: 'faculty-view-student', component: FacultyViewStudentPageComponent, canActivate:[AuthGuard]},
+  { path: 'student-view-faculty', component: StudentViewFacultyPageComponent, canActivate:[AuthGuard]},
+  { path: 'faculty-list', component: FacultyListComponent, canActivate:[AuthGuard]},
+  { path: 'auth-callback', component: AuthenticatorComponent},
+  { path: 'inbox-FacultyHome', component: InboxHomeComponent, canActivate:[AuthGuard], 
     children: [
       {
         path: ':id',

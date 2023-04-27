@@ -15,8 +15,6 @@ export class LandingPageComponent implements OnInit {
   }
   
   signIn() {
-    console.log("Attempting to log user into application..");
-    console.log("Redirecting to Azure AD");
     this.authenticator.login();
   }
 

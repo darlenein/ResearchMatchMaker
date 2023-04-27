@@ -61,6 +61,8 @@ import { PlaceholderComponent } from './Inbox/placeholder/placeholder.component'
 import { ModalComponent } from './Inbox/shared/modal/modal.component';
 import { InputComponent } from './Inbox/shared/input/input.component';
 import { EmailFormComponent } from './Inbox/email-form/email-form.component';
+import { AuthGuard } from './auth/auth.guard';
+import { AuthService } from './auth/auth.service';
 
 
 @NgModule({
@@ -131,7 +133,9 @@ import { EmailFormComponent } from './Inbox/email-form/email-form.component';
   providers: 
   [ 
     {provide: APP_BASE_HREF, useValue: '/ResearchConnect'},
-    AuthenticatorComponent
+    AuthenticatorComponent,
+    AuthService,
+    AuthGuard
   ],
   bootstrap: [AppComponent], 
   exports: [ModalComponent, InputComponent]
@@ -142,7 +146,7 @@ export class AppModule {
       .registerForEvents()
       .pipe(filter((notification) => notification.type === EventTypes.ConfigLoaded))
       .subscribe((config) => {
-        console.log('ConfigLoaded', config);
+        //console.log('ConfigLoaded', config);
       });
   }
 }
