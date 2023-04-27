@@ -34,7 +34,6 @@ export class AuthService {
       this.psuEmail = user.unique_name;
       this.psuID = this.psuEmail.replace('@psu.edu', '');
       this.userType = user.extensionAttribute1;
-      this.userType = "FACULTY";
       this.firstName = user.given_name;
       this.lastName = user.family_name;
     });
