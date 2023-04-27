@@ -21,6 +21,7 @@ export class ViewStudentPageComponent implements OnInit {
   //Inbox Stuff
   showModal = false;
   email: Email;
+  defaultImage = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png';
 
   constructor(private emailService: EmailService, private router: Router, public serviceDispatcher: ServiceDispatcher, private route: ActivatedRoute) {
     this.route.queryParams.subscribe(params => {

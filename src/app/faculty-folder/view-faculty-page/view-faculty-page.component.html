@@ -5,7 +5,7 @@
     <div class="top-left-container">
         <button *ngIf="fpsuID === psuID" (click)="goToEditProfile();">Edit Profile</button><br><br>
         <span class="name">{{faculty.first_Name}} {{faculty.last_Name}}</span><br>
-        <img src="{{faculty.profile_Url}}" class="profile-logo">
+        <img [src]="faculty.profile_Url ? faculty.profile_Url : defaultImage" class="profile-logo">
     </div>
     <div class="top-right-container">
         <button (click)="showModal = true" class="button">Send Message</button>
