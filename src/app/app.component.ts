@@ -1,19 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { AuthService } from './Inbox/auth.service';
-
+import { AuthService } from './auth/auth.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'ResearchMatchMaker';
-  signedin$: BehaviorSubject<boolean>;
 
   constructor(private authService: AuthService) {
-    this.signedin$ = this.authService.signedin$;
   }
 
+  ngOnInit(): void {
+  }
   
 }
