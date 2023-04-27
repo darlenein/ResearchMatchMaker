@@ -61,7 +61,7 @@ export class EditStudentProfilePageComponent implements OnInit {
   filePath: any;
   imgPath: string | ArrayBuffer | null;
   uploadError = false;
-  
+  shouldRefresh = true;
 
 
   constructor(private router: Router, public serviceDispatcher: ServiceDispatcher, private route: ActivatedRoute,private fb: FormBuilder,private http: HttpClient) { 
@@ -175,6 +175,7 @@ export class EditStudentProfilePageComponent implements OnInit {
       this.uploadError = true;
     }
   });
+  this.shouldRefresh = !this.shouldRefresh;
   }
 
 
@@ -298,10 +299,10 @@ export class EditStudentProfilePageComponent implements OnInit {
     if(!this.validate()){
       
    this.serviceDispatcher.editStudentProfile(sd).subscribe(response => { }); // comment out when testing 
+
     setTimeout(()=>{
-      location.reload();
-    },500);
-    this.router.navigate(['/view-student-profile'], navigationExtras);
+      this.router.navigate(['/view-student-profile'], navigationExtras);
+    },1000);
   }
 }
 

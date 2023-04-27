@@ -17,6 +17,7 @@ interface UserCred {
 })
 export class FacultyTopMenuBarComponent implements OnInit {
   @Input() pageName: string;
+  @Input() refresh: boolean;
   psuID: string;
   faculty: any;
   defaultImage = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png';
@@ -32,6 +33,12 @@ export class FacultyTopMenuBarComponent implements OnInit {
     this.serviceDispatcher.getFaculty(this.psuID).subscribe(response => {
       this.faculty = response;
     })
+  }
+
+  ngOnChanges(): void {
+    setTimeout(()=>{
+      this.ngOnInit();
+    },100);
   }
 
   goToProfileViewPage() {

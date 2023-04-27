@@ -223,7 +223,10 @@ export class EditResearchPageComponent implements OnInit {
     else rm.isCredit = false;
     if(!this.validate()){
     this.serviceDispatcher.editResearch(rm).subscribe(response => { });
-    this.router.navigate(['/faculty-research'], navigationExtras);
+    setTimeout(()=>{
+      this.router.navigate(['/faculty-research'], navigationExtras);
+    },1000);
+    
   }
 }
   validate(): any {
