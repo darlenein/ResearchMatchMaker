@@ -249,7 +249,7 @@ export class ServiceDispatcher{
     let fileToUpload = <File>fileList[0];
     const formData = new FormData();
     formData.append('file', fileToUpload, fileToUpload.name);
-    const url = 'https://rmm.bd.psu.edu:8083/api/Student/uploadFacultyPicture/';
+    const url = 'https://rmm.bd.psu.edu:8083/api/Faculty/uploadFacultyPicture/';
     return this.http.post<any>(url, formData, {responseType: 'text' as 'json'});
   }
 }
